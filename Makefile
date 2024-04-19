@@ -1,0 +1,2 @@
+run:
+	@vsce package

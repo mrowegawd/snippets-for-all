@@ -1,0 +1,50 @@
+{
+  "conventional commit": {
+    "prefix": "git_cc",
+    "body": ["${1:type}(${2:scope}): ${3:title}", "", "$0"]
+  },
+  "fix conventional commit": {
+    "prefix": "git_fix",
+    "body": ["fix(${1:scope}): ${2:title}", "", "$0"]
+  },
+  "feat conventional commit": {
+    "prefix": "git_feat",
+    "body": ["feat(${1:scope}): ${2:title}", "", "$0"]
+  },
+  "build conventional commit": {
+    "prefix": "git_build",
+    "body": ["build(${1:scope}): ${2:title}", "", "$0"]
+  },
+  "chore conventional commit": {
+    "prefix": "git_chore",
+    "body": ["chore(${1:scope}): ${2:title}", "", "$0"]
+  },
+  "ci conventional commit": {
+    "prefix": "ci",
+    "body": ["git_ci(${1:scope}): ${2:title}", "", "$0"]
+  },
+  "docs conventional commit": {
+    "prefix": "git_docs",
+    "body": ["docs(${1:scope}): ${2:title}", "", "$0"]
+  },
+  "style conventional commit": {
+    "prefix": "style",
+    "body": ["git_style(${1:scope}): ${2:title}", "", "$0"]
+  },
+  "refactor conventional commit": {
+    "prefix": "git_refactor",
+    "body": ["refactor(${1:scope}): ${2:title}", "", "$0"]
+  },
+  "perf conventional commit": {
+    "prefix": "perf",
+    "body": ["git_perf(${1:scope}): ${2:title}", "", "$0"]
+  },
+  "test conventional commit": {
+    "prefix": "test",
+    "body": ["git_test(${1:scope}): ${2:title}", "", "$0"]
+  },
+  "breaking change conventional commit footer": {
+    "prefix": "git_BREAK",
+    "body": ["BREAKING CHANGE: $0"]
+  }
+}

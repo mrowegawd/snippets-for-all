@@ -1,0 +1,576 @@
+{
+  "use strict": {
+    "prefix": "use_strict",
+    "body": "'use strict'",
+    "description": "use strict"
+  },
+  "TODO": {
+    "prefix": "todo_",
+    "body": ["// TODO: $0"],
+    "description": "// TODO: ..."
+  },
+  "header{{{": {
+    "prefix": "header_1",
+    "body": [
+      "// ${1:headname} ----------------------------------------------------------- {{{",
+      "//",
+      "$2",
+      "//",
+      "//  }}}"
+    ],
+    "description": "create header --- {{{"
+  },
+  "header###": {
+    "prefix": "header_2",
+    "body": [
+      "// ##############################################################################",
+      "// ${1:string_header}",
+      "// ##############################################################################",
+      "$2"
+    ],
+    "description": "create header --- ###"
+  },
+  "require": {
+    "prefix": "req_",
+    "body": "require('${1:module}')",
+    "description": "require(\"module\")"
+  },
+  "exports.member": {
+    "prefix": "exp_",
+    "body": "exports.${1:member} = ${2:value}",
+    "description": "exports.member = value"
+  },
+  "module.exports": {
+    "prefix": "exp_module",
+    "body": "module.exports = ${1:name}",
+    "description": "module.exports = name"
+  },
+  "import module": {
+    "prefix": "imp_",
+    "body": "import ${2:*} from '${1:module}'",
+    "description": "import * from 'module'"
+  },
+  "import module destructured": {
+    "prefix": "imp_from_d",
+    "body": "import {$2} from '${1:module}'",
+    "description": "import value from 'module'"
+  },
+  "import module as": {
+    "prefix": "imp_from_as",
+    "body": "import ${2:*} as ${3:name} from '${1:module}'",
+    "description": "import * as name from 'module'"
+  },
+  "var assignment": {
+    "prefix": "var_",
+    "body": "var ${1:name} = ${2:value}",
+    "description": "var name = value"
+  },
+  "var statement": {
+    "prefix": "var_init",
+    "body": "var ${1:name}",
+    "description": "var name"
+  },
+  "let statement": {
+    "prefix": "let_",
+    "body": "let ${1:name}",
+    "description": "let name"
+  },
+  "let assignment awaited": {
+    "prefix": "let_await",
+    "body": "let ${1:name} = await ${2:value}",
+    "description": "let name = await value"
+  },
+  "let assignment yielded": {
+    "prefix": "let_yield",
+    "body": "let ${1:name} = yield ${2:value}",
+    "description": "let name = yield value"
+  },
+  "const statement": {
+    "prefix": "const_",
+    "body": "const ${1:name} = ${0}",
+    "description": "const name"
+  },
+  "const statement from destructuring": {
+    "prefix": "const_destructuring",
+    "body": "const { ${2:prop} } = ${1:value}",
+    "description": "const { prop } = value"
+  },
+  "const statement from array destructuring": {
+    "prefix": "const_array_d",
+    "body": "const [ ${2:prop} ] = ${1:value}",
+    "description": "const [ prop ] = value"
+  },
+  "const destructuring assignment awaited": {
+    "prefix": "cosnt_a_d",
+    "body": "const { ${1:name} } = await ${2:value}",
+    "description": "const { name } = await value"
+  },
+  "const object": {
+    "prefix": "const_obj",
+    "body": "const ${1:name} = {\n\t${0}\n}",
+    "description": "const name = {\n\n}"
+  },
+  "const new statement": {
+    "prefix": "const_new_obj",
+    "body": ["const ${1:name} = new ${2:type}(${3:arguments});$0"],
+    "description": "const name = new type(arguments);"
+  },
+  "const array": {
+    "prefix": "const_array",
+    "body": "const ${1:name} = [\n\t${0}\n]",
+    "description": "const name = [\n\n]"
+  },
+  "const assignment awaited": {
+    "prefix": "const_await",
+    "body": "const ${1:name} = await ${2:value}",
+    "description": "const name = await value"
+  },
+  "const assignment yielded": {
+    "prefix": "const_yield",
+    "body": "const ${1:name} = yield ${2:value}",
+    "description": "const name = yield value"
+  },
+  "const module = require('module')": {
+    "prefix": "const_require",
+    "body": "const ${1:module} = require('${1:module}')",
+    "description": "const module = require('module')"
+  },
+  "const module export": {
+    "prefix": "const_export",
+    "body": "export const ${1:member} = ${2:value}",
+    "description": "export const member = value"
+  },
+  "generate array of integers starting with 1": {
+    "prefix": "gari",
+    "body": "Array.from({ length: ${1:length} }, (v, k) => k + 1)",
+    "description": "Array.from({ length: xlength} }, (v, k) => k + 1)"
+  },
+  "generate array of integers starting with 0": {
+    "prefix": "gari0",
+    "body": "[...Array(${1:length}).keys()]",
+    "description": "[...Array(length).keys()]"
+  },
+  "module default export": {
+    "prefix": "exp_default",
+    "body": "export default ${1:member}",
+    "description": "export default member"
+  },
+  "module default export function": {
+    "prefix": "exp_default_func",
+    "body": "export default function ${1:name} (${2:arguments}) {\n\t${0}\n}",
+    "description": "export default function nameFunc (arguments) {\n\t${0}\n}"
+  },
+  "typeof": {
+    "prefix": "typeof_",
+    "body": "typeof ${1:source} === '${2:undefined}'",
+    "description": "typeof source === 'undefined'"
+  },
+  "instanceof": {
+    "prefix": "instof_",
+    "body": "${1:source} instanceof ${2:Object}",
+    "description": "value instanceof Myclass"
+  },
+  "constructor": {
+    "prefix": "constructor_",
+    "body": "constructor () {\n\t${0}\n}",
+    "description": "constructor () {\n\n}"
+  },
+  "getter": {
+    "prefix": "get_",
+    "body": "get ${1:property} () {\n\t${0}\n}",
+    "description": "get property () {\n\n}"
+  },
+  "setter": {
+    "prefix": "set_",
+    "body": "set ${1:property} (${2:value}) {\n\t${0}\n}",
+    "description": "set property (value) {\n\n}"
+  },
+  "getter + setter": {
+    "prefix": "set_get",
+    "body": "get ${1:property} () {\n\t${0}\n}\nset ${1:property} (${2:value}) {\n\t\n}",
+    "description": "get property () {\n\n}\nset ${1:property} (value) {\n\t\n}"
+  },
+  "prototype method": {
+    "prefix": "proto",
+    "body": "${1:Class}.prototype.${2:method} = function (${3:arguments}) {\n\t${0}\n}",
+    "description": "Class.prototype.method = function (arguments) {\n\n}"
+  },
+  "ternary": {
+    "prefix": "tern_",
+    "body": "${1:cond} ? ${2:true} : ${3:false}",
+    "description": "cond ? true : false"
+  },
+  "ternary var assignment": {
+    "prefix": "var_tern",
+    "body": "var ${0} = ${1:cond} ? ${2:true} : ${3:false}",
+    "description": "var ${0} = ${1:cond} ? ${2:true} : ${3:false}"
+  },
+  "ternary const assignment": {
+    "prefix": "const_tern",
+    "body": "const ${0} = ${1:cond} ? ${2:true} : ${3:false}",
+    "description": "const ${0} = ${1:cond} ? ${2:true} : ${3:false}"
+  },
+  "return arrow function": {
+    "prefix": "rt_arr_",
+    "body": "return (${1:arguments}) => ${2:statement}",
+    "description": "return (arguments) => statement"
+  },
+  "return this": {
+    "prefix": "rt_this",
+    "body": "return ${0:this}",
+    "description": "return this"
+  },
+  "return null": {
+    "prefix": "rt_null",
+    "body": "return null",
+    "description": "return null"
+  },
+  "return new array": {
+    "prefix": "rt_array",
+    "body": "return [\n\t${0}\n]",
+    "description": "return [\n\n]"
+  },
+  "define module": {
+    "prefix": "define_",
+    "body": [
+      "define([",
+      "\t'require',",
+      "\t'${1:dependency}'",
+      "], function(require, ${2:factory}) {",
+      "\t'use strict';",
+      "\t$0",
+      "});"
+    ],
+    "description": [
+      "define([",
+      "\t'require',",
+      "\t'${1:dependency}'",
+      "], function(require, ${2:factory}) {",
+      "\t'use strict';",
+      "\t$0",
+      "});"
+    ]
+  },
+  "for": {
+    "prefix": "for_",
+    "body": [
+      "for (let ${1:index} = 0; ${1:index} < ${2:array}.length; ${1:index}++) {",
+      "\tconst ${3:element} = ${2:array}[${1:index}];",
+      "\t$0",
+      "}"
+    ],
+    "description": [
+      "for (let index = 0; index < array.length; index++) {",
+      "\tconst element = array\\[index\\];",
+      "\t$0",
+      "}"
+    ]
+  },
+  "for each": {
+    "prefix": "for_each",
+    "body": ["${1:array}.forEach(${2:element} => {", "\t$0", "});"],
+    "description": ["array.forEach(element => {", "", "});"]
+  },
+  "for in": {
+    "prefix": "for_in",
+    "body": [
+      "for (const ${1:key} in ${2:object}) {",
+      "\tif (${2:object}.hasOwnProperty(${1:key})) {",
+      "\t\tconst ${3:element} = ${2:object}[${1:key}];",
+      "\t\t$0",
+      "\t}",
+      "}"
+    ],
+    "description": [
+      "for (const key in object) {",
+      "\tif (object.hasOwnProperty(key)) {",
+      "\t\tconst element = object\\[key\\];",
+      "",
+      "\t}",
+      "}"
+    ]
+  },
+  "for of": {
+    "prefix": "for_of",
+    "body": ["for (const ${1:iterator} of ${2:myarray}) {", "\t$0", "}"],
+    "description": ["for (const iterator of array) {", "", "}"]
+  },
+  "for:map": {
+    "prefix": "for_map",
+    "body": "${1:iterable}.map((${2:item}) => {\n\t${0}\n})",
+    "description": "iterable.map((item) => {\n\n})"
+  },
+  "for:reduce": {
+    "prefix": "for_reduce",
+    "body": "${1:iterable}.reduce((${2:previous}, ${3:current}) => {\n\t${0}\n}${4:, initial})",
+    "description": "iterable.reduce((previous, current) => {\n\n}, initial)"
+  },
+  "for:filter": {
+    "prefix": "for_filter",
+    "body": "${1:iterable}.filter((${2:item}) => {\n\t${0}\n})",
+    "description": "iterable.filter((item) => {\n\n})"
+  },
+  "for:find": {
+    "prefix": "for_find",
+    "body": "${1:iterable}.find((${2:item}) => {\n\t${0}\n})",
+    "description": "iterable.find((item) => {\n\n})"
+  },
+  "for:every": {
+    "prefix": "for_every",
+    "body": "${1:iterable}.every((${2:item}) => {\n\t${0}\n})",
+    "description": "iterable.every((item) => {\n\n})"
+  },
+  "for:some": {
+    "prefix": "for_some",
+    "body": "${1:iterable}.some((${2:item}) => {\n\t${0}\n})",
+    "description": "iterable.some((item) => {\n\n})"
+  },
+  "function": {
+    "prefix": "func_",
+    "body": ["function ${1:name}(${2:params}) {", "\t$0", "}"],
+    "description": ["function name(params) {", "", "}"]
+  },
+  "function anonymous": {
+    "prefix": "func_ann",
+    "body": "function (${1:arguments}) {${0}}",
+    "description": "function (arguments) {value}"
+  },
+  "function callback": {
+    "prefix": "func_callback",
+    "body": "function (err, ${1:value}) {\n\tif (err) throw err\n\t${0}\n}",
+    "description": "function (err, value) {\n\tif (err) throw err\n\n}"
+  },
+  "function immediately-invoked function expression": {
+    "prefix": "func_iife",
+    "body": ";(function (${1:arguments}) {\n\t${0}\n})(${2})",
+    "description": ";(function (arguments) {\n\n})(value)"
+  },
+  "async:function": {
+    "prefix": "async_func",
+    "body": "async function (${1:arguments}) {\n\t${0}\n}",
+    "description": "async function (arguments) {\n\n}"
+  },
+  "async:function arrow": {
+    "prefix": "async_func_arr",
+    "body": "async (${1:arguments}) => {\n\t${0}\n}",
+    "description": "async (arguments) => {\n\n}"
+  },
+  "async:function immediately-invoked expression": {
+    "prefix": "async_func_iife",
+    "body": ";(async (${1:arguments}) => {\n\t${0}\n})(${2})",
+    "description": ";(async (arguments) => {\n\n})(value)"
+  },
+  "function arrow": {
+    "prefix": "func_arr_",
+    "body": "(${1:arguments}) => ${2:statement}",
+    "description": "(arguments) => statement"
+  },
+  "function export named": {
+    "prefix": "func_export",
+    "body": "export function ${1:member} (${2:arguments}) {\n\t${0}\n}",
+    "description": "export function member (arguments) {\n\n}"
+  },
+  "function arrow with destructuring": {
+    "prefix": "func_arr_desctructing",
+    "body": "({${1:arguments}}) => ${2:statement}",
+    "description": "(\\{arguments\\}) => statement"
+  },
+  "function generator": {
+    "prefix": "func_generators",
+    "body": "function *${1:name}(${2:arguments}) {\n\t${0}\n}",
+    "description": "function* nameFunc(arguments) {\n\n}"
+  },
+  "function generator anonymous": {
+    "prefix": "func_generators_ann",
+    "body": "function* (${1:arguments}) {\n\t${0}\n}",
+    "description": "function* (arguments) {\n\n}"
+  },
+  "if": {
+    "prefix": "if_",
+    "body": ["if (${1:condition}) {", "\t${0}", "}"],
+    "description": ["if (${1:condition}) {", "", "}"]
+  },
+  "if:else": {
+    "prefix": "if_else",
+    "body": ["if (${1:condition}) {", "", "} else {", "", "}"],
+    "description": ["if (condition) {", "\t$0", "} else {", "\t", "}"]
+  },
+  "else": {
+    "prefix": "else_",
+    "body": "else {\n\t${0}\n}",
+    "description": "else {\n\t${0}\n}"
+  },
+  "else if": {
+    "prefix": "elif_",
+    "body": "else if (${1:condition}) {\n\t${0}\n}",
+    "description": "else if (condition) {\n\t${0}\n}"
+  },
+  "let and if statement": {
+    "prefix": "lif_",
+    "body": "let ${0} \n if (${2:condition}) {\n\t${1}\n}",
+    "description": "let x \n if (condition) {\n\t${1}\n}"
+  },
+  "switch": {
+    "prefix": "switch_",
+    "body": [
+      "switch (${1:key}) {",
+      "\tcase ${2:value}:",
+      "\t\t$0",
+      "\t\tbreak;",
+      "",
+      "\tdefault:",
+      "\t\tbreak;",
+      "}"
+    ],
+    "description": [
+      "switch (key) {",
+      "\tcase value:",
+      "",
+      "\t\tbreak;",
+      "",
+      "\tdefault:",
+      "\t\tbreak;",
+      "}"
+    ]
+  },
+  "while": {
+    "prefix": "while_",
+    "body": ["while (${1:condition}) {", "\t$0", "}"],
+    "description": ["while (condition) {", "", "}"]
+  },
+  "while iteration from array length": {
+    "prefix": "while_iteration_decrementing",
+    "body": "let ${1:array}Index = ${1:array}.length\nwhile (${1:array}Index--) {\n\t${0}\n}",
+    "description": "let arrayIndex = array.length\nwhile (arrayIndex--) {\n\n}"
+  },
+  "do-while Statement": {
+    "prefix": "while_do",
+    "body": ["do {", "\t$0", "} while (${1:condition});"],
+    "description": ["do {", "\t$0", "} while (condition);"]
+  },
+  "try-catch Statement": {
+    "prefix": "try_",
+    "body": ["try {", "\t$0", "} catch (${1:error}) {", "\t", "}"],
+    "description": ["try {", "\t$0", "} catch (error) {", "\t", "}"]
+  },
+  "try:finally": {
+    "prefix": "try_finally",
+    "body": "try {\n\t${0}\n} finally {\n\t\n}",
+    "description": "try {\n\n} finally {\n\n}"
+  },
+  "try:catch:finally": {
+    "prefix": "try_finally_catch",
+    "body": "try {\n\t${0}\n} catch (${1:err}) {\n\t\n} finally {\n\t\n}",
+    "description": "try {\n\n} catch (err) {\n\n} finally {\n\n}"
+  },
+  "throw new Error": {
+    "prefix": "throw_new",
+    "body": "throw new ${0:error}",
+    "description": "throw new Error"
+  },
+  "process.env": {
+    "prefix": "proc_",
+    "body": "process.env",
+    "description": "process.env"
+  },
+  "describe": {
+    "prefix": "describe_",
+    "body": "describe('${1:description}', () => {\n\t${0}\n})",
+    "description": "describe('description', () => {\n\n})"
+  },
+  "describe top level": {
+    "prefix": "describe_t",
+    "body": "describe('${TM_FILENAME_BASE}', () => {\n\t${0}\n})",
+    "description": "describe('TM_FILENAME_BASE', () => {\n\n})"
+  },
+  "it asynchronous": {
+    "prefix": "it_",
+    "body": "it('${1:description}', async () => {\n\t${0}\n})",
+    "description": "it('description', async () => {\n\n})"
+  },
+  "it.todo": {
+    "prefix": "it_todo",
+    "body": "it.todo('${1:description}')",
+    "description": "it.todo('description')"
+  },
+  "it with a callback": {
+    "prefix": "it_callback",
+    "body": "it('${1:description}', (done) => {\n\t${0}\n})",
+    "description": "it('description', (done) => {\n\n})"
+  },
+  "it synchronous": {
+    "prefix": "it_synchronous",
+    "body": "it('${1:description}', () => {\n\t${0}\n})",
+    "description": "it('description', () => {\n\n})"
+  },
+  "before": {
+    "prefix": "before_",
+    "body": "before(async () => {\n\t${0}\n})",
+    "description": "before(async () => {\n\n})"
+  },
+  "beforeAll": {
+    "prefix": "before_all",
+    "body": "beforeAll(async () => {\n\t${0}\n})",
+    "description": "beforeAll(async () => {\n\n})"
+  },
+  "beforeEach": {
+    "prefix": "before_each",
+    "body": "beforeEach(async () => {\n\t${0}\n})",
+    "description": "beforeEach(async () => {\n\n})"
+  },
+  "after": {
+    "prefix": "after_",
+    "body": "after(() => {\n\t${0}\n})",
+    "description": "after(() => {\n\n})"
+  },
+  "afterEach": {
+    "prefix": "after_each",
+    "body": "afterEach(() => {\n\t${0}\n})",
+    "description": "afterEach(() => {\n\n})"
+  },
+  "setImmediate": {
+    "prefix": "set_immediate",
+    "body": "setImmediate(() => {\n\t${0}\n})",
+    "description": "setImmediate(() => {\n\n})"
+  },
+  "set timeout function": {
+    "prefix": "set_timeout",
+    "body": ["setTimeout(() => {", "\t$0", "}, ${1:timeout});"],
+    "description": "Set Timeout Function"
+  },
+  "set interval function": {
+    "prefix": "set_interval",
+    "body": ["setInterval(() => {", "\t$0", "}, ${1:interval});"],
+    "description": ["setInterval(() => {", "\t", "}, ${1:interval});"]
+  },
+  "Region Start": {
+    "prefix": "#region",
+    "body": ["//#region $0"],
+    "description": "//#region $0"
+  },
+  "Region End": {
+    "prefix": "#endregion",
+    "body": ["//#endregion"],
+    "description": "//#endregion"
+  },
+  "console.dir": {
+    "prefix": "log_dir",
+    "body": "console.dir('${1}:', ${1})",
+    "description": "console.dir('x', y)"
+  },
+  "console.log": {
+    "prefix": "log_",
+    "body": "console.log(${0})",
+    "description": "console.log()"
+  },
+  "console.error": {
+    "prefix": "log_err",
+    "body": "console.error(${0})",
+    "description": "console.error()"
+  },
+  "Log warning to console": {
+    "prefix": "log_warn_",
+    "body": ["console.warn($1);", "$0"],
+    "description": "console.warn();"
+  }
+}

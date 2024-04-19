@@ -1,0 +1,21 @@
+{
+  "Merge list": {
+    "prefix": "merge_array",
+    "body": ["${1:verMergeList} = ${2:your_list} + ${3:your_list2}"],
+    "description": [
+      "\tlist_1 = \\[ \"This\" , \"is\", \"a\", \"sample\", \"program\" \\]",
+      "\tlist_2 = \\[ 10, 2, 45, 3, 5, 7, 8, 10 \\]",
+      "\t",
+      "\texample_1 = \\[ ...list_1, ...list_2 \\]",
+      "",
+      "\texample_2",
+      "\tfor elem in list_2:",
+      "\t\tlist_1.append(elem)"
+    ]
+  },
+  "Merge list with concat": {
+    "prefix": "merge_array_concat",
+    "body": ["${1:valArray} = ${2:yourArray}.concat(${3:yourConcatArray})"],
+    "description": "const arr4 = arr1.concat(arr2, arr3);"
+  }
+}

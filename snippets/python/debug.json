@@ -1,0 +1,37 @@
+{
+    "PDB set trace": {
+        "prefix": "debug_pdb",
+        "body": "__import__('pdb').set_trace()$0",
+        "description": "__import__('pdb').set_trace()"
+    },
+    "iPDB set trace": {
+        "prefix": "debug_ipdb",
+        "body": "__import__('ipdb').set_trace()$0",
+        "description": "__import__('ipdb').set_trace()"
+    },
+    "rPDB set trace": {
+        "prefix": "debug_rpdb",
+        "body": "import rpdb2; rpdb2.start_embedded_debugger('${1:debug_password}')$0",
+        "description": "import rpdb2; rpdb2.start_embedded_debugger('debug_password')"
+    },
+    "PuDB set trace": {
+        "prefix": "debug_pudb",
+        "body": "import pudb; pudb.set_trace()$0",
+        "description": "import pudb; pudb.set_trace()"
+    },
+    "IPython set trace": {
+        "prefix": "imp_ipydb",
+        "body": "from IPython import embed; embed()$0",
+        "description": "from IPython import embed; embed()"
+    },
+    "Celery set trace": {
+        "prefix": "imp_rdb",
+        "body": "from celery.contrib import rdb; rdb.set_trace()$0",
+        "description": "from celery.contrib import rdb; rdb.set_trace()$0"
+    },
+    "Pretty print": {
+        "prefix": "pprint",
+        "body": "__import__('pprint').pprint(${1:expression})$0",
+        "description": "__import__('pprint').pprint(expression})"
+    }
+}

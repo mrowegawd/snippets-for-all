@@ -1,0 +1,38 @@
+{
+  "await Promise.all": {
+    "prefix": "promise_all_async",
+    "body": "await Promise.all(${1:value})"
+  },
+  "await Promise.all map": {
+    "prefix": "promise_all_async_map",
+    "body": "await Promise.all(${1:array}.map(async (${2:value}) => {\n\t${0}\n}))"
+  },
+  "await sleep": {
+    "prefix": "promise_sleep",
+    "body": "await new Promise((r) => setTimeout(r, ${0}))"
+  },
+  "Promise.all": {
+    "prefix": "promise_all",
+    "body": "Promise.all(${1:value})"
+  },
+  "Promise.resolve": {
+    "prefix": "promise_resolve",
+    "body": "Promise.resolve(${1:value})"
+  },
+  "Promise.reject": {
+    "prefix": "promise_reject",
+    "body": "Promise.reject(${1:value})"
+  },
+  "new Promise": {
+    "prefix": "promise_new",
+    "body": "new Promise((resolve, reject) => {\n\t${0}\n})"
+  },
+  "Promise.then": {
+    "prefix": "promise_then",
+    "body": "${1:promise}.then((${2:value}) => {\n\t${0}\n})"
+  },
+  "Promise.catch": {
+    "prefix": "promise_catch",
+    "body": "${1:promise}.catch(error => {\n\t${0}\n})"
+  }
+}

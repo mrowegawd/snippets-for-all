@@ -1,0 +1,67 @@
+{
+    "Assert equal": {
+        "prefix": "assert_t_equal",
+        "body": "self.assertEqual(${1:expected}, ${2:actual}${3:, '${4:message}'})$0",
+        "description": "self.assertEqual(expected, actual, 'message')"
+    },
+    "Assert not equal": {
+        "prefix": "assert_t_notequal",
+        "body": "self.assertNotEqual(${1:expected}, ${2:actual}${3:, '${4:message}'})$0",
+        "description": "self.assertNotEqual(expected, actual, 'message')"
+    },
+    "Assert raises": {
+        "prefix": "assert_t_raises",
+        "body": "self.assertRaises(${1:exception}, ${2:callable}, ${3:args})$0",
+        "description": "self.assertRaises(exception, callable, args)"
+    },
+    "Assert True": {
+        "prefix": "assert_t_true",
+        "body": "self.assertTrue(${1:actual}${2:, '${3:message}'})$0",
+        "description": "self.assertTrue(actual, 'message')"
+    },
+    "Assert False": {
+        "prefix": "assert_t_false",
+        "body": "self.assertFalse(${1:actual}${2:, '${3:message}'})$0",
+        "description": "self.assertFalse(actual, 'message')"
+    },
+    "Assert is": {
+        "prefix": "assert_t_is",
+        "body": "self.assertIs(${1:expected}, ${2:actual}${3:, '${4:message}'})$0",
+        "description": "self.assertIs(expected, actual, 'message')"
+    },
+    "Assert is not": {
+        "prefix": "assert_t_isnot",
+        "body": "self.assertIsNot(${1:expected}, ${2:actual}${3:, '${4:message}'})$0",
+        "description": "self.assertIsNot(expected, actual, 'message')"
+    },
+    "Assert is None": {
+        "prefix": "assert_t_isnone",
+        "body": "self.assertIsNone(${1:actual}${2:, '${3:message}'})$0",
+        "description": "self.assertIsNone(actual, 'message')"
+    },
+    "Assert is not None": {
+        "prefix": "assert_t_isnotnone",
+        "body": "self.assertIsNotNone(${1:actual}${2:, '${3:message}'})$0",
+        "description": "self.assertIsNotNone(actual, 'message')"
+    },
+    "Assert in": {
+        "prefix": "assert_t_in",
+        "body": "self.assertIn(${1:needle}, ${2:haystack}${3:, '${4:message}'})$0",
+        "description": "self.assertIn(needle, haystack, 'message')"
+    },
+    "Assert not in": {
+        "prefix": "assert_t_notin",
+        "body": "self.assertNotIn(${1:needle}, ${2:haystack}${3:, '${4:message}'})$0",
+        "description": "self.assertNotIn(needle, haystack, 'message')"
+    },
+    "Assert": {
+        "prefix": "assert_t",
+        "body": "self.assert_(${1:boolean expression}${2:, '${3:message}'})$0",
+        "description": "self.assert_(boolean expression, 'message')"
+    },
+    "Fail (a test)": {
+        "prefix": "fail_t",
+        "body": "self.fail('${1:message}')$0",
+        "description": "self.fail('message')"
+    }
+}

@@ -1,0 +1,30 @@
+{
+  "setupReactTest": {
+    "prefix": "stest",
+    "body": [
+      "import React from 'react'",
+      "import renderer from 'react-test-renderer'",
+      "",
+      "import { ${1:${TM_FILENAME_BASE}} } from '../${1:${TM_FILENAME_BASE}}'",
+      "",
+      "describe('<${1:${TM_FILENAME_BASE}} />', () => {",
+      "  const defaultProps = {}",
+      "  const wrapper = renderer.create(<${1:${TM_FILENAME_BASE}} {...defaultProps} />)",
+      "",
+      "  test('render', () => {",
+      "    expect(wrapper).toMatchSnapshot()",
+      "  })",
+      "})"
+    ]
+  },
+  "testAsyncBlock": {
+    "prefix": "testa",
+    "body": ["test('should ${1:first}', async () => { ${2:second} })"],
+    "description": "Testing `asynchronous test` block"
+  },
+  "shouldComponentUpdate": {
+    "prefix": "test_rc_component_update",
+    "body": ["shouldComponentUpdate(nextProps, nextState) { ${1:first} }"],
+    "description": "Invoked before rendering when new props or state are being received. "
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "Object.assign": {
+    "prefix": "object_assign",
+    "body": "Object.assign(${1:dest}, ${2:source})",
+    "description": "Cara copy object dengan `object.assign(<obj1>, <obj2)`, return new obj3"
+  },
+  "Object.create": {
+    "prefix": "object_create",
+    "body": "Object.create(${1:obj})",
+    "description": "create new object atau extend dari object"
+  },
+  "Object.getOwnPropertyDescriptor": {
+    "prefix": "object_getownproperty",
+    "body": "Object.getOwnPropertyDescriptor(${1:obj}, '${2:prop}')",
+    "description": "\tObject.getOwnPropertyDescriptor(obj, 'prop')"
+  },
+  "Object.defineProperty": {
+    "prefix": "object_defineproperty",
+    "body": "Object.defineProperty(${1:dest}, '${2:prop}', {\n\t${0}\n})",
+    "description": "\tObject.defineProperty(dest, 'prop', {\n\t\n\t})"
+  },
+  "Object.keys": {
+    "prefix": "object_keys",
+    "body": "Object.keys(${1:obj})",
+    "description": "get semua hanya keys dari sebuah object, return array"
+  },
+  "Object.values": {
+    "prefix": "object_values",
+    "body": "Object.values(${1:obj})",
+    "description": "get semua hanya value dari sebuah object, return array"
+  },
+  "Object.entries": {
+    "prefix": "object_entries",
+    "body": "Object.entries(${1:obj})",
+    "description": "merubah sebuah object menjadi array"
+  },
+  "return new object": {
+    "prefix": "object_return",
+    "body": "return {\n\t${0}\n}",
+    "description": "\treturn {\n\t\t${0}\n\t}"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "JSON.stringify()": {
+    "prefix": "json_stringify",
+    "body": ["let ${1:string} = JSON.stringify(${2:obj});", "$0"],
+    "description": "Convert a JavaScript object to a JSON string."
+  },
+  "JSON.parse()": {
+    "prefix": "json_parse",
+    "body": ["let ${1:obj} = JSON.parse(${2:string});", "$0"],
+    "description": "Parses a JSON string and returns a JavaScript object"
+  }
+}

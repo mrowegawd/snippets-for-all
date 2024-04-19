@@ -1,0 +1,32 @@
+{
+  "describe": {
+    "prefix": "test_describe",
+    "body": "describe('${1:description}', () => {\n\t${0}\n})",
+    "description": "describe('description', () => {\n\n})"
+  },
+  "describe top level": {
+    "prefix": "test_describe_top_level",
+    "body": "describe('${TM_FILENAME_BASE}', () => {\n\t${0}\n})",
+    "description": "describe('TM_FILENAME_BASE', () => {\n\n})"
+  },
+  "itBlock": {
+    "prefix": "test_it",
+    "body": ["it('should $1', () => {", "  $0", "})", ""],
+    "description": "Testing `it` block"
+  },
+  "it asynchronous": {
+    "prefix": "test_it_async",
+    "body": "it('${1:description}', async () => {\n\t${0}\n})",
+    "description": "it('description', async () => {\n\n})"
+  },
+  "it.todo": {
+    "prefix": "test_it_todo",
+    "body": "it.todo('${1:description}')",
+    "description": "it.todo('description')"
+  },
+  "it with a callback": {
+    "prefix": "test_it_callback",
+    "body": "it('${1:description}', (done) => {\n\t${0}\n})",
+    "description": "it('description', (done) => {\n\n})"
+  }
+}

@@ -1,0 +1,230 @@
+{
+    "center block": {
+        "description": "#+BEGIN_CENTER block",
+        "prefix": "c_center",
+        "body": [
+            "#+BEGIN_CENTER",
+            "$0",
+            "#+END_CENTER"
+        ]
+    },
+    "comment block": {
+        "description": "#+BEGIN_COMMENT block",
+        "prefix": "c_comment",
+        "body": [
+            "#+BEGIN_COMMENT",
+            "$0",
+            "#+END_COMMENT"
+        ]
+    },
+    "example block": {
+        "description": "#+BEGIN_EXAMPLE block",
+        "prefix": "<e",
+        "body": [
+            "#+BEGIN_EXAMPLE",
+            "$0",
+            "#+END_EXAMPLE"
+        ]
+    },
+    "src block": {
+        "description": "#+BEGIN_SRC ... block",
+        "prefix": "c_code_",
+        "body": [
+            "#+BEGIN_SRC ${1:lang}",
+            "$0",
+            "#+END_SRC"
+        ]
+    },
+    "verse": {
+        "description": "verse",
+        "prefix": "c_verse",
+        "body": [
+            "#+BEGIN_VERSE",
+            "$0",
+            "#+END_VERSE"
+        ]
+    },
+    "export ascii": {
+        "description": "#+BEGIN_EXPORT ascii",
+        "prefix": "c_ascii",
+        "body": [
+            "#+BEGIN_EXPORT ascii",
+            "$0",
+            "#+END_EXPORT"
+        ]
+    },
+    "export html": {
+        "description": "#+BEGIN_EXPORT html block",
+        "prefix": "c_code_html",
+        "body": [
+            "#+BEGIN_EXPORT html",
+            "$0",
+            "#+END_EXPORT"
+        ]
+    },
+    "export latex": {
+        "description": "#+BEGIN_EXPORT latex block",
+        "prefix": "c_latex",
+        "body": [
+            "#+BEGIN_EXPORT latex",
+            "$0",
+            "#+END_EXPORT"
+        ]
+    },
+    "quote block": {
+        "description": "#+BEGIN_QUOTE block",
+        "prefix": "c_quote",
+        "body": [
+            "#+BEGIN_QUOTE",
+            "$0",
+            "#+END_QUOTE"
+        ]
+    },
+    "blog": {
+        "description": "blog",
+        "prefix": "c_blog",
+        "body": [
+            "#+STARTUP: showall indent",
+            "#+STARTUP: hidestars",
+            "#+BEGIN_HTML",
+            "---",
+            "layout: default",
+            "title: ${1:title}",
+            "excerpt: ${2:excerpt}",
+            "---",
+            "$0"
+        ]
+    },
+    "dot": {
+        "description": "dot",
+        "prefix": "c_dot",
+        "body": [
+            "#+BEGIN_SRC dot :file ${1:file} :cmdline -T${2:pdf} :exports none :results silent",
+            "$0",
+            "#+END_SRC",
+            "",
+            "[[file:$1]]"
+        ]
+    },
+    "elisp": {
+        "description": "elisp",
+        "prefix": "c_elisp",
+        "body": [
+            "#+BEGIN_SRC emacs-lisp :tangle yes",
+            "$0",
+            "#+END_SRC"
+        ]
+    },
+    "embedded": {
+        "description": "embedded",
+        "prefix": "t_embed",
+        "body": [
+            "src_${1:lang}${2:[${3:where}]}{${4:code}}"
+        ]
+    },
+    "entry": {
+        "description": "entry",
+        "prefix": "c_entry",
+        "body": [
+            "#+BEGIN_HTML",
+            "---",
+            "layout: ${1:default}",
+            "title: ${2:title}",
+            "---",
+            "#+END_HTML",
+            "$0"
+        ]
+    },
+    "export": {
+        "description": "export",
+        "prefix": "c_export",
+        "body": [
+            "#+BEGIN_EXPORT ${1:type}",
+            "$0",
+            "#+END_EXPORT"
+        ]
+    },
+    "figure": {
+        "description": "figure",
+        "prefix": "c_figure",
+        "body": [
+            "#+CAPTION: ${1:caption}",
+            "#+ATTR_LATEX: ${2:scale=0.75}",
+            "#+LABEL: fig:${3:label}"
+        ]
+    },
+    "header": {
+        "description": "org-file header",
+        "prefix": "c_head",
+        "body": [
+            "#+TITLE:     ${1:Untitled Document}",
+            "#+AUTHOR:    ${2:Author}",
+            "#+DATE:      ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}"
+        ]
+    },
+    "image": {
+        "description": "img",
+        "prefix": "c_img",
+        "body": [
+            "#+ATTR_HTML: :alt $2 :align ${3:left} :class img",
+            "[[${1:src}]${4:[${5:title}]}]",
+            "$0"
+        ]
+    },
+    "latex": {
+        "description": "latex",
+        "prefix": "c_latex",
+        "body": [
+            "#+BEGIN_LATEX",
+            "$0",
+            "#+END_LATEX"
+        ]
+    },
+    "latex matrix": {
+        "description": "matrix",
+        "prefix": "c_matrix",
+        "body": [
+            "\\left \\(",
+            "\t\\begin{array}{${1:ccc}}",
+            "\t\t${2:v1 & v2} \\\\\\",
+            "\t\t$0",
+            "\t\\end{array}",
+            "\\right \\)"
+        ]
+    },
+    "todo": {
+        "description": "TODO item",
+        "prefix": "c_task",
+        "body": [
+            "TODO ${1:task description}"
+        ]
+    },
+    "bold": {
+        "description": "bold",
+        "prefix": "t_bold_",
+        "body": [
+            "*$0*"
+        ]
+    },
+    "italic": {
+        "description": "italic words",
+        "prefix": "t_italic_",
+        "body": [
+            "/$0/"
+        ]
+    },
+    "link": {
+        "description": "link",
+        "prefix": "t_link_",
+        "body": [
+            "[[${1:URL}][${2:names}]]$0"
+        ]
+    },
+    "underline": {
+        "description": "underline words",
+        "prefix": "t_underline_",
+        "body": [
+            "_$0_"
+        ]
+    }
+}

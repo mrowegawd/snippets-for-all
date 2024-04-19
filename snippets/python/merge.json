@@ -1,0 +1,28 @@
+{
+    "Merge list": {
+        "prefix": "merge_list",
+        "body": [
+            "${1:verMergeList} = ${2:your_list} + ${3:your_list2}"
+        ],
+        "description": [
+            "\tlist_1 = [ \"This\" , \"is\", \"a\", \"sample\", \"program\" ]",
+            "\tlist_2 = [ 10, 2, 45, 3, 5, 7, 8, 10 ]",
+            "\t",
+            "\texample_1 = list_1 + list_2",
+            "\texample_2 = [ *list_1, *list_2 ]",
+            "",
+            "\texample_3",
+            "\tfor elem in list_2:",
+            "\t\tlist_1.append(elem)"
+        ]
+    },
+    "Merge dict": {
+        "prefix": "merge_dict",
+        "body": [
+            "${1:verMergeDict} = ${2:your_dict}.update(${3:your_dict})"
+        ],
+        "description": [
+            "verMergeDict = your_dict.update(your_Updatedict)"
+        ]
+    }
+}
