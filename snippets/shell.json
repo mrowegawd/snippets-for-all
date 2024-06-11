@@ -12,6 +12,12 @@
       "It can be useful if you aren't aware of the absolute path or don't want to search for it.\n"
     ]
   },
+  "figlet": {
+    "prefix": "figlet_",
+    "body": "figlet -f standard -w \"$(tput cols)\" -c \"$0\" | lolcat",
+    "description": "fancy \"text\", can use $(cmd)"
+  },
+
   "echo": {
     "prefix": "echo_",
     "body": "echo \"${0:message}\"",
