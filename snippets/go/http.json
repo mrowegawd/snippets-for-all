@@ -1,0 +1,37 @@
+{
+  "http ResponseWriter *Request": {
+    "prefix": "http_writer",
+    "body": "${1:w} http.ResponseWriter, ${2:r} *http.Request",
+    "description": "Snippet for http Response"
+  },
+  "http.HandleFunc": {
+    "prefix": "http_handlefunc",
+    "body": "${1:http}.HandleFunc(\"${2:/}\", ${3:handler})",
+    "description": "Snippet for http.HandleFunc()"
+  },
+  "http handler declaration": {
+    "prefix": "http_handler",
+    "body": "func $1(${2:w} http.ResponseWriter, ${3:r} *http.Request) {\n\t$0\n}",
+    "description": "Snippet for http handler declaration"
+  },
+  "http.Redirect": {
+    "prefix": "http_redirect",
+    "body": "http.Redirect(${1:w}, ${2:r}, \"${3:/}\", ${4:http.StatusFound})",
+    "description": "Snippet for http.Redirect()"
+  },
+  "http.Error": {
+    "prefix": "http_error",
+    "body": "http.Error(${1:w}, ${2:err}.Error(), ${3:http.StatusInternalServerError})",
+    "description": "Snippet for http.Error()"
+  },
+  "http.ListenAndServe": {
+    "prefix": "http_listen_and_serve",
+    "body": "http.ListenAndServe(\"${1::8080}\", ${2:nil})",
+    "description": "Snippet for http.ListenAndServe"
+  },
+  "http.Serve": {
+    "prefix": "http_serve",
+    "body": "http.Serve(\"${1::8080}\", ${2:nil})",
+    "description": "Snippet for http.Serve"
+  }
+}

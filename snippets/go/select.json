@@ -1,0 +1,179 @@
+{
+  "select:statement": {
+    "prefix": "select_",
+    "body": [
+      "select {",
+      "\tcase ${1:channel1} := <-${2:ch1}:",
+      "\t\t${3:// Handle case for channel1}",
+      "\tcase ${4:channel2} := <-${5:ch2}:",
+      "\t\t${6:// Handle case for channel2}",
+      "\tdefault:",
+      "\t\t${7:// Default case}",
+      "}"
+    ],
+    "description": "Select statement in Go"
+  },
+  "select:with timeout": {
+    "prefix": "select_with_timeout",
+    "body": [
+      "select {",
+      "\tcase ${1:msg} := <-${2:ch}:",
+      "\t\t${3:// Handle message from channel}",
+      "\tcase <-time.After(${4:timeout}):",
+      "\t\t${5:// Handle timeout}",
+      "}"
+    ],
+    "description": "Select statement with timeout in Go"
+  },
+  "select:with multiple cases": {
+    "prefix": "select_with_multiple_cases",
+    "body": [
+      "select {",
+      "\tcase ${1:msg1} := <-${2:ch1}:",
+      "\t\t${3:// Handle message from ch1}",
+      "\tcase ${4:msg2} := <-${5:ch2}:",
+      "\t\t${6:// Handle message from ch2}",
+      "\tcase ${7:msg3} := <-${8:ch3}:",
+      "\t\t${9:// Handle message from ch3}",
+      "\tdefault:",
+      "\t\t${10:// Default case}",
+      "}"
+    ],
+    "description": "Select statement with multiple cases in Go"
+  },
+  "select:with break": {
+    "prefix": "select_with_break",
+    "body": [
+      "for {",
+      "\tselect {",
+      "\tcase ${1:msg} := <-${2:ch}:",
+      "\t\t${3:// Handle message from channel}",
+      "\t\tbreak",
+      "\t}",
+      "}"
+    ],
+    "description": "Select statement with break in Go loop"
+  },
+  "select:with default case only": {
+    "prefix": "select_default_case_only",
+    "body": ["select {", "\tdefault:", "\t\t${1:// Handle default case}", "}"],
+    "description": "Select statement with default case only in Go"
+  },
+  "select:with nil channel": {
+    "prefix": "select_nil_channel",
+    "body": [
+      "var ${1:ch} chan ${2:int}",
+      "",
+      "select {",
+      "\tcase ${3:v} := <-${1:ch}:",
+      "\t\t${4:// Handle value from channel}",
+      "\tdefault:",
+      "\t\t${5:// Handle default case}",
+      "}"
+    ],
+    "description": "Select statement with nil channel in Go"
+  },
+  "select:with send operation": {
+    "prefix": "select_send",
+    "body": [
+      "select {",
+      "\tcase ${1:ch} <- ${2:value}:",
+      "\t\t${3:// Handle successful send}",
+      "\tdefault:",
+      "\t\t${4:// Handle default case}",
+      "}"
+    ],
+    "description": "Select statement with send operation in Go"
+  },
+  "select:with receive operation": {
+    "prefix": "select_with_recv",
+    "body": [
+      "select {",
+      "\tcase ${1:value} := <-${2:ch}:",
+      "\t\t${3:// Handle received value}",
+      "\tdefault:",
+      "\t\t${4:// Handle default case}",
+      "}"
+    ],
+    "description": "Select statement with receive operation in Go"
+  },
+  "select:with fallthrough": {
+    "prefix": "select_with_fallthrough",
+    "body": [
+      "select {",
+      "\tcase ${1:msg} := <-${2:ch}:",
+      "\t\t${3:// Handle message from channel}",
+      "\t\tfallthrough",
+      "\tcase ${4:msg2} := <-${5:ch2}:",
+      "\t\t${6:// Handle message from ch2}",
+      "\tdefault:",
+      "\t\t${7:// Handle default case}",
+      "}"
+    ],
+    "description": "Select statement with fallthrough in Go"
+  },
+  "select:with channel close": {
+    "prefix": "select_with_channel_close",
+    "body": [
+      "select {",
+      "\tcase ${1:msg}, ${2:ok} := <-${3:ch}:",
+      "\t\tif !${2} {",
+      "\t\t\t${4:// Handle closed channel}",
+      "\t\t\tbreak",
+      "\t\t}",
+      "\t\t${5:// Handle message from channel}",
+      "}"
+    ],
+    "description": "Select statement with channel close check in Go"
+  },
+  "select:case:with penanganan nilai dari channel": {
+    "prefix": "select_case_value",
+    "body": [
+      "\tcase ${1:value} := <-${2:ch}:",
+      "\t\t${3:// Handle value from channel}",
+      "\t\t${1:} // use value here"
+    ],
+    "description": "Case untuk menangani nilai dari channel di dalam select statement di Go"
+  },
+  "select:case:with penanganan ketersediaan channel": {
+    "prefix": "select_case_channel",
+    "body": ["\tcase <-${1:ch}:", "\t\t${2:// Handle channel availability}"],
+    "description": "Case untuk menangani ketersediaan channel di dalam select statement di Go"
+  },
+  "select:case:with timeout time.After": {
+    "prefix": "select_case_timeout",
+    "body": [
+      "\tcase <-time.After(${1:timeout}):",
+      "\t\t${2:// Handle timeout}"
+    ],
+    "description": "Case untuk timeout menggunakan time.After di dalam select statement di Go"
+  },
+  "select:case:with default": {
+    "prefix": "select_case_default",
+    "body": ["\tdefault:", "\t\t${1:// Handle default case}"],
+    "description": "Case untuk default di dalam select statement di Go"
+  },
+  "select:case:with fallthrough": {
+    "prefix": "select_case_fallthrough",
+    "body": [
+      "\tcase ${1:msg1} := <-${2:ch1}:",
+      "\t\t${3:// Handle message from ch1}",
+      "\t\tfallthrough",
+      "\tcase ${4:msg2} := <-${5:ch2}:",
+      "\t\t${6:// Handle message from ch2, akan jatuh ke sini jika msg1 diterima}"
+    ],
+    "description": "Case untuk fallthrough di dalam select statement di Go"
+  },
+  "select:case:with pengecekan channel closed": {
+    "prefix": "caseclosed",
+    "body": [
+      "\tcase ${1:msg}, ${2:ok} := <-${3:ch}:",
+      "\t\tif !${2} {",
+      "\t\t\t${4:// Handle closed channel}",
+      "\t\t\tbreak",
+      "\t\t}",
+      "\t\t${5:// Handle message from channel}"
+    ],
+    "description": "Case untuk pengecekan channel closed di dalam select statement di Go"
+  }
+}

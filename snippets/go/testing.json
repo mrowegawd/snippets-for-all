@@ -1,0 +1,244 @@
+{
+  "testing:with:testify-mock": {
+    "prefix": "test_with_testfiy_mock",
+    "body": [
+      "mockCtrl := gomock.NewController(t)",
+      "defer mockCtrl.Finish()",
+      "",
+      "mock${1:Service} := NewMock${1:Service}(mockCtrl)",
+      "mock${1:Service}.EXPECT().${2:Method}(${3:mockArgs}).Return(${4:mockReturn}).Times(${5:1})",
+      "",
+      "${6:// code to inject mock${1:Service} and test}",
+      ""
+    ],
+    "description": "Create a test case using testify/mock"
+  },
+  "testing:with:test-panic-recover": {
+    "prefix": "test_with_panic_recover",
+    "body": [
+      "defer func() {",
+      "\tif r := recover(); r != nil {",
+      "\t\t${1:// handle panic}",
+      "\t}",
+      "}()",
+      "",
+      "${2:// call code that may panic}"
+    ],
+    "description": "Create a test case to handle panic and recover"
+  },
+  "testing:with:test_timeout": {
+    "prefix": "test_with_timeout",
+    "body": [
+      "ctx, cancel := context.WithTimeout(context.Background(), ${1:timeout})",
+      "defer cancel()",
+      "",
+      "go func() {",
+      "\t${2:// call code to test}",
+      "}()",
+      "",
+      "select {",
+      "\tcase <-ctx.Done():",
+      "\t\t${3:// handle timeout}",
+      "\tcase <-time.After(${1:timeout}):",
+      "\t\t${4:// continue with assertions}",
+      "}"
+    ],
+    "description": "Create a test case with timeout"
+  },
+  "testing:sub-test-skip": {
+    "prefix": "test_subtest_skip",
+    "body": [
+      "t.Run(\"${1:SubTestName}\", func(t *testing.T) {",
+      "\tif ${2:condition} {",
+      "\t\tt.SkipNow()",
+      "\t}",
+      "\t${3:// setup}",
+      "\t${4:// execute code to test}",
+      "\t${5:// assert results}",
+      "})"
+    ],
+    "description": "Create a sub-test case with conditional skip"
+  },
+  "testing:testing-table": {
+    "prefix": "test_table",
+    "body": [
+      "var tests = []struct {",
+      "\tname string",
+      "\tinput ${1:inputType}",
+      "\texpected ${2:expectedType}",
+      "} {",
+      "\t{ \"Test Case 1\", ${3:inputValue1}, ${4:expectedValue1} },",
+      "\t{ \"Test Case 2\", ${5:inputValue2}, ${6:expectedValue2} },",
+      "\t// Add more test cases as needed",
+      "}",
+      "",
+      "for _, tt := range tests {",
+      "\tt.Run(tt.name, func(t *testing.T) {",
+      "\t\t${7:// setup}",
+      "\t\tgot := ${8:FunctionToTest}(tt.input)",
+      "\t\tif got != tt.expected {",
+      "\t\t\tt.Errorf(\"${9:FunctionToTest}() = %v, want %v\", got, tt.expected)",
+      "\t\t}",
+      "\t})",
+      "}"
+    ],
+    "description": "Create a test case with testing table"
+  },
+  "testing:assert-error": {
+    "prefix": "test_assert_error",
+    "body": [
+      "err := ${1:FunctionToTest}(${2:input})",
+      "if err == nil {",
+      "\tt.Errorf(\"${3:expected error, got nil}\")",
+      "\treturn",
+      "}",
+      "assert.Error(t, err, \"${4:expected error message}\")",
+      "// Further assertions if needed"
+    ],
+    "description": "Assert error in test case"
+  },
+  "testing:test-timeout-subtest": {
+    "prefix": "test_timeout_subtest",
+    "body": [
+      "t.Run(\"${1:TestName}\", func(t *testing.T) {",
+      "\tctx, cancel := context.WithTimeout(context.Background(), ${2:timeout})",
+      "\tdefer cancel()",
+      "\t",
+      "\tgo func() {",
+      "\t\t${3:// call code to test}",
+      "\t}()",
+      "\t",
+      "\tselect {",
+      "\tcase <-ctx.Done():",
+      "\t\tt.Fatalf(\"Test did not complete within %v\", ${2:timeout})",
+      "\tcase <-time.After(${2:timeout}):",
+      "\t\t${4:// continue with assertions}",
+      "\t}",
+      "})"
+    ],
+    "description": "Create a sub-test case with timeout"
+  },
+  "testing:variable content": {
+    "prefix": "test_t_logv",
+    "body": "t.Logf(\"${1:var}: %#+v\\\\n\", ${1:var})",
+    "description": "Snippet for t.Logf() with variable content"
+  },
+  "testing:benchmark function": {
+    "prefix": "test_benchmark",
+    "body": "func Benchmark$1(b *testing.B) {\n\tfor ${2:i} := 0; ${2:i} < b.N; ${2:i}++ {\n\t\t$0\n\t}\n}",
+    "description": "Snippet for Benchmark function"
+  },
+  "testing:t:log": {
+    "prefix": "test_t_log",
+    "body": "t.Log(\"$1\")",
+    "description": "Snippet for t.Log()"
+  },
+  "testing:t:logf": {
+    "prefix": "test_t_logf",
+    "body": "t.Logf(\"$1\", ${2:var})",
+    "description": "Snippet for t.Logf()"
+  },
+  "testing:t:errorf": {
+    "prefix": "test_t_errorf",
+    "body": [
+      "if got := ${1:FunctionToTest}(${2:input}); got != ${3:expected} {",
+      "\tt.Errorf(\"${4:FunctionToTest}() = %v, want %v\", got, ${3:expected})",
+      "}"
+    ],
+    "description": "Assert equality in test case"
+  },
+  "testing:t:assert-not-equal": {
+    "prefix": "test_t_assert_not_equal",
+    "body": [
+      "if got := ${1:FunctionToTest}(${2:input}); got == ${3:unexpected} {",
+      "\tt.Errorf(\"${4:FunctionToTest}() = %v, want not %v\", got, ${3:unexpected})",
+      "}"
+    ],
+    "description": "Assert inequality in test case"
+  },
+  "testing:t:assert-error": {
+    "prefix": "test_t_assert_error",
+    "body": [
+      "if err := ${1:FunctionToTest}(${2:input}); err == nil {",
+      "\tt.Errorf(\"${3:expected error, got nil}\")",
+      "}"
+    ],
+    "description": "Assert error in test case"
+  },
+  "testing:t:assert-no-error": {
+    "prefix": "test_t_assert_no_error",
+    "body": [
+      "if err := ${1:FunctionToTest}(${2:input}); err != nil {",
+      "\tt.Errorf(\"${3:FunctionToTest}() error = %v, want no error\", err)",
+      "}"
+    ],
+    "description": "Assert no error in test case"
+  },
+  "testing:t:assert-panic": {
+    "prefix": "test_t_assert_panic",
+    "body": [
+      "defer func() {",
+      "\tif r := recover(); r == nil {",
+      "\t\tt.Errorf(\"${1:FunctionToTest} did not panic as expected\")",
+      "\t}",
+      "}()",
+      "",
+      "${2:FunctionToTest}(${3:input})"
+    ],
+    "description": "Assert panic in test case"
+  },
+  "testing:t:assert-nil": {
+    "prefix": "test_t_assert_nil",
+    "body": [
+      "if ${1:got} != nil {",
+      "\tt.Errorf(\"Expected nil, but got %v\", ${1:got})",
+      "}"
+    ],
+    "description": "Assert nil in test case"
+  },
+  "testing:t:assert-not-nil": {
+    "prefix": "test_t_assert_not_nil",
+    "body": [
+      "if ${1:got} == nil {",
+      "\tt.Errorf(\"Expected not nil, but got nil\")",
+      "}"
+    ],
+    "description": "Assert not nil in test case"
+  },
+  "testing:t:assert-true": {
+    "prefix": "test_t_assert_true",
+    "body": [
+      "if !${1:expr} {",
+      "\tt.Errorf(\"Expected true, but got false\")",
+      "}"
+    ],
+    "description": "Assert true in test case"
+  },
+  "testing:t:assert-false": {
+    "prefix": "test_t_assert_false",
+    "body": [
+      "if ${1:expr} {",
+      "\tt.Errorf(\"Expected false, but got true\")",
+      "}"
+    ],
+    "description": "Assert false in test case"
+  },
+  "testing:t:assert-contains": {
+    "prefix": "test_t_assert_contains",
+    "body": [
+      "if !strings.Contains(${1:haystack}, ${2:needle}) {",
+      "\tt.Errorf(\"Expected %v to contain %v\", ${1:haystack}, ${2:needle})",
+      "}"
+    ],
+    "description": "Assert contains in test case"
+  },
+  "testing:t:assert-not-contains": {
+    "prefix": "test_t_assert_not_contains",
+    "body": [
+      "if strings.Contains(${1:haystack}, ${2:needle}) {",
+      "\tt.Errorf(\"Expected %v not to contain %v\", ${1:haystack}, ${2:needle})",
+      "}"
+    ],
+    "description": "Assert not contains in test case"
+  }
+}

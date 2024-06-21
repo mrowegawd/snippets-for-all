@@ -1,0 +1,724 @@
+{
+  "TODO": {
+    "prefix": "todo_",
+    "body": ["// TODO: $0"],
+    "description": "// TODO: ..."
+  },
+  "imports": {
+    "prefix": "imp_",
+    "body": "import \"${1:package}\"",
+    "description": "import ( _package_ )"
+  },
+  "imports:multi": {
+    "prefix": "imp_multi",
+    "body": "import (\n\t\"${1:package}\"\n)",
+    "description": "import (\n\t_package_\n)"
+  },
+  "const:create": {
+    "prefix": "const_",
+    "body": "const ${1:name} = ${2:value}",
+    "description": "const name = value"
+  },
+  "const:multi": {
+    "prefix": "const_multi",
+    "body": "const (\n\t${1:name} = ${2:value}\n)",
+    "description": "Snippet for a constant block"
+  },
+  "var:create": {
+    "prefix": "var_",
+    "body": "${1:name} := $0",
+    "description": "Snippet for a variable"
+  },
+  "var:init": {
+    "prefix": "var_init",
+    "body": "var ${1:name} ${2:type}",
+    "description": "Variable init"
+  },
+  "var:multi": {
+    "prefix": "var_multi",
+    "body": "var (\n\t${1:name} ${2:type} = ${3:value}\n)",
+    "description": "Snippet for a variable"
+  },
+  "var:slice": {
+    "prefix": "var_slice",
+    "body": ["${1:name} := []${2:Type}{${3:initial values}}"],
+    "description": "Define a slice variable"
+  },
+  "var:pointer": {
+    "prefix": "var_ptr",
+    "body": ["${1:name} := &${2:variable}"],
+    "description": "Define a pointer variable"
+  },
+  "var:interface": {
+    "prefix": "var_interface",
+    "body": ["${1:name} := ${2:variable}.(${3:InterfaceName})"],
+    "description": "Define a variable with interface type"
+  },
+  "var:rune": {
+    "prefix": "var_rune",
+    "body": ["${1:name} := '${2:character}'"],
+    "description": "Define a rune variable"
+  },
+  "var:duration": {
+    "prefix": "var_duration",
+    "body": ["${1:name} := ${2:time.Duration(0)}"],
+    "description": "Define a time.Duration variable"
+  },
+  "var:channel": {
+    "prefix": "var_ch",
+    "body": ["${1:name} := make(chan ${2:Type})"],
+    "description": "Define a channel variable"
+  },
+  "var:map": {
+    "prefix": "var_map",
+    "body": ["${1:name} := make(map[${2:KeyType}]${3:ValueType})"],
+    "description": "Define a map variable"
+  },
+  "var:array:fixsize": {
+    "prefix": "var_array_fixsize",
+    "body": "${1:name} := [...]${2:type}{ $0 }",
+    "description": "var_vec = [...]int{1, 2, 3, 4}"
+  },
+  "var:array": {
+    "prefix": "var_array",
+    "body": ["${1:name} := [${2:Size}]${3:Type}{${4:initial values}}"],
+    "description": "Define an array variable"
+  },
+  "var:enum": {
+    "prefix": "var_enum",
+    "body": "const (\n\t${1:name} = ${2:value}\n)",
+    "description": "Enum same with constant block"
+  },
+  "var:obj": {
+    "prefix": "var_obj",
+    "body": "${1:name} := New${2:FunctionName}(${3:param})",
+    "description": "Define a object variable"
+  },
+  "var:obj:struct": {
+    "prefix": "var_obj_struct",
+    "body": [
+      "${1:name} := ${2:StructName}{",
+      "\t${3:Field1}: ${4:value1},",
+      "\t${5:Field2}: ${6:value2},",
+      "}"
+    ],
+    "description": "Define a struct variable"
+  },
+  "type function": {
+    "prefix": "type_func",
+    "body": "type ${1:name} func($3) $4",
+    "description": "Snippet for a type function declaration"
+  },
+  "interface": {
+    "prefix": "interface_",
+    "body": "type ${1:name} interface {\n\t$0\n}",
+    "description": "Snippet for a type interface"
+  },
+  "interface_empty": {
+    "prefix": "interface_empty",
+    "body": "interface{}",
+    "description": "Snippet for empty interface"
+  },
+  "interface:interface-method": {
+    "prefix": "interface_func",
+    "body": ["${1:MethodName}(${2:params}) ${3:returnType}"],
+    "description": "Create a method in an interface"
+  },
+  "interface:interface-method-error": {
+    "prefix": "interface_func_error",
+    "body": ["${1:MethodName}(${2:params}) (${3:returnType}, error)"],
+    "description": "Create a method in an interface with error return"
+  },
+  "interface:interface-method-variadic": {
+    "prefix": "interface_func_variadic",
+    "body": ["${1:MethodName}(${2:params} ...${3:Type})"],
+    "description": "Create a method in an interface with variadic parameter"
+  },
+  "interface:interface-getter": {
+    "prefix": "interface_func_getter",
+    "body": ["Get${1:FieldName}() ${2:FieldType}"],
+    "description": "Create a getter method in an interface"
+  },
+  "interface:interface-setter": {
+    "prefix": "interface_func_setter",
+    "body": ["Set${1:FieldName}(${2:value} ${3:FieldType})"],
+    "description": "Create a setter method in an interface"
+  },
+  "interface:interface-method-receiver": {
+    "prefix": "interface_func_receiver",
+    "body": ["(${1:ReceiverName} ${2:ReceiverType})"],
+    "description": "Create a method in an interface with receiver"
+  },
+  "interface:interface-method-receiver-multiple-return": {
+    "prefix": "interface_func_receiver_multiple_return",
+    "body": [
+      "(${1:ReceiverName} ${2:ReceiverType}) (${3:returnType1}, ${4:returnType2})"
+    ],
+    "description": "Create a method in an interface with receiver and multiple return values"
+  },
+  "interface:interface-method-channel-receiver": {
+    "prefix": "interface_func_channel_receiver",
+    "body": ["${1:MethodName}(${2:c chan ${3:Type}}) ${4:returnType}"],
+    "description": "Create a method in an interface with channel receiver"
+  },
+  "interface:interface-method-func-receiver": {
+    "prefix": "interface_func_func_receiver",
+    "body": [
+      "${1:MethodName}(${2:f func(${3:params}) ${4:returnType}}) ${5:returnType}"
+    ],
+    "description": "Create a method in an interface with function receiver"
+  },
+  "struct": {
+    "prefix": "struct_",
+    "body": "type ${1:name} struct {\n\t$0\n}",
+    "description": "Snippet for a struct declaration"
+  },
+  "struct:tag:json": {
+    "prefix": "struct_tag_json",
+    "body": [
+      "type ${1:StructName} struct {",
+      "\t${2:FieldName} ${3:Type} `${4:`json:\"${5:fieldName}\"`}",
+      "}"
+    ],
+    "description": "Create a struct field with a tag"
+  },
+  "struct:tag:json:multi": {
+    "prefix": "struct_tag_json_multi",
+    "body": [
+      "type ${1:StructName} struct {",
+      "\t${2:FieldName} ${3:Type} `${4:`json:\"${5:fieldName},omitempty\" xml:\"${6:fieldName}\"`}",
+      "}"
+    ],
+    "description": "Create a struct field with multiple tags"
+  },
+  "struct:tag:json:complex": {
+    "prefix": "struct_tag_json_complex",
+    "body": [
+      "type ${1:StructName} struct {",
+      "\t${2:FieldName} ${3:Type} `${4:`json:\"${5:fieldName}\"` // ${6:optional comment}",
+      "}"
+    ],
+    "description": "Create a struct field with a complex tag and comment"
+  },
+  "struct:tag:json:multiple-tags-one-line": {
+    "prefix": "structmultipletagsoneline",
+    "body": [
+      "type ${1:StructName} struct {",
+      "\t${2:FieldName} ${3:Type} `json:\"${4:fieldName},omitempty\" xml:\"${4:fieldName}\"`",
+      "}"
+    ],
+    "description": "Create a struct field with multiple tags on one line"
+  },
+  "struct:method-pointer-receiver": {
+    "prefix": "struct_func_pointer_receiver",
+    "body": [
+      "func (${1:*${2:StructName}}) ${3:MethodName}(${4:params}) ${5:returnType} {",
+      "\t${6:// implementation}",
+      "}"
+    ],
+    "description": "Snippet for a method with a pointer receiver"
+  },
+  "struct:method-value-receiver": {
+    "prefix": "struct_func_value_receiver",
+    "body": [
+      "func (${1:${2:StructName}}) ${3:MethodName}(${4:params}) ${5:returnType} {",
+      "\t${6:// implementation}",
+      "}"
+    ],
+    "description": "Snippet for a method with a value receiver"
+  },
+  "struct:method-getter": {
+    "prefix": "struct_func_getter",
+    "body": [
+      "func (${1:${2:StructName}}) Get${3:FieldName}() ${4:FieldType} {",
+      "\treturn ${1}.${3}",
+      "}"
+    ],
+    "description": "Create a getter method"
+  },
+  "struct:method-setter": {
+    "prefix": "struct_func_setter",
+    "body": [
+      "func (${1:*${2:StructName}}) Set${3:FieldName}(${4:value} ${5:FieldType}) {",
+      "\t${1}.${3} = ${4}",
+      "}"
+    ],
+    "description": "Create a setter method"
+  },
+  "struct:method-constructor": {
+    "prefix": "struct_func_constructor",
+    "body": [
+      "func New${1:StructName}(${2:params}) *${1:StructName} {",
+      "\treturn &${1:StructName}{",
+      "\t\t${3:Field1}: ${2:Param1},",
+      "\t\t${4:Field2}: ${5:Param2},",
+      "\t}",
+      "}"
+    ],
+    "description": "Create a constructor for a struct"
+  },
+  "struct:method-variadic": {
+    "prefix": "struct_func_variadic",
+    "body": [
+      "func (${1:*${2:StructName}}) ${3:MethodName}(${4:params} ...${5:Type}) ${6:returnType} {",
+      "\t${7:// implementation}",
+      "}"
+    ],
+    "description": "Create a method with variadic parameters"
+  },
+  "struct:method-error-return": {
+    "prefix": "struct_func_error_return",
+    "body": [
+      "func (${1:*${2:StructName}}) ${3:MethodName}(${4:params}) (${5:returnType}, error) {",
+      "\t${6:// implementation}",
+      "}"
+    ],
+    "description": "Create a method with error return"
+  },
+  "struct:method-interface-receiver": {
+    "prefix": "struct_func_interface_receiver",
+    "body": [
+      "func (${1:${2:InterfaceName}}) ${3:MethodName}(${4:params}) ${5:returnType} {",
+      "\t${6:// implementation}",
+      "}"
+    ],
+    "description": "Create a method with interface receiver"
+  },
+  "struct:method-map-receiver": {
+    "prefix": "struct_func_map_receiver",
+    "body": [
+      "func (${1:m ${2:MapType}}) ${3:MethodName}(${4:key} ${5:KeyType}) ${6:returnType} {",
+      "\t${7:// implementation}",
+      "}"
+    ],
+    "description": "Create a method with map receiver"
+  },
+  "struct:method-slice-receiver": {
+    "prefix": "struct_func_slice_receiver",
+    "body": [
+      "func (${1:s []${2:ElementType}}) ${3:MethodName}(${4:params}) ${5:returnType} {",
+      "\t${6:// implementation}",
+      "}"
+    ],
+    "description": "Create a method with slice receiver"
+  },
+  "struct:method-channel-receiver": {
+    "prefix": "struct_func_channel_receiver",
+    "body": [
+      "func (${1:c ${2:chan ${3:ElementType}}}) ${4:MethodName}(${5:params}) ${6:returnType} {",
+      "\t${7:// implementation}",
+      "}"
+    ],
+    "description": "Create a method with channel receiver"
+  },
+  "struct:method-func-receiver": {
+    "prefix": "struct_func_func_receiver",
+    "body": [
+      "func (${1:f ${2:func(${3:params}) ${4:returnType}}) ${5:MethodName}(${6:params}) ${7:returnType} {",
+      "\t${8:// implementation}",
+      "}"
+    ],
+    "description": "Create a method with function receiver"
+  },
+  "struct:method-custom-type-receiver": {
+    "prefix": "struct_func_custom_type_receiver",
+    "body": [
+      "func (${1:v ${2:CustomType}}) ${3:MethodName}(${4:params}) ${5:returnType} {",
+      "\t${6:// implementation}",
+      "}"
+    ],
+    "description": "Create a method with custom type receiver"
+  },
+  "struct:method-multiple-return": {
+    "prefix": "struct_func_multiple_return",
+    "body": [
+      "func (${1:*${2:StructName}}) ${3:MethodName}(${4:params}) (${5:returnType1}, ${6:returnType2}) {",
+      "\t${7:// implementation}",
+      "}"
+    ],
+    "description": "Create a method with multiple return values"
+  },
+  "func": {
+    "prefix": "func_",
+    "body": [
+      "func ${1:FunctionName}(${2:params}) ${3:returnType} {",
+      "\t${4:// implementation}",
+      "}"
+    ],
+    "description": "Create a basic function"
+  },
+  "func:error_return": {
+    "prefix": "func_func_error_return",
+    "body": [
+      "func ${1:FunctionName}(${2:params}) (${3:returnType}, error) {",
+      "\t${4:// implementation}",
+      "}"
+    ],
+    "description": "Create a function with error return"
+  },
+  "func:error_return_multi": {
+    "prefix": "func_func_multiple_return",
+    "body": [
+      "func ${1:FunctionName}(${2:params}) (${3:returnType1}, ${4:returnType2}) {",
+      "\t${5:// implementation}",
+      "}"
+    ],
+    "description": "Create a function with multiple return values"
+  },
+  "func:map": {
+    "prefix": "func_func_map_receiver",
+    "body": [
+      "func ${1:FunctionName}(${2:key} ${3:KeyType}) ${4:returnType} {",
+      "\t${5:// implementation}",
+      "}"
+    ],
+    "description": "Create a function with map receiver"
+  },
+  "func:param_chan": {
+    "prefix": "func_func_param_chan",
+    "body": [
+      "func ${1:FunctionName}(${2:c chan ${3:Type}}) ${4:returnType} {",
+      "\t${5:// implementation}",
+      "}"
+    ],
+    "description": "Create a function with channel parameter"
+  },
+  "func:param_func": {
+    "prefix": "func_func_param_func",
+    "body": [
+      "func ${1:FunctionName}(${2:f func(${3:params}) ${4:returnType}}) ${5:returnType} {",
+      "\t${6:// implementation}",
+      "}"
+    ],
+    "description": "Create a function with param function"
+  },
+  "func:param_interface": {
+    "prefix": "func_func_param_interface",
+    "body": [
+      "func ${1:FunctionName}(${2:v ${3:InterfaceName}}) ${4:returnType} {",
+      "\t${5:// implementation}",
+      "}"
+    ],
+    "description": "Create a function with interface parameter"
+  },
+  "func:param_map": {
+    "prefix": "func_func_param_map",
+    "body": [
+      "func ${1:FunctionName}(${2:m map[${3:KeyType}]${4:ValueType}}) ${5:returnType} {",
+      "\t${6:// implementation}",
+      "}"
+    ],
+    "description": "Create a function with map parameter"
+  },
+  "func:param_slice": {
+    "prefix": "func_func_param_slice",
+    "body": [
+      "func ${1:FunctionName}(${2:slice []${3:Type}}) ${4:returnType} {",
+      "\t${5:// implementation}",
+      "}"
+    ],
+    "description": "Create a function with slice parameter"
+  },
+  "func:param_variadic": {
+    "prefix": "func_func_param_variadic",
+    "body": [
+      "func ${1:FunctionName}(${2:params} ...${3:Type}) ${4:returnType} {",
+      "\t${5:// implementation}",
+      "}"
+    ],
+    "description": "Create a variadic function parameter"
+  },
+  "func:init": {
+    "prefix": "func_init",
+    "body": "func init() {\n\t$1\n}",
+    "description": "Snippet for init function"
+  },
+  "func:main": {
+    "prefix": "func_main",
+    "body": "func main() {\n\t$1\n}",
+    "description": "Snippet for main function"
+  },
+  "func:defer": {
+    "prefix": "func_defer",
+    "body": "defer ${1:func}($0)",
+    "description": "Snippet for defer statement"
+  },
+  "func:goroutine:anonymous": {
+    "prefix": "func_go_anonymous",
+    "body": "go func($1) {\n\t$0\n}($2)",
+    "description": "Snippet for anonymous goroutine declaration"
+  },
+  "func:goroutine:simple": {
+    "prefix": "func_go_simple",
+    "body": "go ${1:func}($0)",
+    "description": "Snippet for goroutine declaration"
+  },
+  "func:goroutine:read-channel": {
+    "prefix": "func_go_read_channel",
+    "body": [
+      "go func(ch <-chan ${1:Type}) {",
+      "\tfor ${2:data} := range ch {",
+      "\t\t${3:// Process each data element}",
+      "\t}",
+      "}(${4:ch})"
+    ],
+    "description": "goroutine function that receives data from a buffered channel"
+  },
+  "func:goroutine:return-channel": {
+    "prefix": "func_go_return_channel",
+    "body": [
+      "func ${1:goroutineFuncName}() <-chan ${2:Type} {",
+      "\tout := make(chan ${2:Type})",
+      "\tgo func() {",
+      "\t\tdefer close(out)",
+      "\t\t${3:// Your goroutine logic}",
+      "\t}()",
+      "\treturn out",
+      "}"
+    ],
+    "description": "Write a goroutine function that returns a channel"
+  },
+  "func:goroutine:-output-buffered-channel": {
+    "prefix": "func_go_return_buffered_channel",
+    "body": [
+      "func ${1:goroutineFuncName}() chan<- ${2:Type} {",
+      "\tout := make(chan ${2:Type}, ${3:BufferSize})",
+      "\tgo func() {",
+      "\t\tdefer close(out)",
+      "\t\t${4:// Your goroutine logic}",
+      "\t}()",
+      "\treturn out",
+      "}"
+    ],
+    "description": "Write a goroutine function that returns a buffered channel"
+  },
+  "for": {
+    "prefix": ["for_block"],
+    "body": "for ${1}{\n\t$0\n}",
+    "description": "Snippet for a pure for loop"
+  },
+  "for:i": {
+    "prefix": "for_i",
+    "body": "for ${1:i} := ${2:0}; $1 < ${3:count}; $1${4:++} {\n\t$0\n}",
+    "description": "Snippet for a for loop"
+  },
+  "for:range": {
+    "prefix": "for_range",
+    "body": "for ${1:_, }${2:v} := range ${3:v} {\n\t$0\n}",
+    "description": "Snippet for a for range loop"
+  },
+  "switch statement": {
+    "prefix": "switch_",
+    "body": "switch ${1:expression} {\ncase ${2:condition}:\n\t$0\n}",
+    "description": "Snippet for switch statement"
+  },
+  "switch:case:with satu nilai": {
+    "prefix": "switch_case_with_value",
+    "body": ["case ${1:value}:", "\t${2:// Handle case}"],
+    "description": "Case dengan satu nilai dalam switch statement di Go"
+  },
+  "switch:case:with multiple value": {
+    "prefix": "switch_case_with_multiple_value",
+    "body": [
+      "case ${1:value1}, ${2:value2}:",
+      "\t${3:// Handle case for value1 or value2}"
+    ],
+    "description": "Case dengan multiple nilai dalam switch statement di Go"
+  },
+  "switch:case:with default value": {
+    "prefix": "switch_case_default",
+    "body": ["case ${1:default}:", "\t${2:// Handle default case}"],
+    "description": "Case dengan nilai default dalam switch statement di Go"
+  },
+  "switch:case:with pengecekan tipe": {
+    "prefix": "switch_case_check_type",
+    "body": [
+      "case ${1:v} := ${2:interfaceValue}.(${3:type}):",
+      "\t${4:// Handle case for type ${3}}"
+    ],
+    "description": "Case dengan pengecekan tipe dalam switch statement di Go"
+  },
+  "switch:case:with expressions": {
+    "prefix": "switch_case_with_expression",
+    "body": [
+      "case ${1:expr1} ${2:operator} ${3:expr2}:",
+      "\t${4:// Handle case based on expression}"
+    ],
+    "description": "Case dengan expressions dalam switch statement di Go"
+  },
+  "switch:case:with operasi nilai": {
+    "prefix": "switch_case_with_operation_result",
+    "body": [
+      "case ${1:operation} ${2:operator} ${3:value}:",
+      "\t${4:// Handle case based on operation result}"
+    ],
+    "description": "Case dengan operasi nilai dalam switch statement di Go"
+  },
+  "switch:case:with fallthrough": {
+    "prefix": "switch_case_with_fallthrough",
+    "body": [
+      "case ${1:value}:",
+      "\t${2:// Handle case for value}",
+      "\tfallthrough"
+    ],
+    "description": "Case dengan fallthrough dalam switch statement di Go"
+  },
+  "switch:case:with pengecekan error": {
+    "prefix": "swith_case_check_error",
+    "body": ["case ${1:err}:", "\t${2:// Handle error case}"],
+    "description": "Case dengan pengecekan error dalam switch statement di Go"
+  },
+  "switch:case:with pengecekan channel closed": {
+    "prefix": "switch_case_check_channel_closed",
+    "body": [
+      "case ${1:msg}, ${2:ok} := <-${3:ch}:",
+      "\tif !${2} {",
+      "\t\t${4:// Handle closed channel}",
+      "\t\tbreak",
+      "\t}",
+      "\t${5:// Handle message from channel}"
+    ],
+    "description": "Case dengan pengecekan channel closed dalam switch statement di Go"
+  },
+  "switch:case:with penggunaan defer": {
+    "prefix": "switch_case_with_defer",
+    "body": [
+      "case ${1:value}:",
+      "\tdefer ${2:// Cleanup operation}",
+      "\t${3:// Handle case}"
+    ],
+    "description": "Case dengan penggunaan defer dalam switch statement di Go"
+  },
+  "switch:case:with pemrosesan non-blok": {
+    "prefix": "switch_case_with_non_blocking_case",
+    "body": [
+      "case ${1:value}:",
+      "\tif ${2:!ok} {",
+      "\t\t${3:// Handle non-blocking case}",
+      "\t}"
+    ],
+    "description": "Case dengan pemrosesan non-blok dalam switch statement di Go"
+  },
+  "channel:create": {
+    "prefix": "chan_",
+    "body": "chan ${1:type}",
+    "description": "Snippet for a channel"
+  },
+  "channel:create-buffer": {
+    "prefix": "chan_buffer",
+    "body": ["ch := make(chan ${1:Type}, ${2:BufferSize})"],
+    "description": "Create a buffered channel"
+  },
+  "channel:close": {
+    "prefix": "chan_close",
+    "body": ["close(ch)"],
+    "description": "Snippet for a channel"
+  },
+  "map declaration": {
+    "prefix": "map_",
+    "body": "map[${1:type}]${2:type}",
+    "description": "Snippet for a map"
+  },
+  "type:check:declaration": {
+    "prefix": "type_check_assertion",
+    "body": "${1:variable}.(type)",
+    "description": "Snippet for type check"
+  },
+  "type:check:with reflection package": {
+    "prefix": "type_check_reflect",
+    "body": "reflect.ValueOf(${1:obj})$0",
+    "description": "Snippet for type check"
+  },
+  "type:check:assertion": {
+    "prefix": "type_check_assertion_with_condition",
+    "body": [
+      "${1:val}, ${2:ok} := ${3:obj}.(${4:Type})",
+      "if ${2} {",
+      "\t${5:// Handle val as Type}",
+      "} else {",
+      "\t${6:// Handle case when assertion fails}",
+      "}"
+    ],
+    "description": "Type assertion in Go"
+  },
+  "type:check:assertion dengan defer cleanup": {
+    "prefix": "type_check_assertion_with_defer_cleanup",
+    "body": [
+      "${1:val}, ${2:ok} := ${3:obj}.(${4:Type})",
+      "if ${2} {",
+      "\tdefer ${5:// Cleanup operation}",
+      "\t${6:// Handle val as Type}",
+      "}"
+    ],
+    "description": "Type assertion dengan defer cleanup di Go"
+  },
+  "if": {
+    "prefix": "if_",
+    "body": "if ${1:condition} {\n\t$0\n}",
+    "description": "Snippet for if statement"
+  },
+  "if:else": {
+    "prefix": "if_else",
+    "body": "if ${1:condition} {\n\t$2\n} else {\n\t$0\n}",
+    "description": "Snippet for if else"
+  },
+  "if:ok": {
+    "prefix": "if_ok_clause",
+    "body": "if ${1:value}, ok := ${2:map}[${3:key}]; ok == true {\n\t$4\n}"
+  },
+  "if:err": {
+    "prefix": "if_err",
+    "body": "if err != nil {\n\t${1:return ${2:nil, }${3:err}}\n}",
+    "description": "Snippet for if err != nil"
+  },
+  "else": {
+    "prefix": "else_",
+    "body": "else {\n\t$0\n}",
+    "description": "Snippet for else branch"
+  },
+  "fmt.Println": {
+    "prefix": "log_",
+    "body": "fmt.Println(\"$1\")",
+    "description": "Snippet for fmt.Println()"
+  },
+  "fmt.Printf": {
+    "prefix": "print_f",
+    "body": "fmt.Printf(\"$1\", ${2:var})",
+    "description": "Snippet for fmt.Printf()"
+  },
+  "log.Println": {
+    "prefix": "log_print",
+    "body": "log.Println(\"$1\")",
+    "description": "Snippet for log.Println()"
+  },
+  "log.Printf": {
+    "prefix": "log_printf",
+    "body": "log.Printf(\"$1\", ${2:var})",
+    "description": "Snippet for log.Printf()"
+  },
+  "log variable content": {
+    "prefix": "log_printf_var",
+    "body": "log.Printf(\"${1:var}: %#+v\\\\n\", ${1:var})",
+    "description": "Snippet for log.Printf() with variable content"
+  },
+  "make(...)": {
+    "prefix": "make_",
+    "body": "make(${1:type}, ${2:0})",
+    "description": "Snippet for make statement"
+  },
+  "new(...)": {
+    "prefix": "new_",
+    "body": "new(${1:type})",
+    "description": "Snippet for new statement"
+  },
+  "panic(...)": {
+    "prefix": "panic_",
+    "body": "panic(\"$0\")",
+    "description": "Snippet for panic"
+  },
+  "sort implementation": {
+    "prefix": "sort_",
+    "body": "type ${1:SortBy} []${2:Type}\n\nfunc (a $1) Len() int           { return len(a) }\nfunc (a $1) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }\nfunc (a $1) Less(i, j int) bool { ${3:return a[i] < a[j]} }",
+    "description": "Snippet for a custom sort.Sort interface implementation, for a given slice type."
+  }
+}

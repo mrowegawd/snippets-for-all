@@ -1,0 +1,485 @@
+{
+  "merge:slices (lists)": {
+    "prefix": "merge_slices",
+    "body": ["mergedSlice := append(slice1, slice2...)"],
+    "description": "Merge two slices (lists) into one"
+  },
+  "merge:maps (dictionaries)": {
+    "prefix": "merge_maps",
+    "body": [
+      "mergedMap := make(map[string]interface{})",
+      "for k, v := range map1 {",
+      "\tmergedMap[k] = v",
+      "}",
+      "for k, v := range map2 {",
+      "\tmergedMap[k] = v",
+      "}"
+    ],
+    "description": "Merge two maps (dictionaries) into one"
+  },
+  "merge:arrays": {
+    "prefix": "merge_arrays",
+    "body": [
+      "var mergedArray []int",
+      "mergedArray = append(mergedArray, array1...)",
+      "mergedArray = append(mergedArray, array2...)"
+    ],
+    "description": "Merge two arrays into one"
+  },
+  "merge:channels": {
+    "prefix": "merge_channels",
+    "body": [
+      "mergedChannel := make(chan Type)",
+      "go func() { for elem := range channel1 { mergedChannel <- elem } }()",
+      "go func() { for elem := range channel2 { mergedChannel <- elem } }()"
+    ],
+    "description": "Merge two channels into one"
+  },
+  "merge:strings": {
+    "prefix": "merge_strings",
+    "body": ["mergedString := string1 + string2"],
+    "description": "Merge two strings into one"
+  },
+  "merge:structs": {
+    "prefix": "merge_structs",
+    "body": [
+      "type MyStruct struct {",
+      "\tField1 string",
+      "\tField2 int",
+      "}",
+      "",
+      "func mergeStructs(s1, s2 MyStruct) MyStruct {",
+      "\t// Perform merging logic here",
+      "\treturn mergedStruct",
+      "}"
+    ],
+    "description": "Merge two structs into one"
+  },
+  "merge:with sync.Mutex (for concurrent merges)": {
+    "prefix": "merge_sync_mutex",
+    "body": [
+      "import \"sync\"",
+      "",
+      "type SafeMap struct {",
+      "\tdata map[string]interface{}",
+      "\tmu   sync.Mutex",
+      "}",
+      "",
+      "func (sm *SafeMap) Merge(otherMap map[string]interface{}) {",
+      "\tsm.mu.Lock()",
+      "\tdefer sm.mu.Unlock()",
+      "\tfor k, v := range otherMap {",
+      "\t\tsm.data[k] = v",
+      "\t}",
+      "}"
+    ],
+    "description": "Merge maps safely using sync.Mutex for concurrency"
+  },
+  "merge:Mutex (for synchronized access)": {
+    "prefix": "merge_mutex",
+    "body": [
+      "type SafeMap struct {",
+      "\tmu sync.Mutex",
+      "\tdata map[string]interface{}",
+      "}",
+      "",
+      "func (sm *SafeMap) Merge(otherMap map[string]interface{}) {",
+      "\tsm.mu.Lock()",
+      "\tdefer sm.mu.Unlock()",
+      "\tfor k, v := range otherMap {",
+      "\t\tsm.data[k] = v",
+      "\t}",
+      "}"
+    ],
+    "description": "Merge maps safely using Mutex for synchronized access"
+  },
+  "merge:func:with custom merge function": {
+    "prefix": "merge_func_custom_function",
+    "body": [
+      "func merge(obj1, obj2 Type) Type {",
+      "\t// Your custom merge logic here",
+      "\treturn mergedObj",
+      "}"
+    ],
+    "description": "Define a custom merge function for arbitrary types"
+  },
+  "merge:func:Goroutines and WaitGroup (for concurrent merges)": {
+    "prefix": "merge_func_goroutines_waitgroup",
+    "body": [
+      "import \"sync\"",
+      "",
+      "func mergeMaps(map1, map2 map[string]interface{}) map[string]interface{} {",
+      "\tvar wg sync.WaitGroup",
+      "\tmergedMap := make(map[string]interface{})",
+      "\tmergeFunc := func(m map[string]interface{}) {",
+      "\t\tdefer wg.Done()",
+      "\t\tfor k, v := range m {",
+      "\t\t\tmergedMap[k] = v",
+      "\t\t}",
+      "\t}",
+      "\twg.Add(2)",
+      "\tgo mergeFunc(map1)",
+      "\tgo mergeFunc(map2)",
+      "\twg.Wait()",
+      "\treturn mergedMap",
+      "}"
+    ],
+    "description": "Merge maps concurrently using Goroutines and WaitGroup"
+  },
+  "merge:func:Channels and Select (for concurrent merges)": {
+    "prefix": "merge_func_channels_select",
+    "body": [
+      "func mergeMaps(map1, map2 map[string]interface{}) map[string]interface{} {",
+      "\tmergedMap := make(map[string]interface{})",
+      "\tresultChan := make(chan map[string]interface{})",
+      "\tmergeFunc := func(m map[string]interface{}, c chan map[string]interface{}) {",
+      "\t\tfor k, v := range m {",
+      "\t\t\tmergedMap[k] = v",
+      "\t\t}",
+      "\t\tc <- mergedMap",
+      "\t}",
+      "\tgo mergeFunc(map1, resultChan)",
+      "\tgo mergeFunc(map2, resultChan)",
+      "\tmergedMap := <-resultChan",
+      "\tmergedMap := <-resultChan",
+      "\treturn mergedMap",
+      "}"
+    ],
+    "description": "Merge maps concurrently using Channels and Select"
+  },
+  "merge:func:Range and Append (for slices)": {
+    "prefix": "merge_func_range_append",
+    "body": [
+      "func mergeSlices(slice1, slice2 []Type) []Type {",
+      "\tmergedSlice := make([]Type, 0, len(slice1)+len(slice2))",
+      "\tfor _, elem := range slice1 {",
+      "\t\tmergedSlice = append(mergedSlice, elem)",
+      "\t}",
+      "\tfor _, elem := range slice2 {",
+      "\t\tmergedSlice = append(mergedSlice, elem)",
+      "\t}",
+      "\treturn mergedSlice",
+      "}"
+    ],
+    "description": "Merge slices using range and append"
+  },
+  "merge:func:Range and Extend (for slices)": {
+    "prefix": "merge_func_range_extend",
+    "body": [
+      "func mergeSlices(slice1, slice2 []Type) []Type {",
+      "\tmergedSlice := make([]Type, 0, len(slice1)+len(slice2))",
+      "\tmergedSlice = append(mergedSlice, slice1...)",
+      "\tmergedSlice = append(mergedSlice, slice2...)",
+      "\treturn mergedSlice",
+      "}"
+    ],
+    "description": "Merge slices using range and extend"
+  },
+  "merge:func:Range and Map (for maps)": {
+    "prefix": "merge_func_range_map",
+    "body": [
+      "func mergeMaps(map1, map2 map[string]interface{}) map[string]interface{} {",
+      "\tmergedMap := make(map[string]interface{})",
+      "\tfor k, v := range map1 {",
+      "\t\tmergedMap[k] = v",
+      "\t}",
+      "\tfor k, v := range map2 {",
+      "\t\tmergedMap[k] = v",
+      "\t}",
+      "\treturn mergedMap",
+      "}"
+    ],
+    "description": "Merge maps using range and map"
+  },
+  "merge:func:Range and Channel (for channels)": {
+    "prefix": "merge_func_range_channel",
+    "body": [
+      "func mergeChannels(channel1, channel2 <-chan Type) <-chan Type {",
+      "\tmergedChannel := make(chan Type)",
+      "\tgo func() {",
+      "\t\tdefer close(mergedChannel)",
+      "\t\tfor elem := range channel1 {",
+      "\t\t\tmergedChannel <- elem",
+      "\t\t}",
+      "\t}()",
+      "\tgo func() {",
+      "\t\tdefer close(mergedChannel)",
+      "\t\tfor elem := range channel2 {",
+      "\t\t\tmergedChannel <- elem",
+      "\t\t}",
+      "\t}()",
+      "\treturn mergedChannel",
+      "}"
+    ],
+    "description": "Merge channels using range and channel"
+  },
+  "merge:func:maps with merge function": {
+    "prefix": "merge_func_maps_function",
+    "body": [
+      "func mergeMaps(map1, map2 map[string]interface{}) map[string]interface{} {",
+      "\tmerged := make(map[string]interface{})",
+      "\tfor k, v := range map1 {",
+      "\t\tmerged[k] = v",
+      "\t}",
+      "\tfor k, v := range map2 {",
+      "\t\tmerged[k] = v",
+      "\t}",
+      "\treturn merged",
+      "}"
+    ],
+    "description": "Merge two maps using a merge function"
+  },
+  "merge:func:Goroutines and Select (for concurrent merges, with channels)": {
+    "prefix": "merge_func_goroutines_select",
+    "body": [
+      "func mergeChannels(channels ...<-chan Type) <-chan Type {",
+      "\tvar wg sync.WaitGroup",
+      "\tmerged := make(chan Type)",
+      "\toutput := func(c <-chan Type) {",
+      "\t\tdefer wg.Done()",
+      "\t\tfor val := range c {",
+      "\t\t\tmerged <- val",
+      "\t\t}",
+      "\t}",
+      "\twg.Add(len(channels))",
+      "\tfor _, c := range channels {",
+      "\t\tgo output(c)",
+      "\t}",
+      "\tgo func() {",
+      "\t\twg.Wait()",
+      "\t\tclose(merged)",
+      "\t}()",
+      "\treturn merged",
+      "}"
+    ],
+    "description": "Merge multiple channels using Goroutines and Select"
+  },
+  "merge:func:Channels and Select (for selective merging)": {
+    "prefix": "merge_func_channels_selective",
+    "body": [
+      "func mergeChannels(ch1, ch2 <-chan Type) <-chan Type {",
+      "\tmerged := make(chan Type)",
+      "\tgo func() {",
+      "\t\tdefer close(merged)",
+      "\t\tfor {",
+      "\t\t\tselect {",
+      "\t\t\tcase v, ok := <-ch1:",
+      "\t\t\t\tif ok { merged <- v }",
+      "\t\t\tcase v, ok := <-ch2:",
+      "\t\t\t\tif ok { merged <- v }",
+      "\t\t\t}",
+      "\t\t}",
+      "\t}()",
+      "\treturn merged",
+      "}"
+    ],
+    "description": "Merge channels selectively using Channels and Select"
+  },
+  "merge:func:interface{} (for generic merge)": {
+    "prefix": "merge_func_interface_generic",
+    "body": [
+      "func merge(a, b interface{}) interface{} {",
+      "\tswitch a := a.(type) {",
+      "\tcase map[string]interface{}:",
+      "\t\tb := b.(map[string]interface{})",
+      "\t\tmerged := make(map[string]interface{})",
+      "\t\tfor k, v := range a {",
+      "\t\t\tmerged[k] = v",
+      "\t\t}",
+      "\t\tfor k, v := range b {",
+      "\t\t\tmerged[k] = v",
+      "\t\t}",
+      "\t\treturn merged",
+      "\tdefault:",
+      "\t\treturn nil // Handle other types as needed",
+      "\t}",
+      "}"
+    ],
+    "description": "Merge two values of interface{} type (generic merge)"
+  },
+  "merge:func:append (for slices of structs)": {
+    "prefix": "merge_func_append_structs",
+    "body": [
+      "type MyStruct struct {",
+      "\tField1 string",
+      "\tField2 int",
+      "}",
+      "",
+      "func mergeStructSlices(s1, s2 []MyStruct) []MyStruct {",
+      "\tmerged := make([]MyStruct, 0, len(s1)+len(s2))",
+      "\tmerged = append(merged, s1...)",
+      "\tmerged = append(merged, s2...)",
+      "\treturn merged",
+      "}"
+    ],
+    "description": "Merge slices of structs using append"
+  },
+  "merge:func:reflect package (for reflection-based merge)": {
+    "prefix": "merge_func_reflect",
+    "body": [
+      "import \"reflect\"",
+      "",
+      "func mergeMaps(map1, map2 map[string]interface{}) map[string]interface{} {",
+      "\tmerged := make(map[string]interface{})",
+      "\tval1 := reflect.ValueOf(map1)",
+      "\tval2 := reflect.ValueOf(map2)",
+      "\tif val1.Kind() != reflect.Map || val2.Kind() != reflect.Map {",
+      "\t\treturn merged",
+      "\t}",
+      "\tkeys := val1.MapKeys()",
+      "\tfor _, key := range keys {",
+      "\t\tmerged[key.Interface().(string)] = val1.MapIndex(key).Interface()",
+      "\t}",
+      "\tkeys = val2.MapKeys()",
+      "\tfor _, key := range keys {",
+      "\t\tmerged[key.Interface().(string)] = val2.MapIndex(key).Interface()",
+      "\t}",
+      "\treturn merged",
+      "}"
+    ],
+    "description": "Merge maps using reflect package for reflection-based merge"
+  },
+  "merge:func:JSON marshalling and unmarshalling": {
+    "prefix": "merge_func_json",
+    "body": [
+      "import \"encoding/json\"",
+      "",
+      "func mergeMaps(map1, map2 map[string]interface{}) (map[string]interface{}, error) {",
+      "\tbytes1, err := json.Marshal(map1)",
+      "\tif err != nil {",
+      "\t\treturn nil, err",
+      "\t}",
+      "\tbytes2, err := json.Marshal(map2)",
+      "\tif err != nil {",
+      "\t\treturn nil, err",
+      "\t}",
+      "\tmerged := make(map[string]interface{})",
+      "\tif err := json.Unmarshal(bytes1, &merged); err != nil {",
+      "\t\treturn nil, err",
+      "\t}",
+      "\tif err := json.Unmarshal(bytes2, &merged); err != nil {",
+      "\t\treturn nil, err",
+      "\t}",
+      "\treturn merged, nil",
+      "}"
+    ],
+    "description": "Merge maps using JSON marshalling and unmarshalling"
+  },
+  "merge:func:context and cancelation (for concurrent operations)": {
+    "prefix": "merge_func_context_cancel",
+    "body": [
+      "import \"context\"",
+      "",
+      "func mergeWithCancel(ctx context.Context, map1, map2 map[string]interface{}) (map[string]interface{}, error) {",
+      "\tmerged := make(map[string]interface{})",
+      "\tmergedChan := make(chan map[string]interface{})",
+      "\tgo func() {",
+      "\t\tdefer close(mergedChan)",
+      "\t\tselect {",
+      "\t\tcase <-ctx.Done():",
+      "\t\t\treturn",
+      "\t\tcase merged = mergeMaps(map1, map2):",
+      "\t\t\tmergedChan <- merged",
+      "\t\t}",
+      "\t}()",
+      "\tselect {",
+      "\tcase <-ctx.Done():",
+      "\t\treturn nil, ctx.Err()",
+      "\tcase merged := <-mergedChan:",
+      "\t\treturn merged, nil",
+      "\t}",
+      "}"
+    ],
+    "description": "Merge maps using context and cancelation for concurrent operations"
+  },
+  "merge:func:atomic operations (for thread-safe operations)": {
+    "prefix": "merge_func_atomic",
+    "body": [
+      "import \"sync/atomic\"",
+      "",
+      "type SafeMap struct {",
+      "\tdata map[string]interface{}",
+      "}",
+      "",
+      "func (sm *SafeMap) Merge(otherMap map[string]interface{}) {",
+      "\tfor k, v := range otherMap {",
+      "\t\tatomic.StorePointer((*unsafe.Pointer)(unsafe.Pointer(&sm.data[k])), unsafe.Pointer(&v))",
+      "\t}",
+      "}"
+    ],
+    "description": "Merge maps safely using atomic operations for thread-safe operations"
+  },
+  "merge:func:merging algorithms (e.g., merge sort)": {
+    "prefix": "merge_func_merge_sort",
+    "body": [
+      "func mergeSortedArrays(arr1, arr2 []int) []int {",
+      "\tm := len(arr1)",
+      "\tn := len(arr2)",
+      "\tmerged := make([]int, 0, m+n)",
+      "\ti, j := 0, 0",
+      "\tfor i < m && j < n {",
+      "\t\tif arr1[i] < arr2[j] {",
+      "\t\t\tmerged = append(merged, arr1[i])",
+      "\t\t\ti++",
+      "\t\t} else {",
+      "\t\t\tmerged = append(merged, arr2[j])",
+      "\t\t\tj++",
+      "\t\t}",
+      "\t}",
+      "\tmerged = append(merged, arr1[i:]...)",
+      "\tmerged = append(merged, arr2[j:]...)",
+      "\treturn merged",
+      "}"
+    ],
+    "description": "Merge two sorted arrays using merging algorithm (e.g., merge sort)"
+  },
+  "merge:func:functional options pattern (for configurations)": {
+    "prefix": "merge_func_options",
+    "body": [
+      "type Config struct {",
+      "\tOption1 string",
+      "\tOption2 int",
+      "}",
+      "",
+      "type Option func(*Config)",
+      "",
+      "func WithOption1(option string) Option {",
+      "\treturn func(c *Config) {",
+      "\t\tc.Option1 = option",
+      "\t}",
+      "}",
+      "",
+      "func WithOption2(option int) Option {",
+      "\treturn func(c *Config) {",
+      "\t\tc.Option2 = option",
+      "\t}",
+      "}",
+      "",
+      "func mergeConfigs(opts ...Option) *Config {",
+      "\tconfig := &Config{}",
+      "\tfor _, opt := range opts {",
+      "\t\topt(config)",
+      "\t}",
+      "\treturn config",
+      "}"
+    ],
+    "description": "Merge configurations using functional options pattern"
+  },
+  "merge:func:custom merge function for structs": {
+    "prefix": "merge_func_custom_structs",
+    "body": [
+      "type Person struct {",
+      "\tName string",
+      "\tAge  int",
+      "}",
+      "",
+      "func mergePersons(p1, p2 Person) Person {",
+      "\treturn Person{",
+      "\t\tName: p1.Name + p2.Name,",
+      "\t\tAge:  p1.Age + p2.Age,",
+      "\t}",
+      "}"
+    ],
+    "description": "Merge two structs using custom merge function"
+  }
+}

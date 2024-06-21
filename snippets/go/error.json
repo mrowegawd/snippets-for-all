@@ -1,0 +1,205 @@
+{
+  "error:if:ignore": {
+    "prefix": "err_if_ignore",
+    "body": [
+      "if ${1:err} != nil {",
+      "    _ = ${1:err} // ignore error intentionally",
+      "}"
+    ],
+    "description": "Ignore error"
+  },
+  "error:if:custom message": {
+    "prefix": "err_if_fatal_msg",
+    "body": [
+      "if ${1:err} != nil {",
+      "\tlog.Fatalf(\"custom message: %v\", ${1:err})",
+      "}"
+    ],
+    "description": "Handle error with custom message"
+  },
+  "error:if:log": {
+    "prefix": "err_if_log",
+    "body": ["if ${1:err} != nil {", "\tlog.Println(${1:err})", "}"],
+    "description": "Log error"
+  },
+  "error:if:and_exit": {
+    "prefix": "err_if_exit_program",
+    "body": [
+      "if ${1:err} != nil {",
+      "\tlog.Println(${1:err})",
+      "\tos.Exit(1)",
+      "}"
+    ],
+    "description": "Handle error and exit the program"
+  },
+  "error:if:handle custom error": {
+    "prefix": "err_if_err_custom",
+    "body": [
+      "if e, ok := ${1:err}.(*${2:CustomError}); ok {",
+      "\t// Handle ${2:CustomError} here",
+      "\tlog.Printf(\"Custom error occurred: %v\", e)",
+      "} else {",
+      "\t// Handle other types of errors",
+      "\tlog.Println(${1:err})",
+      "}"
+    ],
+    "description": "Handle custom error"
+  },
+  "error:if:handle custom log printf error 2": {
+    "prefix": "err_if_custom_printf",
+    "body": [
+      "if e, ok := ${1:err}.(*${2:CustomError}); ok {",
+      "\tlog.Printf(\"Custom error occurred: %v\", e)",
+      "} else {",
+      "\tlog.Println(${1:err})",
+      "}"
+    ],
+    "description": "Check and log custom error"
+  },
+  "error:if:continue execution": {
+    "prefix": "err_if_continue",
+    "body": [
+      "if ${1:err} != nil {",
+      "\tlog.Printf(\"Error occurred: %v\", ${1:err})",
+      "\t// Continue execution or fallback",
+      "}"
+    ],
+    "description": "Handle error and continue execution"
+  },
+  "error:if:with stack trace": {
+    "prefix": "err_if_with_stack",
+    "body": [
+      "if ${1:err} != nil {",
+      "\tlog.Printf(\"Error occurred: %v\\n%s\", ${1:err}, debug.Stack())",
+      "}"
+    ],
+    "description": "Handle error with stack trace"
+  },
+  "error:if:with logging and recovery": {
+    "prefix": "err_if_defer_logging_recover",
+    "body": [
+      "defer func() {",
+      "\tif r := recover(); r != nil {",
+      "\t\tlog.Printf(\"Recovered from panic: %v\", r)",
+      "\t}",
+      "}()",
+      "",
+      "${1:operation}"
+    ],
+    "description": "Handle error with logging and recovery"
+  },
+  "error:if:pattern:retry with backoff": {
+    "prefix": "err_if_pattern_retry_with_backoff",
+    "body": [
+      "err := retry.Do(",
+      "\tfunc() error {",
+      "\t\treturn ${1:operation}",
+      "\t},",
+      "\tretry.WithMaxRetries(${2:maxRetries}),",
+      "\tretry.WithDelay(${3:backoff.Delay}),",
+      "\tretry.WithMaxJitter(${4:backoff.MaxJitter}),",
+      ")",
+      "if err != nil {",
+      "\tlog.Fatalf(\"Failed after retries: %v\", err)",
+      "}"
+    ],
+    "description": "Handle error and retry with backoff"
+  },
+  "error:if:pattern:retry mechanism": {
+    "prefix": "err_if_pattern_retry",
+    "body": [
+      "for retry := 0; retry < ${1:maxRetries}; retry++ {",
+      "\t${2:operation}",
+      "\tif ${3:err} == nil {",
+      "\t\tbreak",
+      "\t}",
+      "\tif retry == ${1:maxRetries} - 1 {",
+      "\t\tlog.Fatalf(\"Failed after ${1:maxRetries} retries: %v\", ${3:err})",
+      "\t}",
+      "\tlog.Printf(\"Error occurred (retry %d/%d): %v\", retry+1, ${1:maxRetries}, ${3:err})",
+      "}"
+    ],
+    "description": "Handle error with retry mechanism"
+  },
+  "error:custom error type boilerplate": {
+    "prefix": "err_custom_error",
+    "body": [
+      "type ${1:CustomError} struct {",
+      "\tmessage string",
+      "\twrapped error",
+      "}",
+      "",
+      "func (e *${1:CustomError}) Error() string {",
+      "\treturn e.message",
+      "}",
+      "",
+      "func New${1:CustomError}(message string, err error) error {",
+      "\treturn &${1:CustomError}{",
+      "\t\tmessage: message,",
+      "\t\twrapped: err,",
+      "\t}",
+      "}",
+      "$0"
+    ],
+    "description": "Create a custom error type"
+  },
+  "error:return": {
+    "prefix": "err_ret",
+    "body": ["return ${1:err}"],
+    "description": "Return error"
+  },
+  "error:return:wrap_error_msg": {
+    "prefix": "err_ret_wrap_msg",
+    "body": ["return fmt.Errorf(\"${1:custom message}: %w\", ${2:err})"],
+    "description": "Wrap error with custom message"
+  },
+  "error:return:new error instance": {
+    "prefix": "err_ret_new_instance",
+    "body": ["return New${1:CustomError}(\"${2:error message}\", ${3:cause})"],
+    "description": "Return custom error"
+  },
+  "error:return:new error instance2": {
+    "prefix": "err_ret_new_instance2",
+    "body": [
+      "if ${1:err} != nil {",
+      "\treturn nil, New${2:CustomError}(\"${3:error occurred}\", ${1:err})",
+      "}"
+    ],
+    "description": "Handle error and return custom error"
+  },
+  "error:return:default value": {
+    "prefix": "err_ret_default",
+    "body": ["if ${1:err} != nil {", "\treturn ${2:defaultValue}", "}"],
+    "description": "Handle error and return default value"
+  },
+  "error:http:status code": {
+    "prefix": "err_http_status_code",
+    "body": [
+      "if ${1:err} != nil {",
+      "\thttp.Error(w, ${2:\"internal server error\"}, http.StatusInternalServerError)",
+      "\treturn",
+      "}"
+    ],
+    "description": "Handle error with HTTP status code"
+  },
+  "error:http:response_500": {
+    "prefix": "err_http_500_resp",
+    "body": [
+      "if ${1:err} != nil {",
+      "\thttp.Error(w, \"internal server error\", http.StatusInternalServerError)",
+      "\treturn",
+      "}"
+    ],
+    "description": "Handle error with HTTP 500 response"
+  },
+  "error:http:return:JSON response": {
+    "prefix": "err_http_ret_json_response",
+    "body": [
+      "if ${1:err} != nil {",
+      "\thttp.Error(w, ${2:\"{\"error\":\"internal server error\"}\"}, http.StatusInternalServerError)",
+      "\treturn",
+      "}"
+    ],
+    "description": "Handle error and return JSON response"
+  }
+}

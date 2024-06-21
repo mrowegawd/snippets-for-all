@@ -1,0 +1,162 @@
+{
+  "json:read_json_file": {
+    "prefix": "json_read_json_file",
+    "body": [
+      "file, err := os.Open(${1:\"filename.json\"})",
+      "if err != nil {",
+      "\t${2:// handle error}",
+      "}",
+      "defer file.Close()",
+      "decoder := json.NewDecoder(file)",
+      "var ${3:data} ${4:StructType}",
+      "err = decoder.Decode(&${3:data})",
+      "if err != nil {",
+      "\t${5:// handle decode error}",
+      "}",
+      "${6:// use ${3:data} as needed}"
+    ],
+    "description": "Read JSON data from a file"
+  },
+  "json:write_json_file": {
+    "prefix": "json_write_json_file",
+    "body": [
+      "file, err := os.Create(${1:\"filename.json\"})",
+      "if err != nil {",
+      "\t${2:// handle error}",
+      "}",
+      "defer file.Close()",
+      "encoder := json.NewEncoder(file)",
+      "err = encoder.Encode(${3:data})",
+      "if err != nil {",
+      "\t${4:// handle encode error}",
+      "}"
+    ],
+    "description": "Write JSON data to a file"
+  },
+  "json:to-json": {
+    "prefix": "json_struct_to_json",
+    "body": [
+      "jsonBytes, err := json.Marshal(${1:data})",
+      "if err != nil {",
+      "\t${2:// handle error}",
+      "}",
+      "jsonStr := string(jsonBytes)",
+      "${3:// use jsonStr as needed}"
+    ],
+    "description": "Convert struct to JSON string"
+  },
+  "json:to-map": {
+    "prefix": "json_to_map",
+    "body": [
+      "var ${1:data} map[string]interface{}",
+      "err := json.Unmarshal([]byte(${2:jsonStr}), &${1:data})",
+      "if err != nil {",
+      "\t${3:// handle error}",
+      "}",
+      "${4:// use ${1:data} as needed}"
+    ],
+    "description": "Convert JSON string to map"
+  },
+  "json:to_slice": {
+    "prefix": "json_to_slice",
+    "body": [
+      "var ${1:data} []${2:ElementType}",
+      "err := json.Unmarshal([]byte(${3:jsonStr}), &${1:data})",
+      "if err != nil {",
+      "\t${4:// handle error}",
+      "}",
+      "${5:// use ${1:data} as needed}"
+    ],
+    "description": "Convert JSON string to slice/array"
+  },
+  "json:array_to_json": {
+    "prefix": "json_array_to_json",
+    "body": [
+      "jsonBytes, err := json.Marshal(${1:sliceData})",
+      "if err != nil {",
+      "\t${2:// handle error}",
+      "}",
+      "jsonStr := string(jsonBytes)",
+      "${3:// use jsonStr as needed}"
+    ],
+    "description": "Convert slice/array to JSON string"
+  },
+  "json:validation": {
+    "prefix": "json_validation",
+    "body": [
+      "type ${1:StructName} struct {",
+      "\t${2:Field1} ${3:Type} `${4:\"json:\\\"field_name\\\"\"}`",
+      "\t${5:Field2} ${6:Type} `${7:\"json:\\\"another_field\\\"\"}`",
+      "}",
+      "${8:// use struct for JSON validation}"
+    ],
+    "description": "Create struct with JSON validation tags"
+  },
+  "json:pretty-print-json": {
+    "prefix": "json_pretty_print_json",
+    "body": [
+      "prettyJSON, err := json.MarshalIndent(${1:data}, \"\", \"  \")",
+      "if err != nil {",
+      "\t${2:// handle error}",
+      "}",
+      "fmt.Println(string(prettyJSON))"
+    ],
+    "description": "Pretty-print JSON"
+  },
+  "json:check-json-field": {
+    "prefix": "json_check_json_field",
+    "body": [
+      "var ${1:data} map[string]interface{}",
+      "err := json.Unmarshal([]byte(${2:jsonStr}), &${1:data})",
+      "if err != nil {",
+      "\t${3:// handle error}",
+      "}",
+      "if ${1:data}[\"${4:fieldName}\"] == nil {",
+      "\t${5:// handle missing field}",
+      "}",
+      "${6:// use ${1:data}[\"${4:fieldName}\"] as needed}"
+    ],
+    "description": "Check JSON field existence"
+  },
+  "json:write-json-to-stdout": {
+    "prefix": "json_write_json_to_stdout",
+    "body": [
+      "encoder := json.NewEncoder(os.Stdout)",
+      "encoder.SetIndent(\"\", \"  \")",
+      "err := encoder.Encode(${1:data})",
+      "if err != nil {",
+      "\t${2:// handle error}",
+      "}"
+    ],
+    "description": "Write JSON to stdout"
+  },
+  "json:create-json-with-map": {
+    "prefix": "json_create_json_with_map",
+    "body": [
+      "jsonData := map[string]interface{}{",
+      "\t\"${1:key1}\": ${2:value1},",
+      "\t\"${3:key2}\": ${4:value2},",
+      "}",
+      "jsonBytes, err := json.Marshal(jsonData)",
+      "if err != nil {",
+      "\t${5:// handle error}",
+      "}",
+      "jsonStr := string(jsonBytes)",
+      "${6:// use jsonStr as needed}"
+    ],
+    "description": "Create JSON using map"
+  },
+  "json:read_from-http-response": {
+    "prefix": "json_read_from_http_response",
+    "body": [
+      "decoder := json.NewDecoder(resp.Body)",
+      "var ${1:data} ${2:StructType}",
+      "err := decoder.Decode(&${1:data})",
+      "if err != nil {",
+      "\t${3:// handle decode error}",
+      "}",
+      "${4:// use ${1:data} as needed}"
+    ],
+    "description": "Read JSON from http.Response.Body"
+  }
+}

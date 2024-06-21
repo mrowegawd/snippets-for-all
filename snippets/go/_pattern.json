@@ -1,0 +1,105 @@
+{
+  "singletoon": {
+    "prefix": "pattern_singletoon",
+    "body": [
+      "var (",
+      "\tonce sync.Once",
+      "\tinstance ${1:Type}",
+      ")",
+      "",
+      "func GetInstance() ${1:Type} {",
+      "\tonce.Do(func() {",
+      "\t\tinstance = ${1:Type}{",
+      "\t\t\t${0:/* Initialization code */}",
+      "\t\t}",
+      "\t})",
+      "\treturn instance",
+      "}"
+    ],
+    "description": "Singleton pattern in Go"
+  },
+  "singletoon:with_init_func": {
+    "prefix": "pattern_singletoon_with_init_func",
+    "body": [
+      "var (",
+      "\tonce sync.Once",
+      "\tinstance ${1:Type}",
+      ")",
+      "",
+      "func init() {",
+      "\tonce.Do(func() {",
+      "\t\tinstance = ${1:Type}{",
+      "\t\t\t${0:/* Initialization code */}",
+      "\t\t}",
+      "\t})",
+      "}",
+      "",
+      "func GetInstance() ${1:Type} {",
+      "\treturn instance",
+      "}"
+    ],
+    "description": "Singleton pattern in Go with init function"
+  },
+  "singletoon:with_lazy_func": {
+    "prefix": "pattern_singletoon_with_lazy_func",
+    "body": [
+      "var (",
+      "\tinstance ${1:Type}",
+      "\tonce sync.Once",
+      ")",
+      "",
+      "func GetInstance() ${1:Type} {",
+      "\tonce.Do(func() {",
+      "\t\tinstance = ${1:Type}{",
+      "\t\t\t${0:/* Initialization code */} ",
+      "\t\t}",
+      "\t})",
+      "\treturn instance",
+      "}"
+    ],
+    "description": "Singleton pattern in Go with lazy initialization function"
+  },
+  "singletoon:with_sync_mutex": {
+    "prefix": "pattern_singletoon_with_lazy_func",
+    "body": [
+      "var (",
+      "\tvar instance *${1:Type}",
+      "\tvar mu sync.Mutex",
+      ")",
+      "func GetInstance() *${1:Type} {",
+      "\tmu.Lock()",
+      "\tdefer mu.Unlock()",
+      "",
+      "\tif instance == nil {",
+      "\t\tinstance = &${1:Type}{",
+      "\t\t\t${0:/* Initialization code */} ",
+      "\t\t}",
+      "\t}",
+      "\treturn instance",
+      "}"
+    ],
+    "description": "Singleton pattern in Go with sync.Mutex"
+  },
+  "singletoon:initial_function_return_pointer": {
+    "prefix": "pattern_singletoon_with_init_func_return_pointer",
+    "body": [
+      "var (",
+      "\tonce sync.Once",
+      "\tinstance *${1:Type}",
+      ")",
+      "",
+      "func init() {",
+      "\tonce.Do(func() {",
+      "\t\tinstance = &${1:Type}{",
+      "\t\t\t${0:/* Initialization code */} ",
+      "\t\t}",
+      "\t})",
+      "}",
+      "",
+      "func GetInstance() *${1:Type} {",
+      "\treturn instance",
+      "}"
+    ],
+    "description": "Singleton pattern in Go with init function and return pointer"
+  }
+}
