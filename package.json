@@ -72,7 +72,11 @@
       },
       {
         "language": "lua",
-        "path": "./snippets/lua.json"
+        "path": "./snippets/lua/base.json"
+      },
+      {
+        "language": "lua",
+        "path": "./snippets/lua/merge.json"
       },
       {
         "language": "go",
@@ -93,6 +97,10 @@
       {
         "language": "go",
         "path": "./snippets/go/testing.json"
+      },
+      {
+        "language": "go",
+        "path": "./snippets/go/merge.json"
       },
       {
         "language": "go",
@@ -129,6 +137,22 @@
       {
         "language": "rust",
         "path": "./snippets/rust/base.json"
+      },
+      {
+        "language": "rust",
+        "path": "./snippets/rust/closure.json"
+      },
+      {
+        "language": "rust",
+        "path": "./snippets/rust/error.json"
+      },
+      {
+        "language": "rust",
+        "path": "./snippets/rust/json.json"
+      },
+      {
+        "language": "rust",
+        "path": "./snippets/rust/merge.json"
       },
       {
         "language": "rust",
@@ -368,7 +392,11 @@
       },
       {
         "language": "python",
-        "path": "./snippets/python/misc.json"
+        "path": "./snippets/python/json.json"
+      },
+      {
+        "language": "python",
+        "path": "./snippets/python/lambda.json"
       },
       {
         "language": "django",

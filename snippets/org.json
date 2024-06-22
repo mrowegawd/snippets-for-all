@@ -148,9 +148,14 @@
     "body": ["- [ ] $0"],
     "description": "Create a nested TODO checklist item"
   },
-  "todo:checklist:nested": {
+  "todo:checklist:create nested": {
     "prefix": "todo_check_nested",
-    "body": ["- [ ] $1", "\t\t- [ ] $0"],
+    "body": ["\t- [ ] $0"],
+    "description": "Create a nested TODO checklist item"
+  },
+  "todo:checklist:nested": {
+    "prefix": "todo_check_turunan_nested",
+    "body": ["- [ ] $1", "\t- [ ] $0"],
     "description": "TODO checklist item with nested checklist items"
   },
   "text:lits": {

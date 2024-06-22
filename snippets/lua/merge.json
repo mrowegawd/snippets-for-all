@@ -1,0 +1,104 @@
+{
+  "merge:two tables": {
+    "prefix": "merge_table",
+    "body": [
+      "function mergeTables(t1, t2)",
+      "\tfor k, v in pairs(t2) do",
+      "\t\tt1[k] = v",
+      "\tend",
+      "\treturn t1",
+      "end"
+    ],
+    "description": "Merge two Lua tables into one."
+  },
+  "merge:table multi": {
+    "prefix": "merge_table_multi",
+    "body": [
+      "function mergeMultipleTables(...)",
+      "\tlocal result = {}",
+      "\tfor _, tbl in ipairs({...}) do",
+      "\t\tfor k, v in pairs(tbl) do",
+      "\t\t\tresult[k] = v",
+      "\t\tend",
+      "\tend",
+      "\treturn result",
+      "end"
+    ],
+    "description": "Merge multiple Lua tables into one."
+  },
+  "merge:deep merge": {
+    "prefix": "merge_table_deep",
+    "body": [
+      "function deepMergeTables(dest, src)",
+      "\tfor k, v in pairs(src) do",
+      "\t\tif type(v) == 'table' then",
+      "\t\t\tdest[k] = dest[k] or {}",
+      "\t\t\tdeepMergeTables(dest[k], v)",
+      "\t\telse",
+      "\t\t\tdest[k] = v",
+      "\t\tend",
+      "\tend",
+      "\treturn dest",
+      "end"
+    ],
+    "description": "Deep merge Lua tables, recursively merging nested tables."
+  },
+  "merge:tables with overwrite": {
+    "prefix": "merge_table_with_overwrite",
+    "body": [
+      "function mergeWithOverwrite(t1, t2)",
+      "\tfor k, v in pairs(t2) do",
+      "\t\tif type(v) == 'table' and type(t1[k]) == 'table' then",
+      "\t\t\tmergeWithOverwrite(t1[k], v)",
+      "\t\telse",
+      "\t\t\tt1[k] = v",
+      "\t\tend",
+      "\tend",
+      "\treturn t1",
+      "end"
+    ],
+    "description": "Merge Lua tables, overwriting existing keys."
+  },
+  "merge:tables with concatenation (for arrays)": {
+    "prefix": "merge_table_with_concatenate",
+    "body": [
+      "function mergeWithConcatenate(t1, t2)",
+      "\tfor k, v in ipairs(t2) do",
+      "\t\ttable.insert(t1, v)",
+      "\tend",
+      "\treturn t1",
+      "end"
+    ],
+    "description": "Merge Lua tables with concatenation, useful for arrays."
+  },
+  "merge:tables with custom merge function": {
+    "prefix": "merge_table_withcustomfunction",
+    "body": [
+      "function mergeWithCustomFunction(t1, t2, mergeFunc)",
+      "\tfor k, v in pairs(t2) do",
+      "\t\tif t1[k] and type(t1[k]) == 'table' and type(v) == 'table' then",
+      "\t\t\tmergeWithCustomFunction(t1[k], v, mergeFunc)",
+      "\t\telse",
+      "\t\t\tt1[k] = mergeFunc(t1[k], v)",
+      "\t\tend",
+      "\tend",
+      "\treturn t1",
+      "end"
+    ],
+    "description": "Merge Lua tables using a custom merge function."
+  },
+  "merge:tables with handling nil values": {
+    "prefix": "merge_table_with_nil_handling",
+    "body": [
+      "function mergeWithNilHandling(t1, t2)",
+      "\tfor k, v in pairs(t2) do",
+      "\t\tif v ~= nil then",
+      "\t\t\tt1[k] = v",
+      "\t\tend",
+      "\tend",
+      "\treturn t1",
+      "end"
+    ],
+    "description": "Merge Lua tables while handling nil values."
+  }
+}
