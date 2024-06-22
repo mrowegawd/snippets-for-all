@@ -4,13 +4,11 @@
     "body": ["TODO: ${0}"],
     "description": "Add Todo"
   },
-
   "NOTE": {
     "prefix": "note_",
     "body": ["NOTE: ${0}"],
     "description": "Add Note"
   },
-
   "header 1": {
     "prefix": "h_1",
     "body": ["# ${0}"],
@@ -41,83 +39,101 @@
     "body": ["###### ${0}"],
     "description": "Add header level 6"
   },
-  "Links": {
-    "prefix": "t_link_",
-    "body": ["[${1}](${2}) ${0}"],
+  "text:link": {
+    "prefix": "text_link",
+    "body": ["[${1:title}](${2:link}) ${0}"],
     "description": "Add links"
   },
-  "URLS": {
-    "prefix": "t_url_",
+  "text:urls": {
+    "prefix": "text_url",
     "body": ["<${1}> ${0}"],
     "description": "Add urls"
   },
-  "Images": {
-    "prefix": "t_img_",
-    "body": ["![${1}](${2}) ${0}"],
+  "text:embedded link": {
+    "prefix": "text_embed_frame",
+    "body": [
+      "<iframe width=\"560\" height=\"315\" src=\"$1\" frameborder=\"0\" allowfullscreen></iframe>",
+      "$0"
+    ],
+    "description": "Insert a YouTube embed"
+  },
+  "text:images": {
+    "prefix": "text_img",
+    "body": ["![${1:name_image}](${2:link_or_path}) ${0}"],
     "description": "Add images"
   },
-  "Insert strikethrough": {
-    "prefix": "t_strikethrough",
+  "text:strikethrough": {
+    "prefix": "text_strikethrough",
     "body": "~~${1}~~ ${0}",
     "description": "Insert strikethrough"
   },
-  "Insert bold text": {
-    "prefix": "t_bold",
+  "text:bold": {
+    "prefix": "text_bold",
     "body": "**${1}** $0",
     "description": "Insert bold text"
   },
-  "Insert italic text": {
-    "prefix": "t_italic",
+  "text:italic": {
+    "prefix": "text_italic",
     "body": "*${1}* $0",
     "description": "Insert italic text"
   },
-  "Insert bold and italic text": {
-    "prefix": "t_bold_italic",
+  "text:bold and italic": {
+    "prefix": "text_bold_italic",
     "body": "***${1}*** $0",
     "description": "Insert bold and italic text"
   },
-  "Insert quoted text": {
-    "prefix": "t_quote",
+  "text:quote": {
+    "prefix": "text_quote",
     "body": "> ${1}",
     "description": "Insert quoted text"
   },
-  "Insert code": {
-    "prefix": "t_code",
-    "body": "`${1}` $0",
-    "description": "Insert code"
+  "text:inline code": {
+    "prefix": "text_inlinecode",
+    "body": ["`$0`"],
+    "description": "Insert inline code"
   },
-  "Insert code block": {
-    "prefix": "c_code_",
-    "body": ["```${1:language}", "$0", "```"],
-    "description": "Insert fenced code block"
-  },
-  "Insert unordered list": {
-    "prefix": "t_unordered_list",
+  "text:unordered list": {
+    "prefix": "text_unordered_list",
     "body": ["- ${1:first}", "- ${2:second}", "- ${3:third}", "$0"],
     "description": "Insert unordered list"
   },
-  "Insert ordered list": {
-    "prefix": "t_ordered_list",
+  "text:ordered list": {
+    "prefix": "text_ordered_list",
     "body": ["1. ${1:first}", "2. ${2:second}", "3. ${3:third}", "$0"],
     "description": "Insert ordered list"
   },
-  "Insert horizontal rule": {
-    "prefix": "t_horizontal_rule",
-    "body": "----------\n",
+  "block:code": {
+    "prefix": "block_code",
+    "body": ["```${1:language}", "$0", "```"],
+    "description": "Insert fenced code block"
+  },
+  "block:math": {
+    "prefix": "block_math",
+    "body": ["\\[ $0 \\]"],
+    "description": "Insert block math"
+  },
+  "html:block": {
+    "prefix": "html_block",
+    "body": ["<div>", "  $0", "</div>"],
+    "description": "Insert an HTML block"
+  },
+  "rule:horizontal": {
+    "prefix": "rule_horizontal",
+    "body": "---$0",
     "description": "Insert horizontal rule"
   },
-  "Insert task list": {
-    "prefix": "c_task",
+  "todo:checklist:task list 1": {
+    "prefix": "todo_check_task_1",
     "body": ["- [${1| ,x|}] ${2:text}", "${0}"],
     "description": "Insert task list"
   },
-  "Insert task list 2": {
-    "prefix": "c_task2",
+  "todo:checklist:task list 2": {
+    "prefix": "todo_check_task_2",
     "body": ["- [${1| ,x|}] ${2:text}", "- [${3| ,x|}] ${4:text}", "${0}"],
     "description": "Insert task list with 2 tasks"
   },
-  "Insert task list 3": {
-    "prefix": "c_task3",
+  "todo:checklist:task list 3": {
+    "prefix": "todo_check_task_3",
     "body": [
       "- [${1| ,x|}] ${2:text}",
       "- [${3| ,x|}] ${4:text}",
@@ -126,8 +142,8 @@
     ],
     "description": "Insert task list with 3 tasks"
   },
-  "Insert task list 4": {
-    "prefix": "c_task4",
+  "todo:checklist:task list 4": {
+    "prefix": "todo_check_task_4",
     "body": [
       "- [${1| ,x|}] ${2:text}",
       "- [${3| ,x|}] ${4:text}",
@@ -137,8 +153,8 @@
     ],
     "description": "Insert task list with 4 tasks"
   },
-  "Insert task list 5": {
-    "prefix": "c_task5",
+  "todo:checklist:task list 5": {
+    "prefix": "todo_check_task_5",
     "body": [
       "- [${1| ,x|}] ${2:text}",
       "- [${3| ,x|}] ${4:text}",
@@ -149,18 +165,8 @@
     ],
     "description": "Insert task list with 5 tasks"
   },
-  "Insert table": {
-    "prefix": "c_table",
-    "body": [
-      "| ${1:Column1}  | ${2:Column2}   | ${3:Column3}   |",
-      "|-------------- | -------------- | -------------- |",
-      "| ${4:Item1}    | ${5:Item1}     | ${6:Item1}     |",
-      "${0}"
-    ],
-    "description": "Insert table with 2 rows and 3 columns. First row is heading."
-  },
-  "Insert 2x1 table": {
-    "prefix": "c_2x1table",
+  "table:create:2x1 table": {
+    "prefix": "table_create_2x1table",
     "body": [
       "| ${1:Column1}  |",
       "|-------------- |",
@@ -169,8 +175,8 @@
     ],
     "description": "Insert table with 2 rows and 1 column. First row is heading."
   },
-  "Insert 3x1 table": {
-    "prefix": "c_3x1table",
+  "table:create:3x1 table": {
+    "prefix": "table_create_3x1table",
     "body": [
       "| ${1:Column1}  |",
       "|-------------- |",
@@ -180,8 +186,8 @@
     ],
     "description": "Insert table with 3 rows and 1 column. First row is heading."
   },
-  "Insert 4x1 table": {
-    "prefix": "c_4x1table",
+  "table:create:4x1 table": {
+    "prefix": "table_create_4x1table",
     "body": [
       "| ${1:Column1}  |",
       "|-------------- |",
@@ -192,8 +198,8 @@
     ],
     "description": "Insert table with 4 rows and 1 column. First row is heading."
   },
-  "Insert 5x1 table": {
-    "prefix": "c_5x1table",
+  "table:create:5x1 table": {
+    "prefix": "table_create_5x1table",
     "body": [
       "| ${1:Column1}  |",
       "|-------------- |",
@@ -205,8 +211,8 @@
     ],
     "description": "Insert table with 5 rows and 1 column. First row is heading."
   },
-  "Insert 2x2 table": {
-    "prefix": "c_2x2table",
+  "table:create:2x2 table": {
+    "prefix": "table_create_2x2table",
     "body": [
       "| ${1:Column1}   | ${2:Column2}    |",
       "|--------------- | --------------- |",
@@ -215,8 +221,8 @@
     ],
     "description": "Insert table with 2 rows and 2 columns. First row is heading."
   },
-  "Insert 3x2 table": {
-    "prefix": "c_3x2table",
+  "table:create:3x2 table": {
+    "prefix": "table_create_3x2table",
     "body": [
       "| ${1:Column1}   | ${2:Column2}    |",
       "|--------------- | --------------- |",
@@ -226,8 +232,8 @@
     ],
     "description": "Insert table with 3 rows and 2 columns. First row is heading."
   },
-  "Insert 4x2 table": {
-    "prefix": "c_4x2table",
+  "table:create:4x2 table": {
+    "prefix": "table_create_4x2table",
     "body": [
       "| ${1:Column1}   | ${2:Column2}    |",
       "|--------------- | --------------- |",
@@ -238,8 +244,8 @@
     ],
     "description": "Insert table with 4 rows and 2 columns. First row is heading."
   },
-  "Insert 5x2 table": {
-    "prefix": "c_5x2table",
+  "table:create:5x2 table": {
+    "prefix": "table_create_5x2table",
     "body": [
       "| ${1:Column1}   | ${2:Column2}    |",
       "|--------------- | --------------- |",
@@ -251,8 +257,8 @@
     ],
     "description": "Insert table with 5 rows and 2 columns. First row is heading."
   },
-  "Insert 2x3 table": {
-    "prefix": "c_2x3table",
+  "table:create:2x3 table": {
+    "prefix": "table_create_2x3table",
     "body": [
       "| ${1:Column1}    | ${2:Column2}    | ${3:Column3}    |",
       "|---------------- | --------------- | --------------- |",
@@ -261,8 +267,8 @@
     ],
     "description": "Insert table with 2 rows and 3 columns. First row is heading."
   },
-  "Insert 3x3 table": {
-    "prefix": "c_3x3table",
+  "table:create:3x3 table": {
+    "prefix": "table_create_3x3table",
     "body": [
       "| ${1:Column1}    | ${2:Column2}    | ${3:Column3}    |",
       "|---------------- | --------------- | --------------- |",
@@ -272,8 +278,8 @@
     ],
     "description": "Insert table with 3 rows and 3 columns. First row is heading."
   },
-  "Insert 4x3 table": {
-    "prefix": "c_4x3table",
+  "table:create:4x3 table": {
+    "prefix": "table_create_4x3table",
     "body": [
       "| ${1:Column1}    | ${2:Column2}    | ${3:Column3}    |",
       "|---------------- | --------------- | --------------- |",
@@ -284,8 +290,8 @@
     ],
     "description": "Insert table with 4 rows and 3 columns. First row is heading."
   },
-  "Insert 5x3 table": {
-    "prefix": "c_5x3table",
+  "table:create:5x3 table": {
+    "prefix": "table_create_5x3table",
     "body": [
       "| ${1:Column1}    | ${2:Column2}    | ${3:Column3}    |",
       "|---------------- | --------------- | --------------- |",
@@ -297,8 +303,8 @@
     ],
     "description": "Insert table with 5 rows and 3 columns. First row is heading."
   },
-  "Insert 2x4 table": {
-    "prefix": "c_2x4table",
+  "table:create:2x4 table": {
+    "prefix": "table_create_2x4table",
     "body": [
       "| ${1:Column1}    | ${2:Column2}    | ${3:Column3}    | ${4:Column4}    |",
       "|---------------- | --------------- | --------------- | --------------- |",
@@ -307,8 +313,8 @@
     ],
     "description": "Insert table with 2 rows and 4 columns. First row is heading."
   },
-  "Insert 3x4 table": {
-    "prefix": "c_3x4table",
+  "table:create:3x4 table": {
+    "prefix": "table_create_3x4table",
     "body": [
       "| ${1:Column1}    | ${2:Column2}    | ${3:Column3}    | ${4:Column4}    |",
       "|---------------- | --------------- | --------------- | --------------- |",
@@ -318,8 +324,8 @@
     ],
     "description": "Insert table with 3 rows and 4 columns. First row is heading."
   },
-  "Insert 4x4 table": {
-    "prefix": "c_4x4table",
+  "table:create:4x4 table": {
+    "prefix": "table_create_4x4table",
     "body": [
       "| ${1:Column1}    | ${2:Column2}    | ${3:Column3}    | ${4:Column4}    |",
       "|---------------- | --------------- | --------------- | --------------- |",
@@ -330,8 +336,8 @@
     ],
     "description": "Insert table with 4 rows and 4 columns. First row is heading."
   },
-  "Insert 5x4 table": {
-    "prefix": "c_5x4table",
+  "table:create:5x4 table": {
+    "prefix": "table_create_5x4table",
     "body": [
       "| ${1:Column1}    | ${2:Column2}    | ${3:Column3}    | ${4:Column4}    |",
       "|---------------- | --------------- | --------------- | --------------- |",
@@ -343,8 +349,8 @@
     ],
     "description": "Insert table with 5 rows and 4 columns. First row is heading."
   },
-  "Insert 2x5 table": {
-    "prefix": "c_2x5table",
+  "table:create:2x5 table": {
+    "prefix": "table_create_2x5table",
     "body": [
       "| ${1:Column1}    | ${2:Column2}    | ${3:Column3}    | ${4:Column4}    | ${5:Column5}    |",
       "|---------------- | --------------- | --------------- | --------------- | --------------- |",
@@ -353,8 +359,8 @@
     ],
     "description": "Insert table with 2 rows and 5 columns. First row is heading."
   },
-  "Insert 3x5 table": {
-    "prefix": "c_3x5table",
+  "table:create:3x5 table": {
+    "prefix": "table_create_3x5table",
     "body": [
       "| ${1:Column1}    | ${2:Column2}    | ${3:Column3}    | ${4:Column4}    | ${5:Column5}    |",
       "|---------------- | --------------- | --------------- | --------------- | --------------- |",
@@ -364,8 +370,8 @@
     ],
     "description": "Insert table with 3 rows and 5 columns. First row is heading."
   },
-  "Insert 4x5 table": {
-    "prefix": "c_4x5table",
+  "table:create:4x5 table": {
+    "prefix": "table_create_4x5table",
     "body": [
       "| ${1:Column1}    | ${2:Column2}    | ${3:Column3}    | ${4:Column4}    | ${5:Column5}    |",
       "|---------------- | --------------- | --------------- | --------------- | --------------- |",
@@ -376,8 +382,8 @@
     ],
     "description": "Insert table with 4 rows and 5 columns. First row is heading."
   },
-  "Insert 5x5 table": {
-    "prefix": "c_5x5table",
+  "table:create:5x5 table": {
+    "prefix": "table_create_5x5table",
     "body": [
       "| ${1:Column1}    | ${2:Column2}    | ${3:Column3}    | ${4:Column4}    | ${5:Column5}    |",
       "|---------------- | --------------- | --------------- | --------------- | --------------- |",
