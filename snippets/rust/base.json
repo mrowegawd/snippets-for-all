@@ -1,0 +1,880 @@
+{
+  "TODO": {
+    "prefix": "todo_",
+    "body": ["// TODO: $0"],
+    "description": "// TODO: ..."
+  },
+  "#:allow": {
+    "prefix": "allow_",
+    "body": ["#![allow(${1})]"],
+    "description": "#![allow(…)]"
+  },
+  "#:deny": {
+    "prefix": "deny_",
+    "body": ["#![deny(${1})]"],
+    "description": "#![deny(…)]"
+  },
+  "#:no_std": {
+    "prefix": "no_std_",
+    "body": ["#![no_std]"],
+    "description": "#![no_std]"
+  },
+  "#:no_core": {
+    "prefix": "no_core_",
+    "body": ["#![no_core]"],
+    "description": "#![no_core]"
+  },
+  "#:feature": {
+    "prefix": "feature_",
+    "body": ["#![feature(${1})]"],
+    "description": "#![feature(…)]"
+  },
+  "#:macro_use": {
+    "prefix": "macro_use",
+    "body": ["#[macro_use(${1})]"],
+    "description": "#[macro_use(…)]"
+  },
+  "#:repr": {
+    "prefix": "repr_",
+    "body": ["#[repr(${1})]"],
+    "description": "#[repr(…)]"
+  },
+  "#:derive": {
+    "prefix": "derive_",
+    "body": ["#[derive(${1:Debug})]"],
+    "description": "#[derive(Debug, Eq, PartialEq, Hash)]"
+  },
+  "#:derive:warn": {
+    "prefix": "derive_warn",
+    "body": ["#![warn(${1:dead_code})]"],
+    "description": "#![warn(…)]"
+  },
+  "#:cfg": {
+    "prefix": "cfg_",
+    "body": ["#[cfg(${1})]"],
+    "description": "#[cfg(…)]"
+  },
+  "#:cfg_attr": {
+    "prefix": "cfg_attr",
+    "body": ["#[cfg_attr(${1}, ${2})]"],
+    "description": "#[cfg_attr(…, …)]"
+  },
+  "#:cfg!": {
+    "prefix": "cfg!_",
+    "body": ["cfg!(${1})"],
+    "description": "cfg!(…)"
+  },
+  "assert": {
+    "prefix": "assert_",
+    "body": ["assert!(${1});"],
+    "description": "assert!( data1 < data2, \"description why is failed\" );"
+  },
+  "assert:eq": {
+    "prefix": "assert_eq",
+    "body": ["assert_eq!(${1}, ${2});"],
+    "description": "assert_eq!(…, …);"
+  },
+  "assert:debug": {
+    "prefix": "assert_debug",
+    "body": ["debug_assert!(${1});"],
+    "description": "debug_assert!(…)"
+  },
+  "assert:debug_eq": {
+    "prefix": "assert_debug_eq",
+    "body": ["debug_assert_eq!(${1}, ${2});"],
+    "description": "debug_assert_eq!(…, …)"
+  },
+  "let:init": {
+    "prefix": "let_init",
+    "body": "let ${1:name}: ${0:type};",
+    "description": "Variable init"
+  },
+  "let:create": {
+    "prefix": "let_",
+    "body": ["let ${1:varname} = $0;"],
+    "description": "let varname = ..."
+  },
+  "let:vector": {
+    "prefix": "let_vec",
+    "body": ["let ${1:mut my_vector}: ${2:Vec<i32>} = vec![ $0 ];"],
+    "description": "let mut my_vector: Vec<i32> = vec![ 1,  2, 3 ];"
+  },
+  "let:vector_empty": {
+    "prefix": "let_vec_empty",
+    "body": ["let ${1:mut my_vector}: ${2:Vec<i32>} = Vec::new();"],
+    "description": "let mut my_vector: Vec<i32> = Vec::new();"
+  },
+  "let:slice": {
+    "prefix": "let_slice",
+    "body": ["let ${1:myslice}: ${2:[i32]} = [ ${3:1, 3, 4 } ];"],
+    "description": "let mut my_vector: Vec<i32> = Vec::new();"
+  },
+  "let:tuple": {
+    "prefix": "let_tuple",
+    "body": ["let ${1:mut my_tuple} = ( ${2: true, 1, \"hello\"} );"],
+    "description": "let my-tuple = (10, 3.14, \"Hello\")"
+  },
+  "let:array:fixsize": {
+    "prefix": "let_array_fixsize",
+    "body": ["let ${1:my_array}: [${2:i32; size}] = [ ${3:1, 2, 3, 4, 5} ];"],
+    "description": "let my_array: [i32; 5] = [1, 2, 3, 4, 5];"
+  },
+  "let:hashmap": {
+    "prefix": "let_hashmap",
+    "body": [
+      "let ${1:mut namehashmap}: HashMap<${2:&str, i32}> = [(${3:\"a\", 1})].iter().cloned().collect();"
+    ],
+    "description": "let mut hashmap1: HashMap<&str, i32> = [(\"a\", 1), (\"b\", 2)].iter().cloned().collect();"
+  },
+  "let:hashmap_empty": {
+    "prefix": "let_hashmap_empty",
+    "body": [
+      "let ${1:mut my_tuple}: HashMap<${2:i32, String}> = HashMap::new();"
+    ],
+    "description": "let mut my_map: HashMap<i32, String> = HashMap::new();"
+  },
+  "let:hashset": {
+    "prefix": "let_hashset",
+    "body": "let ${1:mut hash_set}: HashSet<_> = vec![1, 2, 3, 4, 5].into_iter().collect();",
+    "description": "let mut hash_set = vec![1, 2, 3, 4, 5].into_iter().collect();"
+  },
+  "let:hashset_empty": {
+    "prefix": "let_hashset_empty",
+    "body": "let ${1:mut hash_set}: HashSet<${2:i32}> = HashSet::new();",
+    "description": "let mut hash_set = HashSet::new();"
+  },
+  "let:enum": {
+    "prefix": "let_enum",
+    "body": ["enum ${1:nameenum} {", "\t${2:Namefield(i32)}", "}"],
+    "description": "let mut my_map: HashMap<i32, String> = HashMap::new();"
+  },
+  "let:obj": {
+    "prefix": "let_obj",
+    "body": "${1:name} := ${2:StructName}::new(${3:param})",
+    "description": "Create new object instance of struct"
+  },
+  "let:obj:struct": {
+    "prefix": "let_obj_struct",
+    "body": "let ${1:mut hash_set}: = ${2:NameStruct}{\n\t${3:field1}: ${4:value}\n};",
+    "description": "let mut my_map: HashMap<i32, String> = HashMap::new();"
+  },
+  "const:create": {
+    "prefix": "const_",
+    "body": ["const ${1:CONST}: ${2:Type} = ${4:init};"],
+    "description": "const …: … = …;"
+  },
+  "macro:column": {
+    "prefix": "macro_column",
+    "body": ["column!()"],
+    "description": "column!()"
+  },
+  "macro:concat": {
+    "prefix": "macro_concat",
+    "body": ["concat!(${1})"],
+    "description": "concat!(…)"
+  },
+  "macro:concat_idents": {
+    "prefix": "macro_concat_idents",
+    "body": ["concat_idents!(${1})"],
+    "description": "concat_idents!(…)"
+  },
+  "macro:env": {
+    "prefix": "macro_env",
+    "body": ["env!(\"${1}\")"],
+    "description": "env!(\"…\")"
+  },
+  "macro:file": {
+    "prefix": "macro_file",
+    "body": ["file!()"],
+    "description": "file!()"
+  },
+  "macro:format": {
+    "prefix": "macro_format",
+    "body": ["format!(\"${1}\")"],
+    "description": "format!(…)"
+  },
+  "macro:format_args": {
+    "prefix": "macro_format_args",
+    "body": ["format_args!(\"${1}\")"],
+    "description": "format_args!(…)"
+  },
+  "macro:include": {
+    "prefix": "macro_include_",
+    "body": ["include!(\"${1}\");"],
+    "description": "include!(\"…\");"
+  },
+  "macro:include_bytes": {
+    "prefix": "macro_include_bytes",
+    "body": ["include_bytes!(\"${1}\")"],
+    "description": "include_bytes!(\"…\")"
+  },
+  "macro:include_str": {
+    "prefix": "macro_include_str",
+    "body": ["include_str!(\"${1}\")"],
+    "description": "include_str!(\"…\")"
+  },
+  "macro:line": {
+    "prefix": "macro_line",
+    "body": ["line!()"],
+    "description": "line!()"
+  },
+  "macro:module_path": {
+    "prefix": "macro_module_path",
+    "body": ["module_path!()"],
+    "description": "module_path!()"
+  },
+  "macro:option_env": {
+    "prefix": "macro_option_env",
+    "body": ["option_env!(\"${1}\")"],
+    "description": "option_env!(\"…\")"
+  },
+  "macro:stringify": {
+    "prefix": "macro_stringify",
+    "body": ["stringify!(${1})"],
+    "description": "stringify!(…)"
+  },
+  "macro:try": {
+    "prefix": "macro_try",
+    "body": ["try!(${1})"],
+    "description": "try!(…)"
+  },
+  "macro_unimplemented": {
+    "prefix": "macro_unimplemented",
+    "body": ["unimplemented!()"],
+    "description": "unimplemented!()"
+  },
+  "macro_unreachable": {
+    "prefix": "macro_unreachable",
+    "body": ["unreachable!(${1})"],
+    "description": "unreachable!(…)"
+  },
+  "macro:rules": {
+    "prefix": "macro_rules",
+    "body": ["macro_rules! ${1:name} {", "    (${2}) => (${3})", "}"],
+    "description": "macro_rules! … { … }"
+  },
+  "panic": {
+    "prefix": "panic_",
+    "body": ["panic!(\"${1}\");"],
+    "description": "panic!(…);"
+  },
+  "print": {
+    "prefix": "print_",
+    "body": ["print!(\"${1}\");"],
+    "description": "print!(…);"
+  },
+  "println": {
+    "prefix": "println_",
+    "body": ["println!(\"${1}\");"],
+    "description": "println!(…);"
+  },
+  "thread_local": {
+    "prefix": "thread_local",
+    "body": ["thread_local!(static ${1:STATIC}: ${2:Type} = ${4:init});"],
+    "description": "thread_local!(static …: … = …);"
+  },
+  "vec": {
+    "prefix": "vec_",
+    "body": ["vec![${1}]"],
+    "description": "vec![…]"
+  },
+  "write": {
+    "prefix": "write_",
+    "body": ["write!(${1}, \"${2}\")"],
+    "description": "write!(…)"
+  },
+  "writeln": {
+    "prefix": "writeln_",
+    "body": ["writeln!(${1}, \"${2}\")"],
+    "description": "writeln!(…, …)"
+  },
+  "Err": {
+    "prefix": "err_",
+    "body": ["Err(${1})"],
+    "description": "Err(…)"
+  },
+  "Ok": {
+    "prefix": "ok_",
+    "body": ["Ok(${1:result})"],
+    "description": "Ok(…)"
+  },
+  "Some": {
+    "prefix": "some_",
+    "body": ["Some(${1})"],
+    "description": "Some(…)"
+  },
+  "bench": {
+    "prefix": "bench_",
+    "body": [
+      "#[bench]",
+      "fn ${1:name}(b: &mut test::Bencher) {",
+      "    ${2:b.iter(|| ${3:/* benchmark code */})}",
+      "}"
+    ],
+    "description": "#[bench]"
+  },
+  "else": {
+    "prefix": "else_",
+    "body": ["else {", "    ${1:unimplemented!();}", "}"],
+    "description": "else { … }"
+  },
+  "enum": {
+    "prefix": "enum_",
+    "body": [
+      "#[derive(Debug)]",
+      "enum ${1:Name} {",
+      "    ${2:Variant1},",
+      "    ${3:Variant2},",
+      "}"
+    ],
+    "description": "enum … { … }"
+  },
+  "extern-crate": {
+    "prefix": "crate_extern",
+    "body": ["extern crate ${1:name};"],
+    "description": "extern crate …;"
+  },
+  "extern-fn": {
+    "prefix": "fn_extern",
+    "body": [
+      "extern \"C\" fn ${1:name}(${2:arg}: ${3:Type}) -> ${4:RetType} {",
+      "    ${5:// add code here}",
+      "}"
+    ],
+    "description": "extern \"C\" fn …(…) { … }"
+  },
+  "extern-mod": {
+    "prefix": "mod_extern",
+    "body": ["extern \"C\" {", "    ${2:// add code here}", "}"],
+    "description": "extern \"C\" { … }"
+  },
+  "fn": {
+    "prefix": "fn_func",
+    "body": [
+      "fn ${1:name}(${2:arg}: ${3:Type}) -> ${4:RetType} {",
+      "\t${5:unimplemented!();}",
+      "}"
+    ],
+    "description": "fn …(…) { … }"
+  },
+  "fn:inline": {
+    "prefix": "fn_func_inline",
+    "body": [
+      "#[inline]",
+      "pub fn ${1:name}() {",
+      "\t${2:unimplemented!();}",
+      "}"
+    ],
+    "description": "inlined function"
+  },
+  "fn:with_return": {
+    "prefix": "fn_func_with_return",
+    "body": [
+      "pub fn ${2:func_name}(${3:arg1}: ${4:Type1}, ${5:arg2}: ${6:Type2}) -> ${7:Return_Type} {",
+      "\t${0:// Function body}",
+      "}"
+    ],
+    "description": "function with return"
+  },
+  "fn:with_lifetime": {
+    "prefix": "fn_func_lifetime",
+    "body": [
+      "pub fn ${2:func_name}<${3:'a}>(${4:arg}: &'a ${5:Type}) -> ${6:Return_Type} {",
+      "${0:// Function body}",
+      "}"
+    ],
+    "description": "function lifetime"
+  },
+  "fn:param_trait": {
+    "prefix": "fn_func_param_trait",
+    "body": [
+      "pub fn ${2:func_name}<${3:T: ${8:Trait}}>(${4:arg}: &${3:T}) -> ${5:Return_Type} {",
+      "\t${0:// Function body}",
+      "}"
+    ],
+    "description": "function param trait"
+  },
+  "fn:param_array": {
+    "prefix": "fn_func_param_array",
+    "body": [
+      "pub fn ${2:func_name}(${3:array}: &[${4:Type}]) -> Vec<${5:Type}> {",
+      "\t${0:// Function body}",
+      "}"
+    ],
+    "description": "function param array"
+  },
+  "fn:param_struct": {
+    "prefix": "fn_func_param_struct",
+    "body": [
+      "pub fn ${2:func_name}(${3:struct}: &${4:Struct}) -> ${5:Return_Type} {",
+      "\t${0:// Function body}",
+      "}"
+    ],
+    "description": "function struct param"
+  },
+  "fn:param_closure": {
+    "prefix": "fn_func_param_closure",
+    "body": [
+      "pub fn ${2:func_name}(${3:closure}: ${4:Closure_Type}) -> ${5:Return_Type} {",
+      "\t${0:// Function body}",
+      "}"
+    ],
+    "description": "function closure param"
+  },
+  "fn:param_default": {
+    "prefix": "fun_func_param_default",
+    "body": [
+      "pub fn ${2:func_name}(${3:arg1}: ${4:Type} ${5:= ${6:default_value}}) -> ${7:Return_Type} {",
+      "\t${0:// Function body}",
+      "}"
+    ],
+    "description": "function default param"
+  },
+  "fn:generic": {
+    "prefix": "fn_generic",
+    "body": [
+      "pub fn ${1:func_name}<${2:T}>(${3:arg}: ${2:T}) -> ${4:Return_Type} {",
+      "\t${0:// Function body}",
+      "}"
+    ],
+    "description": "function generic"
+  },
+  "fn:generic:param_multi": {
+    "prefix": "fn_generic_multi_param",
+    "body": [
+      "pub fn ${2:func_name}<${3:T}, ${4:U}>(${5:arg1}: ${3:T}, ${6:arg2}: ${4:U}) -> ${7:Return_Type} {",
+      "\t${0:// Function body}",
+      "}"
+    ],
+    "description": "function generic multi parameter"
+  },
+  "fn:generic:trait_bound": {
+    "prefix": "fn_generic_trait_bound",
+    "body": [
+      "pub fn ${2:func_name}<${3:T: ${8:Trait}}>(${4:arg}: ${3:T}) -> ${5:Return_Type} {",
+      "\t${0:// Function body}",
+      "}"
+    ],
+    "description": "function generic trait bound"
+  },
+  "fn:generic:where_clause": {
+    "prefix": "fn_generic_where_clause",
+    "body": [
+      "pub fn ${2:func_name}<${3:T}>(${4:arg}: ${3:T}) -> ${5:Return_Type}",
+      "where",
+      "\t${3:T}: ${6:Trait}",
+      "{",
+      "\t${0:// Function body}",
+      "}"
+    ],
+    "description": "function generic where clause"
+  },
+  "fn:generic:lifettime": {
+    "prefix": "fn_generic_lifetime",
+    "body": [
+      "pub fn ${2:func_name}<${3:'a}, ${4:T}>(${5:arg}: &'a ${4:T}) -> ${6:Return_Type} {",
+      "\t${0:// Function body}",
+      "}"
+    ],
+    "description": "function generic lifetime"
+  },
+  "fn:generic:lifetime:param_multi": {
+    "prefix": "fn_generic_lifetime_multi_param",
+    "body": [
+      "pub fn ${2:func_name}<${3:'a}, ${4:T}, ${5:U}>(${6:arg1}: &'a ${4:T}, ${7:arg2}: ${5:U}) -> ${8:Return_Type} {",
+      "\t${0:// Function body}",
+      "}"
+    ],
+    "description": "function generic closure param"
+  },
+  "fn:generic:param_default_value": {
+    "prefix": "fn_generic_param_default_value",
+    "body": [
+      "pub fn ${2:func_name}<${3:T = ${9:Default_Type}}>() -> ${4:Return_Type} {",
+      "\t${0:// Function body}",
+      "}"
+    ],
+    "description": "function generic param default value"
+  },
+  "fn:generic:param_struct": {
+    "prefix": "fn_generic_param_struct",
+    "body": [
+      "pub fn ${2:func_name}<${3:T}>(${4:struct}: &${3:T}) -> ${5:Return_Type} {",
+      "\t${0:// Function body}",
+      "}"
+    ],
+    "description": "function generic struct param"
+  },
+  "fn:generic:param_array": {
+    "prefix": "fun_generic_param_array",
+    "body": [
+      "pub fn ${2:func_name}<${3:T}>(${4:array}: &[${3:T}]) -> ${5:Return_Type} {",
+      "\t${0:// Function body}",
+      "}"
+    ],
+    "description": "function generic array param"
+  },
+  "fn:generic:param_closure": {
+    "prefix": "fn_generic_param_closure",
+    "body": [
+      "pub fn ${2:func_name}<${3:F}>(${4:closure}: ${3:F}) -> ${5:Return_Type} {",
+      "\t${0:// Function body}",
+      "}"
+    ],
+    "description": "function generic closure param"
+  },
+  "fn:main": {
+    "prefix": "fn_main",
+    "body": ["fn main() {", "    ${1:unimplemented!();}", "}"],
+    "description": "fn main() { … }"
+  },
+  "for:in": {
+    "prefix": "for_in",
+    "body": ["for ${1:pat} in ${2:expr} {", "    ${3:unimplemented!();}", "}"],
+    "description": "for … in … { … }"
+  },
+  "for:in:enumerate": {
+    "prefix": "for_in_enumerate",
+    "body": [
+      "for (${1:index}, ${2:item}) in ${3:iterable}.iter().enumerate() {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Iterate over indices"
+  },
+  "for:loop": {
+    "prefix": "for_loop",
+    "body": ["loop {", "    ${2:unimplemented!();}", "}"],
+    "description": "loop { … }"
+  },
+  "if:let": {
+    "prefix": "if_let",
+    "body": [
+      "if let ${1:Some(pat)} = ${2:expr} {",
+      "    ${0:unimplemented!();}",
+      "}"
+    ],
+    "description": "if let … = … { … }"
+  },
+  "if": {
+    "prefix": "if_",
+    "body": ["if ${1:condition} {", "    ${2:unimplemented!();}", "}"],
+    "description": "if … { … }"
+  },
+  "match": {
+    "prefix": "match_",
+    "body": [
+      "match ${1:expr} {",
+      "    ${2:Some(expr)} => ${3:expr},",
+      "    ${4:None} => ${5:expr},",
+      "}"
+    ],
+    "description": "match … { … }"
+  },
+  "mod": {
+    "prefix": "mod_",
+    "body": ["mod ${1:name};"],
+    "description": "mod …;"
+  },
+  "mod:block": {
+    "prefix": "mod_block",
+    "body": ["mod ${1:name} {", "    ${2:// add code here}", "}"],
+    "description": "mod … { … }"
+  },
+  "static": {
+    "prefix": "static_",
+    "body": ["static ${1:STATIC}: ${2:Type} = ${4:init};"],
+    "description": "static …: … = …;"
+  },
+  "struct:create": {
+    "prefix": "struct_",
+    "body": [
+      "#[derive(Debug)]",
+      "struct ${1:Name} {",
+      "    ${2:field}: ${3:Type}",
+      "}"
+    ],
+    "description": "struct … { … }"
+  },
+  "struct:tuple": {
+    "prefix": "struct_tuple",
+    "body": ["struct ${1:Name}(${2:Type});"],
+    "description": "struct …(…);"
+  },
+  "struct:init": {
+    "prefix": "struct_init",
+    "body": ["struct ${1:Name};"],
+    "description": "struct …;"
+  },
+  "impl": {
+    "prefix": "impl_",
+    "body": ["impl ${1:Type} {", "    ${2:// add code here}", "}"],
+    "description": "impl … { … }"
+  },
+  "impl:method-getset": {
+    "prefix": "impl_func_get_set",
+    "body": [
+      "pub fn get_${1:field}(&self) -> &${3:Type} {",
+      "\t&self.${2:field}",
+      "}",
+      "",
+      "pub fn set_${2:field}(&mut self, ${4:value}: ${5:Type}) {",
+      "\tself.${2:field} = ${4:value};",
+      "}"
+    ],
+    "description": "impl get set … { … }"
+  },
+  "impl:method-pub": {
+    "prefix": "impl_func_pub",
+    "body": [
+      "pub fn ${1:method_name}(&self, ${2:arg}: ${3:type}) -> ${4:ReturnType} {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Creates a basic public method for a struct."
+  },
+  "impl:method:constructor": {
+    "prefix": "impl_func_constructor",
+    "body": [
+      "/// Creates a new instance of ${1:StructName}.",
+      "pub fn new(${2:field1}: ${3:FieldType1}, ${4:field2}: ${5:FieldType2}) -> Self {",
+      "\tSelf {",
+      "\t\t${2:field1},",
+      "\t\t${4:field2},",
+      "\t}",
+      "}"
+    ],
+    "description": "Generate constructor for a Rust struct."
+  },
+  "impl:method:async": {
+    "prefix": "impl_func_async",
+    "body": [
+      "pub async fn ${1:async_method_name}(&self, ${3:arg}: ${4:ArgType}) -> ${5:ReturnType} {",
+      "\t${0:// async implementation}",
+      "}"
+    ],
+    "description": "Create async function in impl"
+  },
+  "impl:method:lifetime": {
+    "prefix": "impl_func_lifetime",
+    "body": [
+      "pub fn ${1:method_name}<'${2:a}, ${3:b}>(&'${2:a} self, ${4:arg}: &'${3:b} ${5:ArgType}) -> ${6:ReturnType} {",
+      "\t${0:// implementation}",
+      "}"
+    ],
+    "description": "Create method with lifetime in impl"
+  },
+  "impl:impl:display": {
+    "prefix": "impl_impl_display",
+    "body": [
+      "// use std::fmt;",
+      "impl fmt::Display for ${1:StructName} {",
+      "\tfn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {",
+      "\t\twrite!(f, ${2:\"Point(x={}, y={})\"}, self.x, self.y)",
+      "\t}",
+      "}"
+    ],
+    "description": "Create impl Display for struct"
+  },
+  "impl:impl:debug": {
+    "prefix": "impl_impl_debug",
+    "body": [
+      "// use std::fmt;",
+      "impl fmt::Debug for ${1:StructName} {",
+      "\tfn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {",
+      "\t\tf.debug_struct(\"${1:StructName}\")",
+      "\t\t${0:// .field(\"field_name\", &self.field_name)}",
+      "\t\t\t.finish()",
+      "}",
+      "}"
+    ],
+    "description": "Create impl Debug for struct"
+  },
+  "impl:impl:iterator": {
+    "prefix": "impl_impl_iterator",
+    "body": [
+      "impl IntoIterator for ${1:StructName} {",
+      "\ttype Item = ${2:ItemType};",
+      "\ttype IntoIter = std::vec::IntoIter<Self::Item>;",
+      "",
+      "\tfn into_iter(self) -> Self::IntoIter {",
+      "\t\tself.${3:items}.into_iter()",
+      "\t}",
+      "}"
+    ],
+    "description": "Create impl Iterator for struct"
+  },
+  "impl:impl:eq_and_partialeq": {
+    "prefix": "impl_impl_eq_and_partialeq",
+    "body": [
+      "impl PartialEq for ${1:StructName} {",
+      "\tfn eq(&self, other: &Self) -> bool {",
+      "\t\t${0:// compare fields}",
+      "\t}",
+      "}",
+      "",
+      "impl Eq for ${1:StructName} {}"
+    ],
+    "description": "Create impl Eq and PartialEq for struct"
+  },
+  "impl:impl:ord_and_partialord": {
+    "prefix": "impl_impl_ord_and_partialord",
+    "body": [
+      "impl PartialOrd for ${1:StructName} {",
+      "\tfn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {",
+      "\t\t${0:// compare fields and return Option<Ordering>}",
+      "\t}",
+      "}",
+      "",
+      "impl Ord for ${1:StructName} {",
+      "\tfn cmp(&self, other: &Self) -> std::cmp::Ordering {",
+      "\t\t${0:// compare fields and return Ordering}",
+      "\t}",
+      "}"
+    ],
+    "description": "Create impl Ord and PartialOrd for struct"
+  },
+  "impl:impl:from_and_into": {
+    "prefix": "impl_impl_from_and_into",
+    "body": [
+      "impl From<${1:OtherType}> for ${2:StructName} {",
+      "\tfn from(item: ${1:OtherType}) -> Self {",
+      "\t\t${3:// convert from OtherType to StructName}",
+      "\t}",
+      "}",
+      "",
+      "impl Into<${1:OtherType}> for ${2:StructName} {",
+      "\tfn into(self) -> ${1:OtherType} {",
+      "\t\t${0:// convert from StructName to OtherType}",
+      "\t}",
+      "}"
+    ],
+    "description": "Create from and Into impl for struct"
+  },
+  "impl:impl:cloneable": {
+    "prefix": "impl_impl_clonable",
+    "body": [
+      "impl Clone for ${1:StructName} {",
+      "\tfn clone(&self) -> Self {",
+      "\t\tSelf {",
+      "\t\t\t${0:// clone fields}",
+      "\t\t}",
+      "\t}",
+      "}"
+    ],
+    "description": "Create clone impl for struct"
+  },
+  "impl:impl:drop": {
+    "prefix": "impl_impl_drop",
+    "body": [
+      "impl Drop for ${1:StructName} {",
+      "\tfn drop(&mut self) {",
+      "\t\t${0:// cleanup code}",
+      "\t}",
+      "}"
+    ],
+    "description": "Create clone impl for struct"
+  },
+  "trait": {
+    "prefix": "trait_",
+    "body": ["trait ${1:Name} {", "    ${2:// add code here}", "}", ""],
+    "description": "trait … { … }"
+  },
+  "trait:impl": {
+    "prefix": "trait_impl",
+    "body": [
+      "impl ${1:Trait} for ${2:Type} {",
+      "    ${3:// add code here}",
+      "}"
+    ],
+    "description": "impl … for … { … }"
+  },
+  "trait:body:method": {
+    "prefix": "trait_fn",
+    "body": [
+      "fn ${2:method_name}(&self, ${3:param}: ${4:Param_Type}) -> ${5:Return_Type} {",
+      "\t${0:// Method body}",
+      "}"
+    ],
+    "description": "Trait body method"
+  },
+  "trait:body:method:param_mut": {
+    "prefix": "trait_fn_mut",
+    "body": [
+      "fn ${2:method_name}(&mut self, ${3:param}: &mut ${4:Param_Type});"
+    ],
+    "description": "Trait body method mut param"
+  },
+  "trait:body:method:param_mut_return": {
+    "prefix": "trait_fn_param_mut_ret",
+    "body": [
+      "/// ${1:Documentation}",
+      "fn ${2:method_name}(&mut self, ${3:param}: &mut ${4:Param_Type}) -> ${5:Return_Type} {",
+      "\t${0:// Method body}",
+      "}"
+    ],
+    "description": "Trait body method param mut return"
+  },
+  "trait:body:method:return_ref": {
+    "prefix": "trait_fn_ret_ref",
+    "body": [
+      "/// ${1:Documentation}",
+      "fn ${2:method_name}(&self, ${3:param}: &${4:Param_Type}) -> &${5:Return_Type}"
+    ],
+    "description": "Trait body method return ref"
+  },
+  "trait:body:method:return_mut": {
+    "prefix": "trait_fn_ret_mut",
+    "body": [
+      "/// ${1:Documentation}",
+      "fn ${2:method_name}(&self, ${3:param}: &mut ${4:Param_Type}) -> &mut ${5:Return_Type} {",
+      "\t${0:// Method body}",
+      "}"
+    ],
+    "description": "Trait body method return mut"
+  },
+  "type": {
+    "prefix": "type_alias",
+    "body": ["type ${1:Alias} = ${2:Type};"],
+    "description": "type … = …;"
+  },
+  "while:let": {
+    "prefix": "while_let",
+    "body": [
+      "while let ${1:Some(pat)} = ${2:expr} {",
+      "    ${0:unimplemented!();}",
+      "}"
+    ],
+    "description": "while let … = … { … }"
+  },
+  "while": {
+    "prefix": "while_",
+    "body": ["while ${1:condition} {", "    ${2:unimplemented!();}", "}"],
+    "description": "while … { … }"
+  },
+  "_partialord": {
+    "prefix": "partialord_",
+    "body": ["PartialOrd"],
+    "description": "PartialOrd"
+  },
+  "_ord": {
+    "prefix": "ord_",
+    "body": ["Ord"],
+    "description": "Ord"
+  },
+  "_serialize": {
+    "prefix": "serialize_",
+    "body": ["Serialize"],
+    "description": "Serialize"
+  },
+  "_deserialize": {
+    "prefix": "deserialize_",
+    "body": ["Deserialize"],
+    "description": "Deserialize"
+  },
+  "_dead_code": {
+    "prefix": "dead_code",
+    "body": ["dead_code"],
+    "description": "dead_code"
+  }
+}

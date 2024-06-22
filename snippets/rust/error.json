@@ -1,0 +1,120 @@
+{
+  "error:custom error with enum": {
+    "prefix": "err_custom_error_enum",
+    "body": [
+      "#[derive(Debug)]",
+      "enum ${1:Error} {",
+      "\t${2:Variant1},",
+      "\t${3:Variant2},",
+      "\tCustom(String),",
+      "}",
+      "",
+      "impl std::fmt::Display for ${1:Error} {",
+      "\tfn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {",
+      "\t\tmatch self {",
+      "\t\t\t${1:Error}::${2:Variant1} => write!(f, \"${2:Variant1} error occurred\"),",
+      "\t\t\t${1:Error}::${3:Variant2} => write!(f, \"${3:Variant2} error happened\"),",
+      "\t\t\t${1:Error}::Custom(msg) => write!(f, \"Custom error: {}\", msg),",
+      "\t\t}",
+      "\t}",
+      "}",
+      "",
+      "impl std::error::Error for ${1:Error} {}"
+    ],
+    "description": "Define a custom error enum with display and error traits."
+  },
+  "Error Result": {
+    "prefix": "err",
+    "body": ["Err(${1:Error}::${2:Variant})"],
+    "description": "Create a result with an error variant."
+  },
+  "Match Result": {
+    "prefix": "matcherr",
+    "body": [
+      "match ${1:result} {",
+      "\tOk(value) => {",
+      "\t\t${0:// Code on success}",
+      "\t}",
+      "\tErr(err) => {",
+      "\t\teprintln!(\"Error: {}\", err);",
+      "\t\t${2:// Code on error}",
+      "\t}",
+      "}"
+    ],
+    "description": "Match on a result and handle success or error."
+  },
+  "From Implementation": {
+    "prefix": "from",
+    "body": [
+      "impl From<${1:OtherError}> for ${2:CustomError} {",
+      "\tfn from(err: ${1:OtherError}) -> Self {",
+      "\t\t${2:CustomError}::${3:Variant}(err.${4:reason})",
+      "\t}",
+      "}"
+    ],
+    "description": "Implement conversion from another error type to a custom error type."
+  },
+  "Error Print": {
+    "prefix": "eprint",
+    "body": ["eprintln!(\"Error: {}\", ${1:error});"],
+    "description": "Print an error message to stderr."
+  },
+  "Return Error": {
+    "prefix": "bail",
+    "body": ["return Err(${1:Error}::${2:Variant});"],
+    "description": "Return an error with a specific variant."
+  },
+  "Ensure Condition": {
+    "prefix": "ensure",
+    "body": [
+      "if !${1:condition} {",
+      "\treturn Err(${2:Error}::${3:Variant});",
+      "}"
+    ],
+    "description": "Ensure a condition is met or return an error."
+  },
+  "Unreachable Code": {
+    "prefix": "unreachable",
+    "body": ["unreachable!(\"Reached an unreachable code\");"],
+    "description": "Mark code as unreachable with an error message."
+  },
+  "Panic Message": {
+    "prefix": "panic",
+    "body": ["panic!(\"Unexpected error: {}\", ${1:message});"],
+    "description": "Panic with a formatted error message."
+  },
+  "Expect Result": {
+    "prefix": "expect",
+    "body": ["${1:result}.expect(\"${2:Failed to unwrap result}\")"],
+    "description": "Unwrap a result or panic with a custom message on error."
+  },
+  "Option Unwrap": {
+    "prefix": "unwrap",
+    "body": ["${1:option}.unwrap()"],
+    "description": "Unwrap an option, panicking if the value is None."
+  },
+  "Option Expect": {
+    "prefix": "oexpect",
+    "body": ["${1:option}.expect(\"${2:Failed to unwrap option}\")"],
+    "description": "Unwrap an option or panic with a custom message if None."
+  },
+  "Result Unwrap or Else": {
+    "prefix": "unwraporelse",
+    "body": [
+      "${1:result}.unwrap_or_else(|err| {",
+      "\tpanic!(\"Failed to unwrap result: {}\", err);",
+      "})"
+    ],
+    "description": "Unwrap a result or execute a closure on error."
+  },
+  "Result Map or Else": {
+    "prefix": "maporelse",
+    "body": [
+      "${1:result}.map_err(|err| {",
+      "\teprintln!(\"Error: {}\", err);",
+      "\t${2:// Handle error}",
+      "})"
+    ],
+    "description": "Map a result or execute a closure on error."
+  }
+}

@@ -1,0 +1,282 @@
+{
+  "Read JSON from String": {
+    "prefix": "json_read_string",
+    "body": [
+      "use serde_json::{Result, Value};",
+      "",
+      "fn read_json_from_string(data: &str) -> Result<()> {",
+      "\tlet parsed: Value = serde_json::from_str(data)?;",
+      "\tprintln!(\"Parsed JSON: {:?}\", parsed);",
+      "\tOk(())",
+      "}"
+    ],
+    "description": "Read JSON from a string using serde_json"
+  },
+  "Write JSON to String": {
+    "prefix": "json_write_string",
+    "body": [
+      "use serde_json::{Result, json};",
+      "",
+      "fn write_json_to_string() -> Result<String> {",
+      "\tlet json_data = json!({",
+      "\t\t\"name\": \"John Doe\",",
+      "\t\t\"age\": 30,",
+      "\t\t\"city\": \"New York\",",
+      "\t\t\"is_student\": false,",
+      "\t\t\"grades\": [95, 85, 90]",
+      "\t});",
+      "\tlet serialized = serde_json::to_string_pretty(&json_data)?;",
+      "\tprintln!(\"Serialized JSON: {}\", serialized);",
+      "\tOk(serialized)",
+      "}"
+    ],
+    "description": "Write JSON to a string using serde_json"
+  },
+  "Parse JSON File": {
+    "prefix": "parse_json_file",
+    "body": [
+      "use std::fs::File;",
+      "use std::io::BufReader;",
+      "use serde_json::{Result, Value};",
+      "",
+      "fn parse_json_file(filename: &str) -> Result<()> {",
+      "\tlet file = File::open(filename)?;",
+      "\tlet reader = BufReader::new(file);",
+      "\tlet parsed: Value = serde_json::from_reader(reader)?;",
+      "\tprintln!(\"Parsed JSON: {:?}\", parsed);",
+      "\tOk(())",
+      "}"
+    ],
+    "description": "Parse JSON from a file using serde_json"
+  },
+  "Serialize Struct to JSON": {
+    "prefix": "serialize_struct",
+    "body": [
+      "use serde::{Serialize, Deserialize};",
+      "use serde_json::{Result, json};",
+      "",
+      "#[derive(Serialize, Deserialize)]",
+      "struct Person {",
+      "\tname: String,",
+      "\tage: u32,",
+      "\tcity: String,",
+      "\tis_student: bool,",
+      "\tgrades: Vec<u32>",
+      "}",
+      "",
+      "fn serialize_struct() -> Result<String> {",
+      "\tlet person = Person {",
+      "\t\tname: \"John Doe\".to_string(),",
+      "\t\tage: 30,",
+      "\t\tcity: \"New York\".to_string(),",
+      "\t\tis_student: false,",
+      "\t\tgrades: vec![95, 85, 90]",
+      "\t};",
+      "\tlet serialized = serde_json::to_string_pretty(&person)?;",
+      "\tprintln!(\"Serialized JSON: {}\", serialized);",
+      "\tOk(serialized)",
+      "}"
+    ],
+    "description": "Serialize a Rust struct to JSON using serde_json"
+  },
+  "Deserialize JSON to Struct": {
+    "prefix": "deserialize_struct",
+    "body": [
+      "use serde::{Serialize, Deserialize};",
+      "use serde_json::{Result, Value};",
+      "",
+      "#[derive(Serialize, Deserialize, Debug)]",
+      "struct Person {",
+      "\tname: String,",
+      "\tage: u32,",
+      "\tcity: String,",
+      "\tis_student: bool,",
+      "\tgrades: Vec<u32>",
+      "}",
+      "",
+      "fn deserialize_struct(json_str: &str) -> Result<()> {",
+      "\tlet parsed: Person = serde_json::from_str(json_str)?;",
+      "\tprintln!(\"Deserialized Struct: {:?}\", parsed);",
+      "\tOk(())",
+      "}"
+    ],
+    "description": "Deserialize JSON to a Rust struct using serde_json"
+  },
+  "Pretty Print JSON": {
+    "prefix": "pretty_print_json",
+    "body": [
+      "use serde_json::{Result, json};",
+      "",
+      "fn pretty_print_json() -> Result<()> {",
+      "\tlet json_data = json!({",
+      "\t\t\"name\": \"John Doe\",",
+      "\t\t\"age\": 30,",
+      "\t\t\"city\": \"New York\",",
+      "\t\t\"is_student\": false,",
+      "\t\t\"grades\": [95, 85, 90]",
+      "\t});",
+      "\tlet pretty_printed = serde_json::to_string_pretty(&json_data)?;",
+      "\tprintln!(\"Pretty Printed JSON:\");",
+      "\tprintln!(\"{}\", pretty_printed);",
+      "\tOk(())",
+      "}"
+    ],
+    "description": "Pretty print JSON using serde_json"
+  },
+  "Access JSON Nested Fields": {
+    "prefix": "access_json_nested",
+    "body": [
+      "use serde_json::{Result, Value};",
+      "",
+      "fn access_json_nested(json_str: &str) -> Result<()> {",
+      "\tlet parsed: Value = serde_json::from_str(json_str)?;",
+      "\t// Accessing nested fields",
+      "\tif let Some(grades) = parsed[\"grades\"].as_array() {",
+      "\t\tfor (i, grade) in grades.iter().enumerate() {",
+      "\t\t\tif let Some(score) = grade.as_u64() {",
+      "\t\t\t\tprintln!(\"Grade {}: {}\", i + 1, score);",
+      "\t\t\t}",
+      "\t\t}",
+      "\t}",
+      "\tOk(())",
+      "}"
+    ],
+    "description": "Access nested fields in JSON using serde_json"
+  },
+  "Deserialize JSON Array": {
+    "prefix": "deserialize_json_array",
+    "body": [
+      "use serde_json::{Result, Value};",
+      "",
+      "fn deserialize_json_array(json_str: &str) -> Result<()> {",
+      "\tlet parsed: Value = serde_json::from_str(json_str)?;",
+      "\t// Deserialize JSON array",
+      "\tif parsed.is_array() {",
+      "\t\tfor element in parsed.as_array().unwrap() {",
+      "\t\t\tprintln!(\"Array element: {:?}\", element);",
+      "\t\t}",
+      "\t}",
+      "\tOk(())",
+      "}"
+    ],
+    "description": "Deserialize JSON array using serde_json"
+  },
+  "Serialize JSON Array": {
+    "prefix": "serialize_json_array",
+    "body": [
+      "use serde_json::{Result, json};",
+      "",
+      "fn serialize_json_array() -> Result<String> {",
+      "\tlet data = vec![\"apple\", \"banana\", \"cherry\"];",
+      "\tlet serialized = serde_json::to_string(&data)?;",
+      "\tprintln!(\"Serialized JSON array: {}\", serialized);",
+      "\tOk(serialized)",
+      "}"
+    ],
+    "description": "Serialize Rust array to JSON using serde_json"
+  },
+  "Handle JSON Errors": {
+    "prefix": "handle_json_errors",
+    "body": [
+      "use serde_json::{Error, Result, Value};",
+      "",
+      "fn handle_json_errors(json_str: &str) -> Result<()> {",
+      "\tlet parsed: Result<Value, Error> = serde_json::from_str(json_str);",
+      "\tmatch parsed {",
+      "\t\tOk(json) => println!(\"Parsed JSON: {:?}\", json),",
+      "\t\tErr(e) => eprintln!(\"Error parsing JSON: {}\", e),",
+      "\t}",
+      "\tOk(())",
+      "}"
+    ],
+    "description": "Handle errors when parsing JSON using serde_json"
+  },
+  "Pretty Print JSON Value": {
+    "prefix": "pretty_print_json_value",
+    "body": [
+      "use serde_json::{Result, Value};",
+      "",
+      "fn pretty_print_json_value(json_value: &Value) -> Result<()> {",
+      "\tlet pretty_printed = serde_json::to_string_pretty(json_value)?;",
+      "\tprintln!(\"Pretty Printed JSON Value:\");",
+      "\tprintln!(\"{}\", pretty_printed);",
+      "\tOk(())",
+      "}"
+    ],
+    "description": "Pretty print a JSON value using serde_json"
+  },
+  "Create JSON Object": {
+    "prefix": "create_json_object",
+    "body": [
+      "use serde_json::{json, Result};",
+      "",
+      "fn create_json_object() -> Result<String> {",
+      "\tlet name = \"John Doe\";",
+      "\tlet age = 30;",
+      "\tlet city = \"New York\";",
+      "\tlet is_student = false;",
+      "\tlet grades = vec![95, 85, 90];",
+      "\tlet json_data = json!({",
+      "\t\t\"name\": name,",
+      "\t\t\"age\": age,",
+      "\t\t\"city\": city,",
+      "\t\t\"is_student\": is_student,",
+      "\t\t\"grades\": grades",
+      "\t});",
+      "\tlet serialized = serde_json::to_string_pretty(&json_data)?;",
+      "\tprintln!(\"Created JSON Object:\");",
+      "\tprintln!(\"{}\", serialized);",
+      "\tOk(serialized)",
+      "}"
+    ],
+    "description": "Create a JSON object using serde_json"
+  },
+  "Modify and Update JSON Object": {
+    "prefix": "modify_update_json",
+    "body": [
+      "use serde_json::{json, Result, Value};",
+      "",
+      "fn modify_update_json(json_str: &str) -> Result<String> {",
+      "\tlet mut parsed: Value = serde_json::from_str(json_str)?;",
+      "\t// Modify JSON object",
+      "\tif let Some(name) = parsed.get_mut(\"name\") {",
+      "\t\tif let Some(name_str) = name.as_str_mut() {",
+      "\t\t\t*name_str = \"Alice\";",
+      "\t\t}",
+      "\t}",
+      "\t// Add new field",
+      "\tparsed[\"new_field\"] = json!(\"new_value\");",
+      "\tlet updated = serde_json::to_string_pretty(&parsed)?;",
+      "\tprintln!(\"Updated JSON Object:\");",
+      "\tprintln!(\"{}\", updated);",
+      "\tOk(updated)",
+      "}"
+    ],
+    "description": "Modify and update a JSON object using serde_json"
+  },
+  "Convert Struct to JSON Value": {
+    "prefix": "convert_struct_to_json",
+    "body": [
+      "use serde::{Serialize, Deserialize};",
+      "use serde_json::{json, Result};",
+      "",
+      "#[derive(Serialize, Deserialize)]",
+      "struct Person {",
+      "\tname: String,",
+      "\tage: u32,",
+      "\tcity: String,",
+      "\tis_student: bool,",
+      "\tgrades: Vec<u32>",
+      "}",
+      "",
+      "fn convert_struct_to_json(person: &Person) -> Result<String> {",
+      "\tlet json_value = serde_json::to_value(person)?;",
+      "\tlet serialized = serde_json::to_string_pretty(&json_value)?;",
+      "\tprintln!(\"Converted Struct to JSON Value:\");",
+      "\tprintln!(\"{}\", serialized);",
+      "\tOk(serialized)",
+      "}"
+    ],
+    "description": "Convert a Rust struct to JSON value using serde_json"
+  }
+}

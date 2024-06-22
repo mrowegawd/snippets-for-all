@@ -1,0 +1,7 @@
+{
+  "testcasd": {
+    "prefix": "test_",
+    "body": ["#[test]", "fn ${1:name}() {", "    ${2:unimplemented!();}", "}"],
+    "description": "#[test]"
+  }
+}
