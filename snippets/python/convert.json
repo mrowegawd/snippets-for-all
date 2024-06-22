@@ -1,0 +1,187 @@
+{
+  "convert:string to Integer": {
+    "prefix": "convert_str_to_int",
+    "body": [
+      "try:",
+      "\t${1:result} = int(${2:string_value})",
+      "except ValueError:",
+      "\t${1:result} = 0  # or handle the error"
+    ],
+    "description": "Converts a string to an integer."
+  },
+  "convert:integer to String": {
+    "prefix": "convert_int_to_str",
+    "body": ["${1:result} = str(${2:int_value})"],
+    "description": "Converts an integer to a string."
+  },
+  "convert:list to String": {
+    "prefix": "convert_list_to_str",
+    "body": ["${1:result} = ' '.join(map(str, ${2:list_name}))"],
+    "description": "Converts a list of elements to a single string."
+  },
+  "convert:string to List": {
+    "prefix": "convert_str_to_list",
+    "body": ["${1:result} = ${2:string_value}.split()"],
+    "description": "Converts a string to a list of elements."
+  },
+  "convert:timestamp to Datetime String": {
+    "prefix": "convert_timestamp_to_str",
+    "body": [
+      "import datetime",
+      "${1:result} = datetime.datetime.fromtimestamp(${2:timestamp}).strftime('%Y-%m-%d %H:%M:%S')"
+    ],
+    "description": "Converts a UNIX timestamp to a formatted datetime string."
+  },
+  "convert:tring to Timestamp": {
+    "prefix": "convert_str_to_timestamp",
+    "body": [
+      "import datetime",
+      "import time",
+      "try:",
+      "\t${1:result} = int(datetime.datetime.strptime(${2:date_string}, '%Y-%m-%d %H:%M:%S').timestamp())",
+      "except ValueError:",
+      "\t${1:result} = 0  # or handle the error"
+    ],
+    "description": "Converts a datetime string to a UNIX timestamp."
+  },
+  "convert:tuple to List": {
+    "prefix": "convert_tuple_to_list",
+    "body": ["${1:result} = list(${2:tuple_name})"],
+    "description": "Converts a tuple to a list."
+  },
+  "convert:list to Tuple": {
+    "prefix": "convert_list_to_tuple",
+    "body": ["${1:result} = tuple(${2:list_name})"],
+    "description": "Converts a list to a tuple."
+  },
+  "convert:binary to Decimal": {
+    "prefix": "convert_binary_to_decimal",
+    "body": ["${1:result} = int(${2:binary_string}, 2)"],
+    "description": "Converts a binary string to a decimal integer."
+  },
+  "convert:decimal to Binary": {
+    "prefix": "convert_decimal_to_binary",
+    "body": ["${1:result} = bin(${2:decimal_value})"],
+    "description": "Converts a decimal integer to a binary string."
+  },
+  "convert:fahrenheit to Celsius": {
+    "prefix": "convert_farhenheit_to_celcius",
+    "body": ["${1:result} = (${2:fahrenheit_value} - 32) * 5 / 9"],
+    "description": "Converts Fahrenheit to Celsius."
+  },
+  "convert:celsius to Fahrenheit": {
+    "prefix": "convert_celsius_to_fahrenheit",
+    "body": ["${1:result} = ${2:celsius_value} * 9 / 5 + 32"],
+    "description": "Converts Celsius to Fahrenheit."
+  },
+  "convert:dictionary to JSON String": {
+    "prefix": "convert_dict_to_json",
+    "body": ["import json", "${1:result} = json.dumps(${2:dictionary})"],
+    "description": "Converts a dictionary to a JSON string."
+  },
+  "convert:JSON String to Dictionary": {
+    "prefix": "convert_json_to_dict",
+    "body": ["import json", "${1:result} = json.loads(${2:json_string})"],
+    "description": "Converts a JSON string to a dictionary."
+  },
+  "convert:set to List": {
+    "prefix": "convert_set_to_list",
+    "body": ["${1:result} = list(${2:set_name})"],
+    "description": "Converts a set to a list."
+  },
+  "convert:list to Set": {
+    "prefix": "convert_list_to_set",
+    "body": ["${1:result} = set(${2:list_name})"],
+    "description": "Converts a list to a set."
+  },
+  "convert:hexadecimal to Decimal": {
+    "prefix": "convert_hexadecimal_to_decimal",
+    "body": ["${1:result} = int(${2:hex_string}, 16)"],
+    "description": "Converts a hexadecimal string to a decimal integer."
+  },
+  "convert:decimal to Hexadecimal": {
+    "prefix": "convert_decimal_to_hexadecimal",
+    "body": ["${1:result} = hex(${2:decimal_value})"],
+    "description": "Converts a decimal integer to a hexadecimal string."
+  },
+  "convert:hexadecimal to Binary": {
+    "prefix": "convert_hexadecimal_to_binary",
+    "body": ["${1:result} = bin(int(${2:hex_string}, 16))"],
+    "description": "Converts a hexadecimal string to a binary string."
+  },
+  "convert:inary to Hexadecimal": {
+    "prefix": "convert_binary_to_hexadecimal",
+    "body": ["${1:result} = hex(int(${2:binary_string}, 2))"],
+    "description": "Converts a binary string to a hexadecimal string."
+  },
+  "convert:list to Dictionary": {
+    "prefix": "convert_list_to_dict",
+    "body": [
+      "${1:result} = {${2:key}: ${3:value} for ${2:key}, ${3:value} in zip(${4:list_keys}, ${5:list_values})}"
+    ],
+    "description": "Converts two lists into a dictionary."
+  },
+  "convert:dictionary Keys to List": {
+    "prefix": "convert_dict_keys_to_list",
+    "body": ["${1:result} = list(${2:dict_name}.keys())"],
+    "description": "Converts dictionary keys to a list."
+  },
+  "convert:dictionary Values to List": {
+    "prefix": "convert_dict_values_to_list",
+    "body": ["${1:result} = list(${2:dict_name}.values())"],
+    "description": "Converts dictionary values to a list."
+  },
+  "convert:epoch Time to Datetime": {
+    "prefix": "convert_epoch_to_datetime",
+    "body": [
+      "import datetime",
+      "${1:result} = datetime.datetime.fromtimestamp(${2:epoch_time})"
+    ],
+    "description": "Converts epoch time (seconds since 1970) to a datetime object."
+  },
+  "convert:datetime to Epoch Time": {
+    "prefix": "convert_datetime_to_epoch",
+    "body": ["import datetime", "${1:result} = int(${2:datetime}.timestamp())"],
+    "description": "Converts a datetime object to epoch time (seconds since 1970)."
+  },
+  "convert:text to Lowercase": {
+    "prefix": "convert_text_to_lower",
+    "body": ["${1:result} = ${2:text}.lower()"],
+    "description": "Converts text to lowercase."
+  },
+  "convert:text to Uppercase": {
+    "prefix": "convert_text_to_upper",
+    "body": ["${1:result} = ${2:text}.upper()"],
+    "description": "Converts text to uppercase."
+  },
+  "convert:list of Strings to Single String": {
+    "prefix": "convert_list_to_single_string",
+    "body": ["${1:result} = ' '.join(${2:list_name})"],
+    "description": "Converts a list of strings into a single string."
+  },
+  "convert:tuple of Strings to Single String": {
+    "prefix": "convert_tuple_to_single_string",
+    "body": ["${1:result} = ' '.join(${2:tuple_name})"],
+    "description": "Converts a tuple of strings into a single string."
+  },
+  "convert:list of Integers to String of Integers": {
+    "prefix": "convert_list_int_to_str_int",
+    "body": ["${1:result} = ''.join(map(str, ${2:list_name}))"],
+    "description": "Converts a list of integers to a string of integers."
+  },
+  "convert:string of Integers to List of Integers": {
+    "prefix": "convert_str_int_to_list_int",
+    "body": ["${1:result} = list(map(int, ${2:string_value}))"],
+    "description": "Converts a string of integers to a list of integers."
+  },
+  "convert:list of Floats to String of Floats": {
+    "prefix": "convert_list_float_to_str_float",
+    "body": ["${1:result} = ''.join(map(str, ${2:list_name}))"],
+    "description": "Converts a list of floats to a string of floats."
+  },
+  "convert:string of Floats to List of Floats": {
+    "prefix": "convert_str_float_to_list_float",
+    "body": ["${1:result} = list(map(float, ${2:string_value}.split()))"],
+    "description": "Converts a string of floats to a list of floats."
+  }
+}

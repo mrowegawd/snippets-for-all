@@ -1,0 +1,303 @@
+{
+  "convert:string to number": {
+    "prefix": "convert_str_to_num",
+    "body": ["const ${1:num}: number = Number(${2:str});"],
+    "description": "Converts a string to a number"
+  },
+  "convert:number to string": {
+    "prefix": "convert_num_to_str",
+    "body": ["const ${1:str}: string = String(${2:num});"],
+    "description": "Converts a number to a string"
+  },
+  "convert:string to boolean": {
+    "prefix": "convert_str_to_bool",
+    "body": ["const ${1:bool}: boolean = ${2:str} === 'true';"],
+    "description": "Converts a string to a boolean"
+  },
+  "convert:boolean to string": {
+    "prefix": "convert_bool_to_str",
+    "body": ["const ${1:str}: string = ${2:bool} ? 'true' : 'false';"],
+    "description": "Converts a boolean to a string"
+  },
+  "convert:array to string": {
+    "prefix": "convert_array_to_str",
+    "body": ["const ${1:str}: string = ${2:array}.join(', ');"],
+    "description": "Converts an array to a string"
+  },
+  "convert:string to array": {
+    "prefix": "convert_str_to_array",
+    "body": ["const ${1:array}: string[] = ${2:str}.split(', ');"],
+    "description": "Converts a string to an array"
+  },
+  "convert:object to JSON string": {
+    "prefix": "convert_obj_to_json",
+    "body": ["const ${1:json_string}: string = JSON.stringify(${2:obj});"],
+    "description": "Converts an object to a JSON string"
+  },
+  "convert:JSON string to object": {
+    "prefix": "convert_json_to_obj",
+    "body": ["const ${1:obj}: any = JSON.parse(${2:json_string});"],
+    "description": "Converts a JSON string to an object"
+  },
+  "convert:string to Date": {
+    "prefix": "convert_str_to_date",
+    "body": ["const ${1:date}: Date = new Date(${2:str});"],
+    "description": "Converts a string to a Date object"
+  },
+  "convert:Date to string": {
+    "prefix": "convert_date_to_str",
+    "body": ["const ${1:str}: string = ${2:date}.toISOString();"],
+    "description": "Converts a Date object to an ISO string"
+  },
+  "convert:any to specific type": {
+    "prefix": "convert_any_to_specific_type",
+    "body": [
+      "const ${1:specific_type}: ${2:SpecificType} = ${3:any_value} as ${2:SpecificType};"
+    ],
+    "description": "Converts any to a specific type with type assertion"
+  },
+  "convert:specific type to any": {
+    "prefix": "convert_specific_type_to_any",
+    "body": ["const ${1:any_value}: any = ${2:specific_type};"],
+    "description": "Converts a specific type to any"
+  },
+  "convert:string to enum value": {
+    "prefix": "convert_str_to_enum_value",
+    "body": [
+      "const ${1:enum_value}: ${2:EnumType} = ${2}[${3:str} as keyof typeof ${2}];"
+    ],
+    "description": "Converts a string to an enum value"
+  },
+  "convert:enum value to string": {
+    "prefix": "convert_enum_value_to_str",
+    "body": ["const ${1:str}: string = ${2:EnumType}[${3:enum_value}];"],
+    "description": "Converts an enum value to a string"
+  },
+  "convert:promise to async/await": {
+    "prefix": "convert_promise_to_await",
+    "body": [
+      "async function ${1}() {",
+      "    try {",
+      "        const ${2:result} = await ${3:promise};",
+      "        return ${2:result};",
+      "    } catch (error) {",
+      "        console.error('Error:', error);",
+      "        throw error;",
+      "    }",
+      "}"
+    ],
+    "description": "Converts a promise to an async function with async/await"
+  },
+  "convert:callback function to promise": {
+    "prefix": "convert_callback_func_to_promise",
+    "body": [
+      "function ${1}(${2:params}): Promise<${3:result_type}> {",
+      "    return new Promise((resolve, reject) => {",
+      "        ${4:callback_function}(${2:params}, (error, result) => {",
+      "            if (error) {",
+      "                reject(error);",
+      "            } else {",
+      "                resolve(result);",
+      "            }",
+      "        });",
+      "    });",
+      "}"
+    ],
+    "description": "Converts a callback function to a promise"
+  },
+  "convert:async function to promise": {
+    "prefix": "convert_async_func_to_promise",
+    "body": [
+      "function ${1}(): Promise<${2:result_type}> {",
+      "    return ${3:async_function}();",
+      "}"
+    ],
+    "description": "Converts an async function to a promise"
+  },
+  "convert:string to ArrayBuffer": {
+    "prefix": "convert_str_to_arraybuff",
+    "body": [
+      "const ${1:buffer}: ArrayBuffer = new TextEncoder().encode(${2:str}).buffer;"
+    ],
+    "description": "Converts a string to an ArrayBuffer"
+  },
+  "convert:ArrayBuffer to string": {
+    "prefix": "convert_arraybuff_to_str",
+    "body": [
+      "const ${1:str}: string = new TextDecoder().decode(new Uint8Array(${2:buffer}));"
+    ],
+    "description": "Converts an ArrayBuffer to a string"
+  },
+  "convert:object to FormData": {
+    "prefix": "convert_obj_to_formdata",
+    "body": [
+      "const formData = new FormData();",
+      "${1:formData}.append('${2:key}', ${3:value});"
+    ],
+    "description": "Converts an object to FormData"
+  },
+  "convert:FormData to object": {
+    "prefix": "convert_formdata_to_obj",
+    "body": [
+      "const ${1:obj} = Object.fromEntries([...${2:formData}.entries()]);"
+    ],
+    "description": "Converts FormData to an object"
+  },
+  "convert:string to Base64": {
+    "prefix": "convert_str_to_base64",
+    "body": ["const ${1:base64}: string = btoa(${2:str});"],
+    "description": "Converts a string to Base64"
+  },
+  "convert:Base64 to string": {
+    "prefix": "convert_base64_to_str",
+    "body": ["const ${1:str}: string = atob(${2:base64});"],
+    "description": "Converts Base64 to a string"
+  },
+  "convert:string to URL encoded format": {
+    "prefix": "convert_str_to_urlencoded",
+    "body": ["const ${1:url_encoded}: string = encodeURIComponent(${2:str});"],
+    "description": "Converts a string to URL encoded format"
+  },
+  "convert:URL encoded format to string": {
+    "prefix": "convert_urlencoded_to_str",
+    "body": ["const ${1:str}: string = decodeURIComponent(${2:url_encoded});"],
+    "description": "Converts URL encoded format to a string"
+  },
+  "convert:string to UUID (UUID v4)": {
+    "prefix": "convert_str_to_uuid",
+    "body": [
+      "const ${1:uuid}: string = '${2:xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx}'.replace(/[xy]/g, function(c) {",
+      "\tconst r = Math.random() * 16 | 0,",
+      "\t\tv = c === 'x' ? r : (r & 0x3 | 0x8);",
+      "\treturn v.toString(16);",
+      "});"
+    ],
+    "description": "Converts a string to a UUID (UUID v4)"
+  },
+  "convert:string to RegExp": {
+    "prefix": "convert_str_to_regex",
+    "body": ["const ${1:regex}: RegExp = new RegExp(${2:str});"],
+    "description": "Converts a string to a RegExp"
+  },
+  "convert:RegExp to string": {
+    "prefix": "convert_regex_to_str",
+    "body": ["const ${1:str}: string = ${2:regex}.source;"],
+    "description": "Converts a RegExp to a string (source)"
+  },
+  "convert:string to Buffer (Node.js Buffer)": {
+    "prefix": "convert_str_to_buffer",
+    "body": [
+      "const ${1:buffer}: Buffer = Buffer.from(${2:str}, '${3:utf-8}');"
+    ],
+    "description": "Converts a string to a Node.js Buffer"
+  },
+  "convert:Buffer (Node.js Buffer) to string": {
+    "prefix": "convert_buffer_to_str",
+    "body": ["const ${1:str}: string = ${2:buffer}.toString('${3:utf-8}');"],
+    "description": "Converts a Node.js Buffer to a string"
+  },
+  "convert:string to BigInt": {
+    "prefix": "convert_str_to_bigint",
+    "body": ["const ${1:bigint}: bigint = BigInt(${2:str});"],
+    "description": "Converts a string to a BigInt"
+  },
+  "convert:BigInt to string": {
+    "prefix": "convert_bigint_to_str",
+    "body": ["const ${1:str}: string = ${2:bigint}.toString();"],
+    "description": "Converts a BigInt to a string"
+  },
+  "convert:string to Map": {
+    "prefix": "convert_str_to_map",
+    "body": ["const ${1:map} = new Map(JSON.parse(${2:str}));"],
+    "description": "Converts a string to a Map"
+  },
+  "convert:Map to string": {
+    "prefix": "convert_map_to_str",
+    "body": ["const ${1:str} = JSON.stringify([...${2:map}]);"],
+    "description": "Converts a Map to a JSON string"
+  },
+  "convert:string to Set": {
+    "prefix": "convert_str_to_set",
+    "body": ["const ${1:set} = new Set(JSON.parse(${2:str}));"],
+    "description": "Converts a string to a Set"
+  },
+  "convert:Set to string": {
+    "prefix": "convert_set_to_str",
+    "body": ["const ${1:str} = JSON.stringify([...${2:set}]);"],
+    "description": "Converts a Set to a JSON string"
+  },
+  "convert:string to HTML element": {
+    "prefix": "convert_str_to_html_element",
+    "body": [
+      "const ${1:element} = new DOMParser().parseFromString(${2:str}, 'text/html').body.firstChild;"
+    ],
+    "description": "Converts a string to an HTML element"
+  },
+  "convert:HTML element to string": {
+    "prefix": "convert_html_element_to_str",
+    "body": [
+      "const ${1:str} = new XMLSerializer().serializeToString(${2:element});"
+    ],
+    "description": "Converts an HTML element to a string"
+  },
+  "convert:string to Blob": {
+    "prefix": "convert_str_to_blob",
+    "body": [
+      "const ${1:blob} = new Blob([${2:str}], { type: '${3:text/plain;charset=utf-8}' });"
+    ],
+    "description": "Converts a string to a Blob"
+  },
+  "convert:Blob to string": {
+    "prefix": "convert_blob_to_str",
+    "body": ["const ${1:str} = await new Response(${2:blob}).text();"],
+    "description": "Converts a Blob to a string"
+  },
+  "convert:string to ArrayBufferView": {
+    "prefix": "convert_str_to_arraybufferview",
+    "body": [
+      "const ${1:arraybufferview} = new TextEncoder().encode(${2:str});"
+    ],
+    "description": "Converts a string to an ArrayBufferView"
+  },
+  "convert:ArrayBufferView to string": {
+    "prefix": "convert_arraybufferview_to_str",
+    "body": [
+      "const ${1:str} = new TextDecoder().decode(${2:arraybufferview});"
+    ],
+    "description": "Converts an ArrayBufferView to a string"
+  },
+  "convert:string to DataView": {
+    "prefix": "convert_str_to_dataview",
+    "body": [
+      "const ${1:dataview} = new DataView(new TextEncoder().encode(${2:str}).buffer);"
+    ],
+    "description": "Converts a string to a DataView"
+  },
+  "convert:DataView to string": {
+    "prefix": "convert_dataview_to_str",
+    "body": [
+      "const ${1:str} = new TextDecoder().decode(${2:dataview}.buffer);"
+    ],
+    "description": "Converts a DataView to a string"
+  },
+  "convert:string to Uint8Array": {
+    "prefix": "convert_str_to_uint8array",
+    "body": ["const ${1:uint8array} = new TextEncoder().encode(${2:str});"],
+    "description": "Converts a string to a Uint8Array"
+  },
+  "convert:Uint8Array to string": {
+    "prefix": "convert_uint8array_to_str",
+    "body": ["const ${1:str} = new TextDecoder().decode(${2:uint8array});"],
+    "description": "Converts a Uint8Array to a string"
+  },
+  "convert:string to TypedArray": {
+    "prefix": "convert_str_to_typedarray",
+    "body": ["const ${1:typedarray} = new TextEncoder().encode(${2:str});"],
+    "description": "Converts a string to a TypedArray (e.g., Uint8Array, Int32Array)"
+  },
+  "convert:TypedArray to string": {
+    "prefix": "convert_typedarray_to_str",
+    "body": ["const ${1:str} = new TextDecoder().decode(${2:typedarray});"],
+    "description": "Converts a TypedArray (e.g., Uint8Array, Int32Array) to a string"
+  }
+}

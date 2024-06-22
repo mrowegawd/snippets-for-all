@@ -50,18 +50,18 @@
     "body": "import ${1:package/module}$0",
     "description": "import .."
   },
-  "import as": {
+  "import:as": {
     "prefix": "imp_as",
     "body": "import ${1:package/module} as ${2:names}$0",
     "description": "import .. as .."
   },
-  "from ... import ...": {
-    "prefix": "imp_from",
+  "import:from_import": {
+    "prefix": "imp_from_import",
     "body": "from ${1:package/module} import ${2:names}$0",
     "description": "from package import names"
   },
-  "from as": {
-    "prefix": "imp_from_as",
+  "import:from_import:as": {
+    "prefix": "imp_from_import_as",
     "body": "from ${1:package/module} import ${2:names} as ${3:names}$0",
     "description": "from package import names"
   },
@@ -70,27 +70,10 @@
     "body": "from dataclasses import dataclass",
     "description": "from dataclasses import dataclass"
   },
-  "from future import ...": {
-    "prefix": "env_encf",
-    "body": [
-      "# -*- coding: utf-8 -*-",
-      "from __future__ import absolute_import, division, print_function, unicode_literals"
-    ],
-    "description": [
-      "\t# -*- coding: utf-8 -*-",
-      "\tfrom __future__ import absolute_import, division, print_function, unicode_literals"
-    ]
-  },
-  "from future import ... v1": {
-    "prefix": "env_encfo",
-    "body": [
-      "# coding: utf-8",
-      "from __future__ import absolute_import, division, print_function, unicode_literals"
-    ],
-    "description": [
-      "\t# coding: utf-8",
-      "\tfrom __future__ import absolute_import, division, print_function, unicode_literals"
-    ]
+  "assert": {
+    "prefix": "assert_",
+    "body": "assert ${1:var} == ${2:var}, ${3:default_value}",
+    "description": "assert var1 == var2, value"
   },
   "var:create": {
     "prefix": "var_",
@@ -112,11 +95,6 @@
     "body": ["${1:varSet} = {${2:1, \"hello\", [1,3,4,5]}}", "$0"],
     "description": "var_set = {1, \"its good\", [1,3,4]}"
   },
-  "var:class": {
-    "prefix": "var_obj_",
-    "body": ["${1:varObj} = ${2:Myclass(1,3,45)}", "$0"],
-    "description": "var_obj = Myclass(x, x)"
-  },
   "var:dict": {
     "prefix": "var_dict",
     "body": ["${1:varDict} = {${2:\"name\": \"Daniel\", \"age\": 13}}", "$0"],
@@ -127,18 +105,51 @@
       "}"
     ]
   },
+  "var:obj:class": {
+    "prefix": "var_obj_class",
+    "body": ["${1:varObj} = ${2:Myclass(1,3,45)}", "\n$0"],
+    "description": "var_obj = Myclass(x, x)"
+  },
   "class": {
     "prefix": "class_",
-    "body": ["class ${1:classname}(${2:object}):", "\t${3:pass}"],
-    "description": ["class Classname}(object):", "\tpass"]
+    "body": [
+      "class ${1:ClassName}:",
+      "\tdef __init__(self${2:}):",
+      "\t\t${3:pass}",
+      "",
+      "\tdef ${4:method_name}(self${5:}):",
+      "\t\t${6:pass}"
+    ],
+    "description": "Creates a basic Python class with __init__ and method"
   },
-  "class init": {
-    "prefix": "class_init",
+  "class:full dan property": {
+    "prefix": "class_full_property",
+    "body": [
+      "class ${1:SubClassName}(${2:SuperClassName}):",
+      "\tdef __init__(self${3:}, ${4:super_params}):",
+      "\t\tsuper().__init__(${5:super_args})",
+      "\t\tself.${6:property_name} = ${7:property_value}",
+      "",
+      "\t@property",
+      "\tdef ${8:property_name}(self):",
+      "\t\treturn self._${8:property_name}",
+      "",
+      "\t@${9:property_name}.setter",
+      "\tdef ${9:property_name}(self, value):",
+      "\t\tself._${9:property_name} = value",
+      "",
+      "\tdef ${10:method_name}(self${11:}):",
+      "\t\t${12:pass}"
+    ],
+    "description": "Creates a Python class with superclass, properties, and methods"
+  },
+  "class:create:init": {
+    "prefix": "class_create_full_init",
     "body": "class ${1:ClassName}(${2:object}):\n\t\"\"\"${3:docstring for $1.}\"\"\"\n\tdef __init__(self, ${4:arg}):\n\t\t${5:super($1, self).__init__()}\n\t\tself.arg = arg\n\t\t$0",
     "description": "class ${1:ClassName}(${2:object}):\n\t\"\"\"${3:docstring for $1.}\"\"\"\n\tdef __init__(self, ${4:arg}):\n\t\t${5:super($1, self).__init__()}\n\t\tself.arg = arg\n\t\t$0"
   },
-  "class constructor": {
-    "prefix": "class_constructor",
+  "class:method:constructor": {
+    "prefix": "class_func_constructor",
     "body": [
       "def __init__(self, ${1:x}):",
       "\tself.${1:x} = ${1:x}",
@@ -147,13 +158,26 @@
     ],
     "description": ["\tdef __init__(self, ${1:x}):", "\t\tself.${1:x} = ${1:x}"]
   },
-  "class method w/ return": {
-    "prefix": "class_method",
+  "class:method:empty method": {
+    "prefix": "class_func_empty",
+    "body": ["def ${1:method_name}(self):", "\t${2:# TODO: implement method}"],
+    "description": "Create an empty method"
+  },
+  "class:method:with return": {
+    "prefix": "class_func_method",
     "body": "def ${1:mname}(self, ${2:arg}) -> ${3:return_type}:\n\t${4:pass}$0",
     "description": "def fname(self, arg) -> return_type:\n\tpass"
   },
-  "class:staticmethod": {
-    "prefix": "class_method_static",
+  "class:method:with param": {
+    "prefix": "class_func_with_param",
+    "body": [
+      "def ${1:method_name}(self, ${2:param}):",
+      "\t${3:# TODO: implement method}"
+    ],
+    "description": "Create a method with a parameter"
+  },
+  "class:method:staticmethod": {
+    "prefix": "class_func_static_method",
     "body": [
       "@staticmethod",
       "def ${1:funcname}(${2:parameter_list}):",
@@ -161,10 +185,314 @@
     ],
     "description": ["@staticmethod", "def fname(args):", "\t$pass"]
   },
-  "class:property": {
-    "prefix": "class_method_property",
-    "body": "@property\ndef ${1:foo}(self):\n    \"\"\"${2:The $1 property.}\"\"\"\n    ${3:return self._$1}\n@${4:$1}.setter\ndef ${5:$1}(self, value):\n    ${6:self._$1} = value",
-    "description": "@property\ndef ${1:foo}(self):\n    \"\"\"${2:The $1 property.}\"\"\"\n    ${3:return self._$1}\n@${4:$1}.setter\ndef ${5:$1}(self, value):\n    ${6:self._$1} = value"
+  "class:method:class method": {
+    "prefix": "class_func_class_method",
+    "body": [
+      "@classmethod",
+      "def ${1:method_name}(cls, ${2:params}):",
+      "\t${3:# TODO: implement method}"
+    ],
+    "description": "Create a class method"
+  },
+  "class:method:with docstring": {
+    "prefix": "class_func_docstring",
+    "body": [
+      "def ${1:method_name}(self, ${2:params}):",
+      "\t\"\"\"",
+      "\t${3:One-line description of ${1:method_name}.}",
+      "",
+      "\t${4:Detailed description (if necessary).}",
+      "\t",
+      "\tArgs:",
+      "\t    ${2:param} (${2:param_type}): ${5:Description of parameter}.",
+      "\t",
+      "\tReturns:",
+      "\t    ${6:return_type}: ${7:Description of return value}.",
+      "\t\"\"\"",
+      "\t${8:# TODO: implement method}"
+    ],
+    "description": "Create a method with a docstring"
+  },
+  "class:method:override method": {
+    "prefix": "class_func_override",
+    "body": [
+      "def ${1:method_name}(self, ${2:params}):",
+      "\t${3:super().${1:method_name}(${2:params})}"
+    ],
+    "description": "Override a method from superclass"
+  },
+  "class:method:private method": {
+    "prefix": "class_func_private_method",
+    "body": [
+      "def _${1:method_name}(self, ${2:params}):",
+      "\t${3:# TODO: implement private method}"
+    ],
+    "description": "Create a private method (name starts with _)"
+  },
+  "class:method:method with default argument": {
+    "prefix": "class_func_method_with_default_param",
+    "body": [
+      "def ${1:method_name}(self, ${2:param1}=${3:default_value}):",
+      "\t${4:# TODO: implement method}"
+    ],
+    "description": "Create a method with a default argument"
+  },
+  "class:method:setter method": {
+    "prefix": "class_func_setter",
+    "body": [
+      "def set_${1:attribute}(self, ${2:value}):",
+      "\tself.${1:attribute} = ${2:value}"
+    ],
+    "description": "Create a setter method for a class attribute"
+  },
+  "class:method:getter method": {
+    "prefix": "class_func_getter",
+    "body": ["def get_${1:attribute}(self):", "\treturn self.${1:attribute}"],
+    "description": "Create a getter method for a class attribute"
+  },
+  "class:method:has attribute": {
+    "prefix": "class_func_has_attribute",
+    "body": [
+      "def has_${1:attribute}(self):",
+      "\treturn hasattr(self, '${1:attribute}')"
+    ],
+    "description": "Create a method to check the existence of a class attribute"
+  },
+  "class:method:deleter": {
+    "prefix": "class_func_deleter",
+    "body": [
+      "def delete_${1:attribute}(self):",
+      "\tif hasattr(self, '${1:attribute}'):",
+      "\t\t del self.${1:attribute}"
+    ],
+    "description": "Create a deleter method for a class attribute"
+  },
+  "class:method:dunder:__str__": {
+    "prefix": "class_func_dunder_str",
+    "body": [
+      "def __str__(self):",
+      "\treturn f\"${1:Class_name}(${2:self.param})\""
+    ],
+    "description": "Create a __str__ method"
+  },
+  "class:method:dunder:__repr__": {
+    "prefix": "class_func_dunder_repr",
+    "body": [
+      "def __repr__(self):",
+      "\treturn f\"${1:Class_name}(${2:self.param})\""
+    ],
+    "description": "Create a __repr__ method"
+  },
+  "class:method:dunder:__eq__": {
+    "prefix": "class_func_dunder_eq",
+    "body": [
+      "def __eq__(self, other):",
+      "\treturn self.${1:attribute} == other.${1:attribute}"
+    ],
+    "description": "Create an __eq__ method for object comparison"
+  },
+  "class:method:dunder:__lt__": {
+    "prefix": "class_func_dunder_lt",
+    "body": [
+      "def __lt__(self, other):",
+      "\treturn self.${1:attribute} < other.${1:attribute}"
+    ],
+    "description": "Create a __lt__ method for object comparison"
+  },
+  "class:method:dunder:__gt__": {
+    "prefix": "class_func_dunder_gt",
+    "body": [
+      "def __gt__(self, other):",
+      "\treturn self.${1:attribute} > other.${1:attribute}"
+    ],
+    "description": "Create a __gt__ method for object comparison"
+  },
+  "class:method:dunder:__len__": {
+    "prefix": "class_func_dunder_len",
+    "body": ["def __len__(self):", "\treturn len(self.${1:attribute})"],
+    "description": "Create a __len__ method"
+  },
+  "class:method:dunder:__call__": {
+    "prefix": "class_func_dunder_call",
+    "body": [
+      "def __call__(self, ${1:params}):",
+      "\t${2:# TODO: implement callable method}"
+    ],
+    "description": "Create a __call__ method"
+  },
+  "class:method:dunder:__iter__": {
+    "prefix": "class_func_dunder_iter",
+    "body": ["def __iter__(self):", "\treturn iter(self.${1:sequence})"],
+    "description": "Create an __iter__ method"
+  },
+  "class:method:dunder:__next__": {
+    "prefix": "class_func_dunder_next",
+    "body": ["def __next__(self):", "\treturn next(self.${1:iterator})"],
+    "description": "Create a __next__ method for iterators"
+  },
+  "class:method:custom context manager": {
+    "prefix": "class_func_custom_context_manager",
+    "body": [
+      "class ${1:CustomContextManager}:",
+      "\tdef __enter__(self):",
+      "\t\t${2:# Code to execute when entering the context}",
+      "\t\treturn self",
+      "",
+      "\tdef __exit__(self, exc_type, exc_val, exc_tb):",
+      "\t\t${3:# Code to execute when exiting the context}",
+      "\t\t${4:pass}"
+    ],
+    "description": "Create a custom context manager"
+  },
+  "class:method:custom resource context manager": {
+    "prefix": "class_func_custom_context_manager_with_resource",
+    "body": [
+      "class ${1:ResourceContextManager}:",
+      "\tdef __init__(self, ${2:resource}):",
+      "\t\tself.${2:resource} = ${2:resource}",
+      "",
+      "\tdef __enter__(self):",
+      "\t\t${3:# Code to initialize resource and enter context}",
+      "\t\treturn self",
+      "",
+      "\tdef __exit__(self, exc_type, exc_val, exc_tb):",
+      "\t\t${4:# Code to cleanup resource when exiting context}",
+      "\t\t${5:pass}"
+    ],
+    "description": "Create a custom context manager with resource initialization"
+  },
+  "class:method:custom exception context manager": {
+    "prefix": "class_func_custom_context_manager_with_exception",
+    "body": [
+      "class ${1:ExceptionContextManager}:",
+      "\tdef __enter__(self):",
+      "\t\t${2:# Code to execute when entering the context}",
+      "\t\treturn self",
+      "",
+      "\tdef __exit__(self, exc_type, exc_val, exc_tb):",
+      "\t\tif exc_type is not None:",
+      "\t\t\t${3:# Code to handle exception}",
+      "\t\t${4:# Code to execute when exiting the context}"
+    ],
+    "description": "Create a custom context manager with exception handling"
+  },
+  "class:method:custom logging context manager": {
+    "prefix": "class_func_custom_context_manager_with_logging",
+    "body": [
+      "import logging",
+      "",
+      "class ${1:LoggingContextManager}:",
+      "\tdef __enter__(self):",
+      "\t\t${2:logging.info('Entering context')}",
+      "\t\treturn self",
+      "",
+      "\tdef __exit__(self, exc_type, exc_val, exc_tb):",
+      "\t\t${3:logging.info('Exiting context')}",
+      "\t\t${4:pass}"
+    ],
+    "description": "Create a custom context manager with logging"
+  },
+  "class:method:custom file context manager": {
+    "prefix": "class_func_custom_context_manager_with_file",
+    "body": [
+      "class ${1:FileContextManager}:",
+      "\tdef __init__(self, file_name, mode):",
+      "\t\tself.file_name = file_name",
+      "\t\tself.mode = mode",
+      "\t\tself.file = None",
+      "",
+      "\tdef __enter__(self):",
+      "\t\tself.file = open(self.file_name, self.mode)",
+      "\t\t${2:# Code to execute when entering the context}",
+      "\t\treturn self.file",
+      "",
+      "\tdef __exit__(self, exc_type, exc_val, exc_tb):",
+      "\t\tself.file.close()",
+      "\t\t${3:# Code to execute when exiting the context}"
+    ],
+    "description": "Create a custom context manager for file handling"
+  },
+  "class:method:async:custom context manager": {
+    "prefix": "class_func_async_custom_context_manager",
+    "body": [
+      "class ${1:AsyncContextManager}:",
+      "\tasync def __aenter__(self):",
+      "\t\t${2:# Code to execute when entering the async context}",
+      "\t\treturn self",
+      "",
+      "\tasync def __aexit__(self, exc_type, exc_val, exc_tb):",
+      "\t\t${3:# Code to execute when exiting the async context}",
+      "\t\t${4:pass}"
+    ],
+    "description": "Create an async context manager"
+  },
+  "class:method:async:custom resource context manager": {
+    "prefix": "class_func_async_custom_context_manager_with_resource",
+    "body": [
+      "class ${1:AsyncResourceContextManager}:",
+      "\tdef __init__(self, ${2:resource}):",
+      "\t\tself.${2:resource} = ${2:resource}",
+      "",
+      "\tasync def __aenter__(self):",
+      "\t\t${3:# Code to initialize resource and enter async context}",
+      "\t\treturn self",
+      "",
+      "\tasync def __aexit__(self, exc_type, exc_val, exc_tb):",
+      "\t\t${4:# Code to cleanup resource when exiting async context}",
+      "\t\t${5:pass}"
+    ],
+    "description": "Create an async context manager with resource initialization"
+  },
+  "class:method:async:custom exception context manager": {
+    "prefix": "class_func_async_context_manager_with_exception",
+    "body": [
+      "class ${1:AsyncExceptionContextManager}:",
+      "\tasync def __aenter__(self):",
+      "\t\t${2:# Code to execute when entering the async context}",
+      "\t\treturn self",
+      "",
+      "\tasync def __aexit__(self, exc_type, exc_val, exc_tb):",
+      "\t\tif exc_type is not None:",
+      "\t\t\t${3:# Code to handle exception in async context}",
+      "\t\t${4:# Code to execute when exiting the async context}"
+    ],
+    "description": "Create an async context manager with exception handling"
+  },
+  "class:method:async:custom logging context manager": {
+    "prefix": "class_func_async_context_manager_with_logging",
+    "body": [
+      "import logging",
+      "",
+      "class ${1:AsyncLoggingContextManager}:",
+      "\tasync def __aenter__(self):",
+      "\t\t${2:logging.info('Entering async context')}",
+      "\t\treturn self",
+      "",
+      "\tasync def __aexit__(self, exc_type, exc_val, exc_tb):",
+      "\t\t${3:logging.info('Exiting async context')}",
+      "\t\t${4:pass}"
+    ],
+    "description": "Create an async context manager with logging"
+  },
+  "class:method:async:custom file context manager": {
+    "prefix": "class_func_async_context_manager_with_file",
+    "body": [
+      "class ${1:AsyncFileContextManager}:",
+      "\tdef __init__(self, file_name, mode):",
+      "\t\tself.file_name = file_name",
+      "\t\tself.mode = mode",
+      "\t\tself.file = None",
+      "",
+      "\tasync def __aenter__(self):",
+      "\t\tself.file = await open(self.file_name, self.mode)",
+      "\t\t${2:# Code to execute when entering the async context}",
+      "\t\treturn self.file",
+      "",
+      "\tasync def __aexit__(self, exc_type, exc_val, exc_tb):",
+      "\t\tawait self.file.close()",
+      "\t\t${3:# Code to execute when exiting the async context}"
+    ],
+    "description": "Create an async context manager for file handling"
   },
   "class:dataclass": {
     "prefix": "class_data",
@@ -172,14 +500,43 @@
     "description": "@dataclass\nclass MyClass:\n\tname: str\n\tunit_price: float = 1.3"
   },
   "function": {
-    "prefix": "def_",
+    "prefix": "def_func",
     "body": "def ${1:fname}(${2:arg}):\n\t${3:pass}$0",
     "description": "def fname(arg):\n\tpass"
   },
-  "async:function": {
-    "prefix": "def_a_",
+  "function:async": {
+    "prefix": "def_func_async",
     "body": "async def ${1:fname}(${2:arg}):\n\t${3:pass}$0",
     "description": "async def fname(args):\n\tpass"
+  },
+  "function:param args": {
+    "prefix": "def_func_param_args",
+    "body": [
+      "def ${1:function_name}(*args, **kwargs):",
+      "\t\"\"\"${2:Docstring}\"\"\"",
+      "\t${0:# code here}"
+    ],
+    "description": "Create a Python function with *args and **kwargs"
+  },
+  "function:with decorator": {
+    "prefix": "def_func_with_decorator",
+    "body": [
+      "@${1:decorator_function}",
+      "def ${2:function_name}(${3:parameters}):",
+      "\t\"\"\"${4:Docstring}\"\"\"",
+      "\t${0:# code here}"
+    ],
+    "description": "Create a Python function with decorator"
+  },
+  "function:async with decorator": {
+    "prefix": "def_func_async_with_decorator",
+    "body": [
+      "@${1:decorator_function}",
+      "async def ${2:function_name}(${3:parameters}):",
+      "\t\"\"\"${4:Docstring}\"\"\"",
+      "\t${0:# code here}"
+    ],
+    "description": "Create an async Python function with decorator"
   },
   "return": {
     "prefix": "rt_",
@@ -213,13 +570,13 @@
     "body": ["else:", "\t${1:pass}"],
     "description": ["else:", "\tpass"]
   },
-  "for": {
-    "prefix": "for_",
+  "for:in": {
+    "prefix": "for_in",
     "body": "for ${1:value} in ${2:iterable}:\n\t${3:pass}$0",
     "description": "for value in iterable:\n\tpass"
   },
-  "for:else": {
-    "prefix": "for_else",
+  "for:in:else": {
+    "prefix": "for_in_else",
     "body": [
       "for ${1:target} in ${2:iterable}:",
       "\t${3:pass}",
@@ -228,13 +585,37 @@
     ],
     "description": ["for value in iterable:", "\tpass", "else:", "\tpass"]
   },
-  "async:for": {
-    "prefix": "for_a_",
+  "for:in:enumerate": {
+    "prefix": "for_in_enumerate",
+    "body": [
+      "for ${1:index}, ${2:item} in enumerate(${3:iterable}):",
+      "\t${4:// TODO: Code here}"
+    ],
+    "description": "For loop with enumerate"
+  },
+  "for:in:zip": {
+    "prefix": "for_in_zip",
+    "body": [
+      "for ${1:item1}, ${2:item2} in zip(${3:iterable1}, ${4:iterable2}):",
+      "\t${5:// TODO: Code here}"
+    ],
+    "description": "For loop with zip"
+  },
+  "for:in:range": {
+    "prefix": "for_in_range",
+    "body": [
+      "for ${1:i} in range(${2:start}, ${3:end}, ${4:step}):",
+      "\t${5:// TODO: Code here}"
+    ],
+    "description": "For loop with range"
+  },
+  "async:for:in": {
+    "prefix": "for_in_async",
     "body": ["async for ${1:target} in ${2:iterable}:", "\t${3:pass}"],
     "description": ["async for value in iterable:", "\tpass"]
   },
-  "async:for:else": {
-    "prefix": "for_a_else",
+  "async:for:in:else": {
+    "prefix": "for_in_async_else",
     "body": [
       "async for ${1:target} in ${2:iterable}:",
       "\t${3:pass}",
@@ -242,6 +623,34 @@
       "\t${4:pass}"
     ],
     "description": ["async for value in iterable:", "\tpass", "else:", "\tpass"]
+  },
+  "type:check": {
+    "prefix": "type_",
+    "body": ["type(${1:variable})$0"],
+    "description": "Python type check using type()"
+  },
+  "type:isinstance": {
+    "prefix": "type_check_isinstance",
+    "body": [
+      "if not isinstance($2, $1):",
+      "\traise TypeError(f'Expected {str($1)}, but got {type($2).__name__} instead.')"
+    ],
+    "description": "Python type check using isinstance"
+  },
+  "type:check:type with condition": {
+    "prefix": "type_check_type_with_condition",
+    "body": [
+      "if type(${1:variable}) is not ${2:type}:",
+      "\traise TypeError(f'Expected type ${2:type}, but got {type(${1:variable}).__name__} instead.')"
+    ],
+    "description": "Python type check using type()"
+  },
+  "type:check:assert type": {
+    "prefix": "type_check_with_assert_type",
+    "body": [
+      "assert type(${1:variable}) is ${2:type}, f'Expected type ${2:type}, but got {type(${1:variable}).__name__} instead.'"
+    ],
+    "description": "Python type check using assert statement with type()"
   },
   "while": {
     "prefix": "while_",
@@ -252,31 +661,6 @@
     "prefix": "while_else",
     "body": ["while ${1:expression}:", "\t${2:pass}", "else:", "\t${3:pass}"],
     "description": ["while expression:", "\tpass", "else:", "\tpass"]
-  },
-  "try:except:": {
-    "prefix": "try_",
-    "body": "try:\n\t${1:pass}\nexcept ${2:Exception} as ${3:e}:\n\t${4:raise $3}$0",
-    "description": "try:\n\tpass\nexcept Exception as e:\n\traise"
-  },
-  "try:except:else": {
-    "prefix": "try_else",
-    "body": "try:\n\t${1:pass}\nexcept ${2:Exception} as ${3:e}:\n\t${4:raise $3}\nelse:\n\t${5:pass}$0",
-    "description": "try:\n\tpass\nexcept Exception as e:\n\traise\nelse:\n\tpass"
-  },
-  "try:except:finally": {
-    "prefix": "try_finally",
-    "body": "try:\n\t${1:pass}\nexcept ${2:Exception} as ${3:e}:\n\t${4:raise $3}\nfinally:\n\t${5:pass}$0",
-    "description": "try:\n\tpass\nexcept Exception as e:\n\traise\nfinally:\n\tpass"
-  },
-  "try:except:else:finally": {
-    "prefix": "try_finally_else",
-    "body": "try:\n\t${1:pass}\nexcept${2: ${3:Exception} as ${4:e}}:\n\t${5:raise}\nelse:\n\t${6:pass}\nfinally:\n\t${7:pass}$0",
-    "description": "try:\n\tpass\nexcept Exception as e:\n\traise\nelse:\n\tpass\nfinally:\n\tpass"
-  },
-  "throw raise": {
-    "prefix": "throw_r",
-    "body": "raise ${1:Exception}(${2:\"your message \"})",
-    "description": "raise Exception(\"your message \")"
   },
   "with": {
     "prefix": "with_",
@@ -292,16 +676,6 @@
     "prefix": "__",
     "body": "__${1:init}__$0",
     "description": "__<init>__"
-  },
-  "lambda": {
-    "prefix": "lambda_",
-    "body": ["lambda ${1:parameter_list}: ${2:expression}"],
-    "description": ["lambda a: a + 10", "lambda (a, b): a + b"]
-  },
-  "assert": {
-    "prefix": "assert_",
-    "body": "assert ${1:var} == ${2:var}, ${3:default_value}",
-    "description": "assert var1 == var2, value"
   },
   "if __name__ == \"__main__\"": {
     "prefix": "if_main",

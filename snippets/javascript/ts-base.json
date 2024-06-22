@@ -1,34 +1,13 @@
 {
-  "use strict": {
-    "prefix": "use_strict",
-    "body": "'use strict'",
-    "description": "use strict"
-  },
   "TODO": {
     "prefix": "todo_",
     "body": ["// TODO: $0"],
     "description": "// TODO: ..."
   },
-  "header{{{": {
-    "prefix": "header_1",
-    "body": [
-      "// ${1:headname} ----------------------------------------------------------- {{{",
-      "//",
-      "$2",
-      "//",
-      "//  }}}"
-    ],
-    "description": "create header --- {{{"
-  },
-  "header###": {
-    "prefix": "header_2",
-    "body": [
-      "// ##############################################################################",
-      "// ${1:string_header}",
-      "// ##############################################################################",
-      "$2"
-    ],
-    "description": "create header --- ###"
+  "use strict": {
+    "prefix": "use_strict",
+    "body": "'use strict'",
+    "description": "use strict"
   },
   "require": {
     "prefix": "req_",

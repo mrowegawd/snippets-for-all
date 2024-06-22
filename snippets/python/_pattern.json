@@ -1,0 +1,93 @@
+{
+  "singletoon": {
+    "prefix": "pattern_singleton",
+    "body": [
+      "class Singleton:",
+      "\t_instance = None",
+      "\t",
+      "\tdef __new__(cls):",
+      "\t\tif cls._instance is None:",
+      "\t\t\tcls._instance = super().__new__(cls)",
+      "\t\treturn cls._instance",
+      "\t",
+      "\tdef __init__(self):",
+      "\t \tpass"
+    ],
+    "description": "Creates a singleton pattern class in Python."
+  },
+  "singletoon:async": {
+    "prefix": "pattern_singleton_async",
+    "body": [
+      "import asyncio",
+      "",
+      "class SingletonAsync:",
+      "\t_instance = None",
+      "\t_lock = asyncio.Lock()",
+      "",
+      "\t@classmethod",
+      "\tasync def get_instance(cls):",
+      "\t\tif cls._instance is None:",
+      "\t\t\tasync with cls._lock:",
+      "\t\t\t\tif cls._instance is None:",
+      "\t\t\t\t\tcls._instance = await cls.__create_instance()",
+      "\t\treturn cls._instance",
+      "",
+      "\t@staticmethod",
+      "\tasync def __create_instance():",
+      "\t\tinstance = SingletonAsync()",
+      "\t\tawait asyncio.sleep(1)  # Example async initialization",
+      "\t\treturn instance",
+      "",
+      "\tdef __init__(self):",
+      "\t\tpass"
+    ],
+    "description": "Creates an async singleton pattern class in Python."
+  },
+  "singletoon:with decorator": {
+    "prefix": "pattern_singleton_decorator",
+    "body": [
+      "def singleton(cls):",
+      "\tinstances = {}",
+      "\t",
+      "\tdef get_instance(*args, **kwargs):",
+      "\t\tif cls not in instances:",
+      "\t\t\tinstances[cls] = cls(*args, **kwargs)",
+      "\t\treturn instances[cls]",
+      "\t",
+      "\treturn get_instance",
+      "",
+      "@singleton",
+      "class SingletonWithDecorator:",
+      "\tdef __init__(self):",
+      "\t\tpass"
+    ],
+    "description": "Creates a singleton pattern class using a decorator in Python."
+  },
+  "singletoon:with decorator aysnc": {
+    "prefix": "pattern_singleton_decorator_async",
+    "body": [
+      "import asyncio",
+      "",
+      "def async_singleton(cls):",
+      "\tinstances = {}",
+      "\tlock = asyncio.Lock()",
+      "",
+      "\tasync def get_instance(*args, **kwargs):",
+      "\t\tif cls not in instances:",
+      "\t\t\tasync with lock:",
+      "\t\t\t\tif cls not in instances:",
+      "\t\t\t\t\tinstance = cls(*args, **kwargs)",
+      "\t\t\t\t\tawait instance.__init__()  # Example async initialization",
+      "\t\t\t\t\tinstances[cls] = instance",
+      "\t\treturn instances[cls]",
+      "\t",
+      "\treturn get_instance",
+      "",
+      "@async_singleton",
+      "class AsyncSingletonWithDecorator:",
+      "\tasync def __init__(self):",
+      "\t\tpass"
+    ],
+    "description": "Creates an async singleton pattern class using a decorator in Python."
+  }
+}

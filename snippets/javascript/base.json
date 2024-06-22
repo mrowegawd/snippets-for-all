@@ -9,27 +9,6 @@
     "body": ["// TODO: $0"],
     "description": "// TODO: ..."
   },
-  "header{{{": {
-    "prefix": "header_1",
-    "body": [
-      "// ${1:headname} ----------------------------------------------------------- {{{",
-      "//",
-      "$2",
-      "//",
-      "//  }}}"
-    ],
-    "description": "create header --- {{{"
-  },
-  "header###": {
-    "prefix": "header_2",
-    "body": [
-      "// ##############################################################################",
-      "// ${1:string_header}",
-      "// ##############################################################################",
-      "$2"
-    ],
-    "description": "create header --- ###"
-  },
   "require": {
     "prefix": "req_",
     "body": "require('${1:module}')",
@@ -60,82 +39,82 @@
     "body": "import ${2:*} as ${3:name} from '${1:module}'",
     "description": "import * as name from 'module'"
   },
-  "var assignment": {
+  "var:create": {
     "prefix": "var_",
-    "body": "var ${1:name} = ${2:value}",
+    "body": "var ${1:name} = ${0:value}",
     "description": "var name = value"
   },
-  "var statement": {
+  "var:init": {
     "prefix": "var_init",
-    "body": "var ${1:name}",
-    "description": "var name"
+    "body": "let ${1:name}: ${0:type}",
+    "description": "Variable init"
   },
-  "let statement": {
+  "let:create": {
     "prefix": "let_",
-    "body": "let ${1:name}",
+    "body": "let ${1:name} = ${0:value}",
     "description": "let name"
   },
-  "let assignment awaited": {
+  "let:await": {
     "prefix": "let_await",
     "body": "let ${1:name} = await ${2:value}",
     "description": "let name = await value"
   },
-  "let assignment yielded": {
+  "let:yield": {
     "prefix": "let_yield",
     "body": "let ${1:name} = yield ${2:value}",
     "description": "let name = yield value"
   },
-  "const statement": {
+  "const:create": {
     "prefix": "const_",
     "body": "const ${1:name} = ${0}",
     "description": "const name"
   },
-  "const statement from destructuring": {
-    "prefix": "const_destructuring",
+  "const:destructuring": {
+    "prefix": "const_d",
     "body": "const { ${2:prop} } = ${1:value}",
     "description": "const { prop } = value"
   },
-  "const statement from array destructuring": {
-    "prefix": "const_array_d",
-    "body": "const [ ${2:prop} ] = ${1:value}",
-    "description": "const [ prop ] = value"
-  },
-  "const destructuring assignment awaited": {
-    "prefix": "cosnt_a_d",
-    "body": "const { ${1:name} } = await ${2:value}",
-    "description": "const { name } = await value"
-  },
-  "const object": {
+  "const:object": {
     "prefix": "const_obj",
     "body": "const ${1:name} = {\n\t${0}\n}",
     "description": "const name = {\n\n}"
   },
-  "const new statement": {
+  "const:new_object": {
     "prefix": "const_new_obj",
     "body": ["const ${1:name} = new ${2:type}(${3:arguments});$0"],
     "description": "const name = new type(arguments);"
   },
-  "const array": {
+  "const:array": {
     "prefix": "const_array",
     "body": "const ${1:name} = [\n\t${0}\n]",
     "description": "const name = [\n\n]"
   },
-  "const assignment awaited": {
+  "const:array_destructing": {
+    "prefix": "const_array_d",
+    "body": "const [ ${2:prop} ] = ${1:value}",
+    "description": "const [ prop ] = value"
+  },
+  "const:await": {
     "prefix": "const_await",
     "body": "const ${1:name} = await ${2:value}",
     "description": "const name = await value"
   },
-  "const assignment yielded": {
+  "const:await_destructing": {
+    "prefix": "cosnt_await_d",
+    "body": "const { ${1:name} } = await ${2:value}",
+    "description": "const { name } = await value"
+  },
+  "const:yield": {
     "prefix": "const_yield",
     "body": "const ${1:name} = yield ${2:value}",
     "description": "const name = yield value"
   },
-  "const module = require('module')": {
+  "const:require": {
     "prefix": "const_require",
     "body": "const ${1:module} = require('${1:module}')",
     "description": "const module = require('module')"
   },
-  "const module export": {
+  "const:export": {
     "prefix": "const_export",
     "body": "export const ${1:member} = ${2:value}",
     "description": "export const member = value"

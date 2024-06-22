@@ -1,0 +1,114 @@
+{
+  "lambda:param with return": {
+    "prefix": "lambda_",
+    "body": ["lambda ${1:param1}, ${2:param2}: ${3:return_value}"],
+    "description": "Creates a lambda function with 2 parameters and return value"
+  },
+  "lambda:async (no params)": {
+    "prefix": "lambda_async",
+    "body": ["async lambda: "],
+    "description": "Creates an async lambda function without parameters"
+  },
+  "lambda:async": {
+    "prefix": "lambda_async_with_param",
+    "body": ["async lambda ${1:param}: "],
+    "description": "Creates an async lambda function with one parameter"
+  },
+  "lambda:map:list": {
+    "prefix": "lambda_map_list",
+    "body": ["list(map(lambda ${1:item}: ${2:expression}, ${3:iterable}))${0}"],
+    "description": "Applies lambda function to each item in a list using map"
+  },
+  "lambda:map:tuple": {
+    "prefix": "lambda_map_tuple",
+    "body": [
+      "tuple(map(lambda ${1:item}: ${2:expression}, ${3:iterable}))${0}"
+    ],
+    "description": "Applies lambda function to each item in a tuple using map"
+  },
+  "lambda:async:map:list": {
+    "prefix": "lambda_async_map_list",
+    "body": [
+      "await asyncio.gather(*map(lambda ${1:item}: ${2:expression}, ${3:iterable}))${0}"
+    ],
+    "description": "Applies async lambda function to each item in a list using map"
+  },
+  "lambda:async:map:tuple": {
+    "prefix": "lambda_async_map_tuple",
+    "body": [
+      "await asyncio.gather(*map(lambda ${1:item}: ${2:expression}, ${3:iterable}))${0}"
+    ],
+    "description": "Applies async lambda function to each item in a tuple using map"
+  },
+  "lambda:filter": {
+    "prefix": "lambda_filter",
+    "body": [
+      "list(filter(lambda ${1:item}: ${2:condition}, ${3:iterable}))${0}"
+    ],
+    "description": "Filters an iterable using a lambda function"
+  },
+  "lambda:sorted": {
+    "prefix": "lambda_sorted",
+    "body": [
+      "sorted(${1:iterable}, key=lambda ${2:item}: ${3:key_expression})${0}"
+    ],
+    "description": "Sorts an iterable using a lambda function for key"
+  },
+  "lambda:Reduce": {
+    "prefix": "lambda_reduce",
+    "body": [
+      "functools.reduce(lambda ${1:acc}, ${2:item}: ${3:combine_logic}, ${4:iterable})${0}"
+    ],
+    "description": "Applies a lambda function to combine items of an iterable to a single value"
+  },
+  "lambda:list comprehension": {
+    "prefix": "lambda_list_comp",
+    "body": [
+      "[${1:expression} for ${2:item} in ${3:iterable} if ${4:condition}]${0}"
+    ],
+    "description": "Creates a list using lambda function within list comprehension"
+  },
+  "lambda:dictionary access": {
+    "prefix": "lambda_dict_access",
+    "body": [
+      "${1:dictionary}[${2:key}] if ${2:key} in ${1:dictionary} else ${3:default_value}${0}"
+    ],
+    "description": "Accesses a value in a dictionary using lambda function"
+  },
+  "lambda:any": {
+    "prefix": "lambda_any",
+    "body": ["any(lambda ${1:item}: ${2:condition}, ${3:iterable})${0}"],
+    "description": "Checks if any item in iterable satisfies a condition using lambda function"
+  },
+  "lambda:all": {
+    "prefix": "lambda_all",
+    "body": ["all(lambda ${1:item}: ${2:condition}, ${3:iterable})${0}"],
+    "description": "Checks if all items in iterable satisfy a condition using lambda function"
+  },
+  "lambda:max": {
+    "prefix": "lambda_max",
+    "body": [
+      "max(${1:iterable}, key=lambda ${2:item}: ${3:key_expression})${0}"
+    ],
+    "description": "Finds the maximum item in iterable using lambda function for key"
+  },
+  "lambda:min": {
+    "prefix": "lambda_min",
+    "body": [
+      "min(${1:iterable}, key=lambda ${2:item}: ${3:key_expression})${0}"
+    ],
+    "description": "Finds the minimum item in iterable using lambda function for key"
+  },
+  "lambda:tuple creation": {
+    "prefix": "lambda_tuple_creation",
+    "body": [
+      "(${1:lambda_param1}, ${2:lambda_param2}) => (${3:expression1}, ${4:expression2})"
+    ],
+    "description": "Creates a tuple using lambda function"
+  },
+  "lambda:list concatenation": {
+    "prefix": "lambda_list_merge",
+    "body": ["lambda ${1:list1}, ${2:list2}: ${1:list1} + ${2:list2}"],
+    "description": "Concatenates two lists using lambda function"
+  }
+}

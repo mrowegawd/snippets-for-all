@@ -1,0 +1,345 @@
+{
+  "types:typeof:checking with typeof": {
+    "prefix": "type_check_typeof",
+    "body": ["typeof ${1:variable} === '${2:string}'"],
+    "description": "Type checking using typeof operator"
+  },
+  "types:typeof:narrowing with typeof and type guards": {
+    "prefix": "type_check_typeof_guard",
+    "body": [
+      "if (typeof ${1:variable} === '${2:object}') {",
+      "    const ${3:variable} = ${1:variable} as ${2:object};",
+      "    // ${1:variable} is of type ${2:object}",
+      "} else {",
+      "    // ${1:variable} is not of type ${2:object}",
+      "}"
+    ],
+    "description": "Type narrowing using typeof and type guards in TypeScript"
+  },
+  "types:instanceof:checking with instanceof": {
+    "prefix": "type_check_instanceof",
+    "body": ["${1:variable} instanceof ${2:ClassName}"],
+    "description": "Type checking using instanceof operator"
+  },
+  "types:instanceof:guard with instanceof (for custom classes)": {
+    "prefix": "type_check_instanceof_guard",
+    "body": [
+      "if (${1:variable} instanceof ${2:ClassName}) {",
+      "    // ${1:variable} is an instance of ${2:ClassName}",
+      "} else {",
+      "    // ${1:variable} is not an instance of ${2:ClassName}",
+      "}"
+    ],
+    "description": "Type guard using instanceof for custom classes in TypeScript"
+  },
+  "types:guard function": {
+    "prefix": "type_check_function_guard",
+    "body": [
+      "function is${1:Type}(obj: any): obj is ${1:Type} {",
+      "\treturn typeof obj === 'object' && obj !== null /* add specific checks */;",
+      "}",
+      "",
+      "if (is${1:Type}(${2:variable})) {",
+      "\t// ${2:variable} is of type ${1:Type}",
+      "} else {",
+      "\t// ${2:variable} is not of type ${1:Type}",
+      "}"
+    ],
+    "description": "Type guard function for checking TypeScript types"
+  },
+  "types:guard with Array.isArray()": {
+    "prefix": "type_check_array_isarray_guard",
+    "body": [
+      "if (Array.isArray(${1:variable})) {",
+      "    // ${1:variable} is an array",
+      "} else {",
+      "    // ${1:variable} is not an array",
+      "}"
+    ],
+    "description": "Type guard using Array.isArray() in TypeScript"
+  },
+  "types:guard for object properties": {
+    "prefix": "type_check_object_properties_guard",
+    "body": [
+      "interface ${1:ObjectType} {",
+      "    ${2:property1}: ${3:Type1};",
+      "    ${4:property2}: ${5:Type2};",
+      "}",
+      "",
+      "function hasProperty(obj: any, prop: string): obj is ${1:ObjectType} {",
+      "    return typeof obj === 'object' && obj !== null && '${2:property1}' in obj && '${4:property2}' in obj;",
+      "}",
+      "",
+      "const ${6:obj}: any = ${7:getObject}();",
+      "if (hasProperty(${6:obj}, '${2:property1}') && hasProperty(${6:obj}, '${4:property2}')) {",
+      "    // ${6:obj} has properties ${2:property1} of type ${3:Type1} and ${4:property2} of type ${5:Type2}",
+      "} else {",
+      "    // ${6:obj} does not have expected properties",
+      "}"
+    ],
+    "description": "Type guard for object properties in TypeScript"
+  },
+  "types:guard for null and undefined": {
+    "prefix": "type_check_null_and_undefined_guard",
+    "body": [
+      "function isNotNullOrUndefined<T>(arg: T | null | undefined): arg is T {",
+      "    return arg !== null && arg !== undefined;",
+      "}",
+      "",
+      "const ${1:variable}: ${2:Type} | null | undefined = ${3:getValue}();",
+      "if (isNotNullOrUndefined(${1:variable})) {",
+      "    // ${1:variable} is of type ${2:Type}",
+      "} else {",
+      "    // ${1:variable} is null or undefined",
+      "}"
+    ],
+    "description": "Type guard for null and undefined in TypeScript"
+  },
+  "types:guard checking with typeof and type guards": {
+    "prefix": "type_check_typeof_guard",
+    "body": [
+      "function is${1:Type}(obj: any): obj is ${1:Type} {",
+      "    return typeof obj === '${2:type}';",
+      "}",
+      "",
+      "const ${3:variable}: any = ${4:getValue}();",
+      "if (is${1:Type}(${3:variable})) {",
+      "    // ${3:variable} is of type ${1:Type}",
+      "} else {",
+      "    // ${3:variable} is not of type ${1:Type}",
+      "}"
+    ],
+    "description": "Type checking with typeof and type guards in TypeScript"
+  },
+  "types:in:with 'in' operator": {
+    "prefix": "type_check_in_operator",
+    "body": [
+      "if ('${1:property}' in ${2:object}) {",
+      "    // ${1:property} exists in ${2:object}",
+      "} else {",
+      "    // ${1:property} does not exist in ${2:object}",
+      "}"
+    ],
+    "description": "Type narrowing using 'in' operator in TypeScript"
+  },
+  "types:in:checking with 'in' operator (for object keys)": {
+    "prefix": "type_check_in_operator_object_keys",
+    "body": [
+      "if ('${1:key}' in ${2:object}) {",
+      "    const ${3:value} = ${2}.${1:key};",
+      "    // Handle ${3:value} of type ${4:ValueType}",
+      "} else {",
+      "    // '${1:key}' does not exist in ${2:object}",
+      "}"
+    ],
+    "description": "Type checking using 'in' operator for object keys in TypeScript"
+  },
+  "types:conditional type assignments": {
+    "prefix": "type_check_conditional_assignment",
+    "body": [
+      "type ${1:ResultType} = ${2:Condition} extends true ? ${3:TypeIfTrue} : ${4:TypeIfFalse};"
+    ],
+    "description": "Conditional type assignments in TypeScript"
+  },
+  "types:keyof:checking with keyof": {
+    "prefix": "type_check_keyof",
+    "body": [
+      "type ${1:Key} = keyof ${2:ObjectType};",
+      "const ${3:key}: ${1:Key} = '${4:propertyName}';",
+      "const ${5:value} = ${2}.${3:key};"
+    ],
+    "description": "Type checking using keyof operator in TypeScript"
+  },
+  "types:keyof::checking with keyof for generic types": {
+    "prefix": "type_check_with_keyof",
+    "body": [
+      "type ${1:Key} = keyof ${2:T};",
+      "function getProperty(obj: ${2:T}, key: ${1:Key}): ${3:T[${1:Key}] | undefined} {",
+      "    return obj[key];",
+      "}"
+    ],
+    "description": "Type checking using keyof operator for generic types in TypeScript"
+  },
+  "types:assertion:for function return type": {
+    "prefix": "type_check_assertion_ret",
+    "body": ["return ${3:result} as ${2:ReturnType};"],
+    "description": "Type assertion for function return type in TypeScript"
+  },
+  "types:assertion:type casting": {
+    "prefix": "type_check_assertion",
+    "body": ["const ${1:typed_variable} = ${2:variable} as ${3:Type};"],
+    "description": "Type assertion (type casting) in TypeScript"
+  },
+  "types:assertion:checking with 'as' assertion": {
+    "prefix": "typpe_check_assertion_as",
+    "body": ["const ${1:result} = (${2:expression}) as ${3:Type};"],
+    "description": "Type checking using 'as' assertion in TypeScript"
+  },
+  "types:assertion:for type aliases": {
+    "prefix": "type_check_type_alias",
+    "body": [
+      "type ${1:TypeAlias} = ${2:Type};",
+      "const ${3:variable}: ${1:TypeAlias} = ${4:value} as ${1:TypeAlias};"
+    ],
+    "description": "Type assertion for type aliases in TypeScript"
+  },
+  "types:assertion:with optional chaining": {
+    "prefix": "type_check_assertion_optional_chaining",
+    "body": ["const ${1:value} = ${2:object}?.${3:property} as ${4:Type};"],
+    "description": "Type assertion for optional chaining in TypeScript"
+  },
+  "types:assertion:for function return type (with union types)": {
+    "prefix": "type_check_assertion_return_type_union",
+    "body": [
+      "function ${1:functionName}(): ${2:ReturnType1} | ${3:ReturnType2} {",
+      "    return ${4:result} as ${2:ReturnType1} | ${3:ReturnType2};",
+      "}"
+    ],
+    "description": "Type assertion for function return type with union types in TypeScript"
+  },
+  "types:assertion:for Promise resolving": {
+    "prefix": "type_check_assertion_promise_resolving",
+    "body": [
+      "${1:promise}.then((${2:result}) => {",
+      "    const ${3:resolvedValue} = ${2:result} as ${4:ResolvedType};",
+      "    // Handle ${3:resolvedValue} of type ${4:ResolvedType}",
+      "}).catch((${5:error}) => {",
+      "    // Handle ${5:error}",
+      "});"
+    ],
+    "description": "Type assertion for Promise resolving in TypeScript"
+  },
+  "types:assertion:checking with type assertion for unknown type": {
+    "prefix": "type_check_assertion_unknown_type",
+    "body": [
+      "function assertIs${1:Type}(value: unknown): asserts value is ${1:Type} {",
+      "    if (typeof value !== 'object' || value === null /* additional checks */) {",
+      "        throw new Error(`Expected '${1:Type}' but received '${value}'`);",
+      "    }",
+      "}",
+      "",
+      "let ${2:value}: unknown = ${3:getValue}();",
+      "assertIs${1:Type}(${2:value});",
+      "// Now ${2:value} is of type ${1:Type}"
+    ],
+    "description": "Type checking with type assertion for unknown type in TypeScript"
+  },
+  "types:assertion:for function returning any": {
+    "prefix": "type_check_assertion_return_any",
+    "body": [
+      "function parseData(data: any): ${1:ParsedType} {",
+      "    return ${2:parseFunction}(data) as ${1:ParsedType};",
+      "}"
+    ],
+    "description": "Type assertion for function returning 'any' in TypeScript"
+  },
+  "types:assertion:for array element": {
+    "prefix": "type_check_assertion_array_element",
+    "body": [
+      "const ${1:result} = (${2:array}[${3:index}]) as ${4:ElementType};"
+    ],
+    "description": "Type assertion for array element in TypeScript"
+  },
+  "types:assertion for using 'as const'": {
+    "prefix": "type_check_assertion_as_const",
+    "body": [
+      "const ${1:array}: readonly ${2:ArrayType}[] = ${3:values} as const;"
+    ],
+    "description": "Type assertion for using 'as const' in TypeScript"
+  },
+  "types:checking with conditional type": {
+    "prefix": "type_check_conditional",
+    "body": [
+      "type ${1:TypeCheck} = ${2:Condition} ? ${3:TypeIfTrue} : ${4:TypeIfFalse};"
+    ],
+    "description": "Conditional type checks in TypeScript"
+  },
+  "types:checking for null and undefined": {
+    "prefix": "type_check_null_and_undefined",
+    "body": [
+      "if (${1:variable} !== null && ${1:variable} !== undefined) {",
+      "    // ${1:variable} is not null or undefined",
+      "} else {",
+      "    // ${1:variable} is null or undefined",
+      "}"
+    ],
+    "description": "Type checking for null and undefined in TypeScript"
+  },
+  "types:checking for function parameters (with optional parameters)": {
+    "prefix": "type_check_function_parameters_optional",
+    "body": [
+      "function ${1:functionName}(${2:param1}: ${3:Type1}${4:=defaultValue1}, ${5:param2}?: ${6:Type2}) {",
+      "    // Function body",
+      "}"
+    ],
+    "description": "Type checking for function parameters with optional parameters in TypeScript"
+  },
+  "types:checking for object properties (with optional properties)": {
+    "prefix": "type_check_object_properties_optional",
+    "body": [
+      "const ${1:object}: { ${2:property1}: ${3:Type1}, ${4:property2}?: ${5:Type2} } = {",
+      "    ${2:property1}: ${6:value1}",
+      "};"
+    ],
+    "description": "Type checking for object properties with optional properties in TypeScript"
+  },
+  "types:checking for array elements": {
+    "prefix": "type_check_array_elements",
+    "body": [
+      "const ${1:result} = ${2:array}.map((${3:item}) => ${3:item} as ${4:ElementType});"
+    ],
+    "description": "Type checking for array elements in TypeScript"
+  },
+  "types:checking for array operations with every and some": {
+    "prefix": "typecheckarrayoperations",
+    "body": [
+      "const ${1:isValid1}: boolean = ${2:array}.every((${3:item}: ${4:ItemType}) => ${5:condition});",
+      "const ${6:isValid2}: boolean = ${2:array}.some((${7:item}: ${8:ItemType}) => ${9:condition});"
+    ],
+    "description": "Type checking for array operations with 'every' and 'some' in TypeScript"
+  },
+  "types:checking for using 'never' type": {
+    "prefix": "type_check_never_type",
+    "body": [
+      "function error(message: string): never {",
+      "    throw new Error(message);",
+      "}",
+      "",
+      "function validateValue(value: ${1:ValueType}) {",
+      "    if (${2:condition}) {",
+      "        return value;",
+      "    } else {",
+      "        return error('${3:Invalid value}');",
+      "    }",
+      "}"
+    ],
+    "description": "Type checking for using 'never' type in TypeScript"
+  },
+  "types:checking function parameters": {
+    "prefix": "type_check_function_parameters",
+    "body": [
+      "function ${1:functionName}(${2:param1}: ${3:Type1}, ${4:param2}: ${5:Type2}): ${6:ReturnType} {",
+      "    // Function body",
+      "}"
+    ],
+    "description": "Type checking function parameters in TypeScript"
+  },
+  "types:checking in array operations": {
+    "prefix": "type_check_array_operations",
+    "body": [
+      "const ${1:result} = ${2:array}.filter(${3:(item: ${4:ItemType}) => ${5:boolean}});"
+    ],
+    "description": "Type checking in array operations in TypeScript"
+  },
+  "types:checking in promise handling": {
+    "prefix": "type_check_promise_handling",
+    "body": [
+      "${1:promise}.then((${2:result}: ${3:ResponseType}) => {",
+      "    // Handle ${2:result} of type ${3:ResponseType}",
+      "}).catch((${4:error}: any) => {",
+      "    // Handle ${4:error}",
+      "});"
+    ],
+    "description": "Type checking in promise handling in TypeScript"
+  }
+}
