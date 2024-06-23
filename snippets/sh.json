@@ -12,29 +12,242 @@
       "It can be useful if you aren't aware of the absolute path or don't want to search for it.\n"
     ]
   },
-  "figlet": {
-    "prefix": "figlet_",
-    "body": "figlet -f standard -w \"$(tput cols)\" -c \"$0\" | lolcat",
-    "description": "fancy \"text\", can use $(cmd)"
-  },
-
   "echo": {
     "prefix": "echo_",
     "body": "echo \"${0:message}\"",
     "description": "echo \"message\""
+  },
+  "var:figlet": {
+    "prefix": "var_figlet",
+    "body": "figlet -f standard -w \"$(tput cols)\" -c \"$0\" | lolcat",
+    "description": "fancy \"text\", can use $(cmd)"
+  },
+  "var:string": {
+    "prefix": "var_",
+    "body": ["${1:myvar}=$0"],
+    "description": "Declare variable in Bash"
+  },
+  "var:array": {
+    "prefix": "var_array",
+    "body": ["my_array=(element1 element2 element3)"],
+    "description": "Declare an array in Bash"
+  },
+  "echo:in Bash": {
+    "prefix": "echo_",
+    "body": ["echo \"${1:Message}\""],
+    "description": "Print message using echo in Bash"
+  },
+  "echo:with color in Bash": {
+    "prefix": "echo_with_color",
+    "body": ["echo -e \"\\033[${1:Color_Code}m${2:Message}\\033[0m\""],
+    "description": "Print message with color using echo in Bash"
+  },
+  "echo:with background color": {
+    "prefix": "echo_with_background_color",
+    "body": ["echo -e \"\\033[48;5;${1:Color_Code}m${2:Message}\\033[0m\""],
+    "description": "Print text with background color using echo in Bash"
+  },
+  "echo:with cursor positioning": {
+    "prefix": "echo_with_cursor_position",
+    "body": ["echo -e \"\\033[${1:Line};${2:Column}H${3:Message}\""],
+    "description": "Print text with cursor positioning using echo in Bash"
+  },
+  "echo:to clear terminal screen": {
+    "prefix": "echo_clear",
+    "body": ["echo -e \"\\033[2J\\033[H\""],
+    "description": "Clear terminal screen using echo in Bash"
+  },
+  "table:output in Bash": {
+    "prefix": "table_output",
+    "body": [
+      "declare -a headers=(${1:Header1} ${2:Header2} ${3:Header3})",
+      "declare -a col1=(${4:Data1_1} ${5:Data1_2} ${6:Data1_3})",
+      "declare -a col2=(${7:Data2_1} ${8:Data2_2} ${9:Data2_3})",
+      "declare -a col3=(${10:Data3_1} ${11:Data3_2} ${12:Data3_3})",
+      "max_len=(${#headers[0]} ${#headers[1]} ${#headers[2]})",
+      "for (( i=0; i<${#headers[@]}; i++ )); do",
+      "    for (( j=0; j<3; j++ )); do",
+      "        [[ ${max_len[$j]} -lt ${#headers[$j]} ]] && max_len[$j]=${#headers[$j]}",
+      "    done",
+      "done",
+      "for (( i=0; i<${#headers[@]}; i++ )); do",
+      "    printf \"%-${max_len[0]}s  %-${max_len[1]}s  %-${max_len[2]}s\\n\" \"${headers[$i]}\" \"${col1[$i]}\" \"${col2[$i]}\" \"${col3[$i]}\"",
+      "done"
+    ],
+    "description": "Print formatted table output in Bash"
+  },
+  "printf:in Bash": {
+    "prefix": "printf_",
+    "body": ["printf \"${1:Format}\" ${2:Arguments}"],
+    "description": "Print formatted output using printf in Bash"
+  },
+  "printf:with formatted output": {
+    "prefix": "printf_formatted",
+    "body": ["printf \"%-${1:width}.${2:precision}${3:type}\" ${4:arguments}"],
+    "description": "Print formatted output using printf in Bash"
+  },
+  "array:length": {
+    "prefix": "array_len",
+    "body": ["echo \"Number of elements in the array: ${#my_array[@]}\""],
+    "description": "Get the length of an array in Bash"
+  },
+  "array:index": {
+    "prefix": "array_index",
+    "body": ["echo \"First element: ${my_array[0]}\""],
+    "description": "Access an element of an array in Bash"
+  },
+  "array:loop through array": {
+    "prefix": "array_loop",
+    "body": [
+      "for element in \"${my_array[@]}\";",
+      "do",
+      "  echo \"$element\"",
+      "done"
+    ],
+    "description": "Loop through elements of an array in Bash"
+  },
+  "array:init": {
+    "prefix": "array_empty",
+    "body": ["my_array=()"],
+    "description": "Declare an empty array in Bash"
+  },
+  "array:add element": {
+    "prefix": "array_add",
+    "body": ["my_array+=(new_element)"],
+    "description": "Add an element to an array in Bash"
+  },
+  "array:unset array": {
+    "prefix": "arrayunset",
+    "body": ["unset my_array"],
+    "description": "Unset (delete) an array in Bash"
+  },
+  "file:list files in directory": {
+    "prefix": "file_list_in_dir",
+    "body": ["for file in *;", "do", "  echo \"$file\"", "done"],
+    "description": "List files in the current directory in Bash"
+  },
+  "file:check if file exists": {
+    "prefix": "file_if_exists",
+    "body": [
+      "if [ -e \"$file_path\" ];",
+      "then",
+      "  echo \"File exists.\"",
+      "else",
+      "  echo \"File does not exist.\"",
+      "fi"
+    ],
+    "description": "Check if a file exists in Bash"
+  },
+  "file:check file size": {
+    "prefix": "file_size",
+    "body": [
+      "file_size=$(stat -c %s \"$file_path\")",
+      "echo \"File size: $file_size bytes\""
+    ],
+    "description": "Get the size of a file in Bash"
+  },
+  "file:check file content": {
+    "prefix": "file_check_content",
+    "body": [
+      "if grep -q \"search_string\" \"$file_path\";",
+      "then",
+      "  echo \"Search string found in file.\"",
+      "else",
+      "  echo \"Search string not found in file.\"",
+      "fi"
+    ],
+    "description": "Check if a file contains a specific string in Bash"
+  },
+  "file:Create Directory": {
+    "prefix": "file_create_dir",
+    "body": ["mkdir -p \"$dir_path\""],
+    "description": "Create a directory (including parent directories) in Bash"
+  },
+  "file:delete file": {
+    "prefix": "file_delete",
+    "body": ["rm \"$file_path\""],
+    "description": "Delete a file in Bash"
+  },
+  "file:copy file": {
+    "prefix": "file_copy",
+    "body": ["cp \"$source_file\" \"$destination_directory\""],
+    "description": "Copy a file to a destination directory in Bash"
+  },
+  "file:move/rename file": {
+    "prefix": "file_move_or_rename",
+    "body": ["mv \"$source_file\" \"$destination_file\""],
+    "description": "Move or rename a file in Bash"
+  },
+  "file:check file type": {
+    "prefix": "file_filetype",
+    "body": [
+      "file_type=$(file -b --mime-type \"$file_path\")",
+      "echo \"File type: $file_type\""
+    ],
+    "description": "Get the type of a file in Bash"
+  },
+  "file:check file permissions": {
+    "prefix": "file_check_permissions",
+    "body": [
+      "file_permissions=$(stat -c %a \"$file_path\")",
+      "echo \"File permissions: $file_permissions\""
+    ],
+    "description": "Get the permissions of a file in Bash"
+  },
+  "awk:select column": {
+    "prefix": "awk_sel",
+    "body": ["awk '{ print ${1:$2} }' $3"],
+    "description": "Select specific column from file using AWK"
+  },
+  "awk:custom separator": {
+    "prefix": "awk_sep",
+    "body": ["awk -F '${1:separator}' '{ ${2:action} }' $3"],
+    "description": "Run AWK with custom field separator"
+  },
+  "awk:custom output format": {
+    "prefix": "awk_fmt",
+    "body": ["awk '{ printf(\"${1:format}\", ${2:variables}) }' $3"],
+    "description": "Format output using AWK"
+  },
+  "awk:mathematical operation": {
+    "prefix": "awk_math",
+    "body": [
+      "awk '{ result = ${1:operand1} ${2:+} ${3:operand2}; print result }' $4"
+    ],
+    "description": "Perform mathematical operation using AWK"
   },
   "read": {
     "prefix": "read_",
     "body": "read -r ${0:VAR}",
     "description": "read -r $VAR"
   },
+  "sed:replace text": {
+    "prefix": "sed_replace",
+    "body": ["sed -i 's/${1:pattern}/${2:replacement}/g' $3"],
+    "description": "Replace text in file using sed"
+  },
+  "sed:delete lines by pattern": {
+    "prefix": "sed_delete_by_pattern",
+    "body": ["sed -i '/${1:pattern}/d' $2"],
+    "description": "Delete lines matching pattern using sed"
+  },
+  "sed:add text at beginning or end of line": {
+    "prefix": "set_text_at_begin_or_end",
+    "body": ["sed -i 's/^/${1:text}/' $2", "sed -i 's/$/${1:text}/' $2"],
+    "description": "Add text at beginning or end of each line using sed"
+  },
+  "sed:extract text by pattern": {
+    "prefix": "sed_extract_text_by_pattern",
+    "body": ["sed -n 's/${1:pattern}/\\${2:capture}/p' $3"],
+    "description": "Extract text based on pattern using sed"
+  },
   "if": {
     "prefix": "if_",
     "body": "if [[ ${1:condition} ]]; then\n\t${0}\nfi",
     "description": "if [[ condition ]]; then\n\nfi"
   },
-  "elseif": {
-    "prefix": "elif_",
+  "if:elif": {
+    "prefix": "if_elif",
     "body": "elif [[ ${1:condition} ]]; then\n\t${0}",
     "description": "elif [[ ${1:condition} ]]; then\n\t${0}"
   },
@@ -43,12 +256,12 @@
     "body": "else\n\t${0:command}",
     "description": "else"
   },
-  "for_in": {
+  "for:in": {
     "prefix": "for_in",
     "body": "for ${1:VAR} in ${0:LIST}\ndo\n\techo \"\\$${1:VAR}\"\ndone\n",
     "description": "for loop in list"
   },
-  "for_i": {
+  "for:i": {
     "prefix": "for_i",
     "body": "for ((${1:i} = 0; ${1:i} < ${2:10}; ${1:i}++)); do\n\techo \"\\$${0:i}\"\ndone\n",
     "description": "for ((i = 0; i < 10; i++)); do\n\techo \"\\$i\"\ndone\n"
@@ -68,10 +281,59 @@
     "body": "${1:name} ()\n{\n\t${0}\n}",
     "description": "nameFunc()\n{\n\n}"
   },
-  "case": {
-    "prefix": "case_",
-    "body": "case \"\\$${1:VAR}\" in\n\t${2:1}) echo 1\n\t;;\n\t${3:2|3}) echo 2 or 3\n\t;;\n\t*) echo default\n\t;;\nesac\n",
-    "description": "case \"\\$VAR\" in\n\t${2:1}) echo 1\n\t;;\n\t${3:2|3}) echo 2 or 3\n\t;;\n\t*) echo default\n\t;;\nesac\n"
+  "switch:case in Bash": {
+    "prefix": "switch_",
+    "body": [
+      "case ${1:variable} in",
+      "\t${2:pattern1})",
+      "\t\t${3:commands}",
+      "\t\t;;",
+      "\t${4:pattern2})",
+      "\t\t${5:commands}",
+      "\t\t;;",
+      "\t${6:*)",
+      "\t\t${7:default commands}",
+      "\t\t;;",
+      "esac"
+    ],
+    "description": "Switch case statement in Bash"
+  },
+  "switch:case:body multiple patterns": {
+    "prefix": "switch_case_body_multiple_patterns",
+    "body": ["\t${1:pattern1}|${2:pattern2})", "\t\t${3:commands}", "\t\t;;"],
+    "description": "Switch case body with multiple patterns"
+  },
+  "switch:case:body different actions": {
+    "prefix": "switch_case_body_different_actions",
+    "body": [
+      "\t${1:pattern1})",
+      "\t\t${2:action1}",
+      "\t\t;;",
+      "\t${3:pattern2})",
+      "\t\t${4:action2}",
+      "\t\t;;"
+    ],
+    "description": "Switch case body with different actions for each pattern"
+  },
+  "switch:case:body with default": {
+    "prefix": "switch_case_body_default",
+    "body": [
+      "\t${1:pattern1})",
+      "\t\t${2:commands}",
+      "\t\t;;",
+      "\t${3:pattern2})",
+      "\t\t${4:commands}",
+      "\t\t;;",
+      "\t${5:*)",
+      "\t\t${6:default commands}",
+      "\t\t;;"
+    ],
+    "description": "Switch case body with default case"
+  },
+  "switch:case:body for empty/null": {
+    "prefix": "switch_case_body_empty",
+    "body": ["\t${1:-})", "\t\t${2:commands}", "\t\t;;"],
+    "description": "Switch case body for empty or null value"
   },
   "break": {
     "prefix": "break_",
