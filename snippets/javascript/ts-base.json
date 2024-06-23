@@ -14,23 +14,44 @@
     "body": "require('${1:module}')",
     "description": "require(\"module\")"
   },
-  "exports.member": {
-    "prefix": "exp_",
+  "export:named declaration": {
+    "prefix": "export_",
+    "body": ["export { ${1:exportedName} };", "$0"],
+    "description": "Declare a named export in TypeScript"
+  },
+  "export:member": {
+    "prefix": "exports_member",
     "body": "exports.${1:member} = ${2:value}",
     "description": "exports.member = value"
   },
-  "module.exports": {
-    "prefix": "exp_module",
+  "export:default:declaration": {
+    "prefix": "export_default",
+    "body": ["export default ${1:expression};", "$0"],
+    "description": "Declare a default export in TypeScript"
+  },
+  "module:exports": {
+    "prefix": "module_exports",
     "body": "module.exports = ${1:name}",
     "description": "module.exports = name"
   },
-  "import module": {
-    "prefix": "imp_",
-    "body": "import ${2:*} from '${1:module}'",
-    "description": "import * from 'module'"
+  "module:ambient:declaration": {
+    "prefix": "module_ambient",
+    "body": ["declare module '${1:moduleName}' {", "\t$0", "}"],
+
+    "description": "Declare an ambient module in TypeScript"
+  },
+  "namespace:declaration": {
+    "prefix": "namespace_",
+    "body": ["namespace ${1:NamespaceName} {", "\t$0", "}"],
+    "description": "Declare a namespace in TypeScript"
+  },
+  "namespace:module export": {
+    "prefix": "namespace_export",
+    "body": ["export namespace ${1:NamespaceName} {", "\t$0", "}"],
+    "description": "Export a namespace module in TypeScript"
   },
   "import module destructured": {
-    "prefix": "imp_from_d",
+    "prefix": "imp_from",
     "body": "import {$2} from '${1:module}'",
     "description": "import value from 'module'"
   },
@@ -39,85 +60,205 @@
     "body": "import ${2:*} as ${3:name} from '${1:module}'",
     "description": "import * as name from 'module'"
   },
-  "var assignment": {
-    "prefix": "var_",
-    "body": "var ${1:name} = ${2:value}",
-    "description": "var name = value"
+  "import statement": {
+    "prefix": "imp_",
+    "body": ["import { ${1:importedName} } from '${2:module}';", "$0"],
+    "description": "Import statement in TypeScript"
   },
-  "var statement": {
-    "prefix": "var_init",
-    "body": "var ${1:name}",
-    "description": "var name"
+  "Import Default Statement": {
+    "prefix": "imp_default",
+    "body": ["import ${1:defaultName} from '${2:module}';", "$0"],
+    "description": "Import default statement in TypeScript"
   },
-  "let statement": {
-    "prefix": "let_",
-    "body": "let ${1:name}",
-    "description": "let name"
+  "import all statement": {
+    "prefix": "imp_all",
+    "body": ["import * as ${1:namespace} from '${2:module}';", "$0"],
+    "description": "Import all statement in TypeScript"
   },
-  "let assignment awaited": {
-    "prefix": "let_await",
-    "body": "let ${1:name} = await ${2:value}",
-    "description": "let name = await value"
-  },
-  "let assignment yielded": {
-    "prefix": "let_yield",
-    "body": "let ${1:name} = yield ${2:value}",
-    "description": "let name = yield value"
-  },
-  "const statement": {
+  "const:statement": {
     "prefix": "const_",
     "body": "const ${1:name} = ${0}",
     "description": "const name"
   },
-  "const statement from destructuring": {
+  "const:array": {
+    "prefix": "const_array",
+    "body": ["const ${1:arrayName}: ${2:Type}[] = [${3}]$0;"]
+  },
+  "const:array emtpy": {
+    "prefix": "const_array_empty",
+    "body": ["const ${1:arrayName}: ${2:Type}[] = [];", "$0"],
+    "description": "Declare an empty array in TypeScript"
+  },
+  "const:object": {
+    "prefix": "const_obj",
+    "body": [
+      "const ${1:objName}: { ${2:key}: ${3:Type} } = { ${2:key}: ${4:value} }$0;"
+    ],
+    "description": "Declare an object in TypeScript"
+  },
+  "const:object empty": {
+    "prefix": "const_obj_empty",
+    "body": ["const ${1:objName}: { ${2:key}: ${3:Type} } = {};", "$0"],
+    "description": "Declare an empty object in TypeScript"
+  },
+  "const:map": {
+    "prefix": "const_map",
+    "body": [
+      "const ${1:mapName}: Map<${2:KeyType}, ${3:ValueType}> = new Map();$0"
+    ],
+    "description": "Declare a Map in TypeScript"
+  },
+  "const:map empty": {
+    "prefix": "const_map_empty",
+    "body": [
+      "const ${1:mapName}: Map<${2:KeyType}, ${3:ValueType}> = new Map();",
+      "$0"
+    ],
+    "description": "Declare an empty Map in TypeScript"
+  },
+  "const:set": {
+    "prefix": "const_set",
+    "body": ["const ${1:setName}: Set<${2:Type}> = new Set([${3}]);$0"],
+    "description": "Declare a Set in TypeScript"
+  },
+  "const:set empty": {
+    "prefix": "const_set_empty",
+    "body": ["const ${1:setName}: Set<${2:Type}> = new Set();", "$0"],
+    "description": "Declare an empty Set in TypeScript"
+  },
+  "const:tuple": {
+    "prefix": "const_tuple",
+    "body": [
+      "let ${1:tupleName}: [${2:Type1}, ${3:Type2}] = [${4:value1}, ${5:value2}];$0"
+    ],
+    "description": "Declare a tuple in TypeScript"
+  },
+  "const:destructuring:statement": {
     "prefix": "const_destructuring",
     "body": "const { ${2:prop} } = ${1:value}",
     "description": "const { prop } = value"
   },
-  "const statement from array destructuring": {
+  "const:destructuring:statement from array": {
     "prefix": "const_array_d",
     "body": "const [ ${2:prop} ] = ${1:value}",
     "description": "const [ prop ] = value"
   },
-  "const destructuring assignment awaited": {
+  "const:destructuring:statement awaited": {
     "prefix": "cosnt_a_d",
     "body": "const { ${1:name} } = await ${2:value}",
     "description": "const { name } = await value"
   },
-  "const object": {
-    "prefix": "const_obj",
-    "body": "const ${1:name} = {\n\t${0}\n}",
-    "description": "const name = {\n\n}"
+  "const:promise declaration": {
+    "prefix": "const_new_promise",
+    "body": [
+      "const ${1:promiseName}: Promise<${2:Type}> = new Promise((resolve, reject) => {",
+      "\t// Resolve or reject logic",
+      "\tresolve(${3:value});",
+      "});",
+      "$0"
+    ],
+    "description": "Declare a Promise in TypeScript"
   },
-  "const new statement": {
+  "const:date object declaration": {
+    "prefix": "const_date",
+    "body": ["const ${1:dateName}: Date = new Date();", "$0"],
+    "description": "Declare a Date object in TypeScript"
+  },
+  "const:regexp object declaration": {
+    "prefix": "const_regexp",
+    "body": ["const ${1:regexName}: RegExp = /${2:pattern}/;", "$0"],
+    "description": "Declare a RegExp object in TypeScript"
+  },
+  "const:template literal": {
+    "prefix": "const_string_template",
+    "body": ["const ${1:variable}: string = `${2:expression}`;", "$0"],
+    "description": "Declare a template literal in TypeScript"
+  },
+  "const:obj class": {
     "prefix": "const_new_obj",
     "body": ["const ${1:name} = new ${2:type}(${3:arguments});$0"],
     "description": "const name = new type(arguments);"
   },
-  "const array": {
-    "prefix": "const_array",
-    "body": "const ${1:name} = [\n\t${0}\n]",
-    "description": "const name = [\n\n]"
-  },
-  "const assignment awaited": {
+  "const:assignment awaited": {
     "prefix": "const_await",
     "body": "const ${1:name} = await ${2:value}",
     "description": "const name = await value"
   },
-  "const assignment yielded": {
+  "const:assignment yielded": {
     "prefix": "const_yield",
     "body": "const ${1:name} = yield ${2:value}",
     "description": "const name = yield value"
   },
-  "const module = require('module')": {
+  "const:module = require('module')": {
     "prefix": "const_require",
     "body": "const ${1:module} = require('${1:module}')",
     "description": "const module = require('module')"
   },
-  "const module export": {
+  "const:module export": {
     "prefix": "const_export",
     "body": "export const ${1:member} = ${2:value}",
     "description": "export const member = value"
+  },
+  "chaining:optional chaining": {
+    "prefix": "chaining_optional",
+    "body": ["${1:object}.${2:property}?.${3:subproperty};", "$0"],
+    "description": "Use optional chaining operator in TypeScript"
+  },
+  "chaining:nullish coalescing operator": {
+    "prefix": "chaining_nullish",
+    "body": ["${1:variable} ?? ${2:defaultValue};", "$0"],
+    "description": "Use nullish coalescing operator in TypeScript"
+  },
+  "const:spread operator (array)": {
+    "prefix": "const_spread_array",
+    "body": [
+      "const ${1:arrayName}: ${2:Type}[] = [...${3:sourceArray}];",
+      "$0"
+    ],
+    "description": "Use spread operator for arrays in TypeScript"
+  },
+  "const:spread operator (object)": {
+    "prefix": "const_spread_object",
+    "body": [
+      "const ${1:objName}: { ...${2:sourceObject} } = { ...${2:sourceObject} };",
+      "$0"
+    ],
+    "description": "Use spread operator for objects in TypeScript"
+  },
+  "const:array:destructuring": {
+    "prefix": "const_array_destructuring",
+    "body": ["const [${1:elem1}, ${2:elem2}] = ${3:sourceArray};", "$0"],
+    "description": "Destructuring assignment for arrays in TypeScript"
+  },
+  "const:object:destructuring": {
+    "prefix": "const_object_destructuring",
+    "body": ["const { ${1:key1}, ${2:key2} } = ${3:sourceObject};", "$0"],
+    "description": "Destructuring assignment for objects in TypeScript"
+  },
+  "var:global variable declaration": {
+    "prefix": "var_global",
+    "body": [
+      "declare global {",
+      "\tvar ${1:globalVariable}: ${2:Type};",
+      "}",
+      "$0"
+    ],
+    "description": "Declare a global variable in TypeScript"
+  },
+  "let:statement": {
+    "prefix": "let_",
+    "body": "let ${1:name} = $0",
+    "description": "let name"
+  },
+  "let:assignment awaited": {
+    "prefix": "let_await",
+    "body": "let ${1:name} = await ${2:value}",
+    "description": "let name = await value"
+  },
+  "let:assignment yielded": {
+    "prefix": "let_yield",
+    "body": "let ${1:name} = yield ${2:value}",
+    "description": "let name = yield value"
   },
   "generate array of integers starting with 1": {
     "prefix": "gari",
@@ -128,16 +269,6 @@
     "prefix": "gari0",
     "body": "[...Array(${1:length}).keys()]",
     "description": "[...Array(length).keys()]"
-  },
-  "module default export": {
-    "prefix": "exp_default",
-    "body": "export default ${1:member}",
-    "description": "export default member"
-  },
-  "module default export function": {
-    "prefix": "exp_default_func",
-    "body": "export default function ${1:name} (${2:arguments}) {\n\t${0}\n}",
-    "description": "export default function nameFunc (arguments) {\n\t${0}\n}"
   },
   "typeof": {
     "prefix": "typeof_",
@@ -225,12 +356,12 @@
       "}"
     ]
   },
-  "for each": {
+  "for:each": {
     "prefix": "for_each",
     "body": ["${1:array}.forEach(${2:element} => {", "\t$0", "});"],
     "description": ["array.forEach(element => {", "", "});"]
   },
-  "for in": {
+  "for:in": {
     "prefix": "for_in",
     "body": [
       "for (const ${1:key} in ${2:object}) {",
@@ -249,12 +380,12 @@
       "}"
     ]
   },
-  "for of": {
+  "for:of": {
     "prefix": "for_of",
     "body": ["for (const ${1:iterator} of ${2:myarray}) {", "\t$0", "}"],
     "description": ["for (const iterator of array) {", "", "}"]
   },
-  "For-Await-Of Loop": {
+  "for:await-of loop": {
     "prefix": "for_of_await",
     "body": [
       "for await (const ${1:iterator} of ${2:object}) {",
@@ -298,60 +429,126 @@
     "body": ["function ${1:name}(${2:params}) {", "\t$0", "}"],
     "description": ["function name(params) {", "", "}"]
   },
-  "function anonymous": {
+  "function:anonymous": {
     "prefix": "func_anon",
     "body": "function (${1:arguments}) {${0}}",
     "description": "function (arguments) {value}"
   },
-  "function callback": {
+  "function:callback": {
     "prefix": "func_callback",
     "body": "function (err, ${1:value}) {\n\tif (err) throw err\n\t${0}\n}",
     "description": "function (err, value) {\n\tif (err) throw err\n\n}"
   },
-  "function immediately-invoked function expression": {
-    "prefix": "func_iife",
-    "body": ";(function (${1:arguments}) {\n\t${0}\n})(${2})",
-    "description": ";(function (arguments) {\n\n})(value)"
-  },
-  "Async:function": {
-    "prefix": "func_async",
-    "body": "async function (${1:arguments}) {\n\t${0}\n}",
-    "description": "async function (arguments) {\n\n}"
-  },
-  "Async:function arrow": {
-    "prefix": "func_arrow_async",
-    "body": "async (${1:arguments}) => {\n\t${0}\n}",
-    "description": "async (arguments) => {\n\n}"
-  },
-  "Async:function immediately-invoked expression": {
-    "prefix": "func_iffe_async",
-    "body": ";(async (${1:arguments}) => {\n\t${0}\n})(${2})",
-    "description": ";(async (arguments) => {\n\n})(value)"
-  },
-  "function arrow": {
-    "prefix": "func_arrow",
-    "body": "(${1:arguments}) => ${2:statement}",
-    "description": "(arguments) => statement"
-  },
-  "function export named": {
+  "function:export named": {
     "prefix": "func_export",
     "body": "export function ${1:member} (${2:arguments}) {\n\t${0}\n}",
     "description": "export function member (arguments) {\n\n}"
   },
-  "function arrow with destructuring": {
-    "prefix": "func_arr_desctructing",
+  "function:param:optional": {
+    "prefix": "function_param_optional",
+    "body": [
+      "function ${1:functionName}(${2:param1}: ${3:Type} = ${4:defaultValue}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Declare a function with optional parameters in TypeScript"
+  },
+  "function:param:rest": {
+    "prefix": "function_param_rest",
+    "body": [
+      "function ${1:functionName}(...${2:params}: ${3:Type}[]) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Declare a function with rest parameters in TypeScript"
+  },
+  "function:param:default": {
+    "prefix": "function_param_default",
+    "body": [
+      "function ${1:functionName}(${2:param1}: ${3:Type} = ${4:defaultValue}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Declare a function with default parameters in TypeScript"
+  },
+  "function:param:destructuring object": {
+    "prefix": "function_param_destructuring_object",
+    "body": [
+      "function ${1:functionName}({ ${2:key1}, ${3:key2 }: ${4:Type} }) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Destructuring assignment for object function parameter in TypeScript"
+  },
+  "function:param:destructuring array": {
+    "prefix": "function_param_destructuring_array",
+    "body": [
+      "function ${1:functionName}([${2:param1}, ${3:param2}]: ${4:Type}[]) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Destructuring assignment for array function parameter in TypeScript"
+  },
+  "function:generator:declaration": {
+    "prefix": "func_generator",
+    "body": [
+      "function* ${1:functionName}() {",
+      "\tyield ${2:value};",
+      "}",
+      "$0"
+    ],
+    "description": "Declare a generator function in TypeScript"
+  },
+  "function:immediately-invoked function expression": {
+    "prefix": "func_iife",
+    "body": ";(function (${1:arguments}) {\n\t${0}\n})(${2})",
+    "description": ";(function (arguments) {\n\n})(value)"
+  },
+  "function:module default export": {
+    "prefix": "function_exp_default",
+    "body": "export default ${1:member}",
+    "description": "export default member"
+  },
+  "function:module default export function": {
+    "prefix": "function_exp_default_func",
+    "body": "export default function ${1:name} (${2:arguments}) {\n\t${0}\n}",
+    "description": "export default function nameFunc (arguments) {\n\t${0}\n}"
+  },
+  "function:async::function immediately-invoked expression": {
+    "prefix": "func_iffe_async",
+    "body": ";(async (${1:arguments}) => {\n\t${0}\n})(${2})",
+    "description": ";(async (arguments) => {\n\n})(value)"
+  },
+  "function:async:declaration": {
+    "prefix": "func_async",
+    "body": [
+      "async function ${1:functionName}() {",
+      "\tconst result = await ${2:promise};",
+      "\treturn result;",
+      "}",
+      "$0"
+    ],
+    "description": "Declare an async function in TypeScript"
+  },
+  "function:async:arrow": {
+    "prefix": "func_arrow_async",
+    "body": "async (${1:arguments}) => {\n\t${0}\n}",
+    "description": "async (arguments) => {\n\n}"
+  },
+  "function:arrow": {
+    "prefix": "func_arrow",
+    "body": "(${1:arguments}) => ${2:statement}",
+    "description": "(arguments) => statement"
+  },
+  "function:arrow with destructuring": {
+    "prefix": "func_arrow_with_param_desctructing",
     "body": "({${1:arguments}}) => ${2:statement}",
     "description": "(\\{arguments\\}) => statement"
   },
-  "function generator": {
-    "prefix": "func_gen",
-    "body": "function *${1:name}(${2:arguments}) {\n\t${0}\n}",
-    "description": "function* nameFunc(arguments) {\n\n}"
-  },
-  "function generator anonymous": {
-    "prefix": "func_gen_anon",
-    "body": "function* (${1:arguments}) {\n\t${0}\n}",
-    "description": "function* (arguments) {\n\n}"
+  "function:void declaration": {
+    "prefix": "func_void",
+    "body": ["function ${1:functionName}(): void {", "\t$0", "}"],
+    "description": "Declare a void function in TypeScript"
   },
   "if": {
     "prefix": "if_",
@@ -363,15 +560,15 @@
     "body": ["if (${1:condition}) {", "", "} else {", "", "}"],
     "description": ["if (condition) {", "\t$0", "} else {", "\t", "}"]
   },
+  "if:elif": {
+    "prefix": "if_elif",
+    "body": "else if (${1:condition}) {\n\t${0}\n}",
+    "description": "else if (condition) {\n\t${0}\n}"
+  },
   "else": {
     "prefix": "else_",
     "body": "else {\n\t${0}\n}",
     "description": "else {\n\t${0}\n}"
-  },
-  "else if": {
-    "prefix": "elif_",
-    "body": "else if (${1:condition}) {\n\t${0}\n}",
-    "description": "else if (condition) {\n\t${0}\n}"
   },
   "let and if statement": {
     "prefix": "let_if",
@@ -406,17 +603,17 @@
     "body": ["while (${1:condition}) {", "\t$0", "}"],
     "description": ["while (condition) {", "", "}"]
   },
-  "while iteration from array length": {
+  "while:iteration from array length": {
     "prefix": "while_iteration_decrementing",
     "body": "let ${1:array}Index = ${1:array}.length\nwhile (${1:array}Index--) {\n\t${0}\n}",
     "description": "let arrayIndex = array.length\nwhile (arrayIndex--) {\n\n}"
   },
-  "do-while Statement": {
+  "while:do Statement": {
     "prefix": "do_while",
     "body": ["do {", "\t$0", "} while (${1:condition});"],
     "description": ["do {", "\t$0", "} while (condition);"]
   },
-  "try-catch Statement": {
+  "try:catch Statement": {
     "prefix": "try_catch",
     "body": ["try {", "\t$0", "} catch (${1:error}) {", "\t", "}"],
     "description": ["try {", "\t$0", "} catch (error) {", "\t", "}"]
@@ -431,13 +628,8 @@
     "body": "try {\n\t${0}\n} catch (${1:err}) {\n\t\n} finally {\n\t\n}",
     "description": "try {\n\n} catch (err) {\n\n} finally {\n\n}"
   },
-  "throw new Error": {
-    "prefix": "throw_new",
-    "body": "throw new ${0:error}",
-    "description": "throw new Error"
-  },
   "process.env": {
-    "prefix": "proc_",
+    "prefix": "process_env",
     "body": "process.env",
     "description": "process.env"
   },
@@ -466,77 +658,119 @@
     "body": "afterEach(() => {\n\t${0}\n})",
     "description": "afterEach(() => {\n\n})"
   },
-  "setImmediate": {
+  "set:immediate": {
     "prefix": "set_immediate",
     "body": "setImmediate(() => {\n\t${0}\n})",
     "description": "setImmediate(() => {\n\n})"
   },
-  "set timeout function": {
+  "set:timeout": {
     "prefix": "set_timeout",
     "body": ["setTimeout(() => {", "\t$0", "}, ${1:timeout});"],
     "description": "Set Timeout Function"
   },
-  "set interval function": {
+  "set:interval": {
     "prefix": "set_interval",
     "body": ["setInterval(() => {", "\t$0", "}, ${1:interval});"],
     "description": ["setInterval(() => {", "\t", "}, ${1:interval});"]
   },
-  "Region Start": {
-    "prefix": "#region",
+  "type alias declaration": {
+    "prefix": "type_alias",
+    "body": ["type ${1:AliasName} = ${2:Type};$0"],
+    "description": "Declare a type alias in TypeScript"
+  },
+  "enum:create:with auto increment": {
+    "prefix": "enum_with_auto_inc",
+    "body": [
+      "enum ${1:EnumName} {",
+      "\t${2:Sunday},",
+      "\t${3:Monday},",
+      "\t${4:Tuesday}",
+      "}"
+    ],
+    "description": "Create an enum with auto-incrementing values"
+  },
+  "enum:create:with member": {
+    "prefix": "enum_with_member_key_value",
+    "body": [
+      "enum ${1:EnumName} {",
+      "\t${2:Up} = ${3:1},",
+      "\t${4:Down} = ${5:2}",
+      "}"
+    ],
+    "description": "Declare an enum in TypeScript"
+  },
+  "enum:create:with string members": {
+    "prefix": "enum_with_member_string",
+    "body": [
+      "enum ${1:EnumName} {",
+      "\t${2:Info} = '${3:INFO}',",
+      "\t${4:Warn} = '${5:WARN}',",
+      "\t${6:Error} = '${7:ERROR}'",
+      "}"
+    ],
+    "description": "Create an enum with string members"
+  },
+  "region:start": {
+    "prefix": "region_start",
     "body": ["//#region $0"],
     "description": "//#region $0"
   },
-  "Region End": {
-    "prefix": "#endregion",
+  "region:end": {
+    "prefix": "region_end",
     "body": ["//#endregion"],
     "description": "//#endregion"
   },
-  "console.dir": {
-    "prefix": "log_dir",
-    "body": "console.dir('${1}:', ${1})",
-    "description": "console.dir('x', y)"
-  },
-  "console.log": {
+  "console:log": {
     "prefix": "log_",
     "body": "console.log(${0})",
     "description": "console.log()"
   },
-  "console.error": {
+  "console:dir": {
+    "prefix": "log_dir",
+    "body": "console.dir('${1}:', ${1})",
+    "description": "console.dir('x', y)"
+  },
+  "console:error": {
     "prefix": "log_err",
     "body": "console.error(${0})",
     "description": "console.error()"
   },
-  "Log warning to console": {
+  "console:warn": {
     "prefix": "log_warn_",
     "body": ["console.warn($1);", "$0"],
     "description": "console.warn();"
   },
-  "Import external module.": {
-    "prefix": "import_statement",
-    "body": ["import { $0 } from \"${1:module}\";"],
-    "description": "Import external module."
-  },
-  "Type definition": {
+  "type definition": {
     "prefix": "type_",
     "body": ["type ${1:name} = {", "\t$0", "}"],
     "description": "Type Definition"
   },
-  "Interface Definition": {
+  "interface:create": {
     "prefix": "interface_",
     "body": ["interface ${1:name} {", "\t$0", "}"],
     "description": "Interface Definition"
   },
-  "Triple-slash reference": {
+  "interface:export named": {
+    "prefix": "interface_export",
+    "body": ["export interface ${1:InterfaceName} {", "\t$0", "}"],
+    "description": "Export named interface in TypeScript"
+  },
+  "interface:export default interface declaration": {
+    "prefix": "interface_export_default",
+    "body": ["export default interface ${1:InterfaceName} {", "\t$0", "}"],
+    "description": "Export default interface in TypeScript"
+  },
+  "triple-slash reference": {
     "prefix": "ref_",
     "body": ["/// <reference path=\"$1\" />", "$0"],
     "description": "Triple-slash reference"
   },
-  "Class:constructor": {
-    "prefix": "class_constractor",
+  "class:constructor": {
+    "prefix": "class_func_constractor",
     "body": ["/**", " *", " */", "constructor() {", "\tsuper();", "\t$0", "}"],
     "description": "class constructor"
   },
-  "Class Define a full property": {
+  "class:property": {
     "prefix": "class_prop",
     "body": [
       "",
@@ -551,7 +785,22 @@
     ],
     "description": "Define a full property"
   },
-  "Class Property getter": {
+  "class:property:private": {
+    "prefix": "class_prop_private",
+    "body": ["private ${1:propertyName}: ${2:Type};", "$0"],
+    "description": "Declare a private property in a class in TypeScript"
+  },
+  "class:property:protected": {
+    "prefix": "class_prop_protected",
+    "body": ["protected ${1:propertyName}: ${2:Type};", "$0"],
+    "description": "Declare a protected property in a class in TypeScript"
+  },
+  "class:property:readonly": {
+    "prefix": "class_prop_readonly",
+    "body": ["readonly ${1:propertyName}: ${2:Type};", "$0"],
+    "description": "Declare a readonly property in TypeScript"
+  },
+  "class:property getter": {
     "prefix": "class_get_public",
     "body": [
       "",
@@ -562,7 +811,7 @@
     ],
     "description": "Property getter"
   },
-  "Class Property setter": {
+  "class:property setter": {
     "prefix": "class_set_public",
     "body": [
       "",
@@ -573,22 +822,22 @@
     ],
     "description": "Property setter"
   },
-  "Class Getter": {
+  "class:getter": {
     "prefix": "class_get",
     "body": "get ${1:property} () {\n\t${0}\n}",
     "description": "get property () {\n\n}"
   },
-  "Class Setter": {
+  "class:setter": {
     "prefix": "class_set",
     "body": "set ${1:property} (${2:value}) {\n\t${0}\n}",
     "description": "set property (value) {\n\n}"
   },
-  "Class Getter Plus With Setter": {
+  "class:getter plus with setter": {
     "prefix": "class_set_and_get",
     "body": "get ${1:property} () {\n\t${0}\n}\nset ${1:property} (${2:value}) {\n\t\n}",
     "description": "get property () {\n\n}\nset ${1:property} (value) {\n\t\n}"
   },
-  "Class": {
+  "class": {
     "prefix": "class_",
     "body": [
       "class ${1:name} {",
@@ -599,14 +848,19 @@
     ],
     "description": "Class Definition"
   },
-  "Class method": {
+  "class:method": {
     "prefix": "class_method",
     "body": ["/**", " * ${1:name}", " */", "${1:name}() {", "\t$0", "}"],
     "description": "Public Method Definition"
   },
-  "Class method private": {
+  "class:method private": {
     "prefix": "class_method_private",
     "body": ["private ${1:name}() {", "\t$0", "}"],
     "description": "Private Method Definition"
+  },
+  "abstract:abstract:method": {
+    "prefix": "abstract_func_method",
+    "body": ["abstract ${1:methodName}(${2:params}): ${3:ReturnType};", "$0"],
+    "description": "Declare an abstract method in TypeScript"
   }
 }

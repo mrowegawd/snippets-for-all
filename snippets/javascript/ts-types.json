@@ -160,23 +160,26 @@
     ],
     "description": "Type checking using keyof operator for generic types in TypeScript"
   },
+  "types:assertion (jsx)": {
+    "prefix": "type_assertion",
+    "body": [
+      "<${1:Component} {...(${2:props} as ${3:ComponentProps})} />",
+      "$0"
+    ],
+    "description": "Type assertion in JSX in TypeScript"
+  },
   "types:assertion:for function return type": {
-    "prefix": "type_check_assertion_ret",
+    "prefix": "type_assertion_ret",
     "body": ["return ${3:result} as ${2:ReturnType};"],
     "description": "Type assertion for function return type in TypeScript"
   },
   "types:assertion:type casting": {
-    "prefix": "type_check_assertion",
+    "prefix": "type_assertion",
     "body": ["const ${1:typed_variable} = ${2:variable} as ${3:Type};"],
     "description": "Type assertion (type casting) in TypeScript"
   },
-  "types:assertion:checking with 'as' assertion": {
-    "prefix": "typpe_check_assertion_as",
-    "body": ["const ${1:result} = (${2:expression}) as ${3:Type};"],
-    "description": "Type checking using 'as' assertion in TypeScript"
-  },
   "types:assertion:for type aliases": {
-    "prefix": "type_check_type_alias",
+    "prefix": "type_assertion_type_alias",
     "body": [
       "type ${1:TypeAlias} = ${2:Type};",
       "const ${3:variable}: ${1:TypeAlias} = ${4:value} as ${1:TypeAlias};"
@@ -184,12 +187,12 @@
     "description": "Type assertion for type aliases in TypeScript"
   },
   "types:assertion:with optional chaining": {
-    "prefix": "type_check_assertion_optional_chaining",
+    "prefix": "type_assertion_optional_chaining",
     "body": ["const ${1:value} = ${2:object}?.${3:property} as ${4:Type};"],
     "description": "Type assertion for optional chaining in TypeScript"
   },
   "types:assertion:for function return type (with union types)": {
-    "prefix": "type_check_assertion_return_type_union",
+    "prefix": "type_assertion_ret_type_union",
     "body": [
       "function ${1:functionName}(): ${2:ReturnType1} | ${3:ReturnType2} {",
       "    return ${4:result} as ${2:ReturnType1} | ${3:ReturnType2};",
@@ -198,7 +201,7 @@
     "description": "Type assertion for function return type with union types in TypeScript"
   },
   "types:assertion:for Promise resolving": {
-    "prefix": "type_check_assertion_promise_resolving",
+    "prefix": "type_assertion_promise_resolving",
     "body": [
       "${1:promise}.then((${2:result}) => {",
       "    const ${3:resolvedValue} = ${2:result} as ${4:ResolvedType};",
@@ -210,7 +213,7 @@
     "description": "Type assertion for Promise resolving in TypeScript"
   },
   "types:assertion:checking with type assertion for unknown type": {
-    "prefix": "type_check_assertion_unknown_type",
+    "prefix": "type_assertion_unknown_type",
     "body": [
       "function assertIs${1:Type}(value: unknown): asserts value is ${1:Type} {",
       "    if (typeof value !== 'object' || value === null /* additional checks */) {",
@@ -225,7 +228,7 @@
     "description": "Type checking with type assertion for unknown type in TypeScript"
   },
   "types:assertion:for function returning any": {
-    "prefix": "type_check_assertion_return_any",
+    "prefix": "type_assertion_ret_any",
     "body": [
       "function parseData(data: any): ${1:ParsedType} {",
       "    return ${2:parseFunction}(data) as ${1:ParsedType};",
@@ -234,14 +237,14 @@
     "description": "Type assertion for function returning 'any' in TypeScript"
   },
   "types:assertion:for array element": {
-    "prefix": "type_check_assertion_array_element",
+    "prefix": "type_assertion_array_element",
     "body": [
       "const ${1:result} = (${2:array}[${3:index}]) as ${4:ElementType};"
     ],
     "description": "Type assertion for array element in TypeScript"
   },
   "types:assertion for using 'as const'": {
-    "prefix": "type_check_assertion_as_const",
+    "prefix": "type_assertion_as_const",
     "body": [
       "const ${1:array}: readonly ${2:ArrayType}[] = ${3:values} as const;"
     ],

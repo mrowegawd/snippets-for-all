@@ -1426,5 +1426,410 @@
       "}",
       ""
     ]
+  },
+  "React Functional Component": {
+    "prefix": "rfc",
+    "body": [
+      "import React from 'react';",
+      "",
+      "interface Props {",
+      "\t$1",
+      "}",
+      "",
+      "const ${2:ComponentName}: React.FC<Props> = ({ $3 }) => {",
+      "\treturn (",
+      "\t\t<div>$0</div>",
+      "\t);",
+      "};",
+      "",
+      "export default ${2:ComponentName};"
+    ],
+    "description": "Create a React functional component"
+  },
+  "React Class Component": {
+    "prefix": "rcc",
+    "body": [
+      "import React, { Component } from 'react';",
+      "",
+      "interface Props {",
+      "\t$1",
+      "}",
+      "",
+      "interface State {",
+      "\t$2",
+      "}",
+      "",
+      "class ${3:ComponentName} extends Component<Props, State> {",
+      "\trender() {",
+      "\t\treturn (",
+      "\t\t\t<div>$0</div>",
+      "\t\t);",
+      "\t}",
+      "}",
+      "",
+      "export default ${3:ComponentName};"
+    ],
+    "description": "Create a React class component"
+  },
+  "React Functional Component with Props Destructuring": {
+    "prefix": "rfcprops",
+    "body": [
+      "import React from 'react';",
+      "",
+      "interface Props {",
+      "\t$1",
+      "}",
+      "",
+      "const ${2:ComponentName}: React.FC<Props> = ({ ${3:prop1}, ${4:prop2} }) => {",
+      "\treturn (",
+      "\t\t<div>$0</div>",
+      "\t);",
+      "};",
+      "",
+      "export default ${2:ComponentName};"
+    ],
+    "description": "Create a React functional component with props destructuring"
+  },
+  "React Redux Connect Functional Component": {
+    "prefix": "rrcfc",
+    "body": [
+      "import React from 'react';",
+      "import { connect } from 'react-redux';",
+      "import { RootState } from 'path/to/rootReducer';",
+      "",
+      "interface PropsFromState {",
+      "\t$1",
+      "}",
+      "",
+      "interface PropsFromDispatch {",
+      "\t$2",
+      "}",
+      "",
+      "type Props = PropsFromState & PropsFromDispatch;",
+      "",
+      "const ${3:ComponentName}: React.FC<Props> = ({ $4 }) => {",
+      "\treturn (",
+      "\t\t<div>$0</div>",
+      "\t);",
+      "};",
+      "",
+      "const mapStateToProps = (state: RootState): PropsFromState => ({",
+      "\t$5",
+      "});",
+      "",
+      "const mapDispatchToProps: PropsFromDispatch = {",
+      "\t$6",
+      "};",
+      "",
+      "export default connect(",
+      "\tmapStateToProps,",
+      "\tmapDispatchToProps",
+      ")(${3:ComponentName});"
+    ],
+    "description": "Create a connected React functional component with Redux"
+  },
+  "React Redux Connect Class Component": {
+    "prefix": "rrccc",
+    "body": [
+      "import React, { Component } from 'react';",
+      "import { connect } from 'react-redux';",
+      "import { RootState } from 'path/to/rootReducer';",
+      "",
+      "interface PropsFromState {",
+      "\t$1",
+      "}",
+      "",
+      "interface PropsFromDispatch {",
+      "\t$2",
+      "}",
+      "",
+      "type Props = PropsFromState & PropsFromDispatch;",
+      "",
+      "class ${3:ComponentName} extends Component<Props> {",
+      "\trender() {",
+      "\t\treturn (",
+      "\t\t\t<div>$0</div>",
+      "\t\t);",
+      "\t}",
+      "}",
+      "",
+      "const mapStateToProps = (state: RootState): PropsFromState => ({",
+      "\t$4",
+      "});",
+      "",
+      "const mapDispatchToProps: PropsFromDispatch = {",
+      "\t$5",
+      "};",
+      "",
+      "export default connect(",
+      "\tmapStateToProps,",
+      "\tmapDispatchToProps",
+      ")(${3:ComponentName});"
+    ],
+    "description": "Create a connected React class component with Redux"
+  },
+  "React Hook (useState)": {
+    "prefix": "usestate",
+    "body": [
+      "const [${1:state}, set${2:State}] = useState<${3:Type}>(initialValue);",
+      "$0"
+    ],
+    "description": "Declare a state variable with useState hook in React"
+  },
+  "React Hook (useEffect)": {
+    "prefix": "useeffect",
+    "body": ["useEffect(() => {", "\t$0", "}, [${1:dependency}]);"],
+    "description": "Declare an effect with useEffect hook in React"
+  },
+  "React Hook (useContext)": {
+    "prefix": "usecontext",
+    "body": ["const ${1:context} = useContext(${2:Context});", "$0"],
+    "description": "Access context with useContext hook in React"
+  },
+  "React Hook (useReducer)": {
+    "prefix": "usereducer",
+    "body": [
+      "const [state, dispatch] = useReducer(${1:reducer}, ${2:initialState});",
+      "$0"
+    ],
+    "description": "Declare a state management with useReducer hook in React"
+  },
+  "React Hook (useCallback)": {
+    "prefix": "usecallback",
+    "body": [
+      "const ${1:callback} = useCallback(() => {",
+      "\t$0",
+      "}, [${2:dependency}]);"
+    ],
+    "description": "Declare a memoized callback with useCallback hook in React"
+  },
+  "React Hook (useMemo)": {
+    "prefix": "usememo",
+    "body": [
+      "const ${1:memoizedValue} = useMemo(() => {",
+      "\treturn ${2:value};",
+      "}, [${3:dependency}]);",
+      "$0"
+    ],
+    "description": "Declare a memoized value with useMemo hook in React"
+  },
+  "React Hook (useRef)": {
+    "prefix": "useref",
+    "body": ["const ${1:ref} = useRef<${2:Type}>(null);", "$0"],
+    "description": "Declare a ref with useRef hook in React"
+  },
+  "React Hook (useImperativeHandle)": {
+    "prefix": "useimperativehandle",
+    "body": [
+      "useImperativeHandle(${1:ref}, () => ({",
+      "\t$0",
+      "}), [${2:dependency}]);"
+    ],
+    "description": "Customize instance value with useImperativeHandle hook in React"
+  },
+  "React Hook (useLayoutEffect)": {
+    "prefix": "uselayouteffect",
+    "body": ["useLayoutEffect(() => {", "\t$0", "}, [${1:dependency}]);"],
+    "description": "Run the effect before browser layout change with useLayoutEffect hook in React"
+  },
+  "React Hook (useDebugValue)": {
+    "prefix": "usedebugvalue",
+    "body": ["useDebugValue(${1:value});", "$0"],
+    "description": "Display a label for custom hook in React"
+  },
+  "Custom React Hook": {
+    "prefix": "usecustom",
+    "body": [
+      "const ${1:customHookName} = () => {",
+      "\t$0",
+      "};",
+      "",
+      "export default ${1:customHookName};"
+    ],
+    "description": "Declare a custom hook in React"
+  },
+  "React PropTypes (Functional Component)": {
+    "prefix": "proptypes",
+    "body": [
+      "import PropTypes from 'prop-types';",
+      "",
+      "interface Props {",
+      "\t$1",
+      "}",
+      "",
+      "const ${2:ComponentName}: React.FC<Props> = ({ $3 }) => {",
+      "\treturn (",
+      "\t\t<div>$0</div>",
+      "\t);",
+      "};",
+      "",
+      "${2:ComponentName}.propTypes = {",
+      "\t$4",
+      "};",
+      "",
+      "export default ${2:ComponentName};"
+    ],
+    "description": "Declare PropTypes for props in a React functional component"
+  },
+  "React PropTypes (Class Component)": {
+    "prefix": "proptypesclass",
+    "body": [
+      "import React, { Component } from 'react';",
+      "import PropTypes from 'prop-types';",
+      "",
+      "interface Props {",
+      "\t$1",
+      "}",
+      "",
+      "interface State {",
+      "\t$2",
+      "}",
+      "",
+      "class ${3:ComponentName} extends Component<Props, State> {",
+      "\trender() {",
+      "\t\treturn (",
+      "\t\t\t<div>$0</div>",
+      "\t\t);",
+      "\t}",
+      "}",
+      "",
+      "${3:ComponentName}.propTypes = {",
+      "\t$4",
+      "};",
+      "",
+      "export default ${3:ComponentName};"
+    ],
+    "description": "Declare PropTypes for props in a React class component"
+  },
+  "React PropTypes (Functional Component with Destructuring)": {
+    "prefix": "proptypesdestructuring",
+    "body": [
+      "import PropTypes from 'prop-types';",
+      "",
+      "interface Props {",
+      "\t${1:prop1}: ${2:Type};",
+      "\t${3:prop2}: ${4:Type};",
+      "}",
+      "",
+      "const ${5:ComponentName}: React.FC<Props> = ({ ${1:prop1}, ${3:prop2} }) => {",
+      "\treturn (",
+      "\t\t<div>$0</div>",
+      "\t);",
+      "};",
+      "",
+      "${5:ComponentName}.propTypes = {",
+      "\t${1:prop1}: PropTypes.${6:isRequired},",
+      "\t${3:prop2}: PropTypes.${7:isRequired}",
+      "};",
+      "",
+      "export default ${5:ComponentName};"
+    ],
+    "description": "Declare PropTypes with destructuring for props in a React functional component"
+  },
+  "React Memo (Functional Component)": {
+    "prefix": "memo",
+    "body": [
+      "import React, { memo } from 'react';",
+      "",
+      "interface Props {",
+      "\t$1",
+      "}",
+      "",
+      "const ${2:ComponentName}: React.FC<Props> = ({ $3 }) => {",
+      "\treturn (",
+      "\t\t<div>$0</div>",
+      "\t);",
+      "};",
+      "",
+      "export default memo(${2:ComponentName});"
+    ],
+    "description": "Memoize a React functional component with React.memo"
+  },
+  "React Memo (Functional Component with Custom Comparison)": {
+    "prefix": "memocompare",
+    "body": [
+      "import React, { memo } from 'react';",
+      "",
+      "interface Props {",
+      "\t$1",
+      "}",
+      "",
+      "const ${2:ComponentName}: React.FC<Props> = ({ $3 }) => {",
+      "\treturn (",
+      "\t\t<div>$0</div>",
+      "\t);",
+      "};",
+      "",
+      "function areEqual(prevProps: Props, nextProps: Props) {",
+      "\treturn true; // Define your comparison logic here",
+      "}",
+      "",
+      "export default memo(${2:ComponentName}, areEqual);"
+    ],
+    "description": "Memoize a React functional component with custom comparison function using React.memo"
+  },
+  "React Memo (Class Component)": {
+    "prefix": "memoclass",
+    "body": [
+      "import React, { PureComponent } from 'react';",
+      "",
+      "interface Props {",
+      "\t$1",
+      "}",
+      "",
+      "interface State {",
+      "\t$2",
+      "}",
+      "",
+      "class ${3:ComponentName} extends PureComponent<Props, State> {",
+      "\trender() {",
+      "\t\treturn (",
+      "\t\t\t<div>$0</div>",
+      "\t\t);",
+      "\t}",
+      "}",
+      "",
+      "export default React.memo(${3:ComponentName});"
+    ],
+    "description": "Memoize a React class component with React.memo"
+  },
+  "React Higher-Order Component (HOC)": {
+    "prefix": "hoc",
+    "body": [
+      "import React from 'react';",
+      "",
+      "function with${1:HigherOrderComponent}(WrappedComponent: React.ComponentType<any>) {",
+      "\treturn (props: any) => (",
+      "\t\t<WrappedComponent {...props} />",
+      "\t);",
+      "}",
+      "",
+      "export default with${1:HigherOrderComponent};"
+    ],
+    "description": "Create a higher-order component in React"
+  },
+  "React Hook (useForm)": {
+    "prefix": "use form",
+    "body": [
+      "const useForm = (initialValues: any) => {",
+      "\tconst [values, setValues] = useState(initialValues);",
+      "",
+      "\tconst handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {",
+      "\t\tconst { name, value } = event.target;",
+      "\t\tsetValues({",
+      "\t\t\t...values,",
+      "\t\t\t[name]: value",
+      "\t\t});",
+      "\t};",
+      "",
+      "\treturn {",
+      "\t\tvalues,",
+      "\t\thandleChange",
+      "\t};",
+      "};",
+      "",
+      "export default useForm;"
+    ],
+    "description": "Create a useForm custom hook in React for form handling"
   }
 }

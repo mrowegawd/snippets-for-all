@@ -1,0 +1,7 @@
+{
+  "throw new Error": {
+    "prefix": "throw_new",
+    "body": "throw new ${0:error}",
+    "description": "throw new Error"
+  }
+}

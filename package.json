@@ -414,11 +414,19 @@
       },
       {
         "language": "python",
+        "path": "./snippets/python/convert.json"
+      },
+      {
+        "language": "python",
         "path": "./snippets/python/decorator.json"
       },
       {
         "language": "python",
         "path": "./snippets/python/debug.json"
+      },
+      {
+        "language": "python",
+        "path": "./snippets/python/error.json"
       },
       {
         "language": "python",
