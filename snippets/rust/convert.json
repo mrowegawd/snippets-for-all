@@ -1,0 +1,250 @@
+{
+  "convert:string to integer": {
+    "prefix": "convert_str_to_int",
+    "body": [
+      "let ${1:num}: i32 = ${2:str}.parse().expect(\"Failed to parse string\");"
+    ],
+    "description": "Converts a string to an integer"
+  },
+  "convert:integer to string": {
+    "prefix": "convert_int_to_str",
+    "body": ["let ${1:str} = ${2:num}.to_string();"],
+    "description": "Converts an integer to a string"
+  },
+  "convert:string to float": {
+    "prefix": "convert_str_to_float",
+    "body": [
+      "let ${1:num}: f64 = ${2:str}.parse().expect(\"Failed to parse string\");"
+    ],
+    "description": "Converts a string to a float"
+  },
+  "convert:float to string": {
+    "prefix": "convert_float_to_str",
+    "body": ["let ${1:str} = ${2:num}.to_string();"],
+    "description": "Converts a float to a string"
+  },
+  "convert:string to character": {
+    "prefix": "convert_str_to_char",
+    "body": [
+      "let ${1:char} = ${2:str}.chars().next().expect(\"Empty string\");"
+    ],
+    "description": "Converts the first character of a string to a char"
+  },
+  "convert:character to string": {
+    "prefix": "convert_char_to_str",
+    "body": ["let ${1:str} = ${2:char}.to_string();"],
+    "description": "Converts a character to a string"
+  },
+  "convert:string to boolean": {
+    "prefix": "convert_str_to_bool",
+    "body": [
+      "let ${1:bool} = ${2:str}.parse().expect(\"Failed to parse string\");"
+    ],
+    "description": "Converts a string to a boolean"
+  },
+  "convert:boolean to string": {
+    "prefix": "convert_bool_to_str",
+    "body": ["let ${1:str} = ${2:bool}.to_string();"],
+    "description": "Converts a boolean to a string"
+  },
+  "convert:string to byte": {
+    "prefix": "convert_str_to_byte",
+    "body": [
+      "let ${1:byte}: u8 = ${2:str}.parse().expect(\"Failed to parse string\");"
+    ],
+    "description": "Converts a string to a byte"
+  },
+  "convert:byte to string": {
+    "prefix": "convert_byte_to_str",
+    "body": ["let ${1:str} = ${2:byte}.to_string();"],
+    "description": "Converts a byte to a string"
+  },
+  "convert:Option<T> to Result<T, E>": {
+    "prefix": "convert_option_to_result",
+    "body": [
+      "let ${1:result} = ${2:option}.ok_or_else(|| ${3:Error::NotFound});"
+    ],
+    "description": "Converts an Option<T> to a Result<T, E>"
+  },
+  "convert:Result<T, E> to Option<T>": {
+    "prefix": "convert_result_to_option",
+    "body": ["let ${1:option} = ${2:result}.ok();"],
+    "description": "Converts a Result<T, E> to an Option<T>"
+  },
+  "convert:Vec<T> to slice": {
+    "prefix": "convert_vec_to_slice",
+    "body": ["let ${1:slice} = &${2:vec}[..];"],
+    "description": "Converts a Vec<T> to a slice"
+  },
+  "convert:slice to Vec<T>": {
+    "prefix": "convert_slice_to_vec",
+    "body": ["let ${1:vec} = ${2:slice}.to_vec();"],
+    "description": "Converts a slice to a Vec<T>"
+  },
+  "convert:struct to JSON string": {
+    "prefix": "convert_struct_to_json",
+    "body": [
+      "let ${1:json_string} = serde_json::to_string(&${2:struct_var}).expect(\"Failed to serialize struct to JSON\");"
+    ],
+    "description": "Converts a struct to a JSON string"
+  },
+  "convert:JSON string to struct": {
+    "prefix": "convert_json_to_struct",
+    "body": [
+      "let ${1:struct_var}: ${2:StructType} = serde_json::from_str(${3:\"{\"field\": \"value\"}\"}).expect(\"Failed to deserialize JSON to struct\");"
+    ],
+    "description": "Converts a JSON string to a struct"
+  },
+  "convert:string to PathBuf": {
+    "prefix": "convert_str_to_pathbuf",
+    "body": ["let ${1:path_buf} = std::path::PathBuf::from(${2:str});"],
+    "description": "Converts a string to a PathBuf"
+  },
+  "convert:PathBuf to string": {
+    "prefix": "convert_pathbuf_to_str",
+    "body": ["let ${1:str} = ${2:path_buf}.to_string_lossy().into_owned();"],
+    "description": "Converts a PathBuf to a string"
+  },
+  "convert:string to OsString": {
+    "prefix": "convert_str_to_osstring",
+    "body": [
+      "use std::ffi::OsString;",
+      "let ${1:os_str}: OsString = ${2:str}.into();"
+    ],
+    "description": "Converts a string to an OsString"
+  },
+  "convert:OsString to string": {
+    "prefix": "convert_osstring_to_str",
+    "body": [
+      "let ${1:str}: String = ${2:os_str}.into_string().expect(\"Failed to convert OsString to String\");"
+    ],
+    "description": "Converts an OsString to a string"
+  },
+  "convert:string to Duration": {
+    "prefix": "convert_str_to_duration",
+    "body": [
+      "use std::time::Duration;",
+      "let ${1:duration}: Duration = ${2:str}.parse().expect(\"Failed to parse string as Duration\");"
+    ],
+    "description": "Converts a string to a Duration"
+  },
+  "convert:Duration to string": {
+    "prefix": "convert_duration_to_str",
+    "body": [
+      "use std::time::Duration;",
+      "let ${1:str} = ${2:duration}.to_string();"
+    ],
+    "description": "Converts a Duration to a string"
+  },
+  "convert:Option<T> to Option<U> with map": {
+    "prefix": "convert_option_to_map",
+    "body": [
+      "let ${1:option_u} = ${2:option_t}.map(|${3:value}| /* convert value to U */ );"
+    ],
+    "description": "Converts an Option<T> to an Option<U> using map"
+  },
+  "convert:Result<T, E> to Result<U, F> with map_err": {
+    "prefix": "convert_result_to_map_err",
+    "body": [
+      "let ${1:result_u} = ${2:result_t}.map_err(|${3:error}| /* convert error to F */ );"
+    ],
+    "description": "Converts a Result<T, E> to a Result<U, F> using map_err"
+  },
+  "convert:Vec<T> to HashSet<T>": {
+    "prefix": "convert_vec_to_hashset",
+    "body": [
+      "use std::collections::HashSet;",
+      "let ${1:set}: HashSet<_> = ${2:vec}.into_iter().collect();"
+    ],
+    "description": "Converts a Vec<T> to a HashSet<T>"
+  },
+  "convert:HashSet<T> to Vec<T>": {
+    "prefix": "convert_hashset_to_vec",
+    "body": ["let ${1:vec}: Vec<_> = ${2:set}.into_iter().collect();"],
+    "description": "Converts a HashSet<T> to a Vec<T>"
+  },
+  "convert:Iterator<Item=T> to Vec<T>": {
+    "prefix": "convert_iterator_to_vec",
+    "body": ["let ${1:vec}: Vec<_> = ${2:iter}.collect();"],
+    "description": "Converts an Iterator<Item=T> to a Vec<T>"
+  },
+  "convert:Vec<T> to Iterator<Item=T>": {
+    "prefix": "convert_vec_to_iterator",
+    "body": ["let ${1:iter} = ${2:vec}.into_iter();"],
+    "description": "Converts a Vec<T> to an Iterator<Item=T>"
+  },
+  "convert:string to Path": {
+    "prefix": "convert_str_to_path",
+    "body": [
+      "use std::path::Path;",
+      "let ${1:path}: &Path = ${2:str}.as_ref();"
+    ],
+    "description": "Converts a string to a Path"
+  },
+  "convert:Path to string": {
+    "prefix": "convert_path_to_str",
+    "body": [
+      "use std::path::Path;",
+      "let ${1:str}: String = ${2:path}.to_string_lossy().into_owned();"
+    ],
+    "description": "Converts a Path to a string"
+  },
+  "convert:string to CString": {
+    "prefix": "convert_str_to_cstring",
+    "body": [
+      "use std::ffi::CString;",
+      "let ${1:cstr} = CString::new(${2:str}).expect(\"Failed to create CString\");"
+    ],
+    "description": "Converts a string to a CString"
+  },
+  "convert:CString to string": {
+    "prefix": "convert_cstring_to_str",
+    "body": [
+      "use std::ffi::CString;",
+      "let ${1:str}: String = ${2:cstr}.into_string().expect(\"Failed to convert CString to String\");"
+    ],
+    "description": "Converts a CString to a string"
+  },
+  "convert:string to Cow<str>": {
+    "prefix": "convert_str_to_cow",
+    "body": [
+      "use std::borrow::Cow;",
+      "let ${1:cow}: Cow<str> = ${2:str}.into();"
+    ],
+    "description": "Converts a string to a Cow<str>"
+  },
+  "convert:Cow<str> to string": {
+    "prefix": "convert_cow_to_str",
+    "body": [
+      "use std::borrow::Cow;",
+      "let ${1:str}: String = ${2:cow}.into_owned();"
+    ],
+    "description": "Converts a Cow<str> to a String"
+  },
+  "convert:string to Vec<u8>": {
+    "prefix": "convert_str_to_vecu8",
+    "body": ["let ${1:vec}: Vec<u8> = ${2:str}.bytes().collect();"],
+    "description": "Converts a string to a Vec<u8>"
+  },
+  "convert:Vec<u8> to string": {
+    "prefix": "convert_vecu8_to_str",
+    "body": ["let ${1:str} = String::from_utf8_lossy(&${2:vec}).into_owned();"],
+    "description": "Converts a Vec<u8> to a String"
+  },
+  "convert:string to DateTime": {
+    "prefix": "convert_str_to_datetime",
+    "body": [
+      "use chrono::DateTime;",
+      "let ${1:dt}: DateTime<Utc> = DateTime::parse_from_str(${2:str}, ${3:\"%Y-%m-%dT%H:%M:%S%.fZ\"}).expect(\"Failed to parse string as DateTime\").into();"
+    ],
+    "description": "Converts a string to a DateTime (using chrono)"
+  },
+  "convert:DateTime to string": {
+    "prefix": "convert_datetime_to_str",
+    "body": [
+      "use chrono::{DateTime, Utc};",
+      "let ${1:str} = ${2:dt}.to_rfc3339();"
+    ],
+    "description": "Converts a DateTime to a string (using chrono)"
+  }
+}

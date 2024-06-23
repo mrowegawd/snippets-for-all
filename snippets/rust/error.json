@@ -1,4 +1,9 @@
 {
+  "error:t:Err": {
+    "prefix": "err_t",
+    "body": ["Err(${1:Error}::${2:Variant})"],
+    "description": "Create a result with an error variant."
+  },
   "error:custom error with enum": {
     "prefix": "err_custom_error_enum",
     "body": [
@@ -23,13 +28,8 @@
     ],
     "description": "Define a custom error enum with display and error traits."
   },
-  "Error Result": {
-    "prefix": "err",
-    "body": ["Err(${1:Error}::${2:Variant})"],
-    "description": "Create a result with an error variant."
-  },
-  "Match Result": {
-    "prefix": "matcherr",
+  "error:match:maching error": {
+    "prefix": "match_error",
     "body": [
       "match ${1:result} {",
       "\tOk(value) => {",

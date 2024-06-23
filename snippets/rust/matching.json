@@ -1,0 +1,396 @@
+{
+  "match:create:": {
+    "prefix": "match_",
+    "body": [
+      "match ${1:expr} {",
+      "\t${2:pattern} => { ${3:code} },",
+      "\t_ => { ${4:default_code} },",
+      "}"
+    ],
+    "description": "Create a match expression with arms"
+  },
+  "match:option": {
+    "prefix": "match_option",
+    "body": [
+      "match ${1:option_var} {",
+      "\tSome(${2:val}) => { ${3:code} },",
+      "\tNone => { ${4:default_code} },",
+      "}"
+    ],
+    "description": "Create a match expression for an Option"
+  },
+  "match:result": {
+    "prefix": "match_result",
+    "body": [
+      "match ${1:result_var} {",
+      "\tOk(${2:val}) => { ${3:code} },",
+      "\tErr(${4:err}) => { ${5:error_handling_code} },",
+      "}"
+    ],
+    "description": "Create a match expression for a Result"
+  },
+  "match:multiple patterns": {
+    "prefix": "match_multiple",
+    "body": [
+      "match (${1:expr1}, ${2:expr2}) {",
+      "\t(${3:pattern1}, ${4:pattern2}) => { ${5:code} },",
+      "\t_ => { ${6:default_code} },",
+      "}"
+    ],
+    "description": "Create a match expression with multiple patterns"
+  },
+  "match:multiple patterns and bodies": {
+    "prefix": "match_multi_body",
+    "body": [
+      "match ${1:expr} {",
+      "\t${2:pattern1} => {",
+      "\t\t${3:code_block1}",
+      "\t},",
+      "\t${4:pattern2} => {",
+      "\t\t${5:code_block2}",
+      "\t},",
+      "\t_ => {",
+      "\t\t${6:default_code}",
+      "\t},",
+      "}"
+    ],
+    "description": "Create a match expression with multiple patterns and bodies"
+  },
+  "match:range pattern": {
+    "prefix": "match_range",
+    "body": [
+      "match ${1:expr} {",
+      "\t${2:start}..=${3:end} => { ${4:code} },",
+      "\t_ => { ${5:default_code} },",
+      "}"
+    ],
+    "description": "Create a match expression with range pattern"
+  },
+  "match:enum": {
+    "prefix": "match_enum",
+    "body": [
+      "match ${1:enum_var} {",
+      "\t${2:EnumType::Variant1} => { ${3:code} },",
+      "\t${4:EnumType::Variant2(val)} => { ${5:code} },",
+      "\t_ => { ${6:default_code} },",
+      "}"
+    ],
+    "description": "Create a match expression for an enum"
+  },
+  "match:struct destructuring": {
+    "prefix": "match_struct",
+    "body": [
+      "match ${1:expr} {",
+      "\t${2:StructName { ${3:field1}, ${4:field2} }} => { ${5:code} },",
+      "\t_ => { ${6:default_code} },",
+      "}"
+    ],
+    "description": "Create a match expression with struct destructuring"
+  },
+  "match:tuple destructuring": {
+    "prefix": "match_tuple",
+    "body": [
+      "match ${1:expr} {",
+      "\t(${2:val1}, ${3:val2}) => { ${4:code} },",
+      "\t_ => { ${5:default_code} },",
+      "}"
+    ],
+    "description": "Create a match expression with tuple destructuring"
+  },
+  "match:with guard": {
+    "prefix": "match_guard",
+    "body": [
+      "match ${1:expr} {",
+      "\t${2:pattern} if ${3:guard_condition} => { ${4:code} },",
+      "\t_ => { ${5:default_code} },",
+      "}"
+    ],
+    "description": "Create a match expression with a guard clause"
+  },
+  "match:with bindings": {
+    "prefix": "match_binding",
+    "body": [
+      "match ${1:expr} {",
+      "\t${2:Some(${3:val})} => { ${4:code} },",
+      "\t${5:None} => { ${6:default_code} },",
+      "}"
+    ],
+    "description": "Create a match expression with bindings"
+  },
+  "match:with fallthrough patterns": {
+    "prefix": "match_fallthrough",
+    "body": [
+      "match ${1:expr} {",
+      "\t${2:Pattern1} | ${3:Pattern2} => { ${4:code} },",
+      "\t_ => { ${5:default_code} },",
+      "}"
+    ],
+    "description": "Create a match expression with fallthrough patterns"
+  },
+  "match:hashmap (key and value reference)": {
+    "prefix": "match_hashmap_ref",
+    "body": [
+      "match ${1:hashmap_var}.get(&${2:key}) {",
+      "\tSome(&${3:value}) => {",
+      "\t\t${4:code}",
+      "\t},",
+      "\tNone => {",
+      "\t\t${5:default_code}",
+      "\t},",
+      "}"
+    ],
+    "description": "Match for HashMap with key and value reference"
+  },
+  "match:hashmap (key and mutable value reference)": {
+    "prefix": "match_hashmap_mut_ref",
+    "body": [
+      "match ${1:hashmap_var}.get_mut(&${2:key}) {",
+      "\tSome(${3:value}) => {",
+      "\t\t${4:code}",
+      "\t},",
+      "\tNone => {",
+      "\t\t${5:default_code}",
+      "\t},",
+      "}"
+    ],
+    "description": "Match for HashMap with key and mutable value reference"
+  },
+  "match:hashmap (key and ownership value)": {
+    "prefix": "match_hashmap_own",
+    "body": [
+      "match ${1:hashmap_var}.remove(&${2:key}) {",
+      "\tSome(${3:value}) => {",
+      "\t\t${4:code}",
+      "\t},",
+      "\tNone => {",
+      "\t\t${5:default_code}",
+      "\t},",
+      "}"
+    ],
+    "description": "Match for HashMap with key and ownership value"
+  },
+  "match:hashmap (iteration on key-value pairs)": {
+    "prefix": "match_hashmap_iter",
+    "body": [
+      "for (${1:key}, ${2:value}) in ${3:hashmap_var}.iter() {",
+      "\tmatch ${1:key} {",
+      "\t\t${4:key_pattern} => {",
+      "\t\t\t${5:value_pattern}",
+      "\t\t\t${6:code}",
+      "\t\t},",
+      "\t\t_ => {}",
+      "\t}",
+      "}"
+    ],
+    "description": "Match for HashMap with iteration on key-value pairs"
+  },
+  "match:hashmap (pattern matching on key)": {
+    "prefix": "match_hashmap_pattern",
+    "body": [
+      "match ${1:hashmap_var}.get(&${2:key}) {",
+      "\tSome(${3:value}) if ${4:condition} => {",
+      "\t\t${5:code}",
+      "\t},",
+      "\tSome(_) => {",
+      "\t\t${6:default_code}",
+      "\t},",
+      "\tNone => {",
+      "\t\t${7:default_code}",
+      "\t},",
+      "}"
+    ],
+    "description": "Match for HashMap with pattern matching on key"
+  },
+  "match:hashmap (pattern matching on value)": {
+    "prefix": "match_hashmap_value_pattern",
+    "body": [
+      "for (${1:key}, ${2:value}) in ${3:hashmap_var}.iter() {",
+      "\tmatch ${2:value} {",
+      "\t\t${4:value_pattern} => {",
+      "\t\t\t${5:code}",
+      "\t\t},",
+      "\t\t_ => {}",
+      "\t}",
+      "}"
+    ],
+    "description": "Match for HashMap with pattern matching on value"
+  },
+  "match:let:with custom return type": {
+    "prefix": "match_custom_return",
+    "body": [
+      "let ${1:result} = match ${2:expr} {",
+      "\t${3:Pattern1} => ${4:SomeValue},",
+      "\t${5:Pattern2} => ${6:AnotherValue},",
+      "\t_ => ${7:DefaultValue},",
+      "};"
+    ],
+    "description": "Create a match expression with a custom return type"
+  },
+  "match:let:with macro invocation": {
+    "prefix": "match_let_macro",
+    "body": [
+      "let result = match ${1:expr} {",
+      "\t${2:Pattern1} => ${3:macro!($1)},",
+      "\t${4:Pattern2} => ${5:macro!($1)},",
+      "\t_ => ${6:default_value},",
+      "};"
+    ],
+    "description": "Create a match expression with macro invocation"
+  },
+  "match:let:with function call": {
+    "prefix": "match_let_function",
+    "body": [
+      "let result = match ${1:expr} {",
+      "\t${2:Pattern1} => ${3:function($1)},",
+      "\t${4:Pattern2} => ${5:function($1)},",
+      "\t_ => ${6:default_value},",
+      "};"
+    ],
+    "description": "Create a match expression with function call"
+  },
+  "match:case:wildcard case": {
+    "prefix": "match_case_wildcard",
+    "body": ["\t_${1: => {", "\t\t${2:code}", "\t}},"],
+    "description": "Wildcard case in match block"
+  },
+  "match:case:variable binding case": {
+    "prefix": "match_case_binding",
+    "body": ["\t${1:Ok(${2:val}) => {", "\t\t${3:code}", "\t}},"],
+    "description": "Variable binding case in match block"
+  },
+  "match:case:range case": {
+    "prefix": "match_case_range",
+    "body": ["\t${1:1..=10 => {", "\t\t${2:code}", "\t}},"],
+    "description": "Range case in match block"
+  },
+  "match:case:tuple": {
+    "prefix": "match_case_tuple",
+    "body": ["\t${1:(0, 0) => {", "\t\t${2:code}", "\t}},"],
+    "description": "Tuple case in match block"
+  },
+  "match:case:struct": {
+    "prefix": "match_case_struct",
+    "body": ["\t${1:Point { x, y } if x == y => {", "\t\t${2:code}", "\t}},"],
+    "description": "Struct case in match block"
+  },
+  "match:case:enum variant": {
+    "prefix": "match_case_enum",
+    "body": ["\t${1:Message::Quit => {", "\t\t${2:code}", "\t}},"],
+    "description": "Enum variant case in match block"
+  },
+  "match:case:reference": {
+    "prefix": "match_case_reference",
+    "body": ["\t${1:Some(ref ${2:r}) => {", "\t\t${3:code}", "\t}},"],
+    "description": "Reference case in match block"
+  },
+  "match:case:slice case": {
+    "prefix": "match_case_slice",
+    "body": ["\t${1:[${2:first}, ..] => {", "\t\t${3:code}", "\t}},"],
+    "description": "Slice case in match block"
+  },
+  "match:case:literal": {
+    "prefix": "match_case_literal",
+    "body": ["\t${1:'a' => {", "\t\t${2:code}", "\t}},"],
+    "description": "Literal case in match block"
+  },
+  "match:case:complex with guards": {
+    "prefix": "match_case_guard",
+    "body": [
+      "\t${1:Rectangle { width, height: h } if width == h => {",
+      "\t\t${2:code}",
+      "\t}},"
+    ],
+    "description": "Complex case with guards in match block"
+  },
+  "match:case:fallthrough": {
+    "prefix": "match_case_fallthrough",
+    "body": ["\t${1:Pattern1 | ${2:Pattern2} => {", "\t\t${3:code}", "\t}},"],
+    "description": "Fallthrough case in match block"
+  },
+  "match:case:multiple patterns and bodies": {
+    "prefix": "match_case_multi_body",
+    "body": [
+      "\t${1:pattern1 => {",
+      "\t\t${2:code_block1}",
+      "\t},",
+      "\t${3:pattern2 => {",
+      "\t\t${4:code_block2}",
+      "\t}},"
+    ],
+    "description": "Multiple patterns and bodies in match block"
+  },
+  "match:case:custom return type": {
+    "prefix": "match_case_custom_return",
+    "body": [
+      "\t${1:Pattern1 => ${2:SomeValue},",
+      "\t${3:Pattern2 => ${4:AnotherValue},",
+      "\t_ => ${5:DefaultValue},"
+    ],
+    "description": "Custom return type case in match block"
+  },
+  "macth:case:macro invocation": {
+    "prefix": "match_case_macro",
+    "body": [
+      "\t${1:Pattern1 => ${2:macro!($1)},",
+      "\t${3:Pattern2 => ${4:macro!($1)},",
+      "\t_ => ${5:default_value},"
+    ],
+    "description": "Macro invocation case in match block"
+  },
+  "match:case:function call": {
+    "prefix": "match_case_function",
+    "body": [
+      "\t${1:Pattern1 => ${2:function($1)},",
+      "\t${3:Pattern2 => ${4:function($1)},",
+      "\t_ => ${5:default_value},"
+    ],
+    "description": "Function call case in match block"
+  },
+  "match:case:guard clause": {
+    "prefix": "match_case_guard",
+    "body": [
+      "\t${1:Pattern1 if ${2:guard_condition} => {",
+      "\t\t${3:code}",
+      "\t},"
+    ],
+    "description": "Guard clause case in match block"
+  },
+  "match:case:complex patterns with destructuring": {
+    "prefix": "match_case_destructuring",
+    "body": [
+      "\t${1:StructName { ${2:field1}, ${3:field2} } => {",
+      "\t\t${4:code}",
+      "\t},"
+    ],
+    "description": "Complex patterns with destructuring in match block"
+  },
+  "match:case:result type": {
+    "prefix": "match_case_result",
+    "body": [
+      "\t${1:Ok(${2:val}) => {",
+      "\t\t${3:code}",
+      "\t},",
+      "\t${4:Err(${5:err}) => {",
+      "\t\t${6:error_handling_code}",
+      "\t},"
+    ],
+    "description": "Result type case in match block"
+  },
+  "match:case:option type": {
+    "prefix": "match_case_option",
+    "body": [
+      "\t${1:Some(${2:val}) => {",
+      "\t\t${3:code}",
+      "\t},",
+      "\t${4:None => {",
+      "\t\t${5:default_code}",
+      "\t},"
+    ],
+    "description": "Option type case in match block"
+  },
+  "match:case:slice pattern": {
+    "prefix": "match_case_slice",
+    "body": ["\t${1:[${2:first}, ..] => {", "\t\t${3:code}", "\t},"],
+    "description": "Slice pattern case in match block"
+  }
+}

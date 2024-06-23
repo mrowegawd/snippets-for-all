@@ -5,7 +5,7 @@
     "description": "Merge two vectors (slices) into one"
   },
   "merge:hashmap": {
-    "prefix": "merge_map",
+    "prefix": "merge_hashmap",
     "body": [
       "use std::collections::HashMap;",
       "",
@@ -19,6 +19,20 @@
     ],
     "description": "Merge two HashMaps (dictionaries) into one"
   },
+  "merge:hashset": {
+    "prefix": "merge_hashset",
+    "body": [
+      "let mut ${1:set1} = HashSet::new();",
+      "${1:set1}.insert(${2:value1});",
+      "",
+      "let mut ${3:set2} = HashSet::new();",
+      "${3:set2}.insert(${4:value2});",
+      "",
+      "${1:set1}.extend(${3:set2});",
+      "// ${1:set1} now contains elements from ${3:set2} as well"
+    ],
+    "description": "Merge two HashSet instances"
+  },
   "merge:array": {
     "prefix": "merge_array",
     "body": [
@@ -26,29 +40,6 @@
       "merged_array.extend_from_slice(&array2);"
     ],
     "description": "Merge two arrays into one"
-  },
-  "merge:channel": {
-    "prefix": "merge_channels",
-    "body": [
-      "use std::sync::mpsc;",
-      "use std::thread;",
-      "",
-      "fn merge_channels(rx1: mpsc::Receiver<Type>, rx2: mpsc::Receiver<Type>) -> mpsc::Receiver<Type> {",
-      "\tlet (tx, rx) = mpsc::channel();",
-      "\tthread::spawn(move || {",
-      "\t\tfor val in rx1.iter() {",
-      "\t\t\ttx.send(val).unwrap();",
-      "\t\t}",
-      "\t});",
-      "\tthread::spawn(move || {",
-      "\t\tfor val in rx2.iter() {",
-      "\t\t\ttx.send(val).unwrap();",
-      "\t\t}",
-      "\t});",
-      "\trx",
-      "}"
-    ],
-    "description": "Merge two channels into one"
   },
   "merge:strings": {
     "prefix": "merge_string",
@@ -74,6 +65,29 @@
     ],
     "description": "Merge two structs into one"
   },
+  "merge:channel": {
+    "prefix": "merge_channels",
+    "body": [
+      "use std::sync::mpsc;",
+      "use std::thread;",
+      "",
+      "fn merge_channels(rx1: mpsc::Receiver<Type>, rx2: mpsc::Receiver<Type>) -> mpsc::Receiver<Type> {",
+      "\tlet (tx, rx) = mpsc::channel();",
+      "\tthread::spawn(move || {",
+      "\t\tfor val in rx1.iter() {",
+      "\t\t\ttx.send(val).unwrap();",
+      "\t\t}",
+      "\t});",
+      "\tthread::spawn(move || {",
+      "\t\tfor val in rx2.iter() {",
+      "\t\t\ttx.send(val).unwrap();",
+      "\t\t}",
+      "\t});",
+      "\trx",
+      "}"
+    ],
+    "description": "Merge two channels into one"
+  },
   "merge:option types": {
     "prefix": "merge_option_type",
     "body": [
@@ -86,16 +100,6 @@
       "}"
     ],
     "description": "Merge two option types into one"
-  },
-  "merge:with custom merge function": {
-    "prefix": "merge_custom_function",
-    "body": [
-      "fn merge<T>(item1: T, item2: T) -> T {",
-      "\t// Your custom merge logic here",
-      "\titem1",
-      "}"
-    ],
-    "description": "Define a custom merge function for arbitrary types"
   },
   "merge:result types": {
     "prefix": "merge_result_type",
@@ -111,8 +115,27 @@
     ],
     "description": "Merge two result types into one"
   },
-  "merge:using traits and generics": {
-    "prefix": "merge_traits_generics",
+  "merge:with custom merge function": {
+    "prefix": "merge_custom_function",
+    "body": [
+      "fn merge<T>(item1: T, item2: T) -> T {",
+      "\t// Your custom merge logic here",
+      "\titem1",
+      "}"
+    ],
+    "description": "Define a custom merge function for arbitrary types"
+  },
+  "merge:methode flatmap (flatten and map)": {
+    "prefix": "merge_flatmap",
+    "body": [
+      "fn merge_flatmap<T>(vec1: Vec<Vec<T>>) -> Vec<T> {",
+      "\tvec1.into_iter().flatten().collect()",
+      "}"
+    ],
+    "description": "Merge nested collections using flatmap for flattening and mapping"
+  },
+  "merge:func:using traits and generics": {
+    "prefix": "merge_func_traits_generics",
     "body": [
       "trait Merge<T> {",
       "\tfn merge(self, other: T) -> T;",
@@ -129,8 +152,8 @@
     ],
     "description": "Merge structs using traits and generics"
   },
-  "merge:using mutex (for thread-safe operations)": {
-    "prefix": "merge_mutex",
+  "merge:func:using mutex (for thread-safe operations)": {
+    "prefix": "merge_func_mutex",
     "body": [
       "use std::sync::{Mutex, Arc};",
       "",
@@ -149,8 +172,8 @@
     ],
     "description": "Merge data using mutex for thread-safe operations"
   },
-  "merge:using arc for concurrent operations": {
-    "prefix": "merge_arc_concurrent",
+  "merge:func:using arc for concurrent operations": {
+    "prefix": "merge_func_arc_concurrent",
     "body": [
       "use std::sync::{Arc, Mutex};",
       "",
@@ -163,8 +186,8 @@
     ],
     "description": "Merge data using Arc for concurrent operations"
   },
-  "merge:using combine (for functional programming)": {
-    "prefix": "merge_combine",
+  "merge:func:using combine (for functional programming)": {
+    "prefix": "merge_func_combine",
     "body": [
       "fn merge_combine<T>(vec1: Vec<T>, vec2: Vec<T>) -> Vec<T> {",
       "\tvec1.into_iter().chain(vec2.into_iter()).collect()",
@@ -172,8 +195,8 @@
     ],
     "description": "Merge two collections using combine for functional programming"
   },
-  "merge:using iterator": {
-    "prefix": "merge_iterator",
+  "merge:func:using iterator": {
+    "prefix": "merge_func_iterator",
     "body": [
       "fn merge_iter<T>(iter1: impl Iterator<Item = T>, iter2: impl Iterator<Item = T>) -> Vec<T> {",
       "\titer1.chain(iter2).collect()",
@@ -181,8 +204,8 @@
     ],
     "description": "Merge two iterators into one collection"
   },
-  "merge:using pattern matching (for enumerations)": {
-    "prefix": "merge_pattern_matching",
+  "merge:func:using pattern matching (for enumerations)": {
+    "prefix": "merge_func_pattern_matching",
     "body": [
       "enum MyEnum {",
       "\tVariant1(Type),",
@@ -199,8 +222,8 @@
     ],
     "description": "Merge two enums using pattern matching"
   },
-  "merge:using combine options": {
-    "prefix": "merge_combine_options",
+  "merge:func:using combine options": {
+    "prefix": "merge_func_combine_options",
     "body": [
       "fn merge_options<T>(opt1: Option<T>, opt2: Option<T>) -> Option<T> {",
       "\topt1.or(opt2)",
@@ -209,8 +232,8 @@
     ],
     "description": "Merge two optional values into one"
   },
-  "merge:using custom merge trait": {
-    "prefix": "merge_custom_trait",
+  "merge:func:using custom merge trait": {
+    "prefix": "merge_func_custom_trait",
     "body": [
       "trait Merge<T> {",
       "\tfn merge(self, other: T) -> Self;",
@@ -232,8 +255,8 @@
     ],
     "description": "Merge structs using a custom merge trait"
   },
-  "merge:using union": {
-    "prefix": "merge_union",
+  "merge:func:using union": {
+    "prefix": "merge_func_union",
     "body": [
       "union MyUnion {",
       "\tfield1: Type1,",
@@ -252,8 +275,8 @@
     ],
     "description": "Merge two unions into one"
   },
-  "merge:using BTreeMap": {
-    "prefix": "merge_btreemap",
+  "merge:func:using BTreeMap": {
+    "prefix": "merge_func_btreemap",
     "body": [
       "use std::collections::BTreeMap;",
       "",
@@ -267,8 +290,8 @@
     ],
     "description": "Merge two BTreeMaps into one"
   },
-  "merge:using VecDeque (double-ended queue)": {
-    "prefix": "merge_vecdeque",
+  "merge:func:using VecDeque (double-ended queue)": {
+    "prefix": "merge_func_vecdeque",
     "body": [
       "use std::collections::VecDeque;",
       "",
@@ -279,8 +302,8 @@
     ],
     "description": "Merge two VecDeques into one"
   },
-  "merge:using atomic operations (atomicusize for counting)": {
-    "prefix": "merge_atomic_operations",
+  "merge:func:using atomic operations (atomicusize for counting)": {
+    "prefix": "merge_func_atomic_operations",
     "body": [
       "use std::sync::atomic::{AtomicUsize, Ordering};",
       "",
@@ -291,8 +314,8 @@
     ],
     "description": "Merge counts using atomic operations"
   },
-  "merge:using RwLock (read-write lock)": {
-    "prefix": "merge_rwlock",
+  "merge:func:using RwLock (read-write lock)": {
+    "prefix": "merge_func_rwlock",
     "body": [
       "use std::sync::{Arc, RwLock};",
       "",
@@ -303,8 +326,8 @@
     ],
     "description": "Merge data using RwLock for concurrent read/write operations"
   },
-  "merge:using Result and Option types": {
-    "prefix": "merge_result_option_type",
+  "merge:func:using Result and Option types": {
+    "prefix": "merge_func_result_and_option_type",
     "body": [
       "fn merge_result_option(result1: Result<Option<Type>, Error>, result2: Result<Option<Type>, Error>) -> Result<Option<Type>, Error> {",
       "\tmatch (result1, result2) {",
@@ -318,8 +341,8 @@
     ],
     "description": "Merge two Result<Option<Type>, Error> into one"
   },
-  "merge:using futures and async/await": {
-    "prefix": "merge_futures_async",
+  "merge:func:using futures and async/await": {
+    "prefix": "merge_func_futures_async",
     "body": [
       "async fn merge_futures(future1: impl Future<Output = Type>, future2: impl Future<Output = Type>) -> Type {",
       "\tlet result1 = future1.await;",
@@ -329,8 +352,8 @@
     ],
     "description": "Merge futures using async/await syntax"
   },
-  "merge:using functional programming (fold)": {
-    "prefix": "merge_functional_fold",
+  "merge:func:using functional programming (fold)": {
+    "prefix": "merge_func_functional_fold",
     "body": [
       "fn merge_fold<T: Clone>(items: &[Vec<T>]) -> Vec<T> {",
       "\titems.iter().cloned().flatten().collect()",
@@ -338,8 +361,8 @@
     ],
     "description": "Merge collections using fold for functional programming"
   },
-  "merge:using SIMD (single instruction, multiple data)": {
-    "prefix": "merge_simd",
+  "merge:func:using SIMD (single instruction, multiple data)": {
+    "prefix": "merge_func_using_SIMD",
     "body": [
       "#[cfg(target_feature = \"sse2\")]",
       "unsafe fn merge_simd(arr1: &[f32], arr2: &[f32]) -> Vec<f32> {",
@@ -369,17 +392,8 @@
     ],
     "description": "Merge arrays using SIMD for vectorized processing (example with SSE2)"
   },
-  "merge:using flatmap (flatten and map)": {
-    "prefix": "merge_flatmap",
-    "body": [
-      "fn merge_flatmap<T>(vec1: Vec<Vec<T>>) -> Vec<T> {",
-      "\tvec1.into_iter().flatten().collect()",
-      "}"
-    ],
-    "description": "Merge nested collections using flatmap for flattening and mapping"
-  },
-  "merge:using itertools (combinations, permutations)": {
-    "prefix": "merge_itertools",
+  "merge:func:using itertools (combinations, permutations)": {
+    "prefix": "merge_func_itertools",
     "body": [
       "use itertools::Itertools;",
       "",
@@ -389,8 +403,8 @@
     ],
     "description": "Merge collections using itertools for combinations and permutations"
   },
-  "merge:using Cow (clone on write)": {
-    "prefix": "merge_cow",
+  "merge:func:using Cow (clone on write)": {
+    "prefix": "merge_func_cow",
     "body": [
       "use std::borrow::Cow;",
       "",
@@ -404,8 +418,8 @@
     ],
     "description": "Merge data using Cow for clone-on-write behavior"
   },
-  "merge:using bitwise operations": {
-    "prefix": "merge_bitwise",
+  "merge:func:using bitwise operations": {
+    "prefix": "merge_func_bitwise",
     "body": [
       "fn merge_bitwise(num1: u32, num2: u32) -> u32 {",
       "\tnum1 | num2",
@@ -413,8 +427,8 @@
     ],
     "description": "Merge two numbers using bitwise operations"
   },
-  "merge:using unsafe code (for performance-critical operations)": {
-    "prefix": "merge_unsafe",
+  "merge:func:using unsafe code (for performance-critical operations)": {
+    "prefix": "merge_func_unsafe",
     "body": [
       "unsafe fn merge_unsafe(data1: &[u8], data2: &[u8]) -> Vec<u8> {",
       "\tlet mut merged_data = Vec::with_capacity(data1.len() + data2.len());",
@@ -425,8 +439,8 @@
     ],
     "description": "Merge data using unsafe code for performance-critical operations"
   },
-  "merge:using SIMD vector types (for portable SIMD)": {
-    "prefix": "merge_simd_vector",
+  "merge:func:using SIMD vector types (for portable SIMD)": {
+    "prefix": "merge_func_simd_vector",
     "body": [
       "use packed_simd::f32x4;",
       "",
@@ -447,8 +461,8 @@
     ],
     "description": "Merge arrays using SIMD vector types for portable SIMD operations"
   },
-  "merge:using procedural macros (for code generation)": {
-    "prefix": "merge_procedural_macros",
+  "merge:func:using procedural macros (for code generation)": {
+    "prefix": "merge_func_procedural_macros",
     "body": [
       "use merge_macro::merge;",
       "",
@@ -469,8 +483,8 @@
     ],
     "description": "Merge structs using procedural macros for code generation"
   },
-  "merge:using parallel processing (Rayon)": {
-    "prefix": "merge_parallel_rayon",
+  "merge:func:using parallel processing (Rayon)": {
+    "prefix": "merge_func_parallel_rayon",
     "body": [
       "use rayon::prelude::*;",
       "",
@@ -483,8 +497,8 @@
     ],
     "description": "Merge collections using parallel processing with Rayon"
   },
-  "merge:using data structures (e.g., AVL tree, skip list)": {
-    "prefix": "merge_data_structures",
+  "merge:func:using data structures (e.g., AVL tree, skip list)": {
+    "prefix": "merge_func_data_structures",
     "body": [
       "use avl_tree::AVLTree;",
       "",

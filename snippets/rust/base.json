@@ -547,6 +547,11 @@
     "body": ["loop {", "    ${2:unimplemented!();}", "}"],
     "description": "loop { … }"
   },
+  "if": {
+    "prefix": "if_",
+    "body": ["if ${1:condition} {", "    ${2:unimplemented!();}", "}"],
+    "description": "if … { … }"
+  },
   "if:let": {
     "prefix": "if_let",
     "body": [
@@ -555,21 +560,6 @@
       "}"
     ],
     "description": "if let … = … { … }"
-  },
-  "if": {
-    "prefix": "if_",
-    "body": ["if ${1:condition} {", "    ${2:unimplemented!();}", "}"],
-    "description": "if … { … }"
-  },
-  "match": {
-    "prefix": "match_",
-    "body": [
-      "match ${1:expr} {",
-      "    ${2:Some(expr)} => ${3:expr},",
-      "    ${4:None} => ${5:expr},",
-      "}"
-    ],
-    "description": "match … { … }"
   },
   "mod": {
     "prefix": "mod_",
@@ -585,6 +575,27 @@
     "prefix": "static_",
     "body": ["static ${1:STATIC}: ${2:Type} = ${4:init};"],
     "description": "static …: … = …;"
+  },
+  "type:check:type name": {
+    "prefix": "type_check_type_name",
+    "body": ["type_name::<${1:expr}>();"],
+    "description": "if-else type check"
+  },
+  "type:check:type name of val": {
+    "prefix": "type_check_type_name_of_val",
+    "body": ["type_name_of_val(&${1:expr});"],
+    "description": "if-else type check"
+  },
+  "type:check:if-else": {
+    "prefix": "type_check_if_else",
+    "body": [
+      "if ${1:expr}.is_${2:type}() {",
+      "    // ${1:expr} adalah tipe ${2:type}",
+      "} else {",
+      "    // ${1:expr} bukan tipe ${2:type}",
+      "}"
+    ],
+    "description": "if-else type check"
   },
   "struct:create": {
     "prefix": "struct_",

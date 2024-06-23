@@ -138,9 +138,9 @@
     "prefix": "todo_try_attempt",
     "body": [
       "- try-attempt: ${0:(what todo)}",
-      "  description: (penjelasan lanjutan)",
-      "  link: ...",
-      "  result: [ONGOING|NOTHING|POSTPONE]"
+      "\tdescription: (penjelasan lanjutan)",
+      "\tlink: ...",
+      "\tresult: [ONGOING|NOTHING|POSTPONE]"
     ]
   },
   "todo:checklist:create": {

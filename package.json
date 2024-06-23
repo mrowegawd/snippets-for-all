@@ -108,6 +108,14 @@
       },
       {
         "language": "go",
+        "path": "./snippets/go/select.json"
+      },
+      {
+        "language": "go",
+        "path": "./snippets/go/convert.json"
+      },
+      {
+        "language": "go",
         "path": "./snippets/go/_pattern.json"
       },
       {
@@ -153,6 +161,14 @@
       {
         "language": "rust",
         "path": "./snippets/rust/merge.json"
+      },
+      {
+        "language": "rust",
+        "path": "./snippets/rust/convert.json"
+      },
+      {
+        "language": "rust",
+        "path": "./snippets/rust/matching.json"
       },
       {
         "language": "rust",
@@ -247,6 +263,24 @@
           "svelte"
         ],
         "path": "./snippets/javascript/ts-base.json"
+      },
+      {
+        "language": [
+          "typescript",
+          "typescriptreact",
+          "vue",
+          "svelte"
+        ],
+        "path": "./snippets/javascript/ts-convert.json"
+      },
+      {
+        "language": [
+          "typescript",
+          "typescriptreact",
+          "vue",
+          "svelte"
+        ],
+        "path": "./snippets/javascript/ts-types.json"
       },
       {
         "language": [
@@ -380,6 +414,10 @@
       },
       {
         "language": "python",
+        "path": "./snippets/python/decorator.json"
+      },
+      {
+        "language": "python",
         "path": "./snippets/python/debug.json"
       },
       {
@@ -397,6 +435,10 @@
       {
         "language": "python",
         "path": "./snippets/python/lambda.json"
+      },
+      {
+        "language": "python",
+        "path": "./snippets/python/_pattern.json"
       },
       {
         "language": "django",
