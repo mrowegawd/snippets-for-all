@@ -201,5 +201,10 @@
     "description": "underline words",
     "prefix": "text_schedule",
     "body": ["SCHEDULED:"]
+  },
+  "text:code inline": {
+    "description": "code inline words",
+    "prefix": "text_code_inline",
+    "body": ["_$0_"]
   }
 }
