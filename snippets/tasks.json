@@ -1,0 +1,111 @@
+{
+  "Task main": {
+    "prefix": "task_main",
+    "body": [
+      "{",
+      "\t\"version\": \"2.0.0\",",
+      "\t\"tasks\": [",
+      "",
+      "\t\t}",
+      "\t]",
+      "}"
+    ],
+    "description": "Run an npm script"
+  },
+
+  "Run npm script": {
+    "prefix": "task_npm",
+    "body": [
+      "{",
+      "\t\"label\": \"${1:task_name}\",",
+      "\t\"type\": \"npm\",",
+      "\t\"script\": \"${2:script_name}\",",
+      "\t\"problemMatcher\": [],",
+      "\t\"group\": {",
+      "\t\t\"kind\": \"test\",",
+      "\t\t\"isDefault\": true",
+      "\t}",
+      "}"
+    ],
+    "description": "Run an npm script"
+  },
+  "Run shell script": {
+    "prefix": "task_shell",
+    "body": [
+      "{",
+      "\t\"label\": \"${1:task_name}\",",
+      "\t\"type\": \"shell\",",
+      "\t\"command\": \"${2:command}\",",
+      "\t\"problemMatcher\": [],",
+      "\t\"group\": {",
+      "\t\t\"kind\": \"build\",",
+      "\t\t\"isDefault\": true",
+      "\t}",
+      "}"
+    ],
+    "description": "Run a shell command"
+  },
+  "Run custom task": {
+    "prefix": "task_custom",
+    "body": [
+      "{",
+      "\t\"label\": \"${1:task_name}\",",
+      "\t\"type\": \"${2:task_type}\",",
+      "\t\"command\": \"${3:command}\",",
+      "\t\"problemMatcher\": [],",
+      "\t\"group\": {",
+      "\t\t\"kind\": \"${4:build}\",",
+      "\t\t\"isDefault\": true",
+      "\t}",
+      "}"
+    ],
+    "description": "Run a custom task"
+  },
+  "Run task with args": {
+    "prefix": "task_args",
+    "body": [
+      "{",
+      "\t\"label\": \"${1:task_name}\",",
+      "\t\"type\": \"${2:task_type}\",",
+      "\t\"command\": \"${3:command}\",",
+      "\t\"args\": [",
+      "\t\t\"${4:arg1}\",",
+      "\t\t\"${5:arg2}\",",
+      "\t\t\"${6:arg3}\"",
+      "\t],",
+      "\t\"problemMatcher\": [],",
+      "\t\"group\": {",
+      "\t\t\"kind\": \"${7:build}\",",
+      "\t\t\"isDefault\": true",
+      "\t}",
+      "}"
+    ],
+    "description": "Run a task with arguments"
+  },
+  "Dependent tasks": {
+    "prefix": "task_depend",
+    "body": [
+      "{",
+      "\t\"label\": \"${1:parent_task}\",",
+      "\t\"type\": \"shell\",",
+      "\t\"command\": \"${2:parent_command}\",",
+      "\t\"group\": {",
+      "\t\t\"kind\": \"build\",",
+      "\t\t\"isDefault\": true",
+      "\t},",
+      "\t\"dependsOn\": [\"${3:dependency_task}\"]",
+      "},",
+      "{",
+      "\t\"label\": \"${3:dependency_task}\",",
+      "\t\"type\": \"shell\",",
+      "\t\"command\": \"${4:dependency_command}\",",
+      "\t\"problemMatcher\": [],",
+      "\t\"group\": {",
+      "\t\t\"kind\": \"test\",",
+      "\t\t\"isDefault\": true",
+      "\t}",
+      "}"
+    ],
+    "description": "Define tasks with dependencies"
+  }
+}

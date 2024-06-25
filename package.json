@@ -271,6 +271,15 @@
           "vue",
           "svelte"
         ],
+        "path": "./snippets/javascript/ts-error.json"
+      },
+      {
+        "language": [
+          "typescript",
+          "typescriptreact",
+          "vue",
+          "svelte"
+        ],
         "path": "./snippets/javascript/ts-convert.json"
       },
       {
@@ -580,6 +589,10 @@
       {
         "language": "verilog",
         "path": "./snippets/verilog.json"
+      },
+      {
+        "language": "task",
+        "path": "./snippets/tasks.json"
       }
     ]
   }
