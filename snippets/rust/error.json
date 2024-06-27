@@ -89,29 +89,29 @@
     "body": [
       "#[derive(Debug)]",
       "struct ${1:CustomError} {",
-      "    context: String,",
-      "    cause: Option<Box<dyn std::error::Error>>,",
+      "\tcontext: String,",
+      "\tcause: Option<Box<dyn std::error::Error>>,",
       "}",
       "",
       "impl ${1:CustomError} {",
-      "    fn new(context: impl Into<String>, cause: Option<Box<dyn std::error::Error>>>) -> Self {",
-      "        Self {",
-      "            context: context.into(),",
-      "            cause,",
-      "        }",
-      "    }",
+      "\tfn new(context: impl Into<String>, cause: Option<Box<dyn std::error::Error>>>) -> Self {",
+      "\t\tSelf {",
+      "\t\t\tcontext: context.into(),",
+      "\t\t\tcause,",
+      "\t\t}",
+      "\t}",
       "}",
       "",
       "impl std::fmt::Display for ${1:CustomError} {",
-      "    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {",
-      "        write!(f, \"{}\", self.context)",
-      "    }",
+      "\tfn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {",
+      "\t\twrite!(f, \"{}\", self.context)",
+      "\t}",
       "}",
       "",
       "impl std::error::Error for ${1:CustomError} {",
-      "    fn source(&self) -> Option<&(dyn std::error::Error + 'static)> {",
-      "        self.cause.as_ref().map(|cause| cause.as_ref())",
-      "    }",
+      "\tfn source(&self) -> Option<&(dyn std::error::Error + 'static)> {",
+      "\t\tself.cause.as_ref().map(|cause| cause.as_ref())",
+      "\t}",
       "}"
     ],
     "description": "Define a custom error struct with context and optional cause"
@@ -145,8 +145,8 @@
     ],
     "description": "Ensure a condition is met or return an error."
   },
-  "error:Unreachable Code": {
-    "prefix": "err_unreachable",
+  "error:t:Unreachable Code": {
+    "prefix": "err_t_unreachable",
     "body": ["unreachable!(\"Reached an unreachable code\");"],
     "description": "Mark code as unreachable with an error message."
   },
@@ -171,7 +171,7 @@
     "description": "Unwrap a result or panic with a custom message on error."
   },
   "error:t:Option Unwrap": {
-    "prefix": "unwrap",
+    "prefix": "err_t_unwrap",
     "body": ["${1:option}.unwrap()"],
     "description": "Unwrap an option, panicking if the value is None."
   },

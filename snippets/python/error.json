@@ -114,21 +114,13 @@
     "body": ["import logging", "logging.exception('${1:Error message}')"],
     "description": "Log exception"
   },
-  "err:custom:error clas": {
-    "prefix": "err_custom_error_class",
-    "body": [
-      "class CustomError(Exception):",
-      "\tdef __init__(self, message):",
-      "\t\tsuper().__init__(message)",
-      "\t\tself.error_message = message",
-      "",
-      "\tdef __str__(self):",
-      "\t\treturn f'CustomError: {self.error_message}'"
-    ],
-    "description": "Create a custom error class in Python with super() usage"
+  "err:python Raise Error": {
+    "prefix": "err_t_throw_error",
+    "body": ["raise ${1:Exception}(\"${2:error message}\")"],
+    "description": "Raises a custom exception with a message in Python"
   },
-  "err:custom:Class with Error Code": {
-    "prefix": "err_custom_error_class_code",
+  "err:custom:with Error Code": {
+    "prefix": "err_custom_error_class",
     "body": [
       "class CustomError(Exception):",
       "\tdef __init__(self, code, message):",
@@ -141,8 +133,8 @@
     ],
     "description": "Create a custom error class in Python with an error code"
   },
-  "err:custom:Function": {
-    "prefix": "err_custom_error_function",
+  "err:custom:wiwth Function": {
+    "prefix": "err_custom_error_class_function",
     "body": [
       "def custom_error(message):",
       "\tclass CustomError(Exception):",
@@ -157,7 +149,7 @@
     "description": "Create a function returning a custom error class in Python"
   },
   "err:custom:with JSON Message": {
-    "prefix": "err_custom_error_json",
+    "prefix": "err_custom_error_class_for_json_message",
     "body": [
       "import json",
       "",
@@ -171,8 +163,8 @@
     ],
     "description": "Create a custom error class in Python with a JSON message"
   },
-  "err:custom:Class with List of Errors": {
-    "prefix": "err_custom_error_list",
+  "err:custom:with List of Errors": {
+    "prefix": "err_custom_error_class_list_of_errors",
     "body": [
       "class CustomError(Exception):",
       "    def __init__(self, errors):",
@@ -185,7 +177,7 @@
     "description": "Create a custom error class in Python with a list of errors"
   },
   "err:custom:with error code and json message": {
-    "prefix": "err_custom_error_code_json",
+    "prefix": "err_custom_error_class_code_json_message",
     "body": [
       "import json",
       "",
@@ -201,7 +193,7 @@
     "description": "Create a custom error class in Python with an error code and JSON message"
   },
   "err:custom:with If-Else Case": {
-    "prefix": "err_custom_error_if_else",
+    "prefix": "err_custom_error_class_if_else",
     "body": [
       "class CustomError(Exception):",
       "    def __init__(self, condition, message_if_true, message_if_false):",
@@ -217,7 +209,7 @@
     "description": "Create a custom error class in Python with an if-else condition"
   },
   "err:custom:with list and if-else Case": {
-    "prefix": "err_custom_error_list_if_else",
+    "prefix": "err_custom_error_class_list_if_else",
     "body": [
       "class CustomError(Exception):",
       "    def __init__(self, errors, condition, message_if_true, message_if_false):",
