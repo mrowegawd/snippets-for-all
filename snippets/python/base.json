@@ -233,15 +233,15 @@
     ],
     "description": "Constructor with object initialization"
   },
-  "class:method:empty method": {
-    "prefix": "class_func_empty",
-    "body": ["def ${1:method_name}(self):", "\t${2:# TODO: implement method}"],
-    "description": "Create an empty method"
-  },
-  "class:method:with return": {
+  "class:method:func with return": {
     "prefix": "class_func_method",
     "body": "def ${1:mname}(self, ${2:arg}) -> ${3:return_type}:\n\t${4:pass}$0",
     "description": "def fname(self, arg) -> return_type:\n\tpass"
+  },
+  "class:method:empty method": {
+    "prefix": "class_func_method_empty",
+    "body": ["def ${1:method_name}(self):", "\t${2:# TODO: implement method}"],
+    "description": "Create an empty method"
   },
   "class:method:with param": {
     "prefix": "class_func_with_param",

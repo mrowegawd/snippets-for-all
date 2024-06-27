@@ -688,6 +688,67 @@
       "}"
     ]
   },
+  "switch:case:create": {
+    "prefix": "switch_case",
+    "body": ["case ${1:value}:", "\t$0", "\tbreak;"],
+    "description": "Create a case statement"
+  },
+  "switch:case:with Fallthrough": {
+    "prefix": "switch_case_fallthrough",
+    "body": ["case ${1:value}:", "\t$0", "\t// fall through"],
+    "description": "Create a case statement with fallthrough comment"
+  },
+  "switch:case:Enum Statement": {
+    "prefix": "switch_case_enum",
+    "body": ["case ${1:EnumName}.${2:Case}:", "\t$0", "\tbreak;"],
+    "description": "Create a case statement for enum value"
+  },
+  "switch:case:String": {
+    "prefix": "switch_case_string",
+    "body": ["case '${1:value}':", "\t$0", "\tbreak;"],
+    "description": "Create a case statement for string value"
+  },
+  "switch:case:Numeric Statement": {
+    "prefix": "switch_case_numeric",
+    "body": ["case ${1:number}:", "\t$0", "\tbreak;"],
+    "description": "Create a case statement for numeric value"
+  },
+  "switch:case:Statement with Multiple Values": {
+    "prefix": "switch_case_multiple",
+    "body": ["case ${1:value1}:", "case ${2:value2}:", "\t$0", "\tbreak;"],
+    "description": "Create a case statement with multiple values"
+  },
+  "switch:case:Conditional": {
+    "prefix": "switch_case_conditional",
+    "body": [
+      "case ${1:value}:",
+      "\tif (${2:condition}) {",
+      "\t\t$0",
+      "\t}",
+      "\tbreak;"
+    ],
+    "description": "Create a case statement with a conditional check"
+  },
+  "switch:case:with Return": {
+    "prefix": "swith_case_return",
+    "body": ["case ${1:value}:", "\treturn ${2:result};"],
+    "description": "Create a case statement with a return statement"
+  },
+  "switch:case:with Function Call": {
+    "prefix": "switch_case_function_call",
+    "body": ["case ${1:value}:", "\t${2:functionName}();", "\tbreak;"],
+    "description": "Create a case statement with a function call"
+  },
+  "switch:case:with Object Property": {
+    "prefix": "switch_case_object_property",
+    "body": [
+      "case ${1:value}:",
+      "\tconst ${2:property} = ${3:object}.${1:value};",
+      "\t$0",
+      "\tbreak;"
+    ],
+    "description": "Create a case statement with object property access"
+  },
   "while": {
     "prefix": "while_",
     "body": ["while (${1:condition}) {", "\t$0", "}"],
@@ -981,6 +1042,11 @@
     "body": ["constructor(readonly ${1:params}: ${2:type}) {", "}"],
     "description": "Constructor with readonly parameter"
   },
+  "class:method:func": {
+    "prefix": "class_func_method",
+    "body": ["/**", " * ${1:name}", " */", "${1:name}() {", "\t$0", "}"],
+    "description": "Public Method Definition"
+  },
   "class:method:public getter": {
     "prefix": "class_func_get_public",
     "body": [
@@ -1018,13 +1084,8 @@
     "body": "get ${1:property} () {\n\t${0}\n}\nset ${1:property} (${2:value}) {\n\t\n}",
     "description": "get property () {\n\n}\nset ${1:property} (value) {\n\t\n}"
   },
-  "class:method:func": {
-    "prefix": "class_func_method",
-    "body": ["/**", " * ${1:name}", " */", "${1:name}() {", "\t$0", "}"],
-    "description": "Public Method Definition"
-  },
   "class:method:func private": {
-    "prefix": "class_func_private",
+    "prefix": "class_func_func_private",
     "body": ["private ${1:name}() {", "\t$0", "}"],
     "description": "Private Method Definition"
   },

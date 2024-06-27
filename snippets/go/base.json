@@ -636,7 +636,7 @@
     "body": "for ${1:_, }${2:v} := range ${3:v} {\n\t$0\n}",
     "description": "Snippet for a for range loop"
   },
-  "switch statement": {
+  "switch": {
     "prefix": "switch_",
     "body": "switch ${1:expression} {\ncase ${2:condition}:\n\t$0\n}",
     "description": "Snippet for switch statement"
