@@ -1,0 +1,238 @@
+{
+  "match:expression (advanced)": {
+    "prefix": "match_",
+    "body": [
+      "match ${1:expr}:",
+      "\tcase ${2:value} | ${3:other_value}:",
+      "\t\t${4:# do something for multiple values}",
+      "\t\tbreak",
+      "\tcase ${5:_} if ${6:condition}:",
+      "\t\t${7:# case with condition}",
+      "\t\tbreak",
+      "\tcase ${8:pattern} as ${9:variable}:",
+      "\t\t${10:# case with pattern matching}",
+      "\t\tbreak",
+      "\tcase ${11:} if ${12:condition} and ${13:another_condition}:",
+      "\t\t${14:# case with multiple conditions}",
+      "\t\tbreak",
+      "\tcase _:",
+      "\t\t${15:# default case}",
+      "\t\tbreak"
+    ],
+    "description": "Python match expression (advanced)"
+  },
+  "match:expression (more variants)": {
+    "prefix": "match_more_variants",
+    "body": [
+      "match ${1:expr}:",
+      "\tcase ${2:value} if ${3:condition}:",
+      "\t\t${4:# do something with condition}",
+      "\t\tbreak",
+      "\tcase ${5:value} | ${6:another_value}:",
+      "\t\t${7:# do something for multiple values}",
+      "\t\tbreak",
+      "\tcase ${8:_} if ${9:condition}:",
+      "\t\t${10:# case with wildcard and condition}",
+      "\t\tbreak",
+      "\tcase ${11:pattern} as ${12:variable} if ${13:condition}:",
+      "\t\t${14:# case with pattern matching and condition}",
+      "\t\tbreak",
+      "\tcase ${15:value} if ${16:condition} and ${17:another_condition}:",
+      "\t\t${18:# case with multiple conditions}",
+      "\t\tbreak",
+      "\tcase _:",
+      "\t\t${19:# default case}",
+      "\t\tbreak"
+    ],
+    "description": "Python match expression (more variants)"
+  },
+  "match:case (single value)": {
+    "prefix": "match_case_single",
+    "body": ["\tcase ${1:value}:", "\t\t${2:# do something}", "\t\tbreak"],
+    "description": "Python match case with single value"
+  },
+  "match:case (multiple values)": {
+    "prefix": "match_case_multi",
+    "body": [
+      "\tcase ${1:value1} | ${2:value2}:",
+      "\t\t${3:# do something for multiple values}",
+      "\t\tbreak"
+    ],
+    "description": "Python match case with multiple values"
+  },
+  "match:case (wildcard)": {
+    "prefix": "match_case_wildcard",
+    "body": ["\tcase _:", "\t\t${1:# default case}", "\t\tbreak"],
+    "description": "Python match case with wildcard"
+  },
+  "match:case (with condition)": {
+    "prefix": "match_case_condition",
+    "body": [
+      "\tcase ${1:value} if ${2:condition}:",
+      "\t\t${3:# do something with condition}",
+      "\t\tbreak"
+    ],
+    "description": "Python match case with condition"
+  },
+  "match:case (pattern matching)": {
+    "prefix": "match_case_pattern",
+    "body": [
+      "\tcase ${1:pattern} as ${2:variable}:",
+      "\t\t${3:# do something with pattern matching}",
+      "\t\tbreak"
+    ],
+    "description": "Python match case with pattern matching"
+  },
+  "match:case (multiple conditions)": {
+    "prefix": "match_case_multi_condition",
+    "body": [
+      "\tcase ${1:value} if ${2:condition1} and ${3:condition2}:",
+      "\t\t${4:# case with multiple conditions}",
+      "\t\tbreak"
+    ],
+    "description": "Python match case with multiple conditions"
+  },
+  "match:case (type matching)": {
+    "prefix": "match_case_type",
+    "body": [
+      "\tcase int(${1:value}):",
+      "\t\t${2:# do something for integer values}",
+      "\t\tbreak",
+      "\tcase str(${3:value}):",
+      "\t\t${4:# do something for string values}",
+      "\t\tbreak",
+      "\tcase list(${5:value}):",
+      "\t\t${6:# do something for list values}",
+      "\t\tbreak"
+    ],
+    "description": "Python match case for type matching"
+  },
+  "match:case (custom object)": {
+    "prefix": "match_case_custom_object",
+    "body": [
+      "\tcase ${1:MyCustomObject}(${2:attr1}, ${3:attr2}):",
+      "\t\t${4:# do something specific for MyCustomObject}",
+      "\t\tbreak"
+    ],
+    "description": "Python match case for custom object"
+  },
+  "match:case (exception handling)": {
+    "prefix": "match_case_exception",
+    "body": [
+      "\tcase ValueError as ${1:ve}:",
+      "\t\t${2:# handle specific exception (ValueError)}",
+      "\t\tbreak"
+    ],
+    "description": "Python match case for exception handling"
+  },
+  "match:case (complex match)": {
+    "prefix": "match_case_complex",
+    "body": [
+      "\tcase ${1:condition1}:",
+      "\t\t${2:# do something for condition1}",
+      "\t\tbreak",
+      "\tcase ${3:condition2}:",
+      "\t\t${4:# do something for condition2}",
+      "\t\tbreak",
+      "\tcase _:",
+      "\t\t${5:# default case for complex match}",
+      "\t\tbreak"
+    ],
+    "description": "Python match case for complex match expressions"
+  },
+  "match:case (boolean)": {
+    "prefix": "match_case_boolean",
+    "body": [
+      "\tcase True:",
+      "\t\t${1:# do something for True}",
+      "\t\tbreak",
+      "\tcase False:",
+      "\t\t${2:# do something for False}",
+      "\t\tbreak"
+    ],
+    "description": "Python match case for boolean values"
+  },
+  "match:case (custom function)": {
+    "prefix": "match_case_custom_function",
+    "body": [
+      "\tcase ${1:my_function}(${2:args}):",
+      "\t\t${3:# do something with custom function}",
+      "\t\tbreak"
+    ],
+    "description": "Python match case for custom function"
+  },
+  "match:case (tuple matching)": {
+    "prefix": "match_case_tuple",
+    "body": [
+      "\tcase (${1:value1}, ${2:value2}):",
+      "\t\t${3:# do something with tuple values}",
+      "\t\tbreak"
+    ],
+    "description": "Python match case for matching tuples"
+  },
+  "match:case (dictionary matching)": {
+    "prefix": "match_case_dictionary",
+    "body": [
+      "\tcase {${1:key1}: ${2:value1}, ${3:key2}: ${4:value2}}:",
+      "\t\t${5:# do something with dictionary values}",
+      "\t\tbreak"
+    ],
+    "description": "Python match case for matching dictionaries"
+  },
+  "match:case (loop match)": {
+    "prefix": "match_case_loop",
+    "body": [
+      "\tfor ${1:item} in ${2:items}:",
+      "\t\tmatch ${1:item}:",
+      "\t\t\tcase ${3:value}:",
+      "\t\t\t\t${4:# do something}",
+      "\t\t\t\tbreak",
+      "\t\t\tcase _:",
+      "\t\t\t\t${5:# default case}",
+      "\t\t\t\tbreak"
+    ],
+    "description": "Python match case within a loop"
+  },
+  "match:case (None)": {
+    "prefix": "match_case_none",
+    "body": ["\tcase None:", "\t\t${1:# do something for None}", "\t\tbreak"],
+    "description": "Python match case for None"
+  },
+  "match:case (range)": {
+    "prefix": "match_case_range",
+    "body": [
+      "\tcase ${1:value} in range(${2:start}, ${3:end}):",
+      "\t\t${4:# do something for value in range}",
+      "\t\tbreak"
+    ],
+    "description": "Python match case for range of values"
+  },
+  "match:case (string pattern)": {
+    "prefix": "match_case_string_pattern",
+    "body": [
+      "\tcase str(${1:value}) if ${2:value.startswith('prefix')} and ${3:value.endswith('suffix')}:",
+      "\t\t${4:# do something for string pattern}",
+      "\t\tbreak"
+    ],
+    "description": "Python match case for matching string patterns"
+  },
+  "match:case (regex pattern)": {
+    "prefix": "match_case_regex_pattern",
+    "body": [
+      "\timport re",
+      "\tcase re.match(r'${1:pattern}', ${2:value}):",
+      "\t\t${3:# do something for regex pattern}",
+      "\t\tbreak"
+    ],
+    "description": "Python match case for matching regex patterns"
+  },
+  "match:case (iterator)": {
+    "prefix": "match_case_iterator",
+    "body": [
+      "\tcase ${1:iterable} := ${2:iter}.__next__():",
+      "\t\t${3:# do something with iterator value}",
+      "\t\tbreak"
+    ],
+    "description": "Python match case for handling iterators"
+  }
+}
