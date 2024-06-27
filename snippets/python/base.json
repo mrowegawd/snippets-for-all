@@ -158,6 +158,81 @@
     ],
     "description": ["\tdef __init__(self, ${1:x}):", "\t\tself.${1:x} = ${1:x}"]
   },
+  "class:method:constructor:constructor empty": {
+    "prefix": "class_func_constructor_empty",
+    "body": ["def __init__(self):", "    pass"],
+    "description": "Empty constructor"
+  },
+  "class:method:constructor:with parameters": {
+    "prefix": "class_func_constructor_param",
+    "body": [
+      "def __init__(self, ${1:param1}, ${2:param2}):",
+      "    self.${1:param1} = ${1:param1}",
+      "    self.${2:param2} = ${2:param2}"
+    ],
+    "description": "Constructor with parameters"
+  },
+  "class:method:constructor:with property initialization": {
+    "prefix": "class_func_constructor_prop_init",
+    "body": ["def __init__(self):", "    self.${1:property_name} = ${2:value}"],
+    "description": "Constructor with property initialization"
+  },
+  "class:method:constructor:with super call": {
+    "prefix": "class_func_constructor_super_call",
+    "body": [
+      "def __init__(self, ${1:params}):",
+      "    super().__init__()",
+      "    self.${1:params} = ${1:params}"
+    ],
+    "description": "Constructor with super call"
+  },
+  "class:method:constructor:with object destructuring": {
+    "prefix": "class_func_constructor_destructuring",
+    "body": [
+      "def __init__(self, ${1:param1}=${2:default_value}):",
+      "    self.${1:param1} = ${1:param1}"
+    ],
+    "description": "Constructor with default parameter value"
+  },
+  "class:method:constructor:with optional parameter": {
+    "prefix": "class_func_constructor_param_optional",
+    "body": [
+      "def __init__(self, ${1:param1}=None):",
+      "    self.${1:param1} = ${1:param1}"
+    ],
+    "description": "Constructor with optional parameter"
+  },
+  "class:method:constructor:with rest parameter with *args": {
+    "prefix": "class_func_constructor_param_rest_args",
+    "body": ["def __init__(self, *args):", "    self.args = args"],
+    "description": "Constructor with *args parameter"
+  },
+  "class:method:constructor:with object initialization with **kwargs": {
+    "prefix": "class_func_constructor_dict_dict_kwargs",
+    "body": [
+      "def __init__(self, **kwargs):",
+      "    for key, value in kwargs.items():",
+      "        setattr(self, key, value)"
+    ],
+    "description": "Constructor with **kwargs parameter"
+  },
+  "class:method:constructor:with type hints": {
+    "prefix": "class_func_constructor_type_hints",
+    "body": [
+      "def __init__(self, ${1:param1}: ${2:type}):",
+      "    self.${1:param1} = ${1:param1}"
+    ],
+    "description": "Constructor with type hints"
+  },
+  "class:method:constructor:with type hints dict": {
+    "prefix": "class_func_constructor_with_dict",
+    "body": [
+      "def __init__(self, obj):",
+      "    for key, value in obj.items():",
+      "        setattr(self, key, value)"
+    ],
+    "description": "Constructor with object initialization"
+  },
   "class:method:empty method": {
     "prefix": "class_func_empty",
     "body": ["def ${1:method_name}(self):", "\t${2:# TODO: implement method}"],
@@ -500,7 +575,7 @@
     "description": "@dataclass\nclass MyClass:\n\tname: str\n\tunit_price: float = 1.3"
   },
   "function": {
-    "prefix": "def_func",
+    "prefix": "def_func_",
     "body": "def ${1:fname}(${2:arg}):\n\t${3:pass}$0",
     "description": "def fname(arg):\n\tpass"
   },
@@ -539,15 +614,15 @@
     "description": "Create an async Python function with decorator"
   },
   "return": {
-    "prefix": "rt_",
+    "prefix": "ret_",
     "body": "return ${0:this}"
   },
   "return set": {
-    "prefix": "rt_tuple",
+    "prefix": "ret_tuple",
     "body": "return ${1:name}, ${2:name2}$0"
   },
   "return func": {
-    "prefix": "rt_func",
+    "prefix": "ret_func",
     "body": ["def myfunc2()", "\treturn \"hello world \"", "\treturn myfunc2()"]
   },
   "if": {

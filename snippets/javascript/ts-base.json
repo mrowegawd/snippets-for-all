@@ -20,7 +20,7 @@
     "description": "Declare a named export in TypeScript"
   },
   "export:member": {
-    "prefix": "exports_member",
+    "prefix": "export_member",
     "body": "exports.${1:member} = ${2:value}",
     "description": "exports.member = value"
   },
@@ -39,6 +39,27 @@
     "body": ["declare module '${1:moduleName}' {", "\t$0", "}"],
 
     "description": "Declare an ambient module in TypeScript"
+  },
+  "module:define": {
+    "prefix": "module_define",
+    "body": [
+      "define([",
+      "\t'require',",
+      "\t'${1:dependency}'",
+      "], function(require, ${2:factory}) {",
+      "\t'use strict';",
+      "\t$0",
+      "});"
+    ],
+    "description": [
+      "define([",
+      "\t'require',",
+      "\t'${1:dependency}'",
+      "], function(require, ${2:factory}) {",
+      "\t'use strict';",
+      "\t$0",
+      "});"
+    ]
   },
   "namespace:declaration": {
     "prefix": "namespace_",
@@ -133,6 +154,11 @@
     ],
     "description": "Declare a tuple in TypeScript"
   },
+  "const:ternary assignment": {
+    "prefix": "const_ternary",
+    "body": "const ${0} = ${1:cond} ? ${2:true} : ${3:false}",
+    "description": "const ${0} = ${1:cond} ? ${2:true} : ${3:false}"
+  },
   "const:destructuring:statement": {
     "prefix": "const_destructuring",
     "body": "const { ${2:prop} } = ${1:value}",
@@ -175,7 +201,7 @@
     "description": "Declare a template literal in TypeScript"
   },
   "const:obj class": {
-    "prefix": "const_new_obj",
+    "prefix": "const_obj_class",
     "body": ["const ${1:name} = new ${2:type}(${3:arguments});$0"],
     "description": "const name = new type(arguments);"
   },
@@ -189,12 +215,12 @@
     "body": "const ${1:name} = yield ${2:value}",
     "description": "const name = yield value"
   },
-  "const:module = require('module')": {
+  "const:require module": {
     "prefix": "const_require",
     "body": "const ${1:module} = require('${1:module}')",
     "description": "const module = require('module')"
   },
-  "const:module export": {
+  "const:export member value": {
     "prefix": "const_export",
     "body": "export const ${1:member} = ${2:value}",
     "description": "export const member = value"
@@ -260,16 +286,6 @@
     "body": "let ${1:name} = yield ${2:value}",
     "description": "let name = yield value"
   },
-  "generate array of integers starting with 1": {
-    "prefix": "gari",
-    "body": "Array.from({ length: ${1:length} }, (v, k) => k + 1)",
-    "description": "Array.from({ length: xlength} }, (v, k) => k + 1)"
-  },
-  "generate array of integers starting with 0": {
-    "prefix": "gari0",
-    "body": "[...Array(${1:length}).keys()]",
-    "description": "[...Array(length).keys()]"
-  },
   "typeof": {
     "prefix": "typeof_",
     "body": "typeof ${1:source} === '${2:undefined}'",
@@ -290,56 +306,130 @@
     "body": "${1:cond} ? ${2:true} : ${3:false}",
     "description": "cond ? true : false"
   },
-  "ternary var assignment": {
-    "prefix": "var_tern",
-    "body": "var ${0} = ${1:cond} ? ${2:true} : ${3:false}",
-    "description": "var ${0} = ${1:cond} ? ${2:true} : ${3:false}"
+  "ternary:multi-line ternary operator": {
+    "prefix": "tern_multi_line",
+    "body": [
+      "${1:condition}",
+      "\t? (",
+      "\t\t${2:valueIfTrue},",
+      "\t) : (",
+      "\t\t${3:valueIfFalse}",
+      "\t)"
+    ],
+    "description": "Multi-line ternary operator"
   },
-  "ternary const assignment": {
-    "prefix": "const_tern",
-    "body": "const ${0} = ${1:cond} ? ${2:true} : ${3:false}",
-    "description": "const ${0} = ${1:cond} ? ${2:true} : ${3:false}"
+  "ternary:complex condition": {
+    "prefix": "tern_complex_condition",
+    "body": [
+      "(${1:condition1} && ${2:condition2})",
+      "\t? ${3:valueIfTrue}",
+      "\t: ${4:valueIfFalse}"
+    ],
+    "description": "Ternary operator with complex condition"
   },
-  "return arrow function": {
-    "prefix": "rt_arr_",
+  "ternary:complex expression": {
+    "prefix": "tern_complex_expression",
+    "body": [
+      "${1:condition} ? (${2:expressionIfTrue}) : (${3:expressionIfFalse})"
+    ],
+    "description": "Ternary operator with complex expression"
+  },
+  "ternary:optional chaining and nullish coalescing": {
+    "prefix": "tern_optional_nullish_coalescing",
+    "body": ["${1:object}?.${2:property} ?? ${3:defaultValue}"],
+    "description": "Ternary operator with optional chaining and nullish coalescing"
+  },
+  "return:create": {
+    "prefix": "ret_",
     "body": "return (${1:arguments}) => ${2:statement}",
     "description": "return (arguments) => statement"
   },
-  "return this": {
-    "prefix": "rt_this",
+  "return:arrow function": {
+    "prefix": "ret_func_arrow",
+    "body": "return (${1:arguments}) => ${2:statement}",
+    "description": "return (arguments) => statement"
+  },
+  "return:this": {
+    "prefix": "ret_this",
     "body": "return ${0:this}",
     "description": "return this"
   },
-  "return null": {
-    "prefix": "rt_null",
+  "return:null": {
+    "prefix": "ret_null",
     "body": "return null",
     "description": "return null"
   },
-  "return new array": {
-    "prefix": "rt_array",
+  "return:array": {
+    "prefix": "ret_array",
     "body": "return [\n\t${0}\n]",
     "description": "return [\n\n]"
   },
-  "define module": {
-    "prefix": "define_",
+  "return:object literal": {
+    "prefix": "ret_obj_literal",
+    "body": ["return {", "\t${1:key}: ${2:value},", "};"],
+    "description": "Return an object literal"
+  },
+  "return:new Promise": {
+    "prefix": "ret_new_promise",
     "body": [
-      "define([",
-      "\t'require',",
-      "\t'${1:dependency}'",
-      "], function(require, ${2:factory}) {",
-      "\t'use strict';",
-      "\t$0",
+      "return new Promise((${1:resolve}, ${2:reject}) => {",
+      "\t${3:// Write async code here}",
+      "\t$1(${4:result});",
       "});"
     ],
-    "description": [
-      "define([",
-      "\t'require',",
-      "\t'${1:dependency}'",
-      "], function(require, ${2:factory}) {",
-      "\t'use strict';",
-      "\t$0",
-      "});"
-    ]
+    "description": "Return a Promise"
+  },
+  "return:async return": {
+    "prefix": "ret_async_await",
+    "body": ["return await ${1:expression};"],
+    "description": "Async return statement"
+  },
+  "return:conditional": {
+    "prefix": "ret_conditional",
+    "body": ["return ${1:condition} ? ${2:valueIfTrue} : ${3:valueIfFalse};"],
+    "description": "Return statement with conditional expression"
+  },
+  "return:statement with default value": {
+    "prefix": "ret_default",
+    "body": [
+      "return ${1:value} !== undefined ? ${1:value} : ${2:defaultValue};"
+    ],
+    "description": "Return statement with default value"
+  },
+  "return:statement with interface": {
+    "prefix": "ret_interface",
+    "body": [
+      "return ${1:{",
+      "\t${2:key1}: ${3:type1};",
+      "\t${4:key2}: ${5:type2};",
+      "}};"
+    ],
+    "description": "Return statement with TypeScript interface"
+  },
+  "return:statement with destructuring": {
+    "prefix": "ret_destructuring",
+    "body": ["return { ${1:key1}, ${2:key2} } = ${3:value};"],
+    "description": "Return statement with destructuring"
+  },
+  "return:statement with optional chaining": {
+    "prefix": "ret_optional",
+    "body": ["return ${1:object}?.${2:property};"],
+    "description": "Return statement with optional chaining"
+  },
+  "return:statement with nullish coalescing": {
+    "prefix": "ret_nullish",
+    "body": ["return ${1:value} ?? ${2:defaultValue};"],
+    "description": "Return statement with nullish coalescing"
+  },
+  "return:statement with tuple type": {
+    "prefix": "ret_tuple",
+    "body": ["return [${1:value1}, ${2:value2}] as [${3:type1}, ${4:type2}];"],
+    "description": "Return statement with tuple type"
+  },
+  "return:statement with type assertion": {
+    "prefix": "ret_assertion",
+    "body": ["return ${1:value} as ${2:type};"],
+    "description": "Return statement with type assertion"
   },
   "for": {
     "prefix": "for_",
@@ -765,13 +855,24 @@
     "body": ["/// <reference path=\"$1\" />", "$0"],
     "description": "Triple-slash reference"
   },
-  "class:constructor": {
-    "prefix": "class_func_constractor",
-    "body": ["/**", " *", " */", "constructor() {", "\tsuper();", "\t$0", "}"],
-    "description": "class constructor"
+  "class": {
+    "prefix": "class_",
+    "body": [
+      "class ${1:name} {",
+      "\tconstructor(${2:parameters}) {",
+      "\t\t$0",
+      "\t}",
+      "}"
+    ],
+    "description": "Class Definition"
   },
   "class:property": {
-    "prefix": "class_prop",
+    "prefix": "class_prop_",
+    "body": ["${1:private_or_public} ${2:nameproperty} : ${3:type};"],
+    "description": "Define a full property"
+  },
+  "class:property:full with get and set func": {
+    "prefix": "class_prop_full_with_get_set",
     "body": [
       "",
       "private _${1:value} : ${2:string};",
@@ -800,8 +901,88 @@
     "body": ["readonly ${1:propertyName}: ${2:Type};", "$0"],
     "description": "Declare a readonly property in TypeScript"
   },
-  "class:property getter": {
-    "prefix": "class_get_public",
+  "class:method:constructor:empty": {
+    "prefix": "class_func_constructor_empty",
+    "body": ["constructor() {", "    // Write your code here", "}"],
+    "description": "Empty constructor"
+  },
+  "class:method:constructor:with parameters": {
+    "prefix": "class_func_constructor_param",
+    "body": [
+      "constructor(${1:params}) {",
+      "    this.${1:params} = ${1:params};",
+      "}"
+    ],
+    "description": "Constructor with parameters"
+  },
+  "class:method:constructor:with property initialization": {
+    "prefix": "class_func_constructor_prop_init",
+    "body": [
+      "constructor() {",
+      "    this.${1:propertyName} = ${2:value};",
+      "}"
+    ],
+    "description": "Constructor with property initialization"
+  },
+  "class:method:constructor:with super call": {
+    "prefix": "class_func_constructor_super_call",
+    "body": [
+      "constructor(${1:params}) {",
+      "    super();",
+      "    this.${1:params} = ${1:params};",
+      "}"
+    ],
+    "description": "Constructor with super call"
+  },
+  "class:method:constructor:with object destructuring": {
+    "prefix": "class_func_constructor_destructuring",
+    "body": [
+      "constructor({${1:prop1}, ${2:prop2}}) {",
+      "    this.${1:prop1} = ${1:prop1};",
+      "    this.${2:prop2} = ${2:prop2};",
+      "}"
+    ],
+    "description": "Constructor with object destructuring"
+  },
+  "class:method:constructor:with optional parameter": {
+    "prefix": "class_func_constructor_param_optional",
+    "body": [
+      "constructor(${1:params}?: ${2:type}) {",
+      "    this.${1:params} = ${1:params} ?? ${3:defaultValue};",
+      "}"
+    ],
+    "description": "Constructor with optional parameter"
+  },
+  "class:method:constructor:with rest parameter": {
+    "prefix": "class_func_constructor_param_rest",
+    "body": [
+      "constructor(...${1:params}) {",
+      "    this.${1:params} = ${1:params};",
+      "}"
+    ],
+    "description": "Constructor with rest parameter"
+  },
+  "class:method:constructor:with object initialization": {
+    "prefix": "class_func_constructor_obj_init",
+    "body": ["constructor(obj: any) {", "    Object.assign(this, obj);", "}"],
+    "description": "Constructor with object initialization"
+  },
+  "class:method:constructor:with optional parameter and default value": {
+    "prefix": "class_func_constructor_param_optional_and_default",
+    "body": [
+      "constructor(${1:params}: ${2:type} = ${3:defaultValue}) {",
+      "    this.${1:params} = ${1:params};",
+      "}"
+    ],
+    "description": "Constructor with optional parameter and default value"
+  },
+  "class:method:constructor:with readonly parameter": {
+    "prefix": "class_func_constructor_param_readonly",
+    "body": ["constructor(readonly ${1:params}: ${2:type}) {", "}"],
+    "description": "Constructor with readonly parameter"
+  },
+  "class:method:public getter": {
+    "prefix": "class_func_get_public",
     "body": [
       "",
       "public get ${1:value}() : ${2:string} {",
@@ -811,8 +992,8 @@
     ],
     "description": "Property getter"
   },
-  "class:property setter": {
-    "prefix": "class_set_public",
+  "class:method:public setter": {
+    "prefix": "class_func_set_public",
     "body": [
       "",
       "public set ${1:value}(v : ${2:string}) {",
@@ -822,39 +1003,28 @@
     ],
     "description": "Property setter"
   },
-  "class:getter": {
-    "prefix": "class_get",
+  "class:method:getter": {
+    "prefix": "class_func_get",
     "body": "get ${1:property} () {\n\t${0}\n}",
     "description": "get property () {\n\n}"
   },
-  "class:setter": {
-    "prefix": "class_set",
+  "class:method:setter": {
+    "prefix": "class_func_set",
     "body": "set ${1:property} (${2:value}) {\n\t${0}\n}",
     "description": "set property (value) {\n\n}"
   },
-  "class:getter plus with setter": {
-    "prefix": "class_set_and_get",
+  "class:method:getter plus with setter": {
+    "prefix": "class_func_set_and_get",
     "body": "get ${1:property} () {\n\t${0}\n}\nset ${1:property} (${2:value}) {\n\t\n}",
     "description": "get property () {\n\n}\nset ${1:property} (value) {\n\t\n}"
   },
-  "class": {
-    "prefix": "class_",
-    "body": [
-      "class ${1:name} {",
-      "\tconstructor(${2:parameters}) {",
-      "\t\t$0",
-      "\t}",
-      "}"
-    ],
-    "description": "Class Definition"
-  },
-  "class:method": {
-    "prefix": "class_method",
+  "class:method:func": {
+    "prefix": "class_func_method",
     "body": ["/**", " * ${1:name}", " */", "${1:name}() {", "\t$0", "}"],
     "description": "Public Method Definition"
   },
-  "class:method private": {
-    "prefix": "class_method_private",
+  "class:method:func private": {
+    "prefix": "class_func_private",
     "body": ["private ${1:name}() {", "\t$0", "}"],
     "description": "Private Method Definition"
   },

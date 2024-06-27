@@ -119,44 +119,44 @@
     "body": "interface{}",
     "description": "Snippet for empty interface"
   },
-  "interface:interface-method": {
-    "prefix": "interface_func",
+  "interface:method:func": {
+    "prefix": "interface_func_",
     "body": ["${1:MethodName}(${2:params}) ${3:returnType}"],
     "description": "Create a method in an interface"
   },
-  "interface:interface-method-error": {
-    "prefix": "interface_func_error",
+  "interface:method:param with return": {
+    "prefix": "interface_func_param_with_return",
     "body": ["${1:MethodName}(${2:params}) (${3:returnType}, error)"],
     "description": "Create a method in an interface with error return"
   },
-  "interface:interface-method-variadic": {
-    "prefix": "interface_func_variadic",
+  "interface:method:param variadic": {
+    "prefix": "interface_func_param_variadic",
     "body": ["${1:MethodName}(${2:params} ...${3:Type})"],
     "description": "Create a method in an interface with variadic parameter"
   },
-  "interface:interface-getter": {
+  "interface:method:param getter": {
     "prefix": "interface_func_getter",
     "body": ["Get${1:FieldName}() ${2:FieldType}"],
     "description": "Create a getter method in an interface"
   },
-  "interface:interface-setter": {
+  "interface:method:param setter": {
     "prefix": "interface_func_setter",
     "body": ["Set${1:FieldName}(${2:value} ${3:FieldType})"],
     "description": "Create a setter method in an interface"
   },
-  "interface:interface-method-receiver": {
+  "interface:method:param receiver": {
     "prefix": "interface_func_receiver",
-    "body": ["(${1:ReceiverName} ${2:ReceiverType})"],
+    "body": ["${1:MethodName}(${2:ReceiverName} ${3:ReceiverType})"],
     "description": "Create a method in an interface with receiver"
   },
-  "interface:interface-method-receiver-multiple-return": {
+  "interface:method:param and multiple return": {
     "prefix": "interface_func_receiver_multiple_return",
     "body": [
-      "(${1:ReceiverName} ${2:ReceiverType}) (${3:returnType1}, ${4:returnType2})"
+      "${1:MethodName}(${2:ReceiverName} ${3:ReceiverType}) (${4:returnType1}, ${5:returnType2})"
     ],
     "description": "Create a method in an interface with receiver and multiple return values"
   },
-  "interface:interface-method-channel-receiver": {
+  "interface:method:param channel receiver": {
     "prefix": "interface_func_channel_receiver",
     "body": ["${1:MethodName}(${2:c chan ${3:Type}}) ${4:returnType}"],
     "description": "Create a method in an interface with channel receiver"
@@ -201,7 +201,7 @@
     "description": "Create a struct field with a complex tag and comment"
   },
   "struct:tag:json:multiple-tags-one-line": {
-    "prefix": "structmultipletagsoneline",
+    "prefix": "struct_tag_json_multiple_tags_one_line",
     "body": [
       "type ${1:StructName} struct {",
       "\t${2:FieldName} ${3:Type} `json:\"${4:fieldName},omitempty\" xml:\"${4:fieldName}\"`",
@@ -209,7 +209,7 @@
     ],
     "description": "Create a struct field with multiple tags on one line"
   },
-  "struct:method-pointer-receiver": {
+  "struct:method:pointer-receiver": {
     "prefix": "struct_func_pointer_receiver",
     "body": [
       "func (${1:*${2:StructName}}) ${3:MethodName}(${4:params}) ${5:returnType} {",
@@ -218,7 +218,7 @@
     ],
     "description": "Snippet for a method with a pointer receiver"
   },
-  "struct:method-value-receiver": {
+  "struct:method:value-receiver": {
     "prefix": "struct_func_value_receiver",
     "body": [
       "func (${1:${2:StructName}}) ${3:MethodName}(${4:params}) ${5:returnType} {",
@@ -227,7 +227,7 @@
     ],
     "description": "Snippet for a method with a value receiver"
   },
-  "struct:method-getter": {
+  "struct:method:getter": {
     "prefix": "struct_func_getter",
     "body": [
       "func (${1:${2:StructName}}) Get${3:FieldName}() ${4:FieldType} {",
@@ -236,7 +236,7 @@
     ],
     "description": "Create a getter method"
   },
-  "struct:method-setter": {
+  "struct:method:setter": {
     "prefix": "struct_func_setter",
     "body": [
       "func (${1:*${2:StructName}}) Set${3:FieldName}(${4:value} ${5:FieldType}) {",
@@ -245,19 +245,148 @@
     ],
     "description": "Create a setter method"
   },
-  "struct:method-constructor": {
-    "prefix": "struct_func_constructor",
+  "struct:method:constructor:simple": {
+    "prefix": "struct_func_constructor_",
     "body": [
       "func New${1:StructName}(${2:params}) *${1:StructName} {",
       "\treturn &${1:StructName}{",
-      "\t\t${3:Field1}: ${2:Param1},",
-      "\t\t${4:Field2}: ${5:Param2},",
+      "\t\t${2:params},",
       "\t}",
       "}"
     ],
-    "description": "Create a constructor for a struct"
+    "description": "Constructor"
   },
-  "struct:method-variadic": {
+  "struct:method:constructor:with property initialization": {
+    "prefix": "struct_func_constructor_with_property_initialization",
+    "body": [
+      "func New${1:StructName}() *${1:StructName} {",
+      "\treturn &${1:StructName}{",
+      "\t\t${2:property}: ${3:value},",
+      "\t}",
+      "}"
+    ],
+    "description": "Constructor with property initialization"
+  },
+  "struct:method:constructor:with default or expression initialization": {
+    "prefix": "struct_func_constructor_with_default_or_expression_initialization",
+    "body": [
+      "func New${1:StructName}(${2:param} ${3:type}) *${1:StructName} {",
+      "\t${4:defaultValue} := ${5:expression}",
+      "\treturn &${1:StructName}{",
+      "\t\t${2:param}: ${4:defaultValue},",
+      "\t}",
+      "}"
+    ],
+    "description": "Constructor with default or expression initialization"
+  },
+  "struct:method:constructor:with type conversion using interface{}": {
+    "prefix": "struct_func_constructor_with_type_conversion_using_interface",
+    "body": [
+      "func New${1:StructName}(${2:param} interface{}) *${1:StructName} {",
+      "\t${3:param} := ${2:param}.(${3:type})",
+      "\treturn &${1:StructName}{",
+      "\t\t${2:param}: ${3:param},",
+      "\t}",
+      "}"
+    ],
+    "description": "Constructor with type conversion using interface{}"
+  },
+  "struct:method:constructor:with parameter validation": {
+    "prefix": "struct_func_constructor_with_parameter_validation",
+    "body": [
+      "func New${1:StructName}(${2:param} ${3:type}) (*${1:StructName}, error) {",
+      "\t// Validation logic",
+      "\tif ${2:param}.IsValid() {",
+      "\t\treturn &${1:StructName}{",
+      "\t\t\t${2:param}: ${2:param},",
+      "\t\t}, nil",
+      "\t} else {",
+      "\t\treturn nil, fmt.Errorf(\"Invalid ${2:param}\")",
+      "\t}",
+      "}"
+    ],
+    "description": "Constructor with parameter validation"
+  },
+  "struct:method:constructor:with builder pattern": {
+    "prefix": "struct_func_constructor_with_builder_pattern",
+    "body": [
+      "type ${1:Builder} struct {",
+      "\t${2:param1} ${3:type1}",
+      "\t${4:param2} ${5:type2}",
+      "}",
+      "",
+      "func (b *${1:Builder}) With${2:Param1}(${2:param1} ${3:type1}) *${1:Builder} {",
+      "\tb.${2:param1} = ${2:param1}",
+      "\treturn b",
+      "}",
+      "",
+      "func (b *${1:Builder}) With${4:Param2}(${4:param2} ${5:type2}) *${1:Builder} {",
+      "\tb.${4:param2} = ${4:param2}",
+      "\treturn b",
+      "}",
+      "",
+      "func (b *${1:Builder}) Build() *${6:StructName} {",
+      "\treturn &${6:StructName}{",
+      "\t\t${2:param1}: b.${2:param1},",
+      "\t\t${4:param2}: b.${4:param2},",
+      "\t}",
+      "}",
+      "",
+      "func New${6:StructName}Builder() *${1:Builder} {",
+      "\treturn &${1:Builder}{}",
+      "}"
+    ],
+    "description": "Constructor with builder pattern"
+  },
+  "struct:method:constructor:with default struct": {
+    "prefix": "struct_func_constructor_with_default_struct",
+    "body": [
+      "func New${1:StructName}() *${1:StructName} {",
+      "\treturn &${1:StructName}{}",
+      "}"
+    ],
+    "description": "Constructor with default struct"
+  },
+  "struct:method:constructor:with optional parameters (variadic)": {
+    "prefix": "struct_func_constructor_with_param_variadic",
+    "body": [
+      "func New${1:StructName}(${2:params} ...${3:type}) *${1:StructName} {",
+      "    obj := &${1:StructName}{",
+      "        ${4:Param1}: ${4:defaultValue1},",
+      "        ${5:Param2}: ${5:defaultValue2},",
+      "    }",
+      "    for _, param := range ${2:params} {",
+      "        // Process each param and assign to obj",
+      "    }",
+      "    return obj",
+      "}"
+    ],
+    "description": "Constructor with optional parameters (variadic)"
+  },
+  "struct:method:constructor:with type conversion using strconv or other type": {
+    "prefix": "struct_func_constructor_with_type_conversion_using_strconv_or_other_type",
+    "body": [
+      "func New${1:StructName}(${2:param} ${3:type}) *${1:StructName} {",
+      "    ${4:param} := ${3:type}(${2:param})",
+      "    return &${1:StructName}{",
+      "        ${2:param}: ${4:param},",
+      "    }",
+      "}"
+    ],
+    "description": "Constructor with type conversion using strconv or other type"
+  },
+  "struct:method:constructor:with values provided to set of properties in struct": {
+    "prefix": "struct_func_constructor_with_values_provided_to_set_of_properties_in_struct",
+    "body": [
+      "func New${1:StructName}(${2:param} ${3:type}) *${1:StructName} {",
+      "    return &${1:StructName}{",
+      "        ${2:param}: ${2:param},",
+      "    }",
+      "}"
+    ],
+    "description": "Constructor with values provided to set of properties in struct"
+  },
+  "struct:method:variadic": {
     "prefix": "struct_func_variadic",
     "body": [
       "func (${1:*${2:StructName}}) ${3:MethodName}(${4:params} ...${5:Type}) ${6:returnType} {",
@@ -266,7 +395,7 @@
     ],
     "description": "Create a method with variadic parameters"
   },
-  "struct:method-error-return": {
+  "struct:method:error-return": {
     "prefix": "struct_func_error_return",
     "body": [
       "func (${1:*${2:StructName}}) ${3:MethodName}(${4:params}) (${5:returnType}, error) {",
@@ -275,7 +404,7 @@
     ],
     "description": "Create a method with error return"
   },
-  "struct:method-interface-receiver": {
+  "struct:method:interface-receiver": {
     "prefix": "struct_func_interface_receiver",
     "body": [
       "func (${1:${2:InterfaceName}}) ${3:MethodName}(${4:params}) ${5:returnType} {",
@@ -284,7 +413,7 @@
     ],
     "description": "Create a method with interface receiver"
   },
-  "struct:method-map-receiver": {
+  "struct:method:map-receiver": {
     "prefix": "struct_func_map_receiver",
     "body": [
       "func (${1:m ${2:MapType}}) ${3:MethodName}(${4:key} ${5:KeyType}) ${6:returnType} {",
@@ -293,7 +422,7 @@
     ],
     "description": "Create a method with map receiver"
   },
-  "struct:method-slice-receiver": {
+  "struct:method:slice-receiver": {
     "prefix": "struct_func_slice_receiver",
     "body": [
       "func (${1:s []${2:ElementType}}) ${3:MethodName}(${4:params}) ${5:returnType} {",
@@ -302,7 +431,7 @@
     ],
     "description": "Create a method with slice receiver"
   },
-  "struct:method-channel-receiver": {
+  "struct:method:channel-receiver": {
     "prefix": "struct_func_channel_receiver",
     "body": [
       "func (${1:c ${2:chan ${3:ElementType}}}) ${4:MethodName}(${5:params}) ${6:returnType} {",
@@ -311,7 +440,7 @@
     ],
     "description": "Create a method with channel receiver"
   },
-  "struct:method-func-receiver": {
+  "struct:method:func-receiver": {
     "prefix": "struct_func_func_receiver",
     "body": [
       "func (${1:f ${2:func(${3:params}) ${4:returnType}}) ${5:MethodName}(${6:params}) ${7:returnType} {",
@@ -320,7 +449,7 @@
     ],
     "description": "Create a method with function receiver"
   },
-  "struct:method-custom-type-receiver": {
+  "struct:method:custom-type-receiver": {
     "prefix": "struct_func_custom_type_receiver",
     "body": [
       "func (${1:v ${2:CustomType}}) ${3:MethodName}(${4:params}) ${5:returnType} {",
@@ -329,7 +458,7 @@
     ],
     "description": "Create a method with custom type receiver"
   },
-  "struct:method-multiple-return": {
+  "struct:method:multiple-return": {
     "prefix": "struct_func_multiple_return",
     "body": [
       "func (${1:*${2:StructName}}) ${3:MethodName}(${4:params}) (${5:returnType1}, ${6:returnType2}) {",
@@ -339,7 +468,7 @@
     "description": "Create a method with multiple return values"
   },
   "func": {
-    "prefix": "func_",
+    "prefix": "func_func_",
     "body": [
       "func ${1:FunctionName}(${2:params}) ${3:returnType} {",
       "\t${4:// implementation}",

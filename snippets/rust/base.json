@@ -150,7 +150,7 @@
   },
   "let:obj": {
     "prefix": "let_obj",
-    "body": "${1:name} := ${2:StructName}::new(${3:param})",
+    "body": "let ${1:name} = ${2:StructName}::new${3:NameFunc}(${4:param});",
     "description": "Create new object instance of struct"
   },
   "let:obj:struct": {
@@ -349,7 +349,7 @@
     "description": "extern \"C\" { … }"
   },
   "fn": {
-    "prefix": "fn_func",
+    "prefix": "func_func_",
     "body": [
       "fn ${1:name}(${2:arg}: ${3:Type}) -> ${4:RetType} {",
       "\t${5:unimplemented!();}",
@@ -358,7 +358,7 @@
     "description": "fn …(…) { … }"
   },
   "fn:inline": {
-    "prefix": "fn_func_inline",
+    "prefix": "func_func_inline",
     "body": [
       "#[inline]",
       "pub fn ${1:name}() {",
@@ -368,7 +368,7 @@
     "description": "inlined function"
   },
   "fn:with_return": {
-    "prefix": "fn_func_with_return",
+    "prefix": "func_func_with_return",
     "body": [
       "pub fn ${2:func_name}(${3:arg1}: ${4:Type1}, ${5:arg2}: ${6:Type2}) -> ${7:Return_Type} {",
       "\t${0:// Function body}",
@@ -377,7 +377,7 @@
     "description": "function with return"
   },
   "fn:with_lifetime": {
-    "prefix": "fn_func_lifetime",
+    "prefix": "func_func_lifetime",
     "body": [
       "pub fn ${2:func_name}<${3:'a}>(${4:arg}: &'a ${5:Type}) -> ${6:Return_Type} {",
       "${0:// Function body}",
@@ -386,7 +386,7 @@
     "description": "function lifetime"
   },
   "fn:param_trait": {
-    "prefix": "fn_func_param_trait",
+    "prefix": "func_func_param_trait",
     "body": [
       "pub fn ${2:func_name}<${3:T: ${8:Trait}}>(${4:arg}: &${3:T}) -> ${5:Return_Type} {",
       "\t${0:// Function body}",
@@ -395,7 +395,7 @@
     "description": "function param trait"
   },
   "fn:param_array": {
-    "prefix": "fn_func_param_array",
+    "prefix": "func_func_param_array",
     "body": [
       "pub fn ${2:func_name}(${3:array}: &[${4:Type}]) -> Vec<${5:Type}> {",
       "\t${0:// Function body}",
@@ -404,7 +404,7 @@
     "description": "function param array"
   },
   "fn:param_struct": {
-    "prefix": "fn_func_param_struct",
+    "prefix": "func_func_param_struct",
     "body": [
       "pub fn ${2:func_name}(${3:struct}: &${4:Struct}) -> ${5:Return_Type} {",
       "\t${0:// Function body}",
@@ -413,7 +413,7 @@
     "description": "function struct param"
   },
   "fn:param_closure": {
-    "prefix": "fn_func_param_closure",
+    "prefix": "func_func_param_closure",
     "body": [
       "pub fn ${2:func_name}(${3:closure}: ${4:Closure_Type}) -> ${5:Return_Type} {",
       "\t${0:// Function body}",
@@ -422,7 +422,7 @@
     "description": "function closure param"
   },
   "fn:param_default": {
-    "prefix": "fun_func_param_default",
+    "prefix": "func_func_param_default",
     "body": [
       "pub fn ${2:func_name}(${3:arg1}: ${4:Type} ${5:= ${6:default_value}}) -> ${7:Return_Type} {",
       "\t${0:// Function body}",
@@ -431,7 +431,7 @@
     "description": "function default param"
   },
   "fn:generic": {
-    "prefix": "fn_generic",
+    "prefix": "func_generic_",
     "body": [
       "pub fn ${1:func_name}<${2:T}>(${3:arg}: ${2:T}) -> ${4:Return_Type} {",
       "\t${0:// Function body}",
@@ -440,7 +440,7 @@
     "description": "function generic"
   },
   "fn:generic:param_multi": {
-    "prefix": "fn_generic_multi_param",
+    "prefix": "func_generic_multi_param",
     "body": [
       "pub fn ${2:func_name}<${3:T}, ${4:U}>(${5:arg1}: ${3:T}, ${6:arg2}: ${4:U}) -> ${7:Return_Type} {",
       "\t${0:// Function body}",
@@ -449,7 +449,7 @@
     "description": "function generic multi parameter"
   },
   "fn:generic:trait_bound": {
-    "prefix": "fn_generic_trait_bound",
+    "prefix": "func_generic_trait_bound",
     "body": [
       "pub fn ${2:func_name}<${3:T: ${8:Trait}}>(${4:arg}: ${3:T}) -> ${5:Return_Type} {",
       "\t${0:// Function body}",
@@ -458,7 +458,7 @@
     "description": "function generic trait bound"
   },
   "fn:generic:where_clause": {
-    "prefix": "fn_generic_where_clause",
+    "prefix": "func_generic_where_clause",
     "body": [
       "pub fn ${2:func_name}<${3:T}>(${4:arg}: ${3:T}) -> ${5:Return_Type}",
       "where",
@@ -470,7 +470,7 @@
     "description": "function generic where clause"
   },
   "fn:generic:lifettime": {
-    "prefix": "fn_generic_lifetime",
+    "prefix": "func_generic_lifetime",
     "body": [
       "pub fn ${2:func_name}<${3:'a}, ${4:T}>(${5:arg}: &'a ${4:T}) -> ${6:Return_Type} {",
       "\t${0:// Function body}",
@@ -479,7 +479,7 @@
     "description": "function generic lifetime"
   },
   "fn:generic:lifetime:param_multi": {
-    "prefix": "fn_generic_lifetime_multi_param",
+    "prefix": "func_generic_lifetime_multi_param",
     "body": [
       "pub fn ${2:func_name}<${3:'a}, ${4:T}, ${5:U}>(${6:arg1}: &'a ${4:T}, ${7:arg2}: ${5:U}) -> ${8:Return_Type} {",
       "\t${0:// Function body}",
@@ -488,7 +488,7 @@
     "description": "function generic closure param"
   },
   "fn:generic:param_default_value": {
-    "prefix": "fn_generic_param_default_value",
+    "prefix": "func_generic_param_default_value",
     "body": [
       "pub fn ${2:func_name}<${3:T = ${9:Default_Type}}>() -> ${4:Return_Type} {",
       "\t${0:// Function body}",
@@ -497,7 +497,7 @@
     "description": "function generic param default value"
   },
   "fn:generic:param_struct": {
-    "prefix": "fn_generic_param_struct",
+    "prefix": "func_generic_param_struct",
     "body": [
       "pub fn ${2:func_name}<${3:T}>(${4:struct}: &${3:T}) -> ${5:Return_Type} {",
       "\t${0:// Function body}",
@@ -506,7 +506,7 @@
     "description": "function generic struct param"
   },
   "fn:generic:param_array": {
-    "prefix": "fun_generic_param_array",
+    "prefix": "func_generic_param_array",
     "body": [
       "pub fn ${2:func_name}<${3:T}>(${4:array}: &[${3:T}]) -> ${5:Return_Type} {",
       "\t${0:// Function body}",
@@ -515,7 +515,7 @@
     "description": "function generic array param"
   },
   "fn:generic:param_closure": {
-    "prefix": "fn_generic_param_closure",
+    "prefix": "func_generic_param_closure",
     "body": [
       "pub fn ${2:func_name}<${3:F}>(${4:closure}: ${3:F}) -> ${5:Return_Type} {",
       "\t${0:// Function body}",
@@ -618,9 +618,96 @@
     "description": "struct …;"
   },
   "impl": {
-    "prefix": "impl_",
+    "prefix": "impl_struct",
     "body": ["impl ${1:Type} {", "    ${2:// add code here}", "}"],
     "description": "impl … { … }"
+  },
+  "impl:trait": {
+    "prefix": "impl_trait_for_struct",
+    "body": [
+      "impl ${1:Trait} for ${2:Type} {",
+      "    ${3:// add code here}",
+      "}"
+    ],
+    "description": "impl … for … { … }"
+  },
+  "impl:method:constructor:with parameters": {
+    "prefix": "impl_func_constructor_with_params",
+    "body": [
+      "fn new(${1:param1}: ${2:type1}, ${3:param2}: ${4:type2}) -> Self {",
+      "    Self {",
+      "        ${1:param1},",
+      "        ${3:param2},",
+      "    }",
+      "}"
+    ],
+    "description": "Constructor with parameters"
+  },
+  "impl:method:constructor:with property initialization": {
+    "prefix": "impl_func_constructor_with_property_initialization",
+    "body": [
+      "fn new() -> Self {",
+      "\tSelf {",
+      "\t\t${1:property_name}: ${2:value},",
+      "\t}",
+      "}"
+    ],
+    "description": "Constructor with property initialization"
+  },
+  "impl:method:constructor:with default trait": {
+    "prefix": "impl_func_constructor_with_default_trait",
+    "body": ["fn new() -> Self {", "\tDefault::default()", "}"],
+    "description": "Constructor with Default trait"
+  },
+  "impl:method:constructor:with impl block": {
+    "prefix": "impl_func_pub_new_with_impl_block",
+    "body": [
+      "impl ${1:StructName} {",
+      "\tfn new(${2:params}) -> Self {",
+      "\t\tSelf {",
+      "\t\t\t${2:params},",
+      "\t\t}",
+      "\t}",
+      "}"
+    ],
+    "description": "Constructor with impl block"
+  },
+  "impl:method:constructor:with optional parameter (Option)": {
+    "prefix": "impl_func_constructor_with_optional_type_param",
+    "body": [
+      "fn new(${1:param}: Option<${2:type}>) -> Self {",
+      "\tSelf {",
+      "\t\t${1:param}: ${1:param}.unwrap_or_else(|| ${3:default_value}),",
+      "\t}",
+      "}"
+    ],
+    "description": "Constructor with optional parameter (Option)"
+  },
+  "impl:method:constructor:with builder pattern": {
+    "prefix": "ctorb",
+    "body": [
+      "#[derive(Default)]",
+      "pub struct ${1:Builder} {",
+      "\t${2:param1}: ${3:type1},",
+      "\t${4:param2}: ${5:type2},",
+      "}",
+      "",
+      "impl ${1:Builder} {",
+      "\tpub fn build(self) -> ${6:StructName} {",
+      "\t\t${6:StructName} {",
+      "\t\t\t${2:param1}: self.${2:param1},",
+      "\t\t\t${4:param2}: self.${4:param2},",
+      "\t\t}",
+      "\t}",
+      "}",
+      "",
+      "impl ${6:StructName} {",
+      "\tpub fn builder() -> ${1:Builder} {",
+      "\t\t${1:Builder}::default()",
+      "\t}",
+      "}"
+    ],
+    "description": "Constructor with Builder pattern"
   },
   "impl:method-getset": {
     "prefix": "impl_func_get_set",
@@ -643,19 +730,6 @@
       "}"
     ],
     "description": "Creates a basic public method for a struct."
-  },
-  "impl:method:constructor": {
-    "prefix": "impl_func_constructor",
-    "body": [
-      "/// Creates a new instance of ${1:StructName}.",
-      "pub fn new(${2:field1}: ${3:FieldType1}, ${4:field2}: ${5:FieldType2}) -> Self {",
-      "\tSelf {",
-      "\t\t${2:field1},",
-      "\t\t${4:field2},",
-      "\t}",
-      "}"
-    ],
-    "description": "Generate constructor for a Rust struct."
   },
   "impl:method:async": {
     "prefix": "impl_func_async",
@@ -792,7 +866,7 @@
     "description": "trait … { … }"
   },
   "trait:impl": {
-    "prefix": "trait_impl",
+    "prefix": "trait_for_struct",
     "body": [
       "impl ${1:Trait} for ${2:Type} {",
       "    ${3:// add code here}",
@@ -800,8 +874,8 @@
     ],
     "description": "impl … for … { … }"
   },
-  "trait:body:method": {
-    "prefix": "trait_fn",
+  "trait:method:func": {
+    "prefix": "trait_func_",
     "body": [
       "fn ${2:method_name}(&self, ${3:param}: ${4:Param_Type}) -> ${5:Return_Type} {",
       "\t${0:// Method body}",
@@ -809,15 +883,15 @@
     ],
     "description": "Trait body method"
   },
-  "trait:body:method:param_mut": {
-    "prefix": "trait_fn_mut",
+  "trait:method:param_mut": {
+    "prefix": "trait_func_param_mut",
     "body": [
       "fn ${2:method_name}(&mut self, ${3:param}: &mut ${4:Param_Type});"
     ],
     "description": "Trait body method mut param"
   },
-  "trait:body:method:param_mut_return": {
-    "prefix": "trait_fn_param_mut_ret",
+  "trait:method:param_mut_return": {
+    "prefix": "trait_func_param_mut_ret",
     "body": [
       "/// ${1:Documentation}",
       "fn ${2:method_name}(&mut self, ${3:param}: &mut ${4:Param_Type}) -> ${5:Return_Type} {",
@@ -826,8 +900,8 @@
     ],
     "description": "Trait body method param mut return"
   },
-  "trait:body:method:return_ref": {
-    "prefix": "trait_fn_ret_ref",
+  "trait:method:return_ref": {
+    "prefix": "trait_func_ret_reference",
     "body": [
       "/// ${1:Documentation}",
       "fn ${2:method_name}(&self, ${3:param}: &${4:Param_Type}) -> &${5:Return_Type}"
@@ -835,7 +909,7 @@
     "description": "Trait body method return ref"
   },
   "trait:body:method:return_mut": {
-    "prefix": "trait_fn_ret_mut",
+    "prefix": "trait_func_ret_mut_reference",
     "body": [
       "/// ${1:Documentation}",
       "fn ${2:method_name}(&self, ${3:param}: &mut ${4:Param_Type}) -> &mut ${5:Return_Type} {",
