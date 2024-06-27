@@ -1,0 +1,69 @@
+{
+  "func:iter:map": {
+    "prefix": "func_iter_map",
+    "body": ["map(lambda x: x, ${1:iterable})"],
+    "description": "Create a map iterator"
+  },
+  "func:iter:reduce": {
+    "prefix": "func_iter_reduce",
+    "body": [
+      "import functools",
+      "functools.reduce(lambda x, y: x + y, ${1:iterable})"
+    ],
+    "description": "Create a reduce iterator"
+  },
+  "func:iter:All": {
+    "prefix": "func_iter_all",
+    "body": ["all(x ${1:condition} for x in ${2:iterable})"],
+    "description": "Create an all iterator"
+  },
+  "func:iter:Any": {
+    "prefix": "func_iter_any",
+    "body": ["any(x ${1:condition} for x in ${2:iterable})"],
+    "description": "Create an any iterator"
+  },
+  "func:iter:find": {
+    "prefix": "func_iter_find",
+    "body": [
+      "(next((x for x in ${1:iterable} if x ${2:condition}), ${3:default_value}))"
+    ],
+    "description": "Create a find iterator"
+  },
+  "func:iter:Found": {
+    "prefix": "func_iter_found",
+    "body": [
+      "(next((x for x in ${1:iterable} if x ${2:condition}), ${3:default_value}))"
+    ],
+    "description": "Create a found iterator"
+  },
+  "func:iter:filter": {
+    "prefix": "func_iter_filter",
+    "body": ["filter(lambda x: x ${1:condition}, ${2:iterable})"],
+    "description": "Create a filter iterator"
+  },
+  "func:iter:enumerate": {
+    "prefix": "func_iter_enumerate",
+    "body": ["enumerate(${1:iterable})"],
+    "description": "Create an enumerate iterator"
+  },
+  "func:iter:zip": {
+    "prefix": "func_iter_zip",
+    "body": ["zip(${1:iterable1}, ${2:iterable2})"],
+    "description": "Create a zip iterator"
+  },
+  "func:iter:sorted": {
+    "prefix": "func_iter_sorted",
+    "body": ["sorted(${1:iterable})"],
+    "description": "Create a sorted iterator"
+  },
+  "func:iter:range": {
+    "prefix": "func_iter_range",
+    "body": ["range(${1:start}, ${2:stop}, ${3:step})"],
+    "description": "Create a range iterator"
+  },
+  "func:iter:reversed": {
+    "prefix": "func_iter_reversed",
+    "body": ["reversed(${1:sequence})"],
+    "description": "Create a reversed iterator"
+  }
+}

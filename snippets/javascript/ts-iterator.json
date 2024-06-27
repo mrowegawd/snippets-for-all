@@ -1,0 +1,129 @@
+{
+  "func:iter:map": {
+    "prefix": "func_iter_map",
+    "body": ["array.map(item => ${1:expression})"],
+    "description": "Create a map iterator"
+  },
+  "func:iter:reduce": {
+    "prefix": "func_iter_reduce",
+    "body": [
+      "array.reduce((acc, current) => ${1:accumulator}, ${2:initialValue})"
+    ],
+    "description": "Create a reduce iterator"
+  },
+  "func:iter:filter": {
+    "prefix": "func_iter_filter",
+    "body": ["array.filter(item => ${1:condition})"],
+    "description": "Create a filter iterator"
+  },
+  "func:iter:foreach": {
+    "prefix": "func_iter_forEach",
+    "body": ["array.forEach(item => ${1:statement})"],
+    "description": "Create a forEach iterator"
+  },
+  "func:iter:every": {
+    "prefix": "func_iter_every",
+    "body": ["array.every(item => ${1:condition})"],
+    "description": "Create an every iterator"
+  },
+  "func:iter:some": {
+    "prefix": "func_iter_some",
+    "body": ["array.some(item => ${1:condition})"],
+    "description": "Create a some iterator"
+  },
+  "func:iter:find": {
+    "prefix": "func_iter_find",
+    "body": ["array.find(item => ${1:condition})"],
+    "description": "Create a find iterator"
+  },
+  "func:iter:FindIndex": {
+    "prefix": "func_iter_findIndex",
+    "body": ["array.findIndex(item => ${1:condition})"],
+    "description": "Create a findIndex iterator"
+  },
+  "func:iter:Includes": {
+    "prefix": "func_iter_includes",
+    "body": ["array.includes(${1:element})"],
+    "description": "Create an includes iterator"
+  },
+  "func:iter:IndexOf": {
+    "prefix": "func_iter_indexOf",
+    "body": ["array.indexOf(${1:element})"],
+    "description": "Create an indexOf iterator"
+  },
+  "func:iter:Iterator": {
+    "prefix": "func_iter_lastIndexOf",
+    "body": ["array.lastIndexOf(${1:element})"],
+    "description": "Create a lastIndexOf iterator"
+  },
+  "func:object_keys:keys": {
+    "prefix": "func_object_keys",
+    "body": ["Object.keys(object)"],
+    "description": "Create a keys iterator"
+  },
+  "func:object_keys:Values": {
+    "prefix": "func_object_values",
+    "body": ["Object.values(object)"],
+    "description": "Create a values iterator"
+  },
+  "func:object_keys:Entries": {
+    "prefix": "func_object_entries",
+    "body": ["Object.entries(object)"],
+    "description": "Create an entries iterator"
+  },
+  "func:object_keys:ForEach Object": {
+    "prefix": "func_object_forEachObject",
+    "body": [
+      "Object.entries(object).forEach(([key, value]) => {",
+      "\t${1:statement}",
+      "})"
+    ],
+    "description": "Create a forEach iterator for objects"
+  },
+  "func:object_keys:Map Object": {
+    "prefix": "func_object_mapObject",
+    "body": ["Object.entries(object).map(([key, value]) => (${1:expression}))"],
+    "description": "Create a map iterator for objects"
+  },
+  "func:object_keys:Filter Object": {
+    "prefix": "func_object_filterObject",
+    "body": [
+      "Object.entries(object).filter(([key, value]) => (${1:condition}))"
+    ],
+    "description": "Create a filter iterator for objects"
+  },
+  "func:object_keys:Reduce Object": {
+    "prefix": "func_object_reduceObject",
+    "body": [
+      "Object.entries(object).reduce((acc, [key, value]) => (${1:accumulator}), ${2:initialValue})"
+    ],
+    "description": "Create a reduce iterator for objects"
+  },
+  "func:object_keys:Values Map": {
+    "prefix": "func_object_mapValues",
+    "body": ["Array.from(map.values())"],
+    "description": "Create a values iterator for Map"
+  },
+  "func:object_keys:Map Iterator": {
+    "prefix": "func_object_mapKeys",
+    "body": ["Array.from(map.keys())"],
+    "description": "Create a keys iterator for Map"
+  },
+  "func:object_keys:Entries Map": {
+    "prefix": "func_object_mapEntries",
+    "body": ["Array.from(map.entries())"],
+    "description": "Create an entries iterator for Map"
+  },
+  "func:object_keys:ForEach Map": {
+    "prefix": "func_object_forEachMap",
+    "body": ["map.forEach((value, key) => {", "\t${1:statement}", "})"],
+    "description": "Create a forEach iterator for Map"
+  },
+  "func:object_keys:Reduce Map": {
+    "prefix": "func_object_reduceMap",
+    "body": [
+      "Array.from(map.entries()).reduce((acc, [key, value]) => (${1:accumulator}), ${2:initialValue})"
+    ],
+    "description": "Create a reduce iterator for Map"
+  }
+}
