@@ -96,6 +96,10 @@
       },
       {
         "language": "go",
+        "path": "./snippets/go/iterator.json"
+      },
+      {
+        "language": "go",
         "path": "./snippets/go/testing.json"
       },
       {
@@ -152,7 +156,15 @@
       },
       {
         "language": "rust",
+        "path": "./snippets/rust/convert.json"
+      },
+      {
+        "language": "rust",
         "path": "./snippets/rust/error.json"
+      },
+      {
+        "language": "rust",
+        "path": "./snippets/rust/iterator.json"
       },
       {
         "language": "rust",
@@ -161,10 +173,6 @@
       {
         "language": "rust",
         "path": "./snippets/rust/merge.json"
-      },
-      {
-        "language": "rust",
-        "path": "./snippets/rust/convert.json"
       },
       {
         "language": "rust",

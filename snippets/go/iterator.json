@@ -1,0 +1,113 @@
+{
+  "func:iter:map": {
+    "prefix": "func_iter_map",
+    "body": [
+      "func map${1|Int,String|}${2|s|}(input []${1|int,string|}) []${1|int,string|} {",
+      "\tresult := make([]${1|int,string|}, len(input))",
+      "\tfor i, v := range input {",
+      "\t\tresult[i] = v${3: * 2} // Your mapping logic here",
+      "\t}",
+      "\treturn result",
+      "}"
+    ],
+    "description": "Create a function for mapping operation on a slice in Go"
+  },
+  "func:iter:reduce": {
+    "prefix": "func_iter_reduce",
+    "body": [
+      "func reduce${1|Int,String|}(input []${1|int,string|}) ${1|int,string|} {",
+      "\tvar result ${1|int,string|}",
+      "\tfor _, v := range input {",
+      "\t\tresult += v // Your reduction logic here",
+      "\t}",
+      "\treturn result",
+      "}"
+    ],
+    "description": "Create a function for reducing operation on a slice in Go"
+  },
+  "func:iter:filter": {
+    "prefix": "func_iter_filter",
+    "body": [
+      "func filter${1|Int,String|}(input []${1|int,string|}, predicate func(${1|int,string|}) bool) []${1|int,string|} {",
+      "\tvar result []${1|int,string|}",
+      "\tfor _, v := range input {",
+      "\t\tif predicate(v) {",
+      "\t\t\tresult = append(result, v)",
+      "\t\t}",
+      "\t}",
+      "\treturn result",
+      "}"
+    ],
+    "description": "Create a function for filtering operation on a slice in Go"
+  },
+  "func:iter:sort": {
+    "prefix": "func_iter_sort",
+    "body": [
+      "import \"sort\"",
+      "",
+      "func sort${1|Int,String|}(input []${1|int,string|}) {",
+      "\tsort.Slice(input, func(i, j int) bool {",
+      "\t\treturn input[i] < input[j] // Your sorting logic here",
+      "\t})",
+      "}"
+    ],
+    "description": "Create a function for sorting a slice in Go"
+  },
+  "func:iter:Any Function": {
+    "prefix": "func_iter_any",
+    "body": [
+      "func any(input []${1:int,string}, condition func(${1:int,string}) bool) bool {",
+      "\tfor _, v := range input {",
+      "\t\tif condition(v) {",
+      "\t\t\treturn true",
+      "\t\t}",
+      "\t}",
+      "\treturn false",
+      "}"
+    ],
+    "description": "Create a function for any operation using iterators in Go"
+  },
+  "func:iter:All Function": {
+    "prefix": "func_iter_all",
+    "body": [
+      "func all(input []${1:int,string}, condition func(${1:int,string}) bool) bool {",
+      "\tfor _, v := range input {",
+      "\t\tif !condition(v) {",
+      "\t\t\treturn false",
+      "\t\t}",
+      "\t}",
+      "\treturn true",
+      "}"
+    ],
+    "description": "Create a function for all operation using iterators in Go"
+  },
+  "func:iter:Find Function": {
+    "prefix": "func_iter_find",
+    "body": [
+      "func find(input []${1:int,string}, condition func(${1:int,string}) bool) (${1:int,string}, bool) {",
+      "\tfor _, v := range input {",
+      "\t\tif condition(v) {",
+      "\t\t\treturn v, true",
+      "\t\t}",
+      "\t}",
+      "\treturn ${1:int,string}(0), false",
+      "}"
+    ],
+    "description": "Create a function for finding an element using iterators in Go"
+  },
+  "func:iter:Count Function": {
+    "prefix": "func_iter_count",
+    "body": [
+      "func count(input []${1:int,string}, condition func(${1:int,string}) bool) int {",
+      "\tcount := 0",
+      "\tfor _, v := range input {",
+      "\t\tif condition(v) {",
+      "\t\t\tcount++",
+      "\t\t}",
+      "\t}",
+      "\treturn count",
+      "}"
+    ],
+    "description": "Create a function for counting elements using iterators in Go"
+  }
+}

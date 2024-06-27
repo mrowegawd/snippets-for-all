@@ -1,0 +1,100 @@
+{
+  "func:iter:map": {
+    "prefix": "func_iter_map",
+    "body": [
+      "fn map_${1|Int,String|}(input: &[${1:i32,String}]) -> Vec<${1:i32,String}> {",
+      "\tinput.iter().map(|&x| x${2: * 2}).collect()",
+      "}"
+    ],
+    "description": "Create a function for mapping operation on a slice in Rust"
+  },
+  "func:iter:reduce function": {
+    "prefix": "func_iter_reduce",
+    "body": [
+      "fn reduce_${1|Int,String|}(input: &[${1:i32,String}]) -> ${1:i32,String} {",
+      "\tinput.iter().fold(${3:0}${2:, |acc, &x| acc + x})",
+      "}"
+    ],
+    "description": "Create a function for reducing operation on a slice in Rust"
+  },
+  "func:iter:filter Function": {
+    "prefix": "func_iter_filter",
+    "body": [
+      "fn filter_${1|Int,String|}(input: &[${1:i32,String}]) -> Vec<${1:i32,String}> {",
+      "\tinput.iter().filter(|&&x| x > ${2:2}).cloned().collect()",
+      "}"
+    ],
+    "description": "Create a function for filtering operation on a slice in Rust"
+  },
+  "func:iter": {
+    "prefix": "func_iter_example",
+    "body": [
+      "fn iterator_example() {",
+      "\tlet data = vec![${1:1}, ${2:2}, ${3:3}];",
+      "\tfor item in data.iter() {",
+      "\t\t// Process item",
+      "\t\tprintln!(\"Item: {}\", item);",
+      "\t}",
+      "}"
+    ],
+    "description": "Create an example for using iterators in Rust"
+  },
+  "func:iter:Sort Function": {
+    "prefix": "func_iter_sort",
+    "body": [
+      "fn sort_${1|Int,String|}(mut input: Vec<${1:i32,String}>) -> Vec<${1:i32,String}> {",
+      "\tinput.sort();",
+      "\tinput",
+      "}"
+    ],
+    "description": "Create a function for sorting a vector in Rust"
+  },
+  "func:iter:Any Functions": {
+    "prefix": "func_iter_any",
+    "body": [
+      "fn any_${1|Int,String|}(input: &[${1:i32,String}], condition: fn(&${1:i32,String}) -> bool) -> bool {",
+      "\tinput.iter().any(|x| condition(x))",
+      "}"
+    ],
+    "description": "Create functions for any and all operations using iterators in Rust"
+  },
+  "func:iter:All Functions": {
+    "prefix": "func_iter_all",
+    "body": [
+      "fn all_${1|Int,String|}(input: &[${1:i32,String}], condition: fn(&${1:i32,String}) -> bool) -> bool {",
+      "\tinput.iter().all(|x| condition(x))",
+      "}"
+    ],
+    "description": "Create functions for any and all operations using iterators in Rust"
+  },
+  "func:iter:Count Function": {
+    "prefix": "func_iter_count",
+    "body": [
+      "fn count_${1|Int,String|}(input: &[${1:i32,String}], condition: fn(&${1:i32,String}) -> bool) -> usize {",
+      "\tinput.iter().filter(|&x| condition(x)).count()",
+      "}"
+    ],
+    "description": "Create a function for counting elements using iterators in Rust"
+  },
+  "func:iter:Find Function": {
+    "prefix": "func_iter_find",
+    "body": [
+      "fn find_${1|Int,String|}(input: &[${1:i32,String}], condition: fn(&${1:i32,String}) -> bool) -> Option<&${1:i32,String}> {",
+      "\tinput.iter().find(|&x| condition(x))",
+      "}"
+    ],
+    "description": "Create a function for finding an element using iterators in Rust"
+  },
+  "func:iter:with Index Example": {
+    "prefix": "rust_iter_with_index",
+    "body": [
+      "fn iter_with_index_${1|Int,String|}(input: &[${1:i32,String}]) {",
+      "\tfor (index, item) in input.iter().enumerate() {",
+      "\t\t// Process item and index",
+      "\t\tprintln!(\"Index: {}, Value: {}\", index, item);",
+      "\t}",
+      "}"
+    ],
+    "description": "Create an example for using iterators with index in Rust"
+  }
+}
