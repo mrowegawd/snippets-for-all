@@ -447,11 +447,7 @@
       },
       {
         "language": "python",
-        "path": "./snippets/python/unittest.json"
-      },
-      {
-        "language": "python",
-        "path": "./snippets/python/merge.json"
+        "path": "./snippets/python/iteraotor.json"
       },
       {
         "language": "python",
@@ -460,6 +456,18 @@
       {
         "language": "python",
         "path": "./snippets/python/lambda.json"
+      },
+      {
+        "language": "python",
+        "path": "./snippets/python/merge.json"
+      },
+      {
+        "language": "python",
+        "path": "./snippets/python/matching.json"
+      },
+      {
+        "language": "python",
+        "path": "./snippets/python/unittest.json"
       },
       {
         "language": "python",
