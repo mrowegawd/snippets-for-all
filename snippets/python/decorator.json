@@ -87,6 +87,16 @@
     ],
     "description": "Create an async Python decorator with parameter"
   },
+  "decorator:t:create": {
+    "prefix": "decorator_t_create",
+    "body": ["@${1:decoratorName}"],
+    "description": "Create an decorator tag"
+  },
+  "decorator:t:create_param": {
+    "prefix": "decorator_t_param",
+    "body": ["@${1:decoratorName}(${2:decoratorParam})"],
+    "description": "Create an decorator tag with parameter"
+  },
   "decorator:logging": {
     "prefix": "decorator_log",
     "body": [
