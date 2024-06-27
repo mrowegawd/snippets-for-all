@@ -1,6 +1,6 @@
 {
-  "Closure for Result Handling": {
-    "prefix": "handle_result",
+  "closure:for Result Handling": {
+    "prefix": "closure_handle_result",
     "body": [
       "|${1:result}| {",
       "\tmatch ${1:result} {",
@@ -16,8 +16,8 @@
     ],
     "description": "Create a closure to handle a Result, printing errors to stderr."
   },
-  "Closure for Option Handling": {
-    "prefix": "handle_option",
+  "closure:for Option Handling": {
+    "prefix": "closure_handle_option",
     "body": [
       "|${1:option}| {",
       "\tmatch ${1:option} {",
@@ -32,8 +32,8 @@
     ],
     "description": "Create a closure to handle an Option, panicking on None."
   },
-  "Closure for Mapping Result": {
-    "prefix": "map_result",
+  "closure:for Mapping Result": {
+    "prefix": "closure_handle_map_result",
     "body": [
       "|${1:result}| {",
       "\t${1:result}.map_err(|err| {",
@@ -43,8 +43,8 @@
     ],
     "description": "Create a closure to map a Result, handling errors."
   },
-  "Closure for Unwrapping Option": {
-    "prefix": "unwrap_option",
+  "closure:for Unwrapping Option": {
+    "prefix": "closure_handle_unwrap_option",
     "body": [
       "|${1:option}| {",
       "\t${1:option}.unwrap_or_else(|| {",
@@ -53,8 +53,8 @@
     ],
     "description": "Create a closure to unwrap an Option, panicking on None."
   },
-  "Closure for Unwrapping Result": {
-    "prefix": "unwrap_result",
+  "closure:for Unwrapping Result": {
+    "prefix": "closure_handle_unwrap_result",
     "body": [
       "|${1:result}| {",
       "\t${1:result}.unwrap_or_else(|err| {",
@@ -63,16 +63,16 @@
     ],
     "description": "Create a closure to unwrap a Result, panicking on error."
   },
-  "Closure for Expecting Result": {
-    "prefix": "expect_result",
+  "closure:for Expecting Result": {
+    "prefix": "closure_handle_expect_result",
     "body": [
       "|${1:result}| {",
       "\t${1:result}.expect(\"${2:Failed to unwrap result}\")"
     ],
     "description": "Create a closure to expect a Result, panicking with custom message on error."
   },
-  "Closure for Option Unwrap or Else": {
-    "prefix": "unwrap_or_else_option",
+  "closure:for Option Unwrap or Else": {
+    "prefix": "closure_handle_unwrap_or_else_option",
     "body": [
       "|${1:option}| {",
       "\t${1:option}.unwrap_or_else(|| {",
@@ -81,13 +81,13 @@
     ],
     "description": "Create a closure to unwrap an Option, panicking on None."
   },
-  "Rust Closure with Untyped Parameter": {
-    "prefix": "closureu",
+  "closure:with Untyped Parameter": {
+    "prefix": "closure_handle_param_untyped",
     "body": ["|${1:parameter}| {", "\t$0", "};"],
     "description": "Create a Rust closure with an untyped parameter"
   },
-  "Rust Closure with Two Parameters": {
-    "prefix": "closure2",
+  "closure:with Two Parameters": {
+    "prefix": "closure_handle_param_two",
     "body": [
       "|${1:param1}: ${2:type1}, ${3:param2}: ${4:type2}| {",
       "\t$0",
@@ -95,23 +95,23 @@
     ],
     "description": "Create a Rust closure with two parameters"
   },
-  "Rust Closure with Return Value": {
-    "prefix": "closereturn",
+  "closure:with Return Value": {
+    "prefix": "closure_handle_ret",
     "body": ["|| -> ${1:ReturnType} {", "\t$0", "};"],
     "description": "Create a Rust closure with a return value"
   },
-  "Rust Closure with Single Expression": {
-    "prefix": "closuresingle",
+  "closure:with Single Expression": {
+    "prefix": "closure_handle_expect_result",
     "body": ["|| ${1:expr}", "};"],
     "description": "Create a Rust closure with a single expression"
   },
-  "Rust Closure with Move": {
-    "prefix": "closuremove",
+  "closure:with Move": {
+    "prefix": "closure_handle_move",
     "body": ["move || {", "\t$0", "};"],
     "description": "Create a Rust closure with move semantics"
   },
-  "Rust Closure with Multiple Parameters": {
-    "prefix": "closuremulti",
+  "closure:with Multiple Parameters": {
+    "prefix": "closure_handle_param_multi",
     "body": [
       "|${1:param1}: ${2:type1}, ${3:param2}: ${4:type2}, ${5:param3}: ${6:type3}| {",
       "\t$0",
@@ -119,18 +119,18 @@
     ],
     "description": "Create a Rust closure with multiple parameters"
   },
-  "Rust Closure with Reference Parameter": {
-    "prefix": "closureref",
+  "closure:with Reference Parameter": {
+    "prefix": "closure_handle_param_reference",
     "body": ["|${1:param}: &${2:type}| {", "\t$0", "};"],
     "description": "Create a Rust closure with a reference parameter"
   },
-  "Rust Closure with Mutable Reference Parameter": {
-    "prefix": "closuremutref",
+  "closure:with Mutable Reference Parameter": {
+    "prefix": "closure_handle_param_mut_reference",
     "body": ["|${1:param}: &mut ${2:type}| {", "\t$0", "};"],
     "description": "Create a Rust closure with a mutable reference parameter"
   },
-  "Rust Closure as Function Argument": {
-    "prefix": "closurearg",
+  "closure:as Function Argument": {
+    "prefix": "closure_handle_param_as_func",
     "body": ["|${1:param}: ${2:type}| -> ${3:ReturnType} {", "\t$0", "}"],
     "description": "Create a Rust closure to be used as a function argument"
   }
