@@ -1,51 +1,45 @@
 {
   "block:center block": {
-    "description": "#+BEGIN_CENTER block",
     "prefix": "block_center",
-    "body": ["#+BEGIN_CENTER", "$0", "#+END_CENTER"]
+    "body": ["#+BEGIN_CENTER", "$0", "#+END_CENTER"],
+    "description": "#+BEGIN_CENTER block"
   },
   "block:comment": {
-    "description": "#+BEGIN_COMMENT block",
     "prefix": "block_comment",
-    "body": ["#+BEGIN_COMMENT", "$0", "#+END_COMMENT"]
+    "body": ["#+BEGIN_COMMENT", "$0", "#+END_COMMENT"],
+    "description": "#+BEGIN_COMMENT block"
   },
   "block:example": {
-    "description": "#+BEGIN_EXAMPLE block",
     "prefix": "block_example",
-    "body": ["#+BEGIN_EXAMPLE", "$0", "#+END_EXAMPLE"]
+    "body": ["#+BEGIN_EXAMPLE", "$0", "#+END_EXAMPLE"],
+    "description": "#+BEGIN_EXAMPLE block"
   },
   "block:src": {
-    "description": "#+BEGIN_SRC ... block",
     "prefix": "block_code_",
-    "body": ["#+BEGIN_SRC ${1:lang}", "$0", "#+END_SRC"]
+    "body": ["#+BEGIN_SRC ${1:lang}", "$0", "#+END_SRC"],
+    "description": "#+BEGIN_SRC ... block"
   },
   "block:verse": {
-    "description": "verse",
     "prefix": "block_verse",
-    "body": ["#+BEGIN_VERSE", "$0", "#+END_VERSE"]
+    "body": ["#+BEGIN_VERSE", "$0", "#+END_VERSE"],
+    "description": "verse"
   },
   "block:export ascii": {
-    "description": "#+BEGIN_EXPORT ascii",
     "prefix": "block_ascii",
-    "body": ["#+BEGIN_EXPORT ascii", "$0", "#+END_EXPORT"]
+    "body": ["#+BEGIN_EXPORT ascii", "$0", "#+END_EXPORT"],
+    "description": "#+BEGIN_EXPORT ascii"
   },
   "block:export html": {
-    "description": "#+BEGIN_EXPORT html block",
     "prefix": "block_html",
-    "body": ["#+BEGIN_EXPORT html", "$0", "#+END_EXPORT"]
-  },
-  "block:export latex": {
-    "description": "#+BEGIN_EXPORT latex block",
-    "prefix": "block_latex",
-    "body": ["#+BEGIN_EXPORT latex", "$0", "#+END_EXPORT"]
+    "body": ["#+BEGIN_EXPORT html", "$0", "#+END_EXPORT"],
+    "description": "#+BEGIN_EXPORT html block"
   },
   "block:quote": {
-    "description": "#+BEGIN_QUOTE block",
     "prefix": "block_quote",
-    "body": ["#+BEGIN_QUOTE", "$0", "#+END_QUOTE"]
+    "body": ["#+BEGIN_QUOTE", "$0", "#+END_QUOTE"],
+    "description": "#+BEGIN_QUOTE block"
   },
   "block:blog": {
-    "description": "blog",
     "prefix": "block_blog",
     "body": [
       "#+STARTUP: showall indent",
@@ -57,10 +51,10 @@
       "excerpt: ${2:excerpt}",
       "---",
       "$0"
-    ]
+    ],
+    "description": "blog"
   },
   "block:dot": {
-    "description": "dot",
     "prefix": "block_dot",
     "body": [
       "#+BEGIN_SRC dot :file ${1:file} :cmdline -T${2:pdf} :exports none :results silent",
@@ -68,15 +62,15 @@
       "#+END_SRC",
       "",
       "[[file:$1]]"
-    ]
+    ],
+    "description": "dot"
   },
   "block:elisp": {
-    "description": "elisp",
     "prefix": "block_elisp",
-    "body": ["#+BEGIN_SRC emacs-lisp :tangle yes", "$0", "#+END_SRC"]
+    "body": ["#+BEGIN_SRC emacs-lisp :tangle yes", "$0", "#+END_SRC"],
+    "description": "elisp"
   },
   "block:entry": {
-    "description": "entry",
     "prefix": "block_entry",
     "body": [
       "#+BEGIN_HTML",
@@ -86,39 +80,39 @@
       "---",
       "#+END_HTML",
       "$0"
-    ]
+    ],
+    "description": "entry"
   },
   "block:export": {
-    "description": "export",
     "prefix": "block_export",
-    "body": ["#+BEGIN_EXPORT ${1:type}", "$0", "#+END_EXPORT"]
+    "body": ["#+BEGIN_EXPORT ${1:type}", "$0", "#+END_EXPORT"],
+    "description": "export"
   },
-  "title:figure": {
-    "description": "figure",
-    "prefix": "title_figure",
+  "block:figure": {
+    "prefix": "block_figure",
     "body": [
       "#+CAPTION: ${1:caption}",
       "#+ATTR_LATEX: ${2:scale=0.75}",
       "#+LABEL: fig:${3:label}"
-    ]
+    ],
+    "description": "figure"
   },
-  "title:author": {
-    "description": "org-file header",
-    "prefix": "title_head_author",
+  "block:author": {
+    "prefix": "block_head_author",
     "body": [
       "#+TITLE:     ${1:Untitled Document}",
       "#+AUTHOR:    ${2:Author}",
       "#+DATE:      ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}"
-    ]
+    ],
+    "description": "org-file header"
   },
-  "latex:": {
-    "description": "latex",
-    "prefix": "latex_",
-    "body": ["#+BEGIN_LATEX", "$0", "#+END_LATEX"]
+  "block:latex": {
+    "prefix": "block_latex",
+    "body": ["#+BEGIN_LATEX", "$0", "#+END_LATEX"],
+    "description": "latex"
   },
-  "latex:block": {
-    "description": "matrix",
-    "prefix": "latex_block",
+  "block:latext": {
+    "prefix": "block_latex_code",
     "body": [
       "\\left \\(",
       "\t\\begin{array}{${1:ccc}}",
@@ -126,7 +120,8 @@
       "\t\t$0",
       "\t\\end{array}",
       "\\right \\)"
-    ]
+    ],
+    "description": "matrix"
   },
   "todo": {
     "description": "TODO item",
@@ -134,14 +129,14 @@
     "body": ["TODO ${1:task description}"]
   },
   "todo:checklist:try:try_attempt": {
-    "description": "Snippet nested step task",
     "prefix": "todo_try_attempt",
     "body": [
       "- try-attempt: ${0:(what todo)}",
       "\tdescription: (penjelasan lanjutan)",
       "\tlink: ...",
       "\tresult: [ONGOING|NOTHING|POSTPONE]"
-    ]
+    ],
+    "description": "Snippet nested step task"
   },
   "todo:checklist:create": {
     "prefix": "todo_check",
@@ -164,47 +159,47 @@
     "description": "Create a nested list item"
   },
   "text:embedded": {
-    "description": "embedded",
     "prefix": "text_embed",
-    "body": ["src_${1:lang}${2:[${3:where}]}{${4:code}}"]
+    "body": ["src_${1:lang}${2:[${3:where}]}{${4:code}}"],
+    "description": "embedded"
   },
   "text:image": {
-    "description": "img",
     "prefix": "text_img",
     "body": [
       "#+ATTR_HTML: :alt $2 :align ${3:left} :class img",
       "[[${1:src}]${4:[${5:title}]}]",
       "$0"
-    ]
+    ],
+    "description": "Add img"
   },
   "text:bold": {
-    "description": "bold",
     "prefix": "text_bold",
-    "body": ["*$0*"]
+    "body": ["*$0*"],
+    "description": "bold"
   },
   "text:italic": {
-    "description": "italic words",
     "prefix": "text_italic",
-    "body": ["/$0/"]
+    "body": ["/$0/"],
+    "description": "italic words"
   },
   "text:link": {
-    "description": "link",
     "prefix": "text_link",
-    "body": ["[[${1:URL}][${2:names}]]$0"]
+    "body": ["[[${1:URL}][${2:names}]]$0"],
+    "description": "link"
   },
   "text:underline": {
-    "description": "underline words",
     "prefix": "text_underline",
-    "body": ["_$0_"]
+    "body": ["_$0_"],
+    "description": "underline words"
   },
   "text:schedule": {
-    "description": "underline words",
     "prefix": "text_schedule",
-    "body": ["SCHEDULED:"]
+    "body": ["SCHEDULED:"],
+    "description": "underline words"
   },
   "text:code inline": {
-    "description": "code inline words",
-    "prefix": "text_code_inline",
-    "body": ["_$0_"]
+    "prefix": "text_inlince_code",
+    "body": ["_$0_"],
+    "description": "code inline words"
   }
 }

@@ -88,7 +88,7 @@
     "description": "Insert quoted text"
   },
   "text:inline code": {
-    "prefix": "text_inlinecode",
+    "prefix": "text_inline_code",
     "body": ["`$0`"],
     "description": "Insert inline code"
   },
