@@ -1,0 +1,243 @@
+{
+  "testing:template:teardown": {
+    "prefix": "test_template_teardown",
+    "body": [
+      "import unittest",
+      "",
+      "class Test${1:ClassName}(unittest.TestCase):",
+      "    def setUp(self):",
+      "        ${2:# Set up any necessary data or state}",
+      "",
+      "    def tearDown(self):",
+      "        ${3:# Clean up any resources}",
+      "",
+      "    def test_${4:case_name}(self):",
+      "        ${5:# Test case}",
+      "",
+      "if __name__ == '__main__':",
+      "    unittest.main()"
+    ],
+    "description": "Python unit test template"
+  },
+  "testing:func:func": {
+    "prefix": "test_func_func",
+    "body": ["def test_${1:function_name}():", "    ${2:# Test case}"],
+    "description": "Python unit test function"
+  },
+  "testing:table": {
+    "prefix": "test_table",
+    "body": [
+      "import pytest",
+      "",
+      "def ${1:function_name}(${2:input}):",
+      "    ${3:# Function implementation}",
+      "    return ${4:result}",
+      "",
+      "@pytest.mark.parametrize(${5:params}, [",
+      "    (${6:input_value}, ${7:expected_output}),",
+      "    (${8:another_input}, ${9:another_expected_output}),",
+      "    # Add more test cases as needed",
+      "])",
+      "def test_${10:case_name}(${11:params}):",
+      "    result = ${1:function_name}(${6:input})",
+      "    assert result == ${7:expected_output}"
+    ],
+    "description": "Python testing table with Pytest template"
+  },
+  "testing:t:assert statement": {
+    "prefix": "test_t_assert",
+    "body": ["assert ${1:condition}, '${2:AssertionError message}'"],
+    "description": "Basic assert statement using pytest"
+  },
+  "testing:t:assert Statement with Custom Exception": {
+    "prefix": "test_t_assert_user_exception",
+    "body": ["assert ${1:condition}, ${2:CustomException}('${3:Message}')"],
+    "description": "Assert statement with custom exception using pytest"
+  },
+  "testing:t:assert Statement with Formatted Message": {
+    "prefix": "test_t_assert_formatted_msg",
+    "body": [
+      "assert ${1:condition}, f'${2:AssertionError message with {variables}}'"
+    ],
+    "description": "Assert statement with formatted message using pytest"
+  },
+  "testing:t:assert Equality": {
+    "prefix": "test_t_assert_eq",
+    "body": [
+      "assert ${1:expected} == ${2:actual}, '${3:AssertionError message}'"
+    ],
+    "description": "Assert equality check using pytest"
+  },
+  "testing:t:assert Inequality": {
+    "prefix": "test_t_assert_not_eq",
+    "body": [
+      "assert ${1:not_expected} != ${2:actual}, '${3:AssertionError message}'"
+    ],
+    "description": "Assert inequality check using pytest"
+  },
+  "testing:t:assert Membership": {
+    "prefix": "test_t_assert_member",
+    "body": [
+      "assert ${1:item} in ${2:collection}, '${3:AssertionError message}'"
+    ],
+    "description": "Assert membership in a collection using pytest"
+  },
+  "testing:t:assert Non-Membership": {
+    "prefix": "test_t_assert_not_member",
+    "body": [
+      "assert ${1:item} not in ${2:collection}, '${3:AssertionError message}'"
+    ],
+    "description": "Assert non-membership in a collection using pytest"
+  },
+  "testing:t:assert True": {
+    "prefix": "test_t_assert_true",
+    "body": ["assert ${1:expression}, '${2:AssertionError message}'"],
+    "description": "Assert that an expression is true using pytest"
+  },
+  "testing:t:assert False": {
+    "prefix": "test_t_assert_false",
+    "body": ["assert not ${1:expression}, '${2:AssertionError message}'"],
+    "description": "Assert that an expression is false using pytest"
+  },
+  "testing:t:assert None": {
+    "prefix": "test_t_assert_is_none",
+    "body": ["assert ${1:value} is None, '${2:AssertionError message}'"],
+    "description": "Assert that a value is None using pytest"
+  },
+  "testing:t:assert Not None": {
+    "prefix": "test_t_assert_is_not_none",
+    "body": ["assert ${1:value} is not None, '${2:AssertionError message}'"],
+    "description": "Assert that a value is not None using pytest"
+  },
+  "testing:t:assert Float Equality": {
+    "prefix": "test_t_assert_float_eq",
+    "body": [
+      "assert abs(${1:expected} - ${2:actual}) < ${3:tolerance}, '${4:AssertionError message}'"
+    ],
+    "description": "Assert approximate float equality using pytest"
+  },
+  "testing:t:assert In Range": {
+    "prefix": "test_t_assert_in_range",
+    "body": [
+      "assert ${1:start} <= ${2:value} <= ${3:end}, '${4:AssertionError message}'"
+    ],
+    "description": "Assert that a value is within a specified range using pytest"
+  },
+  "testing:t:assert Substring": {
+    "prefix": "test_t_assert_substring",
+    "body": [
+      "assert '${1:substring}' in '${2:string}', '${3:AssertionError message}'"
+    ],
+    "description": "Assert that a substring is present in a string using pytest"
+  },
+  "testing:t:assert Sorted Ascending": {
+    "prefix": "test_t_assert_sorted_asc",
+    "body": [
+      "assert sorted(${1:list}) == ${1:list}, '${2:AssertionError message}'"
+    ],
+    "description": "Assert that a list is sorted in ascending order using pytest"
+  },
+  "testing:t:assert Sorted Descending": {
+    "prefix": "test_t_assert_sorted_desc",
+    "body": [
+      "assert sorted(${1:list}, reverse=True) == ${1:list}, '${2:AssertionError message}'"
+    ],
+    "description": "Assert that a list is sorted in descending order using pytest"
+  },
+  "testing:t:assert Dict Equality": {
+    "prefix": "test_t_assert_dict_eq",
+    "body": [
+      "assert ${1:expected_dict} == ${2:actual_dict}, '${3:AssertionError message}'"
+    ],
+    "description": "Assert that two dictionaries are equal using pytest"
+  },
+  "testing:t:assert Same Elements": {
+    "prefix": "test_t_assert_same_elements",
+    "body": [
+      "assert set(${1:list1}) == set(${2:list2}), '${3:AssertionError message}'"
+    ],
+    "description": "Assert that two lists contain the same elements using pytest"
+  },
+  "testing:t:assert Type": {
+    "prefix": "test_t_assert_is_instance_type",
+    "body": [
+      "assert isinstance(${1:value}, ${2:type}), '${3:AssertionError message}'"
+    ],
+    "description": "Assert that a value is of a specific type using pytest"
+  },
+  "testing:t:error:Exception Raised": {
+    "prefix": "test_t_error_pytest_raises",
+    "body": [
+      "with pytest.raises(${1:Exception}):",
+      "    ${2:code_that_should_raise_exception}"
+    ],
+    "description": "Assert that a specific exception is raised using pytest"
+  },
+  "testing:t:error:Specific Exception": {
+    "prefix": "test_t_error_pytest_specific_raises",
+    "body": [
+      "with pytest.raises(${1:SpecificException}, match='${2:expected_message}'):",
+      "    ${3:code_that_should_raise_specific_exception}"
+    ],
+    "description": "Assert that a specific exception with a custom message is raised using pytest"
+  },
+  "testing:t:error:Any Exception": {
+    "prefix": "test_t_error_pytest_any_raises",
+    "body": [
+      "with pytest.raises(Exception, match='${1:expected_message}'):",
+      "    ${2:code_that_should_raise_an_exception}"
+    ],
+    "description": "Assert that any exception with a custom message is raised using pytest"
+  },
+  "testing:t:error:Exception Regex Match": {
+    "prefix": "test_t_error_pytest_raises_regex_match",
+    "body": [
+      "with pytest.raises(${1:Exception}, match=r'${2:regex_pattern}'):",
+      "    ${3:code_that_should_raise_exception_matching_pattern}"
+    ],
+    "description": "Assert that an exception with a regex pattern match is raised using pytest"
+  },
+  "testing:t:error:Exception Without Message": {
+    "prefix": "test_t_error_pytest_raises_without_message",
+    "body": [
+      "with pytest.raises(${1:Exception}):",
+      "    ${2:code_that_should_raise_exception_without_message}"
+    ],
+    "description": "Assert that an exception is raised without specifying an error message using pytest"
+  },
+  "testing:t:error:Exception with Assertions": {
+    "prefix": "test_t_error_pytest_raises_with_assertions",
+    "body": [
+      "with pytest.raises(${1:Exception}) as exc_info:",
+      "    ${2:code_that_should_raise_exception}",
+      "    assert exc_info.value.${3:attribute} == ${4:expected_value}, '${5:AssertionError message}'"
+    ],
+    "description": "Assert that an exception is raised and perform subsequent assertions on the exception using pytest"
+  },
+  "testing:t:error:Specific Exception Subclass": {
+    "prefix": "test_t_error_pytest_specific_raises_subclass",
+    "body": [
+      "with pytest.raises(${1:SpecificExceptionSubclass}):",
+      "    ${2:code_that_should_raise_specific_exception_subclass}"
+    ],
+    "description": "Assert that a specific subclass of exception is raised using pytest"
+  },
+  "testing:t:error:Exception Message": {
+    "prefix": "test_t_error_exception_message",
+    "body": [
+      "with pytest.raises(${1:Exception}) as exc_info:",
+      "    ${2:code_that_should_raise_exception}",
+      "    assert str(exc_info.value) == '${3:expected_exception_message}', '${4:AssertionError message}'"
+    ],
+    "description": "Assert that an exception is raised and check its message using pytest"
+  },
+  "testing:t:error:Exception Attributes": {
+    "prefix": "test_t_error_exception_attributes",
+    "body": [
+      "with pytest.raises(${1:Exception}) as exc_info:",
+      "    ${2:code_that_should_raise_exception}",
+      "    assert exc_info.value.${3:attribute} == ${4:expected_value}, '${5:AssertionError message}'"
+    ],
+    "description": "Assert that an exception is raised and inspect its attributes using pytest"
+  }
+}

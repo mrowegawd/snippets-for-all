@@ -488,6 +488,10 @@
       },
       {
         "language": "python",
+        "path": "./snippets/python/testing.json"
+      },
+      {
+        "language": "python",
         "path": "./snippets/python/_pattern.json"
       },
       {

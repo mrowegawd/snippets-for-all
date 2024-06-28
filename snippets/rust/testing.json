@@ -1,6 +1,6 @@
 {
-  "testing:mock:all": {
-    "prefix": "test_mockall",
+  "testing:template:mock all": {
+    "prefix": "test_template_mockall",
     "body": [
       "use mockall::predicate::*;",
       "use mockall::*;",
@@ -35,8 +35,8 @@
     ],
     "description": "Creates a mock example using mockall in Rust"
   },
-  "testing:mock:example": {
-    "prefix": "test_mock",
+  "testing:template:mock": {
+    "prefix": "test_template_mock",
     "body": [
       "// Define trait to mock",
       "trait MyTrait {",
@@ -86,20 +86,84 @@
     ],
     "description": "Creates a mocking example in Rust without external dependencies"
   },
-  "testing:function": {
-    "prefix": "test_func_func",
-    "body": ["#[test]", "fn ${1:test_function}() {", "\t$0", "}"],
-    "description": "Creates a new Rust test function"
+  "testing:template:func": {
+    "prefix": "test_template_func",
+    "body": [
+      "#[cfg(test)]",
+      "mod tests {",
+      "    use super::*;",
+      "",
+      "    #[test]",
+      "    fn ${1:test_name}() {",
+      "        ${2:// Test code}",
+      "    }",
+      "}"
+    ],
+    "description": "Rust unit test template"
   },
-  "testing:test setup": {
-    "prefix": "test_setup_func",
+  "testing:func:func": {
+    "prefix": "test_func_func",
+    "body": ["#[test]", "fn ${1:test_name}() {", "    ${2:// Test code}", "}"],
+    "description": "Rust unit test function"
+  },
+  "testing:func:setup": {
+    "prefix": "test_func_setup",
     "body": ["#[setup]", "fn setup() {", "\t$0", "}"],
     "description": "Creates a setup function for Rust tests"
   },
-  "testinG:teardown": {
-    "prefix": "test_teardown_func",
+  "testing:func:teardown": {
+    "prefix": "test_func_teardown",
     "body": ["#[teardown]", "fn teardown() {", "\t$0", "}"],
     "description": "Creates a teardown function for Rust tests"
+  },
+  "testing:func:module": {
+    "prefix": "test_func_module",
+    "body": [
+      "#[cfg(test)]",
+      "mod tests {",
+      "\tuse super::*;",
+      "\t",
+      "\t#[test]",
+      "\tfn ${1:test_function}() {",
+      "\t\t$0",
+      "\t}",
+      "}"
+    ],
+    "description": "Creates a test module with a test function"
+  },
+  "testing:func:panic": {
+    "prefix": "test_func_panic",
+    "body": [
+      "fn panic_test() {",
+      "\tif let Err(_) = std::panic::catch_unwind(|| {",
+      "\t\t$0",
+      "\t}) {",
+      "\t\tpanic!(\"Test panicked\");",
+      "\t}",
+      "}"
+    ],
+    "description": "Creates a test that expects a panic"
+  },
+  "testing:func:Should Panic Test": {
+    "prefix": "test_func_should_panic",
+    "body": [
+      "#[test]",
+      "#[should_panic]",
+      "fn ${1:test_function}() {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Creates a test that should panic"
+  },
+  "testing:func:Unwrap Test": {
+    "prefix": "test_func_unwrap",
+    "body": [
+      "fn unwrap_test() {",
+      "\tlet result = ${1:result}.unwrap();",
+      "\t$0",
+      "}"
+    ],
+    "description": "Creates a test for unwrapping a result"
   },
   "testing:benchmark": {
     "prefix": "test_benchmark",
@@ -119,35 +183,7 @@
     ],
     "description": "Creates a Criterion.rs benchmark"
   },
-  "testing:module": {
-    "prefix": "test_module",
-    "body": [
-      "#[cfg(test)]",
-      "mod tests {",
-      "\tuse super::*;",
-      "\t",
-      "\t#[test]",
-      "\tfn ${1:test_function}() {",
-      "\t\t$0",
-      "\t}",
-      "}"
-    ],
-    "description": "Creates a test module with a test function"
-  },
-  "testing:panic": {
-    "prefix": "test_func_panic",
-    "body": [
-      "fn panic_test() {",
-      "\tif let Err(_) = std::panic::catch_unwind(|| {",
-      "\t\t$0",
-      "\t}) {",
-      "\t\tpanic!(\"Test panicked\");",
-      "\t}",
-      "}"
-    ],
-    "description": "Creates a test that expects a panic"
-  },
-  "testing:Testing Table": {
+  "testing:table": {
     "prefix": "test_table",
     "body": [
       "struct TestDataRow {",
@@ -176,50 +212,273 @@
     ],
     "description": "Creates a testing table structure and test runner"
   },
-  "testing:func:Should Panic Test": {
-    "prefix": "test_func_should_panic",
-    "body": [
-      "#[test]",
-      "#[should_panic]",
-      "fn ${1:test_function}() {",
-      "\t$0",
-      "}"
-    ],
-    "description": "Creates a test that should panic"
-  },
-  "testing:Unwrap Test": {
-    "prefix": "test_func_unwrap",
-    "body": [
-      "fn unwrap_test() {",
-      "\tlet result = ${1:result}.unwrap();",
-      "\t$0",
-      "}"
-    ],
-    "description": "Creates a test for unwrapping a result"
-  },
   "testing:t:assert equals macro": {
     "prefix": "test_t_assert_eq",
     "body": ["assert_eq!(${1:actual}, ${2:expected});"],
     "description": "Inserts an assert_eq! macro for testing equality"
   },
-  "testing:t:assert Assert Macro": {
-    "prefix": "test_t_assert",
-    "body": ["assert!(${1:condition}, \"${2:message}\");"],
-    "description": "Inserts an assert! macro with a custom message"
-  },
-  "testing:t:assert Equals": {
-    "prefix": "test_t_equals",
-    "body": ["assert_eq!(${1:actual}, ${2:expected});"],
-    "description": "Asserts that two expressions are equal"
-  },
   "testing:t:assert not equals": {
-    "prefix": "test_t_assert_ne",
+    "prefix": "test_t_assert_not_eq",
     "body": ["assert_ne!(${1:actual}, ${2:expected});"],
     "description": "Asserts that two expressions are not equal"
+  },
+  "testing:t:assert Assert Macro": {
+    "prefix": "test_t_assert_macro_with_message",
+    "body": ["assert!(${1:condition}, \"${2:message}\");"],
+    "description": "Inserts an assert! macro with a custom message"
   },
   "testing:t:assert condition with message": {
     "prefix": "test_t_assert_with_message",
     "body": ["assert!(${1:condition}, \"${2:message}\");"],
     "description": "Asserts that a condition is true with a custom message"
+  },
+  "testing:t:assert true": {
+    "prefix": "test_t_assert_true",
+    "body": ["assert!(${1:condition});"],
+    "description": "Rust assert! true assertion"
+  },
+  "testing:t:assert false": {
+    "prefix": "test_t_assert_false",
+    "body": ["assert!(!(${1:condition}));"],
+    "description": "Rust assert! false assertion"
+  },
+  "testing:t:assert panic": {
+    "prefix": "test_t_assert_panic",
+    "body": [
+      "assert!(std::panic::catch_unwind(|| {",
+      "    ${1:// Code expected to panic}",
+      "}).is_err());"
+    ],
+    "description": "Rust assert! panic assertion"
+  },
+  "testing:t:assert greater": {
+    "prefix": "test_t_assert_greater",
+    "body": ["assert!(${1:first} > ${2:second});"],
+    "description": "Rust assert! greater than assertion"
+  },
+  "testing:t:assert less": {
+    "prefix": "test_t_assert_less",
+    "body": ["assert!(${1:first} < ${2:second});"],
+    "description": "Rust assert! less than assertion"
+  },
+  "testing:t:assert greater equal": {
+    "prefix": "test_t_assert_greater_equal",
+    "body": ["assert!(${1:first} >= ${2:second});"],
+    "description": "Rust assert! greater than or equal assertion"
+  },
+  "testing:t:assert less equal": {
+    "prefix": "test_t_assert_less_equal",
+    "body": ["assert!(${1:first} <= ${2:second});"],
+    "description": "Rust assert! less than or equal assertion"
+  },
+  "testing:t:assert option some": {
+    "prefix": "test_t_assert_option_some",
+    "body": ["assert!(Some(${1:value}) == ${2:result}.as_ref());"],
+    "description": "Rust assert! Option Some assertion"
+  },
+  "testing:t:assert option none": {
+    "prefix": "test_t_assert_option_none",
+    "body": ["assert!(${1:result}.is_none());"],
+    "description": "Rust assert! Option None assertion"
+  },
+  "testing:t:assert result ok": {
+    "prefix": "test_t_assert_result_ok",
+    "body": ["assert!(${1:result}.is_ok());"],
+    "description": "Rust assert! Result Ok assertion"
+  },
+  "testing:t:assert result err": {
+    "prefix": "test_t_assert_result_err",
+    "body": ["assert!(${1:result}.is_err());"],
+    "description": "Rust assert! Result Err assertion"
+  },
+  "testing:t:assert string equal": {
+    "prefix": "test_t_assert_string_equal",
+    "body": ["assert_eq!(${1:expected}, ${2:actual});"],
+    "description": "Rust assert_eq! string equality assertion"
+  },
+  "testing:t:assert vec equal": {
+    "prefix": "test_t_assert_vec_equal",
+    "body": ["assert_eq!(${1:expected}, ${2:actual});"],
+    "description": "Rust assert_eq! vector equality assertion"
+  },
+  "testing:t:assert slice equal": {
+    "prefix": "test_t_assert_slice_equal",
+    "body": ["assert_eq!(${1:expected}, ${2:actual});"],
+    "description": "Rust assert_eq! slice equality assertion"
+  },
+  "testing:t:assert float equal": {
+    "prefix": "test_t_assert_float_equal",
+    "body": [
+      "assert!(${1:expected}.abs() - ${2:actual}.abs() < ${3:epsilon});"
+    ],
+    "description": "Rust assert! floating point equality assertion"
+  },
+  "testing:t:assert approx equal": {
+    "prefix": "test_t_assert_approx_equal",
+    "body": ["assert_approx_eq!(${1:expected}, ${2:actual});"],
+    "description": "Rust assert_approx_eq! floating point approximate equality assertion"
+  },
+  "testing:t:assert panic with message": {
+    "prefix": "test_t_assert_panic_with_message",
+    "body": [
+      "let result = std::panic::catch_unwind(|| {",
+      "    ${1:// Code expected to panic}",
+      "});",
+      "assert!(result.is_err() && result.unwrap_err().to_string().contains(${2:\"expected panic message\"}));"
+    ],
+    "description": "Rust assert! panic with message assertion"
+  },
+  "testing:t:error:Function Returns Error": {
+    "prefix": "test_t_error_function_returns_error",
+    "body": [
+      "#[test]",
+      "fn ${1:test_function_name}() {",
+      "    fn function_that_returns_error() -> Result<(), &'static str> {",
+      "        Err(\"Error message\")",
+      "    }",
+      "",
+      "    assert!(function_that_returns_error().is_err());",
+      "}"
+    ],
+    "description": "Test that a function returns an expected error in Rust"
+  },
+  "testing:t:error:Function Returns Specific Error Message": {
+    "prefix": "test_t_error_function_returns_specific_error_message",
+    "body": [
+      "#[test]",
+      "fn ${1:test_function_name}() {",
+      "    fn function_that_returns_error() -> Result<(), &'static str> {",
+      "        Err(\"Error message\")",
+      "    }",
+      "",
+      "    let result = function_that_returns_error();",
+      "    assert_eq!(result.err(), Some(\"Error message\"));",
+      "}"
+    ],
+    "description": "Test that a function returns an error with a specific message in Rust"
+  },
+  "testing:t:error:Function Returns Error with Pattern Match": {
+    "prefix": "test_t_error_function_returns_error_with_pattern_match",
+    "body": [
+      "#[test]",
+      "fn ${1:test_function_name}() {",
+      "    fn function_that_returns_error() -> Result<(), &'static str> {",
+      "        Err(\"Error message\")",
+      "    }",
+      "",
+      "    match function_that_returns_error() {",
+      "        Ok(_) => panic!(\"Expected error but got Ok\"),",
+      "        Err(e) => assert_eq!(e, \"Error message\"),",
+      "    }",
+      "}"
+    ],
+    "description": "Test that a function returns an error using pattern match in Rust"
+  },
+  "testing:t:error:Function Panics": {
+    "prefix": "test_t_error_function_panics",
+    "body": [
+      "#[test]",
+      "#[should_panic(expected = \"Panic message\")]",
+      "fn ${1:test_function_name}() {",
+      "    fn function_that_panics() {",
+      "        panic!(\"Panic message\");",
+      "    }",
+      "",
+      "    function_that_panics();",
+      "}"
+    ],
+    "description": "Test that a function panics with an expected message in Rust"
+  },
+  "testing:t:error:Function Unwrap Panics on Error": {
+    "prefix": "test_t_error_function_unwrap_panics",
+    "body": [
+      "#[test]",
+      "fn ${1:test_function_name}() {",
+      "    fn function_that_returns_option() -> Option<i32> {",
+      "        None",
+      "    }",
+      "",
+      "    let value = function_that_returns_option().unwrap();",
+      "    assert_eq!(value, 42); // Expected value after unwrap()",
+      "}"
+    ],
+    "description": "Test that a function panics with unwrap() on error in Rust"
+  },
+  "testing:t:error:Function Expect Panics with Custom Message on Error": {
+    "prefix": "test_t_error_function_expect_panics_with_custom_message",
+    "body": [
+      "#[test]",
+      "fn ${1:test_function_name}() {",
+      "    fn function_that_returns_option() -> Option<i32> {",
+      "        None",
+      "    }",
+      "",
+      "    let value = function_that_returns_option().expect(\"Expected Some value but got None\");",
+      "}"
+    ],
+    "description": "Test that a function panics with expect() on error with a custom message in Rust"
+  },
+  "testing:t:error:Function Unwrap_or Handles None Case": {
+    "prefix": "test_t_error_function_unwrap_or_handles_none_case",
+    "body": [
+      "#[test]",
+      "fn ${1:test_function_name}() {",
+      "    fn function_that_returns_option() -> Option<i32> {",
+      "        None",
+      "    }",
+      "",
+      "    let value = function_that_returns_option().unwrap_or(0);",
+      "    assert_eq!(value, 0); // Expected default value when Option is None",
+      "}"
+    ],
+    "description": "Test that a function handles Option unwrap_or() when Option is None in Rust"
+  },
+  "testing:t:error:Function Unwrap_or_else Handles None Case Dynamically": {
+    "prefix": "test_t_error_function_unwrap_or_else_handles_none_case_dynamically",
+    "body": [
+      "#[test]",
+      "fn ${1:test_function_name}() {",
+      "    fn function_that_returns_option() -> Option<i32> {",
+      "        None",
+      "    }",
+      "",
+      "    let value = function_that_returns_option().unwrap_or_else(|| compute_default_value());",
+      "}",
+      "",
+      "fn compute_default_value() -> i32 {",
+      "    // Compute and return a default value dynamically",
+      "    42",
+      "}"
+    ],
+    "description": "Test that a function handles Option unwrap_or_else() when Option is None dynamically in Rust"
+  },
+  "testing:t:error:Function Unwrap Panics on Errorc": {
+    "prefix": "test_t_error_function_unwrap_panics",
+    "body": [
+      "#[test]",
+      "fn ${1:test_function_name}() {",
+      "    fn function_that_returns_result() -> Result<i32, &'static str> {",
+      "        Err(\"Error message\")",
+      "    }",
+      "",
+      "    let value = function_that_returns_result().unwrap();",
+      "}"
+    ],
+    "description": "Test that a function panics with unwrap() on error in Result type in Rust"
+  },
+  "testing:t:error:Function Unwrap_err Handles Error Case": {
+    "prefix": "test_t_error_function_unwrap_err",
+    "body": [
+      "#[test]",
+      "fn ${1:test_function_name}() {",
+      "    fn function_that_returns_result() -> Result<i32, &'static str> {",
+      "        Err(\"Error message\")",
+      "    }",
+      "",
+      "    let err_message = function_that_returns_result().unwrap_err();",
+      "    assert_eq!(err_message, \"Error message\"); // Expected error message when Result is Err",
+      "}"
+    ],
+    "description": "Test that a function handles Result unwrap_err() when Result is Err in Rust"
   }
 }

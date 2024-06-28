@@ -45,8 +45,8 @@
     ],
     "description": "Create a test case with timeout"
   },
-  "testing:sub-test-skip": {
-    "prefix": "test_subtest_skip",
+  "testing:func:sub-test-skip": {
+    "prefix": "test_func_with_subtest_skip",
     "body": [
       "t.Run(\"${1:SubTestName}\", func(t *testing.T) {",
       "\tif ${2:condition} {",
@@ -58,6 +58,69 @@
       "})"
     ],
     "description": "Create a sub-test case with conditional skip"
+  },
+  "testing:func:func": {
+    "prefix": "test_func_func",
+    "body": [
+      "func Test${1:FunctionName}(t *testing.T) {",
+      "\t${2:// Arrange}",
+      "\t",
+      "\t${3:// Act}",
+      "\t",
+      "\t${4:// Assert}",
+      "}"
+    ],
+    "description": "Simple Test Function"
+  },
+  "testing:func:with subtests": {
+    "prefix": "test_func_with_subtests",
+    "body": [
+      "func Test${1:FunctionName}(t *testing.T) {",
+      "\ttests := []struct {",
+      "\t\tname string",
+      "\t\t// add fields as needed",
+      "\t}{",
+      "\t\t{${2:\"SubtestName\"}, ${3:// value1}, ${4:// value2}, ...}",
+      "\t\t// add more subtests as needed",
+      "\t}",
+      "\tfor _, tt := range tests {",
+      "\t\tt.Run(tt.name, func(t *testing.T) {",
+      "\t\t\t${5:// Arrange}",
+      "\t\t\t",
+      "\t\t\t${6:// Act}",
+      "\t\t\t",
+      "\t\t\t${7:// Assert}",
+      "\t\t})",
+      "\t}",
+      "}"
+    ],
+    "description": "Test Function with Subtests"
+  },
+  "testing:benchmark": {
+    "prefix": "test_benchmark",
+    "body": [
+      "func Benchmark${1:FunctionName}(b *testing.B) {",
+      "\tfor i := 0; i < b.N; i++ {",
+      "\t\t${2:// Arrange}",
+      "\t\t",
+      "\t\t${3:// Act}",
+      "\t\t",
+      "\t\t${4:// Assert (optional, for benchmarks)}",
+      "\t}",
+      "}"
+    ],
+    "description": "Benchmark Function"
+  },
+  "testing:func:func example": {
+    "prefix": "test_func_func_example",
+    "body": [
+      "func Example${1:FunctionName}() {",
+      "\t${2:// Example code}",
+      "\t// Output:",
+      "\t// ${3:// Expected output}",
+      "}"
+    ],
+    "description": "Example Function"
   },
   "testing:testing-table": {
     "prefix": "test_table",
@@ -97,36 +160,10 @@
     ],
     "description": "Assert error in test case"
   },
-  "testing:test-timeout-subtest": {
-    "prefix": "test_timeout_subtest",
-    "body": [
-      "t.Run(\"${1:TestName}\", func(t *testing.T) {",
-      "\tctx, cancel := context.WithTimeout(context.Background(), ${2:timeout})",
-      "\tdefer cancel()",
-      "\t",
-      "\tgo func() {",
-      "\t\t${3:// call code to test}",
-      "\t}()",
-      "\t",
-      "\tselect {",
-      "\tcase <-ctx.Done():",
-      "\t\tt.Fatalf(\"Test did not complete within %v\", ${2:timeout})",
-      "\tcase <-time.After(${2:timeout}):",
-      "\t\t${4:// continue with assertions}",
-      "\t}",
-      "})"
-    ],
-    "description": "Create a sub-test case with timeout"
-  },
   "testing:variable content": {
     "prefix": "test_t_logv",
     "body": "t.Logf(\"${1:var}: %#+v\\\\n\", ${1:var})",
     "description": "Snippet for t.Logf() with variable content"
-  },
-  "testing:benchmark function": {
-    "prefix": "test_benchmark",
-    "body": "func Benchmark$1(b *testing.B) {\n\tfor ${2:i} := 0; ${2:i} < b.N; ${2:i}++ {\n\t\t$0\n\t}\n}",
-    "description": "Snippet for Benchmark function"
   },
   "testing:t:log": {
     "prefix": "test_t_log",
