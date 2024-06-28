@@ -123,7 +123,7 @@
     "description": "Creates a basic Python class with __init__ and method"
   },
   "class:full dan property": {
-    "prefix": "class_full_property",
+    "prefix": "class_full",
     "body": [
       "class ${1:SubClassName}(${2:SuperClassName}):",
       "\tdef __init__(self${3:}, ${4:super_params}):",
@@ -142,11 +142,6 @@
       "\t\t${12:pass}"
     ],
     "description": "Creates a Python class with superclass, properties, and methods"
-  },
-  "class:create:init": {
-    "prefix": "class_create_full_init",
-    "body": "class ${1:ClassName}(${2:object}):\n\t\"\"\"${3:docstring for $1.}\"\"\"\n\tdef __init__(self, ${4:arg}):\n\t\t${5:super($1, self).__init__()}\n\t\tself.arg = arg\n\t\t$0",
-    "description": "class ${1:ClassName}(${2:object}):\n\t\"\"\"${3:docstring for $1.}\"\"\"\n\tdef __init__(self, ${4:arg}):\n\t\t${5:super($1, self).__init__()}\n\t\tself.arg = arg\n\t\t$0"
   },
   "class:prop:attribute": {
     "prefix": "class_prop_",

@@ -933,7 +933,7 @@
     "description": "Define a full property"
   },
   "class:property:full with get and set func": {
-    "prefix": "class_prop_full_with_get_set",
+    "prefix": "class_prop_get_set_full",
     "body": [
       "",
       "private _${1:value} : ${2:string};",

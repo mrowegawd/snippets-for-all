@@ -145,8 +145,13 @@
   },
   "let:enum": {
     "prefix": "let_enum",
-    "body": ["enum ${1:nameenum} {", "\t${2:Namefield(i32)}", "}"],
-    "description": "let mut my_map: HashMap<i32, String> = HashMap::new();"
+    "body": "let ${1:name} = ${2:EnumName}::${3:Filedenum}(${4:param});",
+    "description": "Create enum variable"
+  },
+  "let:struct:tuple": {
+    "prefix": "let_struct_tuple",
+    "body": "let ${1:name} = ${2:StructTuple}(${4:param});",
+    "description": "Create struct tuple variable"
   },
   "let:obj": {
     "prefix": "let_obj",
@@ -329,13 +334,67 @@
     ],
     "description": "enum … { … }"
   },
+  "enum:t:lifetime": {
+    "prefix": "enum_t_lifetime",
+    "body": ["enum ${1:Myenum}<'${2:a}> {"],
+    "description": "enum … { … }"
+  },
+  "enum:t:lifetime:multi": {
+    "prefix": "enum_t_lifetime_multi",
+    "body": ["enum ${1:Myenum}<'${2:a}, '${3:b}> {"],
+    "description": "enum … { … }"
+  },
+  "enum:t:lifetime:generic": {
+    "prefix": "enum_t_lifetime_multi_generic",
+    "body": ["enum ${1:Myenum}<'${2:a}, '${3:b}, ${4:T}> {"],
+    "description": "enum … { … }"
+  },
+  "enum:t:generic": {
+    "prefix": "enum_t_generic",
+    "body": ["enum ${1:Name}<${2:T}> {"],
+    "description": "enum … { … }"
+  },
+  "enum:lifetime": {
+    "prefix": "enum_lifetime",
+    "body": [
+      "enum ${1:Myenum}<'${2:a}> {",
+      "\t${3:Fieldenum}(&'${2:a} ${4:str}),",
+      "}"
+    ],
+    "description": "enum … { … }"
+  },
+  "enum:lifetime:multi": {
+    "prefix": "enum_lifetime_multi",
+    "body": [
+      "enum ${1:Myenum}<'${2:a}, '${3:b}> {",
+      "\t${5:Fieldenum1}(&'${2:a} ${4:str}),",
+      "\t${6:Fieldenum2}(&'${3:b} ${4:str}),",
+      "}"
+    ],
+    "description": "enum … { … }"
+  },
+  "enum:lifetime:generic": {
+    "prefix": "enum_lifetime_multi_generic",
+    "body": [
+      "enum ${1:Myenum}<'${2:a}, '${3:b}, ${4:T}> {",
+      "\t${5:Fieldenum1}(&'${2:a} ${4:T}),",
+      "\t${6:Fieldenum2}(&'${3:b} ${4:T}),",
+      "}"
+    ],
+    "description": "enum … { … }"
+  },
+  "enum:generic": {
+    "prefix": "enum_generic",
+    "body": ["enum ${1:Name}<${2:T}> {", "\t${3:Fieldenum}(${2:T}),", "}"],
+    "description": "enum … { … }"
+  },
   "extern-crate": {
     "prefix": "crate_extern",
     "body": ["extern crate ${1:name};"],
     "description": "extern crate …;"
   },
   "extern-fn": {
-    "prefix": "fn_extern",
+    "prefix": "func_extern",
     "body": [
       "extern \"C\" fn ${1:name}(${2:arg}: ${3:Type}) -> ${4:RetType} {",
       "    ${5:// add code here}",
@@ -524,7 +583,7 @@
     "description": "function generic closure param"
   },
   "fn:main": {
-    "prefix": "fn_main",
+    "prefix": "func_main",
     "body": ["fn main() {", "    ${1:unimplemented!();}", "}"],
     "description": "fn main() { … }"
   },
@@ -607,9 +666,36 @@
     ],
     "description": "struct … { … }"
   },
+  "struct:t:lifetime": {
+    "prefix": "struct_t_lifetime",
+    "body": ["struct ${2:StructName}<'${1:a}> {"],
+    "description": "struct lifetime syntax"
+  },
+  "struct:t:generic": {
+    "prefix": "struct_t_generic",
+    "body": ["struct ${2:StructName}<'${1:T}> {"],
+    "description": "struct generic syntax"
+  },
   "struct:tuple": {
-    "prefix": "struct_tuple",
+    "prefix": "struct_tuple_",
     "body": ["struct ${1:Name}(${2:Type});"],
+    "description": "struct …(…);"
+  },
+  "struct:tuple:lifetime": {
+    "prefix": "struct_tuple_lifetime",
+    "body": ["struct ${1:Name}<'${2:a}>(&'${2:a} ${3:str});"],
+    "description": "struct …(…);"
+  },
+  "struct:tuple:lifetime:multi": {
+    "prefix": "struct_tuple_lifetime_multi",
+    "body": [
+      "struct ${1:Name}<'${2:a}, '${3:b}>(&'${2:a} ${4:str}, &'${3:b} ${5:str});"
+    ],
+    "description": "struct …(…);"
+  },
+  "struct:tuple:generic": {
+    "prefix": "struct_tuple_generic",
+    "body": ["struct ${1:Name}(${2:T});"],
     "description": "struct …(…);"
   },
   "struct:init": {
@@ -699,65 +785,84 @@
   },
   "struct:prop:field": {
     "prefix": "struct_prop_field",
-    "body": ["\t${1:field1}: ${2:i32},"],
+    "body": ["${1:field1}: ${2:i32},"],
     "description": "Adds a field to a Rust struct"
   },
   "struct:prop:complex type": {
     "prefix": "struct_prop_optional_field",
-    "body": ["\t${1:field}: Option<${2:Vec<i32>>},"],
+    "body": ["${1:field}: Option<${2:Vec<i32>>},"],
     "description": "Adds a field with a complex type to a Rust struct"
   },
   "struct:prop:with attribute": {
     "prefix": "struct_prop_attr",
-    "body": ["\t#[${1:derive(Debug)}]", "\t${2:field}: ${3:i32},"],
+    "body": ["#[${1:derive(Debug)}]", "\t${2:field}: ${3:i32},"],
     "description": "Adds a field with an attribute to a Rust struct"
   },
   "struct:prop:with lifetime": {
     "prefix": "struct_prop_lifetime",
-    "body": ["\t${1:field}: &'${2:lifetime} ${3:str},"],
+    "body": ["${1:field}: &'${2:lifetime} ${3:str},"],
     "description": "Adds a field with a lifetime parameter to a Rust struct"
   },
   "struct:prop:with generic type": {
     "prefix": "struct_prop_generic",
-    "body": ["\t${1:field}: ${2:T},"],
+    "body": ["${1:field}: ${2:T},"],
     "description": "Adds a field with a generic type to a Rust struct"
   },
   "struct:prop:with tuple": {
     "prefix": "struct_prop_tuple",
-    "body": ["\t${1:field}: (${2:i32}, ${3:String}),"],
+    "body": ["${1:field}: (${2:i32}, ${3:String}),"],
     "description": "Adds a field with a tuple type to a Rust struct"
   },
   "struct:prop:multiple attributes": {
     "prefix": "struct_prop_multi_attr",
     "body": [
-      "\t#[${1:derive(Debug, Clone)}]",
-      "\t#[${2:serde(rename = \"${3:field_name}\")}]",
-      "\t${4:field}: ${5:String},"
+      "#[${1:derive(Debug, Clone)}]",
+      "#[${2:serde(rename = \"${3:field_name}\")}]",
+      "${4:field}: ${5:String},"
     ],
     "description": "Adds a field with multiple attributes to a Rust struct"
   },
   "struct:prop:with doc comment": {
     "prefix": "struct_prop_doc",
-    "body": [
-      "\t/// ${6:Documentation for ${1:field}}",
-      "\t${1:field}: ${2:i32},"
-    ],
+    "body": ["/// ${6:Documentation for ${1:field}}", "${1:field}: ${2:i32},"],
     "description": "Adds a field with a doc comment to a Rust struct"
   },
   "struct:prop:pattern matching": {
     "prefix": "struct_prop_pattern",
-    "body": ["\t${1:field} @ ${2:pattern}: ${3:Type},"],
+    "body": ["${1:field} @ ${2:pattern}: ${3:Type},"],
     "description": "Adds a field with pattern matching to a Rust struct"
   },
-  "struct:propwith visibility": {
+  "struct:prop:with visibility": {
     "prefix": "struct_prop_pub",
-    "body": ["\tpub ${1:field}: ${2:i32},"],
+    "body": ["pub ${1:field}: ${2:i32},"],
     "description": "Adds a public field to a Rust struct"
   },
   "impl": {
     "prefix": "impl_struct",
     "body": ["impl ${1:Type} {", "    ${2:// add code here}", "}"],
     "description": "impl … { … }"
+  },
+  "impl:t:lifetime": {
+    "prefix": "impl_t_lifetime",
+    "body": ["impl<'${1:a}> ${2:StructName}<'${1:a}> {"],
+    "description": "impl with lifetime syntax"
+  },
+  "impl:t:lifetime multi": {
+    "prefix": "impl_t_lifetime_multi",
+    "body": ["impl<'${1:a}, ${2:b}> ${3:StructName}<'${1:a}, ${2:b} > {"],
+    "description": "impl with lifetime syntax"
+  },
+  "impl:t:lifetime multi generic": {
+    "prefix": "impl_t_lifetime_multi_generic",
+    "body": [
+      "impl<'${1:a}, ${2:b}, ${3:T}> ${4:StructName}<'${1:a}, ${2:b}, ${3:T}> {"
+    ],
+    "description": "impl with lifetime syntax"
+  },
+  "impl:t:generic": {
+    "prefix": "impl_t_generic",
+    "body": ["impl<${1:T}> ${2:StructName}<${1:T}> {"],
+    "description": "impl with generic syntax"
   },
   "impl:trait": {
     "prefix": "impl_trait_for_struct",
@@ -770,49 +875,49 @@
   },
   "impl:prop:public": {
     "prefix": "impl_prop_pub",
-    "body": ["\tpub ${2:attribute_name}: ${3:Type},"],
+    "body": ["pub ${2:attribute_name}: ${3:Type},"],
     "description": "Adds a public attribute to a Rust `impl` block"
   },
   "impl:prop:with Doc Comment": {
     "prefix": "impl_prop_with_doc",
     "body": [
-      "\t/// ${5:Documentation for ${2:attribute_name}}",
-      "\t${2:attribute_name}: ${3:Type},"
+      "/// ${5:Documentation for ${2:attribute_name}}",
+      "${2:attribute_name}: ${3:Type},"
     ],
     "description": "Adds an attribute with a doc comment to a Rust `impl` block"
   },
   "impl:prop:with Derive": {
     "prefix": "impl_prop_attribute_derive",
-    "body": ["\t#[derive(${6:Debug})]", "\t${2:attribute_name}: ${3:Type},"],
+    "body": ["#[derive(${6:Debug})]", "${2:attribute_name}: ${3:Type},"],
     "description": "Adds an attribute with attribute derive to a Rust `impl` block"
   },
   "impl:prop:with Lifetime": {
     "prefix": "impl_prop_attribute_lifetime",
-    "body": ["\t${2:attribute_name}: &'${3:lifetime} ${4:Type},"],
+    "body": ["${2:attribute_name}: &'${3:lifetime} ${4:Type},"],
     "description": "Adds an attribute with a lifetime parameter to a Rust `impl` block"
   },
   "impl:prop:with generic type": {
     "prefix": "impl_prop_generic",
-    "body": ["\t${2:attribute_name}: ${3:T},"],
+    "body": ["${2:attribute_name}: ${3:T},"],
     "description": "Adds an attribute with a generic type to a Rust `impl` block"
   },
   "impl:prop:with derive and doc comment": {
     "prefix": "impl_prop_derive_doc",
     "body": [
-      "\t/// ${5:Documentation for ${2:attribute_name}}",
-      "\t#[derive(${6:Debug})]",
-      "\t${2:attribute_name}: ${3:Type},"
+      "/// ${5:Documentation for ${2:attribute_name}}",
+      "#[derive(${6:Debug})]",
+      "${2:attribute_name}: ${3:Type},"
     ],
     "description": "Adds an attribute with attribute derive and doc comment to a Rust `impl` block"
   },
   "impl:prop:with default value": {
     "prefix": "impl_prop_default",
-    "body": ["\t${2:attribute_name}: ${3:Type} = ${4:default_value},"],
+    "body": ["${2:attribute_name}: ${3:Type} = ${4:default_value},"],
     "description": "Adds an attribute with a default value to a Rust `impl` block"
   },
   "impl:prop:mutable reference": {
     "prefix": "impl_prop_mut_references",
-    "body": ["\t${2:attribute_name}: &mut ${3:Type},"],
+    "body": ["${2:attribute_name}: &mut ${3:Type},"],
     "description": "Adds a mutable reference attribute to a Rust `impl` block"
   },
   "impl:method:constructor:with parameters": {
