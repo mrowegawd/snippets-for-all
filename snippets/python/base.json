@@ -273,7 +273,7 @@
     "description": "Create an empty method"
   },
   "class:method:with param": {
-    "prefix": "class_func_with_param",
+    "prefix": "class_func_method_with_param",
     "body": [
       "def ${1:method_name}(self, ${2:param}):",
       "\t${3:# TODO: implement method}"
@@ -281,7 +281,7 @@
     "description": "Create a method with a parameter"
   },
   "class:method:staticmethod": {
-    "prefix": "class_func_static_method",
+    "prefix": "class_func_method_static_method",
     "body": [
       "@staticmethod",
       "def ${1:funcname}(${2:parameter_list}):",
@@ -290,7 +290,7 @@
     "description": ["@staticmethod", "def fname(args):", "\t$pass"]
   },
   "class:method:class method": {
-    "prefix": "class_func_class_method",
+    "prefix": "class_func_method_class",
     "body": [
       "@classmethod",
       "def ${1:method_name}(cls, ${2:params}):",
@@ -299,7 +299,7 @@
     "description": "Create a class method"
   },
   "class:method:with docstring": {
-    "prefix": "class_func_docstring",
+    "prefix": "class_func_method_with_docstring",
     "body": [
       "def ${1:method_name}(self, ${2:params}):",
       "\t\"\"\"",
@@ -318,7 +318,7 @@
     "description": "Create a method with a docstring"
   },
   "class:method:override method": {
-    "prefix": "class_func_override",
+    "prefix": "class_func_method_super_override",
     "body": [
       "def ${1:method_name}(self, ${2:params}):",
       "\t${3:super().${1:method_name}(${2:params})}"
@@ -326,7 +326,7 @@
     "description": "Override a method from superclass"
   },
   "class:method:private method": {
-    "prefix": "class_func_private_method",
+    "prefix": "class_func_method_private",
     "body": [
       "def _${1:method_name}(self, ${2:params}):",
       "\t${3:# TODO: implement private method}"
@@ -342,7 +342,7 @@
     "description": "Create a method with a default argument"
   },
   "class:method:setter method": {
-    "prefix": "class_func_setter",
+    "prefix": "class_func_method_setter",
     "body": [
       "def set_${1:attribute}(self, ${2:value}):",
       "\tself.${1:attribute} = ${2:value}"
@@ -350,12 +350,12 @@
     "description": "Create a setter method for a class attribute"
   },
   "class:method:getter method": {
-    "prefix": "class_func_getter",
+    "prefix": "class_func_method_getter",
     "body": ["def get_${1:attribute}(self):", "\treturn self.${1:attribute}"],
     "description": "Create a getter method for a class attribute"
   },
   "class:method:has attribute": {
-    "prefix": "class_func_has_attribute",
+    "prefix": "class_func_method_has_attribute",
     "body": [
       "def has_${1:attribute}(self):",
       "\treturn hasattr(self, '${1:attribute}')"
@@ -363,7 +363,7 @@
     "description": "Create a method to check the existence of a class attribute"
   },
   "class:method:deleter": {
-    "prefix": "class_func_deleter",
+    "prefix": "class_func_method_deleter",
     "body": [
       "def delete_${1:attribute}(self):",
       "\tif hasattr(self, '${1:attribute}'):",

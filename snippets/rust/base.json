@@ -666,6 +666,11 @@
     ],
     "description": "struct … { … }"
   },
+  "struct:empty": {
+    "prefix": "struct_empty",
+    "body": ["struct ${1:Name} {}"],
+    "description": "struct … { … }"
+  },
   "struct:t:lifetime": {
     "prefix": "struct_t_lifetime",
     "body": ["struct ${2:StructName}<'${1:a}> {"],
@@ -949,7 +954,7 @@
     "description": "Constructor with Default trait"
   },
   "impl:method:constructor:with impl block": {
-    "prefix": "impl_func_pub_new_with_impl_block",
+    "prefix": "impl_func_constructor_new_with_impl_block",
     "body": [
       "impl ${1:StructName} {",
       "\tfn new(${2:params}) -> Self {",
@@ -999,7 +1004,7 @@
     "description": "Constructor with Builder pattern"
   },
   "impl:method": {
-    "prefix": "impl_func_",
+    "prefix": "impl_func_method",
     "body": [
       "pub fn ${1:method_name}(&self, ${2:arg}: ${3:type}) -> ${4:ReturnType} {",
       "\t$0",
@@ -1007,8 +1012,8 @@
     ],
     "description": "Creates a basic public method for a struct."
   },
-  "impl:method-pub": {
-    "prefix": "impl_func_pub",
+  "impl:method pub": {
+    "prefix": "impl_func_method_pub",
     "body": [
       "pub fn ${1:method_name}(&self, ${2:arg}: ${3:type}) -> ${4:ReturnType} {",
       "\t$0",
@@ -1016,8 +1021,8 @@
     ],
     "description": "Creates a basic public method for a struct."
   },
-  "impl:method-getset": {
-    "prefix": "impl_func_get_set",
+  "impl:method getset": {
+    "prefix": "impl_func_method_get_set_full",
     "body": [
       "pub fn get_${1:field}(&self) -> &${3:Type} {",
       "\t&self.${2:field}",
@@ -1030,7 +1035,7 @@
     "description": "impl get set … { … }"
   },
   "impl:method:async": {
-    "prefix": "impl_func_async",
+    "prefix": "impl_func_method_async",
     "body": [
       "pub async fn ${1:async_method_name}(&self, ${3:arg}: ${4:ArgType}) -> ${5:ReturnType} {",
       "\t${0:// async implementation}",
@@ -1039,7 +1044,7 @@
     "description": "Create async function in impl"
   },
   "impl:method:lifetime": {
-    "prefix": "impl_func_lifetime",
+    "prefix": "impl_func_method_lifetime",
     "body": [
       "pub fn ${1:method_name}<'${2:a}, ${3:b}>(&'${2:a} self, ${4:arg}: &'${3:b} ${5:ArgType}) -> ${6:ReturnType} {",
       "\t${0:// implementation}",

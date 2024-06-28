@@ -104,11 +104,6 @@
     ],
     "description": "Define a struct variable"
   },
-  "type function": {
-    "prefix": "type_func",
-    "body": "type ${1:name} func($3) $4",
-    "description": "Snippet for a type function declaration"
-  },
   "interface": {
     "prefix": "interface_",
     "body": "type ${1:name} interface {\n\t$0\n}",
@@ -128,6 +123,26 @@
     "prefix": "interface_func_param_with_return",
     "body": ["${1:MethodName}(${2:params}) (${3:returnType}, error)"],
     "description": "Create a method in an interface with error return"
+  },
+  "interface:prop:field": {
+    "prefix": "interface_prop_field",
+    "body": ["${1:MethodName}(${3:param} ${4:ReceiverType}) ${5:ReturnType},"],
+    "description": "Add a field with receiver to a Go interface"
+  },
+  "interface:prop:field variadic": {
+    "prefix": "interface_prop_field_variadic",
+    "body": ["${1:MethodName}(${2:param1} ...${3:ParamType}) ${4:ReturnType},"],
+    "description": "Add a field with variadic parameters to a Go interface"
+  },
+  "interface:prop:field multi return": {
+    "prefix": "interface_prop_field_multi_return",
+    "body": ["${1:MethodName}() (${2:ReturnType1}, ${3:ReturnType2}),"],
+    "description": "Add a field with multiple return values to a Go interface"
+  },
+  "interface:prop:field embedding interface": {
+    "prefix": "interface_prop_field_embedding",
+    "body": ["${1:FirstInterfaceName}"],
+    "description": "Add a field with multiple return values to a Go interface"
   },
   "interface:method:param variadic": {
     "prefix": "interface_func_param_variadic",
@@ -209,44 +224,59 @@
     ],
     "description": "Create a struct field with multiple tags on one line"
   },
-  "struct:method:pointer-receiver": {
-    "prefix": "struct_func_pointer_receiver",
+  "struct:empty": {
+    "prefix": "struct_empty",
+    "body": "type ${1:name} struct {}",
+    "description": "Snippet for a empyt struct declaration"
+  },
+  "struct:prop": {
+    "prefix": "struct_prop_field",
+    "body": ["${1:name} ${2:type} ${3:`json:\"${1:name}\"`}"],
+    "description": "Snippet for a empyt struct declaration"
+  },
+  "struct:prop:embedding": {
+    "prefix": "struct_prop_field_embedded",
+    "body": ["${1:EmbeddedStruct}${2:`json:\"-\"`}"],
+    "description": "Snippet for a empyt struct declaration"
+  },
+  "struct:method:pointer receiver": {
+    "prefix": "struct_func_method_pointer_receiver",
     "body": [
-      "func (${1:*${2:StructName}}) ${3:MethodName}(${4:params}) ${5:returnType} {",
+      "func (${1:a} *${2:StructName}) ${3:MethodName}(${4:params} ${5:FieldType}) {",
       "\t${6:// implementation}",
       "}"
     ],
     "description": "Snippet for a method with a pointer receiver"
   },
-  "struct:method:value-receiver": {
-    "prefix": "struct_func_value_receiver",
+  "struct:method:value receiver": {
+    "prefix": "struct_func_method_value_receiver",
     "body": [
-      "func (${1:${2:StructName}}) ${3:MethodName}(${4:params}) ${5:returnType} {",
+      "func (${1:a} ${2:StructName}) ${3:MethodName}(${4:params}) ${5:FieldType} {",
       "\t${6:// implementation}",
       "}"
     ],
     "description": "Snippet for a method with a value receiver"
   },
   "struct:method:getter": {
-    "prefix": "struct_func_getter",
+    "prefix": "struct_func_method_getter",
     "body": [
-      "func (${1:${2:StructName}}) Get${3:FieldName}() ${4:FieldType} {",
+      "func (${1:a} ${2:StructName}) Get${3:FieldName}() ${4:FieldType} {",
       "\treturn ${1}.${3}",
       "}"
     ],
     "description": "Create a getter method"
   },
   "struct:method:setter": {
-    "prefix": "struct_func_setter",
+    "prefix": "struct_func_method_setter",
     "body": [
-      "func (${1:*${2:StructName}}) Set${3:FieldName}(${4:value} ${5:FieldType}) {",
+      "func (${1:a} *${2:StructName}) Set${3:FieldName}(${4:value} ${5:FieldType}) {",
       "\t${1}.${3} = ${4}",
       "}"
     ],
     "description": "Create a setter method"
   },
   "struct:method:constructor:simple": {
-    "prefix": "struct_func_constructor_",
+    "prefix": "struct_func_constructor",
     "body": [
       "func New${1:StructName}(${2:params}) *${1:StructName} {",
       "\treturn &${1:StructName}{",
@@ -308,7 +338,7 @@
     "description": "Constructor with parameter validation"
   },
   "struct:method:constructor:with builder pattern": {
-    "prefix": "struct_func_constructor_with_builder_pattern",
+    "prefix": "struct_func_constructor_with_builder_pattern_full",
     "body": [
       "type ${1:Builder} struct {",
       "\t${2:param1} ${3:type1}",
@@ -572,17 +602,7 @@
     "body": "defer ${1:func}($0)",
     "description": "Snippet for defer statement"
   },
-  "func:goroutine:anonymous": {
-    "prefix": "func_go_anonymous",
-    "body": "go func($1) {\n\t$0\n}($2)",
-    "description": "Snippet for anonymous goroutine declaration"
-  },
-  "func:goroutine:simple": {
-    "prefix": "func_go_simple",
-    "body": "go ${1:func}($0)",
-    "description": "Snippet for goroutine declaration"
-  },
-  "func:goroutine:read-channel": {
+  "func:goroutine:read channel": {
     "prefix": "func_go_read_channel",
     "body": [
       "go func(ch <-chan ${1:Type}) {",
@@ -620,6 +640,16 @@
       "}"
     ],
     "description": "Write a goroutine function that returns a buffered channel"
+  },
+  "go:func:empty": {
+    "prefix": "go_func_annotation",
+    "body": "go ${1:funcName}($0)",
+    "description": "Snippet for goroutine declaration"
+  },
+  "go:func:full": {
+    "prefix": "go_func_anonymous",
+    "body": "go func($1) {\n\t$0\n}($2)",
+    "description": "Snippet for anonymous goroutine declaration"
   },
   "for": {
     "prefix": ["for_block"],
@@ -747,6 +777,11 @@
     "prefix": "map_",
     "body": "map[${1:type}]${2:type}",
     "description": "Snippet for a map"
+  },
+  "type function": {
+    "prefix": "type_func",
+    "body": "type ${1:name} func($3) $4",
+    "description": "Snippet for a type function declaration"
   },
   "type:check:declaration": {
     "prefix": "type_check_assertion",
