@@ -164,6 +164,10 @@
       },
       {
         "language": "rust",
+        "path": "./snippets/rust/http.json"
+      },
+      {
+        "language": "rust",
         "path": "./snippets/rust/iterator.json"
       },
       {
@@ -622,6 +626,10 @@
       {
         "language": "task",
         "path": "./snippets/tasks.json"
+      },
+      {
+        "language": "toml",
+        "path": "./snippets/toml.json"
       }
     ]
   }

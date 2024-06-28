@@ -1,0 +1,80 @@
+{
+  "rust:cargo:cargo.toml": {
+    "prefix": "cargo_full",
+    "body": [
+      "[package]",
+      "name = \"${1:project_name}\"",
+      "version = \"${2:0.1.0}\"",
+      "authors = [\"${3:Your Name}\"]",
+      "edition = \"${4:2018}\"",
+      "",
+      "[dependencies]"
+    ],
+    "description": "Basic Cargo.toml structure"
+  },
+  "rust:cargo:build script": {
+    "prefix": "cargo_build",
+    "body": [
+      "[[bin]]",
+      "name = \"${1:executable_name}\"",
+      "path = \"${2:src/main.rs}\""
+    ],
+    "description": "Add a build script to Cargo.toml"
+  },
+  "rust:cargo:feature configuration": {
+    "prefix": "cargo_feature",
+    "body": ["[features]", "${1:feature_name} = []"],
+    "description": "Configure a feature in Cargo.toml"
+  },
+  "rust:cargo:dev-dependency": {
+    "prefix": "cargo_dependency_dev",
+    "body": ["[dev-dependencies]", "${1:dependency_name} = \"${2:version}\""],
+    "description": "Add a development dependency to Cargo.toml"
+  },
+  "rust:cargo:dependency": {
+    "prefix": "cargo_dependency",
+    "body": ["[dependencies]", "${1:dependency_name} = \"${2:version}\""],
+    "description": "Add a development dependency to Cargo.toml"
+  },
+  "rust:cargo:target platform": {
+    "prefix": "cargo_target",
+    "body": ["[target.${1:target_triple}]", "${2:configuration_options}"],
+    "description": "Set target platform configuration in Cargo.toml"
+  },
+  "rust:cargo:prop:dependency": {
+    "prefix": "cargo_prop_dependency",
+    "body": ["${1:dependency_name} = \"${2:version}\""],
+    "description": "Add a new dependency to Cargo.toml"
+  },
+  "rust:cargo:prop:git dependency": {
+    "prefix": "cargo_prop_dependency_gitdep",
+    "body": [
+      "${1:dependency_name} = { git = \"${2:git_repository_url}\", branch = \"${3:master}\" }"
+    ],
+    "description": "Add a dependency from a git repository to Cargo.toml"
+  },
+  "rust:cargo:metadata:post-build": {
+    "prefix": "cargo_metadata_postbuild",
+    "body": [
+      "[package.metadata]",
+      "[build]",
+      "run = \"${1:post_build_script}\""
+    ],
+    "description": "Add a post-build script to Cargo.toml"
+  },
+  "rust:cargo:metadata:license information": {
+    "prefix": "cargo_metadata_license",
+    "body": ["[package.metadata]", "license = \"${1:license_type}\""],
+    "description": "Set license information in Cargo.toml"
+  },
+  "rust:cargo:metadata:env": {
+    "prefix": "cargo_metadata_env",
+    "body": [
+      "[package.metadata]",
+      "env = {",
+      "    ${1:key} = \"${2:value}\"",
+      "}"
+    ],
+    "description": "Add an environment variable to Cargo.toml"
+  }
+}

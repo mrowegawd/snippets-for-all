@@ -1,0 +1,50 @@
+{
+  "http:func:GET request with reqwest": {
+    "prefix": "http_func_get",
+    "body": [
+      "use reqwest::Error;",
+      "",
+      "async fn get_data() -> Result<(), Error> {",
+      "\tlet url = \"https://api.example.com/data\";",
+      "\tlet response = reqwest::get(url).await?;",
+      "\tlet body = response.text().await?;",
+      "\tprintln!(\"Response body: {}\", body);",
+      "\tOk(())",
+      "}",
+      "",
+      "fn main() {",
+      "\tlet result = get_data();",
+      "\tmatch result {",
+      "\t\tOk(_) => println!(\"Request successful\"),",
+      "\t\tErr(e) => eprintln!(\"Error: {}\", e),",
+      "\t}",
+      "}"
+    ],
+    "description": "Creates a Rust snippet for making a GET request using reqwest."
+  },
+  "http:func:GET request with headers using reqwest": {
+    "prefix": "http_func_get_with_headers",
+    "body": [
+      "use reqwest::Error;",
+      "use reqwest::header::{HeaderMap, HeaderValue, ACCEPT, USER_AGENT};",
+      "",
+      "async fn get_data() -> Result<(), Error> {",
+      "\tlet url = \"https://api.example.com/data\";",
+      "\tlet mut headers = HeaderMap::new();",
+      "\theaders.insert(ACCEPT, HeaderValue::from_static(\"application/json\"));",
+      "\theaders.insert(USER_AGENT, HeaderValue::from_static(\"My Rust Client\"));",
+      "",
+      "\tlet client = reqwest::Client::new();",
+      "\tlet response = client.get(url)",
+      "\t\t.headers(headers)",
+      "\t\t.send()",
+      "\t\t.await?;",
+      "",
+      "\tlet body = response.text().await?;",
+      "\tprintln!(\"Response body: {}\", body);",
+      "\tOk(())",
+      "}"
+    ],
+    "description": "Creates a Rust snippet for making a GET request with headers using reqwest."
+  }
+}
