@@ -1,61 +1,61 @@
 {
   "componentRender": {
-    "prefix": "render_component",
+    "prefix": "render_ret_component",
     "body": "render () {\n\treturn (\n\t\t<div>\n\t\t\t$0\n\t\t</div>\n\t)\n}",
     "description": "When called, it should examine this.props and this.state and return a single child element."
   },
-  "componentSetStateObject": {
-    "prefix": "sst",
-    "body": "this.setState($0)",
-    "description": "Performs a shallow merge of nextState into current state"
-  },
-  "componentSetStateFunc": {
-    "prefix": "ssf",
-    "body": "this.setState((state, props) => { return { $0 }})\n",
-    "description": "Performs a shallow merge of nextState into current state"
-  },
   "componentDidUpdate": {
-    "prefix": "component_did_update",
+    "prefix": "comp_did_update_",
     "body": "componentDidUpdate (prevProps, prevState) {\n\t$0\n}\n",
     "description": "Invoked immediately after the component's updates are flushed to the DOM."
   },
   "componentWillUnmount": {
-    "prefix": "component_will_unmount",
+    "prefix": "comp_will_unmount",
     "body": "componentWillUnmount () {\n\t$0\n}\n",
     "description": "Invoked immediately before a component is unmounted from the DOM."
   },
   "componentWillMount": {
-    "prefix": "component_will_mount_",
+    "prefix": "comp_will_mount",
     "body": "\ncomponentWillMount () {\n\t$0\n}\n",
     "description": "Invoked once, both on the client and server, immediately before the initial rendering occurs"
   },
   "componentDidMount": {
-    "prefix": "component_did_mount_",
+    "prefix": "comp_did_mount",
     "body": "componentDidMount () {\n\t$0\n}\n",
     "description": "Invoked once, only on the client (not on the server), immediately after the initial rendering occurs."
   },
   "componentWillReceiveProps": {
-    "prefix": "component_will_Receive_",
+    "prefix": "comp_will_recv_prop",
     "body": "componentWillReceiveProps (nextProps) {\n\t$0\n}\n",
     "description": "Invoked when a component is receiving new props. This method is not called for the initial render."
   },
   "componentGetDerivedStateFromProps": {
-    "prefix": "cgd",
+    "prefix": "comp_get_derived_state_from_prop",
     "body": "\nstatic getDerivedStateFromProps(nextProps, prevState) {\n\t$0\n}\n",
     "description": "Invoked after a component is instantiated as well as when it receives new props. It should return an object to update state, or null to indicate that the new props do not require any state updates."
   },
   "componentWillUpdate": {
-    "prefix": "component_will_update",
+    "prefix": "comp_will_update",
     "body": "componentWillUpdate (nextProps, nextState) {\n\t$0\n}\n",
     "description": "Invoked immediately before rendering when new props or state are being received."
   },
-  "componentProps": {
-    "prefix": "tp",
+  "this:componentSetStateObject": {
+    "prefix": "this_setState",
+    "body": "this.setState($0)",
+    "description": "Performs a shallow merge of nextState into current state"
+  },
+  "this:componentSetStateFunc": {
+    "prefix": "this_setState_func",
+    "body": "this.setState((state, props) => { return { $0 }})\n",
+    "description": "Performs a shallow merge of nextState into current state"
+  },
+  "this:componentProps": {
+    "prefix": "this_prop",
     "body": "this.props.$0",
     "description": "Access component's props"
   },
-  "componentState": {
-    "prefix": "ts",
+  "this:componentState": {
+    "prefix": "this_state",
     "body": "this.state.$0",
     "description": "Access component's state"
   },
@@ -70,7 +70,7 @@
     "description": "an element"
   },
   "jsx element self closed": {
-    "prefix": "element_self_close_",
+    "prefix": "element_closetag",
     "body": "<${1:elementName} />",
     "description": "an element self closed"
   },
@@ -80,7 +80,7 @@
     "description": "an element self closed"
   },
   "jsx elements map with return": {
-    "prefix": "element_map_return",
+    "prefix": "element_map_ret",
     "body": "{${1:array}.map((item) => {\n\treturn <${2:elementName} key={item.id}>\n\t$0\n</${2}>\n})}",
     "description": "an element self closed"
   },
@@ -163,11 +163,11 @@
     "body": ["export type ${1:first} = {${2:second}}"]
   },
   "exportInterface": {
-    "prefix": "expint_",
+    "prefix": "exp_interface_",
     "body": ["export interface ${1:first} {${2:second}}"]
   },
   "typescriptReactClassComponent": {
-    "prefix": "tsrcc_",
+    "prefix": "react_class_comp",
     "description": "Creates a React component class with ES7 module system and TypeScript interfaces",
     "body": [
       "import React, { Component } from 'react'",
@@ -188,7 +188,7 @@
     ]
   },
   "typescriptReactClassExportComponent": {
-    "prefix": "tsrce",
+    "prefix": "react_class_comp_export",
     "body": [
       "import React, { Component } from 'react'",
       "",
@@ -211,7 +211,7 @@
     "description": "Creates a React component class with ES7 module system and TypeScript interfaces"
   },
   "typescriptReactFunctionalExportComponent": {
-    "prefix": "tsrfce",
+    "prefix": "react_func_comp",
     "body": [
       "import React from 'react'",
       "",
@@ -228,31 +228,31 @@
     "description": "Creates a React Functional Component with ES7 module system and TypeScript interface"
   },
   "typescriptReactFunctionalComponent": {
-    "prefix": "tsrfc",
+    "prefix": "react_func_comp_export",
     "body": [
       "import React from 'react'",
       "",
       "type Props = {}",
       "",
       "export default function ${1:${TM_FILENAME_BASE}}({}: Props) {",
-      "  return (",
-      "    <div>${1:first}</div>",
-      "  )",
+      "\treturn (",
+      "\t\t<div>${1:first}</div>",
+      "\t)",
       "}"
     ],
     "description": "Creates a React Functional Component with ES7 module system and TypeScript interface"
   },
   "typescriptReactArrowFunctionExportComponent": {
-    "prefix": "tsrafce",
+    "prefix": "react_func_arrow_comp_export_return",
     "body": [
       "import React from 'react'",
       "",
       "type Props = {}",
       "",
       "const ${1:${TM_FILENAME_BASE}} = (props: Props) => {",
-      "  return (",
-      "    <div>${1:first}</div>",
-      "  )",
+      "\treturn (",
+      "\t\t<div>${1:first}</div>",
+      "\t)",
       "}",
       "",
       "export default ${1:${TM_FILENAME_BASE}}"
@@ -260,50 +260,50 @@
     "description": "Creates a React Arrow Function Component with ES7 module system and TypeScript interface"
   },
   "typescriptReactArrowFunctionComponent": {
-    "prefix": "tsrafc",
+    "prefix": "react_func_arrow_comp_export",
     "body": [
       "import React from 'react'",
       "",
       "type Props = {}",
       "",
       "const ${1:${TM_FILENAME_BASE}} = (props: Props) => {",
-      "  return (",
-      "    <div>${1:first}</div>",
-      "  )",
+      "\treturn (",
+      "\t\t<div>${1:first}</div>",
+      "\t)",
       "}"
     ],
     "description": "Creates a React Arrow Function Component with ES7 module system and TypeScript interface"
   },
   "typescriptReactClassPureComponent": {
-    "prefix": "tsrpc",
+    "prefix": "react_func_arrow_comp_for_pure_class",
     "body": [
       "import React, { PureComponent } from 'react'",
       "",
       "type Props = {}",
       "",
       "export default class ${1:${TM_FILENAME_BASE}} extends PureComponent<Props> {",
-      "  render() {",
-      "    return (",
-      "      <div>${1:first}</div>",
-      "    )",
-      "  }",
+      "\trender() {",
+      "\t\treturn (",
+      "\t\t\t<div>${1:first}</div>",
+      "\t\t)",
+      "\t}",
       "}"
     ],
     "description": "Creates a React pure component class with ES7 module system and TypeScript interface"
   },
   "typescriptReactClassExportPureComponent": {
-    "prefix": "tsrpce",
+    "prefix": "react_func_arrow_comp_for_pure_class_export",
     "body": [
       "import React, { PureComponent } from 'react'",
       "",
       "type Props = {}",
       "",
       "class ${1:${TM_FILENAME_BASE}} extends PureComponent<Props> {",
-      "  render() {",
-      "    return (",
-      "      <div>${1:first}</div>",
-      "    )",
-      "  }",
+      "\trender() {",
+      "\t\treturn (",
+      "\t\t\t<div>${1:first}</div>",
+      "\t\t)",
+      "\t}",
       "}",
       "",
       "export default ${1:${TM_FILENAME_BASE}}"
@@ -311,7 +311,7 @@
     "description": "Creates a React pure component class with ES7 module system and TypeScript interface"
   },
   "typescriptReactClassComponentRedux": {
-    "prefix": "tsrcredux",
+    "prefix": "react_class_comp_export_with_redux",
     "body": [
       "import { connect } from 'react-redux'",
       "import React, { Component } from 'react'",
@@ -321,13 +321,13 @@
       "type State = {}",
       "",
       "export class ${1:${TM_FILENAME_BASE}} extends Component<Props, State> {",
-      "  state = {}",
+      "\tstate = {}",
       "",
-      "  render() {",
-      "    return (",
-      "      <div>${1:first}</div>",
-      "    )",
-      "  }",
+      "\trender() {",
+      "\t\treturn (",
+      "\t\t\t<div>${1:first}</div>",
+      "\t\t)",
+      "\t}",
       "}",
       "",
       "const mapStateToProps = (state) => ({})",
@@ -339,7 +339,7 @@
     "description": "Creates a React component class with connected redux and ES7 module system and TypeScript interfaces"
   },
   "typescriptReactNativeArrowFunctionComponent": {
-    "prefix": "tsrnf",
+    "prefix": "react_func_arrow_comp_export_in_native",
     "body": [
       "import { View, Text } from 'react-native'",
       "import React from 'react'",
@@ -347,11 +347,11 @@
       "type Props = {}",
       "",
       "const ${1:${TM_FILENAME_BASE}} = (props: Props) => {",
-      "  return (",
-      "    <View>",
-      "      <Text>${1:first}</Text>",
-      "    </View>",
-      "  )",
+      "\treturn (",
+      "\t\t<View>",
+      "\t\t\t<Text>${1:first}</Text>",
+      "\t\t</View>",
+      "\t)",
       "}",
       "",
       "export default ${1:${TM_FILENAME_BASE}}"
@@ -359,7 +359,7 @@
     "description": "Creates a React Native Arrow Function Component with ES7 module system in TypeScript"
   },
   "typescriptReactNativeArrowFunctionComponentWithStyles": {
-    "prefix": "tsrnfs",
+    "prefix": "react_func_arrow_comp_export_in_native_with_styles",
     "body": [
       "import { StyleSheet, Text, View } from 'react-native'",
       "import React from 'react'",
@@ -367,11 +367,11 @@
       "type Props = {}",
       "",
       "const ${1:${TM_FILENAME_BASE}} = (props: Props) => {",
-      "  return (",
-      "    <View>",
-      "      <Text>${1:first}</Text>",
-      "    </View>",
-      "  )",
+      "\treturn (",
+      "\t\t<View>",
+      "\t\t\t<Text>${1:first}</Text>",
+      "\t\t</View>",
+      "\t)",
       "}",
       "",
       "export default ${1:${TM_FILENAME_BASE}}",
@@ -379,19 +379,6 @@
       "const styles = StyleSheet.create({})"
     ],
     "description": "Creates a React Native Arrow Function Component with ES7 module system, TypeScript interface and StyleSheet"
-  },
-  "reactArrowFunctionComponent": {
-    "prefix": "rfc_arrow",
-    "body": [
-      "",
-      "export const ${1:${TM_FILENAME_BASE}} = () => {",
-      "  return (",
-      "    <div>${1:first}</div>",
-      "  )",
-      "}",
-      ""
-    ],
-    "description": "Creates a React Arrow Function Component with ES7 module system"
   },
   "reactArrowFunctionComponentWithPropTypes": {
     "prefix": "rfc_propType",
