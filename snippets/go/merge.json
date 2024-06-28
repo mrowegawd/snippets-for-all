@@ -36,7 +36,7 @@
     "description": "Merge two channels into one"
   },
   "merge:strings": {
-    "prefix": "merge_strings",
+    "prefix": "merge_string",
     "body": ["mergedString := string1 + string2"],
     "description": "Merge two strings into one"
   },

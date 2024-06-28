@@ -44,7 +44,7 @@
     "description": "Merge two sets into one"
   },
   "merge:two strings": {
-    "prefix": "merge_strings",
+    "prefix": "merge_string",
     "body": ["merged_string = string1 + string2"],
     "description": "Merge two strings into one"
   },

@@ -86,6 +86,16 @@
     ],
     "description": "Merge sets"
   },
+  "merge:strings": {
+    "prefix": "merge_string",
+    "body": ["${1:string1} + ${2:string2}"],
+    "description": "Merge two strings using + operator"
+  },
+  "merge:strings:with template": {
+    "prefix": "merge_string_with_template",
+    "body": ["`${1:string1}${2:string2}`"],
+    "description": "Merge two strings using template literals"
+  },
   "merge:method:object.assign": {
     "prefix": "merge_metod_object_assign",
     "body": [
