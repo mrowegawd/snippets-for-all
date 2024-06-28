@@ -1,7 +1,225 @@
 {
-  "testcasd": {
-    "prefix": "test_",
-    "body": ["#[test]", "fn ${1:name}() {", "    ${2:unimplemented!();}", "}"],
-    "description": "#[test]"
+  "testing:mock:all": {
+    "prefix": "test_mockall",
+    "body": [
+      "use mockall::predicate::*;",
+      "use mockall::*;",
+      "",
+      "// Define a trait to mock",
+      "trait MyTrait {",
+      "\tfn do_something(&self, input: i32) -> i32;",
+      "}",
+      "",
+      "// Generate a mock struct",
+      "mock! {",
+      "\tMyMockTrait {}",
+      "\timpl MyTrait for MyMockTrait {",
+      "\t\tfn do_something(&self, input: i32) -> i32 {",
+      "\t\t\tself.do_something_mock(input)",
+      "\t\t}",
+      "\t}",
+      "}",
+      "",
+      "fn main() {",
+      "\t// Create mock instance",
+      "\tlet mut mock = MyMockTrait::default();",
+      "\t// Define mock behavior",
+      "\tmock.expect_do_something()",
+      "\t\t.with(always())",
+      "\t\t.returning(|input| input * 2);",
+      "\t// Use mock in tests",
+      "\tlet result = mock.do_something(5);",
+      "\tassert_eq!(result, 10);",
+      "}",
+      ""
+    ],
+    "description": "Creates a mock example using mockall in Rust"
+  },
+  "testing:mock:example": {
+    "prefix": "test_mock",
+    "body": [
+      "// Define trait to mock",
+      "trait MyTrait {",
+      "\tfn do_something(&self, input: i32) -> i32;",
+      "}",
+      "",
+      "// Define real implementation",
+      "struct MyRealImplementation;",
+      "",
+      "impl MyTrait for MyRealImplementation {",
+      "\tfn do_something(&self, input: i32) -> i32 {",
+      "\t\t// Real implementation logic",
+      "\t\tinput * 2",
+      "\t}",
+      "}",
+      "",
+      "// Define mock implementation for testing",
+      "struct MyMockImplementation {",
+      "\texpected_input: i32,",
+      "\texpected_output: i32,",
+      "}",
+      "",
+      "impl MyTrait for MyMockImplementation {",
+      "\tfn do_something(&self, input: i32) -> i32 {",
+      "\t\t// Mock implementation logic",
+      "\t\tif input == self.expected_input {",
+      "\t\t\tself.expected_output",
+      "\t\t} else {",
+      "\t\t\tpanic!(\"Unexpected input: {}\")",
+      "\t\t}",
+      "\t}",
+      "}",
+      "",
+      "// Example usage in test",
+      "fn main() {",
+      "\t// Use real implementation",
+      "\tlet real = MyRealImplementation;",
+      "\tlet result_real = real.do_something(5);",
+      "\tprintln!(\"Real implementation result: {}\", result_real);",
+      "\t// Use mock implementation for testing",
+      "\tlet mock = MyMockImplementation { expected_input: 5, expected_output: 10 };",
+      "\tlet result_mock = mock.do_something(5);",
+      "\tassert_eq!(result_mock, 10);",
+      "\t// Uncomment below to see panic in action for unexpected input",
+      "\t// let unexpected_result = mock.do_something(10);",
+      "}"
+    ],
+    "description": "Creates a mocking example in Rust without external dependencies"
+  },
+  "testing:function": {
+    "prefix": "test_func_func",
+    "body": ["#[test]", "fn ${1:test_function}() {", "\t$0", "}"],
+    "description": "Creates a new Rust test function"
+  },
+  "testing:test setup": {
+    "prefix": "test_setup_func",
+    "body": ["#[setup]", "fn setup() {", "\t$0", "}"],
+    "description": "Creates a setup function for Rust tests"
+  },
+  "testinG:teardown": {
+    "prefix": "test_teardown_func",
+    "body": ["#[teardown]", "fn teardown() {", "\t$0", "}"],
+    "description": "Creates a teardown function for Rust tests"
+  },
+  "testing:benchmark": {
+    "prefix": "test_benchmark",
+    "body": [
+      "use criterion::{black_box, criterion_group, criterion_main, Criterion};",
+      "",
+      "fn ${1:bench_name}(c: &mut Criterion) {",
+      "\tc.bench_function(\"${2:description}\", |b| {",
+      "\t\tb.iter(|| {",
+      "\t\t\t$0",
+      "\t\t});",
+      "\t});",
+      "}",
+      "",
+      "criterion_group!(benches, ${1:bench_name});",
+      "criterion_main!(benches);"
+    ],
+    "description": "Creates a Criterion.rs benchmark"
+  },
+  "testing:module": {
+    "prefix": "test_module",
+    "body": [
+      "#[cfg(test)]",
+      "mod tests {",
+      "\tuse super::*;",
+      "\t",
+      "\t#[test]",
+      "\tfn ${1:test_function}() {",
+      "\t\t$0",
+      "\t}",
+      "}"
+    ],
+    "description": "Creates a test module with a test function"
+  },
+  "testing:panic": {
+    "prefix": "test_func_panic",
+    "body": [
+      "fn panic_test() {",
+      "\tif let Err(_) = std::panic::catch_unwind(|| {",
+      "\t\t$0",
+      "\t}) {",
+      "\t\tpanic!(\"Test panicked\");",
+      "\t}",
+      "}"
+    ],
+    "description": "Creates a test that expects a panic"
+  },
+  "testing:Testing Table": {
+    "prefix": "test_table",
+    "body": [
+      "struct TestDataRow {",
+      "\t${1:input}: ${2:InputType},",
+      "\texpected: ${3:ExpectedType},",
+      "}",
+      "",
+      "impl TestDataRow {",
+      "\tfn new(${1:input}: ${2:InputType}, expected: ${3:ExpectedType}) -> Self {",
+      "\t\tSelf { ${1:input}, expected }",
+      "\t}",
+      "}",
+      "",
+      "fn run_tests() {",
+      "\tlet test_cases = vec![",
+      "\t\tTestDataRow::new(${4:test_input}, ${5:expected_output}),",
+      "\t\t// Add more test cases as needed",
+      "\t];",
+      "",
+      "\tfor case in test_cases {",
+      "\t\tlet result = ${6:function_under_test}(${4:case.${1:input}});",
+      "\t\tassert_eq!(result, case.expected);",
+      "\t}",
+      "}",
+      ""
+    ],
+    "description": "Creates a testing table structure and test runner"
+  },
+  "testing:func:Should Panic Test": {
+    "prefix": "test_func_should_panic",
+    "body": [
+      "#[test]",
+      "#[should_panic]",
+      "fn ${1:test_function}() {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Creates a test that should panic"
+  },
+  "testing:Unwrap Test": {
+    "prefix": "test_func_unwrap",
+    "body": [
+      "fn unwrap_test() {",
+      "\tlet result = ${1:result}.unwrap();",
+      "\t$0",
+      "}"
+    ],
+    "description": "Creates a test for unwrapping a result"
+  },
+  "testing:t:assert equals macro": {
+    "prefix": "test_t_assert_eq",
+    "body": ["assert_eq!(${1:actual}, ${2:expected});"],
+    "description": "Inserts an assert_eq! macro for testing equality"
+  },
+  "testing:t:assert Assert Macro": {
+    "prefix": "test_t_assert",
+    "body": ["assert!(${1:condition}, \"${2:message}\");"],
+    "description": "Inserts an assert! macro with a custom message"
+  },
+  "testing:t:assert Equals": {
+    "prefix": "test_t_equals",
+    "body": ["assert_eq!(${1:actual}, ${2:expected});"],
+    "description": "Asserts that two expressions are equal"
+  },
+  "testing:t:assert not equals": {
+    "prefix": "test_t_assert_ne",
+    "body": ["assert_ne!(${1:actual}, ${2:expected});"],
+    "description": "Asserts that two expressions are not equal"
+  },
+  "testing:t:assert condition with message": {
+    "prefix": "test_t_assert_with_message",
+    "body": ["assert!(${1:condition}, \"${2:message}\");"],
+    "description": "Asserts that a condition is true with a custom message"
   }
 }
