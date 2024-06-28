@@ -1,14 +1,10 @@
 {
-  "JSON read": {
+  "json:read": {
     "prefix": "json_read",
-    "body": [
-      "${1:jsondumps} = json.dumps(${2:your_json} ${3:, indent=4})$0"
-    ],
-    "description": [
-      "jsondumps = json.dumps(your_json, indent=4)"
-    ]
+    "body": ["${1:jsondumps} = json.dumps(${2:your_json} ${3:, indent=4})$0"],
+    "description": ["jsondumps = json.dumps(your_json, indent=4)"]
   },
-  "JSON read from file": {
+  "json:read from file": {
     "prefix": "json_read_from_file",
     "body": [
       "with open(${1:file_name.json}, \"r\") as file_json:",
@@ -19,16 +15,12 @@
       "\tjson_content = json.load(file_json)"
     ]
   },
-  "JSON write": {
+  "json:write": {
     "prefix": "json_write",
-    "body": [
-      "${1:jsonloads} = json.loads(${2:your_json})$0"
-    ],
-    "description": [
-      "jsonloads = json.loads(your_json)"
-    ]
+    "body": ["${1:jsonloads} = json.loads(${2:your_json})$0"],
+    "description": ["jsonloads = json.loads(your_json)"]
   },
-  "JSON write to file": {
+  "json:write to file": {
     "prefix": "json_write_to_file",
     "body": [
       "with open(${1:file_name.json}, \"w\") as file_json:",
@@ -39,7 +31,7 @@
       "\tjson.dump(your_json_message, file_json, indent=4)"
     ]
   },
-  "YAML read from file": {
+  "yaml:read from file": {
     "prefix": "yaml_read_from_file",
     "body": [
       "with open(${1:json_file}, \"r\") as file_json:",

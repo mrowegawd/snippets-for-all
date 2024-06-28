@@ -1,12 +1,271 @@
 {
-  "JSON.stringify()": {
-    "prefix": "json_stringify",
-    "body": ["let ${1:string} = JSON.stringify(${2:obj});", "$0"],
-    "description": "Convert a JavaScript object to a JSON string."
+  "json:Write JSON": {
+    "prefix": "json_write",
+    "body": [
+      "const json = JSON.stringify(${1:data}, null, 2);",
+      "console.log(json);"
+    ],
+    "description": "Stringify and log a JSON object"
   },
-  "JSON.parse()": {
-    "prefix": "json_parse",
-    "body": ["let ${1:obj} = JSON.parse(${2:string});", "$0"],
-    "description": "Parses a JSON string and returns a JavaScript object"
+  "json:Read JSON": {
+    "prefix": "json_read",
+    "body": [
+      "const jsonString = JSON.stringify(${1:data});",
+      "const json = JSON.parse(jsonString);",
+      "console.log(json);"
+    ],
+    "description": "Parse a JSON string to a JavaScript object"
+  },
+  "json:Read JSON from File": {
+    "prefix": "json_read_file",
+    "body": [
+      "import fs from 'fs';",
+      "",
+      "const rawdata = fs.readFileSync('${1:path_to_file}');",
+      "const json = JSON.parse(rawdata.toString());",
+      "console.log(json);"
+    ],
+    "description": "Read JSON data from a file"
+  },
+  "json:Pretty Print JSON Object": {
+    "prefix": "json_pretty_print",
+    "body": [
+      "const json = ${1:data};",
+      "const prettyJson = JSON.stringify(json, null, 2);",
+      "console.log(prettyJson);"
+    ],
+    "description": "Stringify and log a JSON object with pretty formatting"
+  },
+  "json:Validate JSON": {
+    "prefix": "json_validate",
+    "body": [
+      "try {",
+      "  JSON.parse(${1:data});",
+      "  console.log('Valid JSON');",
+      "} catch (error) {",
+      "  console.error('Invalid JSON:', error.message);",
+      "}"
+    ],
+    "description": "Validate if a string is a valid JSON"
+  },
+  "json:Save JSON to File": {
+    "prefix": "json_save_to_file",
+    "body": [
+      "import fs from 'fs';",
+      "",
+      "const json = ${1:data};",
+      "const jsonString = JSON.stringify(json, null, 2);",
+      "fs.writeFileSync('${2:path_to_file}', jsonString);",
+      "console.log('JSON saved to file');"
+    ],
+    "description": "Save JSON data to a file"
+  },
+  "json:Merge JSON Objects": {
+    "prefix": "json_merge_json_object",
+    "body": [
+      "const obj1 = ${1:data1};",
+      "const obj2 = ${2:data2};",
+      "const merged = { ...obj1, ...obj2 };",
+      "console.log(merged);"
+    ],
+    "description": "Merge two JSON objects into one"
+  },
+  "json:Filter JSON Array": {
+    "prefix": "json_filter_array",
+    "body": [
+      "const jsonArray = ${1:data};",
+      "const filteredArray = jsonArray.filter(item => {",
+      "  // Add filter condition here",
+      "});",
+      "console.log(filteredArray);"
+    ],
+    "description": "Filter a JSON array based on a condition"
+  },
+  "json:Convert Object to JSON": {
+    "prefix": "json_to_json_string",
+    "body": [
+      "const obj = ${1:data};",
+      "const json = JSON.stringify(obj);",
+      "console.log(json);"
+    ],
+    "description": "Convert a JavaScript object to JSON string"
+  },
+  "json:Convert JSON to Object": {
+    "prefix": "json_to_json_object",
+    "body": [
+      "const json = ${1:data};",
+      "const obj = JSON.parse(json);",
+      "console.log(obj);"
+    ],
+    "description": "Convert a JSON string to JavaScript object"
+  },
+  "json:Traverse JSON Object": {
+    "prefix": "json_traverse_object",
+    "body": [
+      "const json = ${1:data};",
+      "function traverse(obj) {",
+      "\tfor (let key in obj) {",
+      "\t\tif (obj.hasOwnProperty(key)) {",
+      "\t\t\tif (typeof obj[key] === 'object') {",
+      "\t\t\t\ttraverse(obj[key]);",
+      "\t\t\t} else {",
+      "\t\t\t\tconsole.log(key + ': ' + obj[key]);",
+      "\t\t\t}",
+      "\t\t}",
+      "\t}",
+      "}",
+      "traverse(json);"
+    ],
+    "description": "Traverse and log keys and values of a JSON object"
+  },
+  "json:Clone JSON Object": {
+    "prefix": "json_clone_json_object",
+    "body": [
+      "const original = ${1:data};",
+      "const clone = JSON.parse(JSON.stringify(original));",
+      "console.log(clone);"
+    ],
+    "description": "Create a deep clone of a JSON object"
+  },
+  "json:Sort JSON Array": {
+    "prefix": "json_sort_json_array",
+    "body": [
+      "const jsonArray = ${1:data};",
+      "jsonArray.sort((a, b) => {",
+      "  // Add sorting logic here, e.g., return a.field - b.field;",
+      "});",
+      "console.log(jsonArray);"
+    ],
+    "description": "Sort a JSON array based on a field"
+  },
+  "json:Validate JSON Schema": {
+    "prefix": "json_validate_json_schema",
+    "body": [
+      "import Ajv from 'ajv';",
+      "",
+      "const schema = ${1:schema};",
+      "const data = ${2:data};",
+      "const ajv = new Ajv();",
+      "const validate = ajv.compile(schema);",
+      "const valid = validate(data);",
+      "if (!valid) {",
+      "  console.log('Validation errors:', validate.errors);",
+      "} else {",
+      "  console.log('Data is valid');",
+      "}"
+    ],
+    "description": "Validate if JSON data conforms to a JSON schema"
+  },
+  "json:Flatten JSON Object": {
+    "prefix": "json_flatten_json_object",
+    "body": [
+      "const json = ${1:data};",
+      "function flatten(obj, prefix = '') {",
+      "  return Object.keys(obj).reduce((acc, key) => {",
+      "    const nestedKey = prefix ? `${prefix}.${key}` : key;",
+      "    if (typeof obj[key] === 'object' && obj[key] !== null) {",
+      "      Object.assign(acc, flatten(obj[key], nestedKey));",
+      "    } else {",
+      "      acc[nestedKey] = obj[key];",
+      "    }",
+      "    return acc;",
+      "  }, {});",
+      "}",
+      "const flattened = flatten(json);",
+      "console.log(flattened);"
+    ],
+    "description": "Flatten a nested JSON object"
+  },
+  "json:Deep Compare JSON Objects": {
+    "prefix": "json_deep_compare_json_objects",
+    "body": [
+      "function deepEqual(obj1, obj2) {",
+      "\tif (obj1 === obj2) return true;",
+      "\tif (typeof obj1 !== 'object' || typeof obj2 !== 'object' || obj1 === null || obj2 === null) return false;",
+      "\tconst keys1 = Object.keys(obj1);",
+      "\tconst keys2 = Object.keys(obj2);",
+      "\tif (keys1.length !== keys2.length) return false;",
+      "\tfor (let key of keys1) {",
+      "\t\tif (!keys2.includes(key) || !deepEqual(obj1[key], obj2[key])) return false;",
+      "\t}",
+      "\treturn true;",
+      "}",
+      "const obj1 = ${1:data1};",
+      "const obj2 = ${2:data2};",
+      "const isEqual = deepEqual(obj1, obj2);",
+      "console.log('Objects are equal:', isEqual);"
+    ],
+    "description": "Deep compare two JSON objects"
+  },
+  "json:Remove Property from JSON Object": {
+    "prefix": "json_remove_property_from_json_object",
+    "body": [
+      "const json = ${1:data};",
+      "const { ${2:property} } = json;",
+      "delete json.${2:property};",
+      "console.log(json);"
+    ],
+    "description": "Remove a property from a JSON object"
+  },
+  "json:Convert JSON to CSV": {
+    "prefix": "json_convert_json_to_csv",
+    "body": [
+      "function convertToCSV(jsonArray) {",
+      "  const header = Object.keys(jsonArray[0]).join(',');",
+      "  const rows = jsonArray.map(obj => Object.values(obj).join(','));",
+      "  return header + '\\n' + rows.join('\\n');",
+      "}",
+      "const jsonArray = ${1:data};",
+      "const csv = convertToCSV(jsonArray);",
+      "console.log(csv);"
+    ],
+    "description": "Convert JSON data to CSV format"
+  },
+  "json:Parse JSON with TypeScript Interfaces": {
+    "prefix": "json_parse_json_with_ts_interface",
+    "body": [
+      "interface MyInterface {",
+      "  ${1:property1}: ${2:string};",
+      "  ${3:property2}: ${4:number};",
+      "}",
+      "const jsonString = '${5:json_string}';",
+      "const obj: MyInterface = JSON.parse(jsonString);",
+      "console.log(obj);"
+    ],
+    "description": "Parse JSON string into TypeScript object using interfaces"
+  },
+  "json:Schema for TypeScript Interfaces": {
+    "prefix": "json_schema_for_ts_interface",
+    "body": [
+      "interface MyInterface {",
+      "  ${1:property1}: ${2:string};",
+      "  ${3:property2}: ${4:number};",
+      "}",
+      "const schema = {",
+      "  type: 'object',",
+      "  properties: {",
+      "    ${1:property1}: { type: 'string' },",
+      "    ${3:property2}: { type: 'number' },",
+      "  },",
+      "  required: ['${1:property1}', '${3:property2}'],",
+      "};",
+      "console.log(schema);"
+    ],
+    "description": "Generate JSON schema for TypeScript interfaces"
+  },
+  "json:Generate Random JSON Data": {
+    "prefix": "json_generate_random_json_data",
+    "body": [
+      "function generateRandomData() {",
+      "  const randomData = {",
+      "    ${1:property1}: ${2:Math.random()},",
+      "    ${3:property2}: ${4:Math.floor(Math.random() * 100)},",
+      "  };",
+      "  return randomData;",
+      "}",
+      "const data = generateRandomData();",
+      "console.log(data);"
+    ],
+    "description": "Generate random JSON data for testing"
   }
 }

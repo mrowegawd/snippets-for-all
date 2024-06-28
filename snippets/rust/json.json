@@ -1,5 +1,5 @@
 {
-  "Read JSON from String": {
+  "json:Read from String": {
     "prefix": "json_read_string",
     "body": [
       "use serde_json::{Result, Value};",
@@ -12,7 +12,7 @@
     ],
     "description": "Read JSON from a string using serde_json"
   },
-  "Write JSON to String": {
+  "json:Write JSON to String": {
     "prefix": "json_write_string",
     "body": [
       "use serde_json::{Result, json};",
@@ -32,8 +32,8 @@
     ],
     "description": "Write JSON to a string using serde_json"
   },
-  "Parse JSON File": {
-    "prefix": "parse_json_file",
+  "json:Parse JSON File": {
+    "prefix": "json_parse_json_file",
     "body": [
       "use std::fs::File;",
       "use std::io::BufReader;",
@@ -49,8 +49,8 @@
     ],
     "description": "Parse JSON from a file using serde_json"
   },
-  "Serialize Struct to JSON": {
-    "prefix": "serialize_struct",
+  "json:serialize:Struct to JSON": {
+    "prefix": "json_serialize_struct_to_json",
     "body": [
       "use serde::{Serialize, Deserialize};",
       "use serde_json::{Result, json};",
@@ -79,8 +79,8 @@
     ],
     "description": "Serialize a Rust struct to JSON using serde_json"
   },
-  "Deserialize JSON to Struct": {
-    "prefix": "deserialize_struct",
+  "json:deserialize:JSON to Struct": {
+    "prefix": "json_deserialize_json_to_struct",
     "body": [
       "use serde::{Serialize, Deserialize};",
       "use serde_json::{Result, Value};",
@@ -102,8 +102,8 @@
     ],
     "description": "Deserialize JSON to a Rust struct using serde_json"
   },
-  "Pretty Print JSON": {
-    "prefix": "pretty_print_json",
+  "json:pretty Print JSON": {
+    "prefix": "json_pretty_print",
     "body": [
       "use serde_json::{Result, json};",
       "",
@@ -123,8 +123,8 @@
     ],
     "description": "Pretty print JSON using serde_json"
   },
-  "Access JSON Nested Fields": {
-    "prefix": "access_json_nested",
+  "json:Access JSON Nested Fields": {
+    "prefix": "json_access_json_nested_fields",
     "body": [
       "use serde_json::{Result, Value};",
       "",
@@ -143,8 +143,8 @@
     ],
     "description": "Access nested fields in JSON using serde_json"
   },
-  "Deserialize JSON Array": {
-    "prefix": "deserialize_json_array",
+  "json:deserialize:JSON to Array": {
+    "prefix": "json_deserialize_json_to_array",
     "body": [
       "use serde_json::{Result, Value};",
       "",
@@ -161,8 +161,8 @@
     ],
     "description": "Deserialize JSON array using serde_json"
   },
-  "Serialize JSON Array": {
-    "prefix": "serialize_json_array",
+  "json:serialize:Array to JSON": {
+    "prefix": "json_deserialize_array_to_json",
     "body": [
       "use serde_json::{Result, json};",
       "",
@@ -175,8 +175,8 @@
     ],
     "description": "Serialize Rust array to JSON using serde_json"
   },
-  "Handle JSON Errors": {
-    "prefix": "handle_json_errors",
+  "json:handle JSON Errors": {
+    "prefix": "json_func_handle_json_errors",
     "body": [
       "use serde_json::{Error, Result, Value};",
       "",
@@ -191,8 +191,8 @@
     ],
     "description": "Handle errors when parsing JSON using serde_json"
   },
-  "Pretty Print JSON Value": {
-    "prefix": "pretty_print_json_value",
+  "json:Pretty Print JSON Value": {
+    "prefix": "json_func_pretty_print_json_value",
     "body": [
       "use serde_json::{Result, Value};",
       "",
@@ -205,8 +205,8 @@
     ],
     "description": "Pretty print a JSON value using serde_json"
   },
-  "Create JSON Object": {
-    "prefix": "create_json_object",
+  "json:Create JSON Object": {
+    "prefix": "json_func_create_json_object",
     "body": [
       "use serde_json::{json, Result};",
       "",
@@ -231,8 +231,8 @@
     ],
     "description": "Create a JSON object using serde_json"
   },
-  "Modify and Update JSON Object": {
-    "prefix": "modify_update_json",
+  "json:modify and Update JSON Object": {
+    "prefix": "json_func_modify_update_json",
     "body": [
       "use serde_json::{json, Result, Value};",
       "",
@@ -254,8 +254,8 @@
     ],
     "description": "Modify and update a JSON object using serde_json"
   },
-  "Convert Struct to JSON Value": {
-    "prefix": "convert_struct_to_json",
+  "json:Convert Struct to JSON Value": {
+    "prefix": "json_func_convert_struct_to_json",
     "body": [
       "use serde::{Serialize, Deserialize};",
       "use serde_json::{json, Result};",
