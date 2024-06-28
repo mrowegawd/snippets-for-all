@@ -148,6 +148,40 @@
     "body": "class ${1:ClassName}(${2:object}):\n\t\"\"\"${3:docstring for $1.}\"\"\"\n\tdef __init__(self, ${4:arg}):\n\t\t${5:super($1, self).__init__()}\n\t\tself.arg = arg\n\t\t$0",
     "description": "class ${1:ClassName}(${2:object}):\n\t\"\"\"${3:docstring for $1.}\"\"\"\n\tdef __init__(self, ${4:arg}):\n\t\t${5:super($1, self).__init__()}\n\t\tself.arg = arg\n\t\t$0"
   },
+  "class:prop:attribute": {
+    "prefix": "class_prop_",
+    "body": ["${1:class_name}.${2:attribute_name} = ${3:default_value}"],
+    "description": "Adds a class attribute to a Python class"
+  },
+  "class:prop:attribute with type and docstring": {
+    "prefix": "class_prop_type_docstring",
+    "body": [
+      "# ${2:Docstring for ${1:class_name}.${3:attribute_name}}",
+      "${1:class_name}.${3:attribute_name}: ${4:int} = ${5:default_value}"
+    ],
+    "description": "Adds a class attribute with type and docstring to a Python class"
+  },
+  "class:prop:class attribute": {
+    "prefix": "class_prop_attribute_private",
+    "body": ["${1:class_name}._${2:attribute_name} = ${3:default_value}"],
+    "description": "Adds a private class attribute to a Python class"
+  },
+  "class:prop:with decorator": {
+    "prefix": "class_prop_attribute_decorator",
+    "body": [
+      "@${4:staticmethod}",
+      "def ${2:attribute_name}(self):",
+      "    return ${3:default_value}"
+    ],
+    "description": "Adds a class attribute with decorator to a Python class"
+  },
+  "class:prop:multiple assignment": {
+    "prefix": "class_prop_multiple",
+    "body": [
+      "${1:class_name}.${2:attribute1}, ${1:class_name}.${3:attribute2} = ${4:value1}, ${5:value2}"
+    ],
+    "description": "Adds multiple class attributes to a Python class"
+  },
   "class:method:constructor": {
     "prefix": "class_func_constructor",
     "body": [
@@ -569,10 +603,250 @@
     ],
     "description": "Create an async context manager for file handling"
   },
+  "class:inherit:create": {
+    "prefix": "class_inherit",
+    "body": [
+      "class ${1:BaseClass}:",
+      "\tdef __init__(self${2:, base_prop}):",
+      "\t\tself.base_prop = base_prop",
+      "\t",
+      "\tdef base_method(self):",
+      "\t\tprint(f'Base method called with property: {self.base_prop}')",
+      "",
+      "class ${3:DerivedClass}(${1:BaseClass}):",
+      "\tdef __init__(self${2:, base_prop, derived_prop}):",
+      "\t\tsuper().__init__(${2:base_prop})",
+      "\t\tself.derived_prop = derived_prop",
+      "\t",
+      "\tdef derived_method(self):",
+      "\t\tprint(f'Derived method called with property: {self.derived_prop}')"
+    ],
+    "description": "Creates a Python class with simple inheritance"
+  },
+  "class:inherit:multi": {
+    "prefix": "class_inherit_multi",
+    "body": [
+      "class ${1:Base1}:",
+      "\tdef method1(self):",
+      "\t\tprint('Method 1 from Base1')",
+      "",
+      "class ${2:Base2}:",
+      "\tdef method2(self):",
+      "\t\tprint('Method 2 from Base2')",
+      "",
+      "class ${3:Derived}(${1:Base1}, ${2:Base2}):",
+      "\tdef __init__(self):",
+      "\t\t${1:Base1}.__init__(self)",
+      "\t\t${2:Base2}.__init__(self)",
+      "",
+      "// Usage:",
+      "${3:obj} = ${3:Derived}()",
+      "${3:obj}.method1()  # Output: Method 1 from Base1",
+      "${3:obj}.method2()  # Output: Method 2 from Base2"
+    ],
+    "description": "Creates a Python class with multi inheritance"
+  },
   "class:dataclass": {
     "prefix": "class_data",
     "body": "@dataclass\nclass ${1:your_class_name}:\n\t${2:your_proerty:str}\n\t${3:data1: float = 1.3}\n\t${0}",
     "description": "@dataclass\nclass MyClass:\n\tname: str\n\tunit_price: float = 1.3"
+  },
+  "class:dataclass:string and integer attributes": {
+    "prefix": "class_dataclass_str_int",
+    "body": [
+      "from dataclasses import dataclass",
+      "",
+      "@dataclass",
+      "class ${1:ClassName}:",
+      "\t${2:attr_str}: ${3:str} = ''",
+      "\t${4:attr_int}: ${5:int} = 0"
+    ],
+    "description": "Creates a Python dataclass with string and integer attributes"
+  },
+  "class:dataclass:float attribute with default": {
+    "prefix": "class_dataclass_float_default",
+    "body": [
+      "from dataclasses import dataclass",
+      "",
+      "@dataclass",
+      "class ${1:ClassName}:",
+      "\t${2:attr_float}: ${3:float} = 0.0"
+    ],
+    "description": "Creates a Python dataclass with float attribute and default value"
+  },
+  "class:dataclass:list attribute": {
+    "prefix": "class_dataclass_list",
+    "body": [
+      "from dataclasses import dataclass",
+      "from typing import List",
+      "",
+      "@dataclass",
+      "class ${1:ClassName}:",
+      "\t${2:attr_list}: List[${3:str}] = []"
+    ],
+    "description": "Creates a Python dataclass with list attribute"
+  },
+  "class:dataclass:boolean attribute": {
+    "prefix": "class_dataclass_bool",
+    "body": [
+      "from dataclasses import dataclass",
+      "",
+      "@dataclass",
+      "class ${1:ClassName}:",
+      "\t${2:attr_bool}: ${3:bool} = False"
+    ],
+    "description": "Creates a Python dataclass with boolean attribute"
+  },
+  "class:dataclass:attribute with default factory": {
+    "prefix": "class_dataclass_default_factory",
+    "body": [
+      "from dataclasses import dataclass, field",
+      "",
+      "def default_factory():",
+      "\treturn ${3:'default_value'}",
+      "",
+      "@dataclass",
+      "class ${1:ClassName}:",
+      "\t${2:attr_with_factory}: ${4:str} = field(default_factory=default_factory)"
+    ],
+    "description": "Creates a Python dataclass with attribute using default factory"
+  },
+  "class:dataclass:frozen dataclass": {
+    "prefix": "class_dataclass_frozen",
+    "body": [
+      "from dataclasses import dataclass, field",
+      "",
+      "@dataclass(frozen=True)",
+      "class ${1:ClassName}:",
+      "\t${2:attr1}: ${3:str} = ''",
+      "\t${4:attr2}: ${5:int} = 0"
+    ],
+    "description": "Creates a frozen Python dataclass"
+  },
+  "class:dataclass:optional attribute": {
+    "prefix": "class_prop_attribute_optional",
+    "body": [
+      "from dataclasses import dataclass",
+      "from typing import Optional",
+      "",
+      "@dataclass",
+      "class ${1:ClassName}:",
+      "\t${2:attr_optional}: Optional[${3:str}] = None"
+    ],
+    "description": "Creates a Python dataclass with optional attribute"
+  },
+  "class:dataclass:nullable attribute": {
+    "prefix": "class_dataclass_nullable",
+    "body": [
+      "from dataclasses import dataclass",
+      "from typing import Optional",
+      "",
+      "@dataclass",
+      "class ${1:ClassName}:",
+      "\t${2:attr_nullable}: Optional[${3:str}] = None"
+    ],
+    "description": "Creates a Python dataclass with nullable attribute"
+  },
+  "class:dataclass:nested dataclass": {
+    "prefix": "class_dataclass_nested",
+    "body": [
+      "from dataclasses import dataclass",
+      "",
+      "@dataclass",
+      "class ${1:InnerClass}:",
+      "\t${2:inner_attr}: ${3:str} = ''",
+      "",
+      "@dataclass",
+      "class ${4:OuterClass}:",
+      "\t${5:outer_attr}: ${1:InnerClass}"
+    ],
+    "description": "Creates a Python dataclass with nested dataclass"
+  },
+  "class:dataclass:custom type attribute": {
+    "prefix": "class_dataclass_custom_type",
+    "body": [
+      "from dataclasses import dataclass",
+      "from typing import List",
+      "",
+      "class ${1:CustomType}:",
+      "\tdef __init__(self, ${2:param1}: ${3:str}, ${4:param2}: ${5:int}):",
+      "\t\tself.${2:param1} = ${2:param1}",
+      "\t\tself.${4:param2} = ${4:param2}",
+      "",
+      "@dataclass",
+      "class ${6:ClassName}:",
+      "\t${7:attr_custom}: ${1:CustomType}"
+    ],
+    "description": "Creates a Python dataclass with custom type attribute"
+  },
+  "class:dataclass:dynamic default value attribute": {
+    "prefix": "class_dataclass_dynamic_default",
+    "body": [
+      "from dataclasses import dataclass, field",
+      "",
+      "def default_value():",
+      "\treturn ${3:'default_value'}",
+      "",
+      "@dataclass",
+      "class ${1:ClassName}:",
+      "\t${2:attr_dynamic}: ${4:str} = field(default_factory=default_value)"
+    ],
+    "description": "Creates a Python dataclass with attribute using dynamic default value"
+  },
+  "class:protocol:single param": {
+    "prefix": "class_protocol_method_param",
+    "body": [
+      "from typing import Protocol",
+      "",
+      "class ${1:Interface}(Protocol):",
+      "\tdef ${2:method_name}(self, ${3:param}: ${4:type}) -> ${5:return_type}:",
+      "\t\tpass"
+    ],
+    "description": "Creates a Python interface function with single parameter"
+  },
+  "class:protocol:multiple params": {
+    "prefix": "class_protocol_method_param_multi",
+    "body": [
+      "from typing import Protocol",
+      "",
+      "class ${1:Interface}(Protocol):",
+      "\tdef ${2:method_name}(self, ${3:param1}: ${4:type1}, ${5:param2}: ${6:type2}):",
+      "\t\tpass"
+    ],
+    "description": "Creates a Python interface function with multiple parameters"
+  },
+  "class:protocol:optional param and return": {
+    "prefix": "class_protocol_method_param_optional_return",
+    "body": [
+      "from typing import Protocol, Optional",
+      "",
+      "class ${1:Interface}(Protocol):",
+      "\tdef ${2:method_name}(self, ${3:param1}: ${4:type1}, ${5:param2}: ${6:Optional[${7:type2}]} = None) -> ${8:Optional[${9:return_type}]}:",
+      "\t\tpass"
+    ],
+    "description": "Creates a Python interface function with optional parameter and return type"
+  },
+  "class:protocol:default param value": {
+    "prefix": "class_protocol_method_param_default",
+    "body": [
+      "from typing import Protocol",
+      "",
+      "class ${1:Interface}(Protocol):",
+      "\tdef ${2:method_name}(self, ${3:param1}: ${4:type1} = ${5:default_value}) -> ${6:return_type}:",
+      "\t\tpass"
+    ],
+    "description": "Creates a Python interface function with default parameter value"
+  },
+  "class:protocol:annotated param with default": {
+    "prefix": "class_protocol_method_param_annotated_default",
+    "body": [
+      "from typing import Protocol",
+      "",
+      "class ${1:Interface}(Protocol):",
+      "\tdef ${2:method_name}(self, ${3:param1}: ${4:type1} = ${5:'default_value'}) -> ${6:return_type}:",
+      "\t\tpass"
+    ],
+    "description": "Creates a Python interface function with annotated parameter and default value"
   },
   "function": {
     "prefix": "def_func_",

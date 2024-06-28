@@ -1085,13 +1085,151 @@
     "description": "get property () {\n\n}\nset ${1:property} (value) {\n\t\n}"
   },
   "class:method:func private": {
-    "prefix": "class_func_func_private",
+    "prefix": "class_func_method_private",
     "body": ["private ${1:name}() {", "\t$0", "}"],
     "description": "Private Method Definition"
   },
-  "abstract:abstract:method": {
-    "prefix": "abstract_func_method",
-    "body": ["abstract ${1:methodName}(${2:params}): ${3:ReturnType};", "$0"],
-    "description": "Declare an abstract method in TypeScript"
+  "class:inherit:class": {
+    "prefix": "class_inherit_class",
+    "body": [
+      "export class ${1:ChildClass} extends ${2:ParentClass} {",
+      "\tconstructor() {",
+      "\t\tsuper(); // Call the parent constructor",
+      "\t}",
+      "}"
+    ],
+    "description": "Creates a class that inherits from another class"
+  },
+  "class:inherit:abstract class": {
+    "prefix": "class_inherit_abstract_class",
+    "body": [
+      "export class ${1:ChildClass} extends ${2:AbstractClass} {",
+      "\tconstructor() {",
+      "\t\tsuper(); // Call the parent constructor",
+      "\t}",
+      "\toverrideMethod() {",
+      "\t\t// Method implementation",
+      "\t}",
+      "}"
+    ],
+    "description": "Creates a class that inherits from an abstract class"
+  },
+  "class:inherit:interface": {
+    "prefix": "class_inherit_interface",
+    "body": [
+      "interface ${1:InterfaceName} {",
+      "\tmethod1(): void;",
+      "\tmethod2(): number;",
+      "}",
+      "",
+      "export class ${2:ClassName} implements ${1:InterfaceName} {",
+      "\tmethod1() {",
+      "\t\t// Method implementation",
+      "\t}",
+      "",
+      "\tmethod2() {",
+      "\t\treturn 0; // Method implementation",
+      "\t}",
+      "}"
+    ],
+    "description": "Creates a class that implements an interface"
+  },
+  "class:abstract:create": {
+    "prefix": "class_abstract_",
+    "body": [
+      "export abstract class ${1:AbstractClass} {",
+      "\tabstract abstractMethod(): void;",
+      "}"
+    ],
+    "description": "Creates an abstract class"
+  },
+  "class:abstract:constructor": {
+    "prefix": "class_abstract_constructor",
+    "body": [
+      "export abstract class ${1:AbstractClass} {",
+      "\tconstructor() {",
+      "\t\t// Constructor logic here",
+      "\t}",
+      "\tabstract abstractMethod(): void;",
+      "}"
+    ],
+    "description": "Creates an abstract class with a constructor"
+  },
+  "class:abstract:with properties and methods": {
+    "prefix": "class_abstract_with_properties_and_methods",
+    "body": [
+      "export abstract class ${1:AbstractClass} {",
+      "\tprotected abstract prop1: string;",
+      "\tprotected abstract prop2: number;",
+      "",
+      "\tconstructor() {",
+      "\t\t// Constructor logic here",
+      "\t}",
+      "",
+      "\tabstract abstractMethod(): void;",
+      "\tprotected abstract protectedMethod(): void;",
+      "}"
+    ],
+    "description": "Creates an abstract class with properties and methods"
+  },
+  "class:abstract:with static property and method": {
+    "prefix": "class_abstract_static_property_and_method",
+    "body": [
+      "export abstract class ${1:AbstractClass} {",
+      "\tstatic staticProp: string = 'static property';",
+      "",
+      "\tstatic staticMethod() {",
+      "\t\t// Static method implementation",
+      "\t}",
+      "",
+      "\tabstract abstractMethod(): void;",
+      "}"
+    ],
+    "description": "Creates an abstract class with a static property and method"
+  },
+  "class:abstract:with constructor and parameter": {
+    "prefix": "class_abstract_constructor_and_parameter",
+    "body": [
+      "export abstract class ${1:AbstractClass} {",
+      "\tconstructor(private param1: string, protected param2: number) {",
+      "\t\t// Constructor logic here",
+      "\t}",
+      "",
+      "\tabstract abstractMethod(): void;",
+      "}"
+    ],
+    "description": "Creates an abstract class with a constructor and parameters"
+  },
+  "class:abstract:with different method visibilities": {
+    "prefix": "class_abstract_method_visibility",
+    "body": [
+      "export abstract class ${1:AbstractClass} {",
+      "\tpublic abstract publicMethod(): void;",
+      "\tprotected abstract protectedMethod(): void;",
+      "\tprivate abstract privateMethod(): void;",
+      "",
+      "\tabstract abstractMethod(): void;",
+      "}"
+    ],
+    "description": "Creates an abstract class with methods of different visibilities"
+  },
+  "class:abstract:with getter and setter": {
+    "prefix": "class_abstract_getter_and_setter",
+    "body": [
+      "export abstract class ${1:AbstractClass} {",
+      "\tprivate _prop: string = '';",
+      "",
+      "\tget prop(): string {",
+      "\t\treturn this._prop;",
+      "\t}",
+      "",
+      "\tset prop(value: string) {",
+      "\t\tthis._prop = value;",
+      "\t}",
+      "",
+      "\tabstract abstractMethod(): void;",
+      "}"
+    ],
+    "description": "Creates an abstract class with a getter and setter"
   }
 }

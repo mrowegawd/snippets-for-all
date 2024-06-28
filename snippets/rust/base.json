@@ -617,6 +617,143 @@
     "body": ["struct ${1:Name};"],
     "description": "struct …;"
   },
+  "struct:with inheritance": {
+    "prefix": "struct_inherit",
+    "body": [
+      "struct ${1:ParentStruct} {",
+      "\t${2:parent_field}: ${3:i32},",
+      "}",
+      "",
+      "struct ${4:ChildStruct} : ${1} {",
+      "\t${5:child_field}: ${6:String},",
+      "}"
+    ],
+    "description": "Creates a Rust struct with inheritance"
+  },
+  "struct:with tuple field": {
+    "prefix": "struct_tuple_field",
+    "body": ["struct ${1:MyStruct}(${2:i32}, ${3:String});"],
+    "description": "Creates a Rust struct with a tuple field"
+  },
+  "struct:pub struct": {
+    "prefix": "struct_public_struct",
+    "body": [
+      "pub struct ${1:MyStruct} {",
+      "\t${2:field1}: ${3:i32},",
+      "\t${4:field2}: ${5:String},",
+      "}"
+    ],
+    "description": "Creates a public Rust struct"
+  },
+  "struct:lifetime:create": {
+    "prefix": "struct_lifetime",
+    "body": [
+      "struct ${1:<'lifetime>} ${2:MyStruct<'lifetime>} {",
+      "\t${3:field}: &'lifetime ${4:str},",
+      "}"
+    ],
+    "description": "Creates a Rust struct with descriptive lifetime parameter"
+  },
+  "struct:lifetime:with Impl": {
+    "prefix": "struct_lifetime_with_impl",
+    "body": [
+      "struct ${1:<'a>} ${2:MyStruct<'a>} {",
+      "\t${3:field}: &'a ${4:str},",
+      "}",
+      "",
+      "impl<'a> ${2}<'a> {",
+      "\tpub fn new(${5:field}: &'a ${4:str}) -> Self {",
+      "\t\tSelf { ${5:field} }",
+      "\t}",
+      "}"
+    ],
+    "description": "Creates a Rust struct with lifetime and implementation block"
+  },
+  "struct:lifetime:Multiple": {
+    "prefix": "struct_lifetime_multi",
+    "body": [
+      "struct ${1:<'a, 'b>} ${2:MyStruct<'a, 'b>} {",
+      "\t${3:field1}: &'a ${4:str},",
+      "\t${5:field2}: &'b ${6:str},",
+      "}"
+    ],
+    "description": "Creates a Rust struct with multiple lifetime parameters"
+  },
+  "struct:generic": {
+    "prefix": "struct_generic",
+    "body": [
+      "struct ${1:MyGenericStruct}<${2:T}> {",
+      "\t${3:field}: ${2},",
+      "}"
+    ],
+    "description": "Creates a Rust generic struct"
+  },
+  "struct:generic:lifetime": {
+    "prefix": "struct_generic_lifetime",
+    "body": [
+      "struct ${1:<'a, T>} ${2:MyStruct<'a, T>} {",
+      "\t${3:field}: &'a T,",
+      "}"
+    ],
+    "description": "Creates a Rust struct with lifetime in generic parameter"
+  },
+  "struct:prop:field": {
+    "prefix": "struct_prop_field",
+    "body": ["\t${1:field1}: ${2:i32},"],
+    "description": "Adds a field to a Rust struct"
+  },
+  "struct:prop:complex type": {
+    "prefix": "struct_prop_optional_field",
+    "body": ["\t${1:field}: Option<${2:Vec<i32>>},"],
+    "description": "Adds a field with a complex type to a Rust struct"
+  },
+  "struct:prop:with attribute": {
+    "prefix": "struct_prop_attr",
+    "body": ["\t#[${1:derive(Debug)}]", "\t${2:field}: ${3:i32},"],
+    "description": "Adds a field with an attribute to a Rust struct"
+  },
+  "struct:prop:with lifetime": {
+    "prefix": "struct_prop_lifetime",
+    "body": ["\t${1:field}: &'${2:lifetime} ${3:str},"],
+    "description": "Adds a field with a lifetime parameter to a Rust struct"
+  },
+  "struct:prop:with generic type": {
+    "prefix": "struct_prop_generic",
+    "body": ["\t${1:field}: ${2:T},"],
+    "description": "Adds a field with a generic type to a Rust struct"
+  },
+  "struct:prop:with tuple": {
+    "prefix": "struct_prop_tuple",
+    "body": ["\t${1:field}: (${2:i32}, ${3:String}),"],
+    "description": "Adds a field with a tuple type to a Rust struct"
+  },
+  "struct:prop:multiple attributes": {
+    "prefix": "struct_prop_multi_attr",
+    "body": [
+      "\t#[${1:derive(Debug, Clone)}]",
+      "\t#[${2:serde(rename = \"${3:field_name}\")}]",
+      "\t${4:field}: ${5:String},"
+    ],
+    "description": "Adds a field with multiple attributes to a Rust struct"
+  },
+  "struct:prop:with doc comment": {
+    "prefix": "struct_prop_doc",
+    "body": [
+      "\t/// ${6:Documentation for ${1:field}}",
+      "\t${1:field}: ${2:i32},"
+    ],
+    "description": "Adds a field with a doc comment to a Rust struct"
+  },
+  "struct:prop:pattern matching": {
+    "prefix": "struct_prop_pattern",
+    "body": ["\t${1:field} @ ${2:pattern}: ${3:Type},"],
+    "description": "Adds a field with pattern matching to a Rust struct"
+  },
+  "struct:propwith visibility": {
+    "prefix": "struct_prop_pub",
+    "body": ["\tpub ${1:field}: ${2:i32},"],
+    "description": "Adds a public field to a Rust struct"
+  },
   "impl": {
     "prefix": "impl_struct",
     "body": ["impl ${1:Type} {", "    ${2:// add code here}", "}"],
@@ -630,6 +767,53 @@
       "}"
     ],
     "description": "impl … for … { … }"
+  },
+  "impl:prop:public": {
+    "prefix": "impl_prop_pub",
+    "body": ["\tpub ${2:attribute_name}: ${3:Type},"],
+    "description": "Adds a public attribute to a Rust `impl` block"
+  },
+  "impl:prop:with Doc Comment": {
+    "prefix": "impl_prop_with_doc",
+    "body": [
+      "\t/// ${5:Documentation for ${2:attribute_name}}",
+      "\t${2:attribute_name}: ${3:Type},"
+    ],
+    "description": "Adds an attribute with a doc comment to a Rust `impl` block"
+  },
+  "impl:prop:with Derive": {
+    "prefix": "impl_prop_attribute_derive",
+    "body": ["\t#[derive(${6:Debug})]", "\t${2:attribute_name}: ${3:Type},"],
+    "description": "Adds an attribute with attribute derive to a Rust `impl` block"
+  },
+  "impl:prop:with Lifetime": {
+    "prefix": "impl_prop_attribute_lifetime",
+    "body": ["\t${2:attribute_name}: &'${3:lifetime} ${4:Type},"],
+    "description": "Adds an attribute with a lifetime parameter to a Rust `impl` block"
+  },
+  "impl:prop:with generic type": {
+    "prefix": "impl_prop_generic",
+    "body": ["\t${2:attribute_name}: ${3:T},"],
+    "description": "Adds an attribute with a generic type to a Rust `impl` block"
+  },
+  "impl:prop:with derive and doc comment": {
+    "prefix": "impl_prop_derive_doc",
+    "body": [
+      "\t/// ${5:Documentation for ${2:attribute_name}}",
+      "\t#[derive(${6:Debug})]",
+      "\t${2:attribute_name}: ${3:Type},"
+    ],
+    "description": "Adds an attribute with attribute derive and doc comment to a Rust `impl` block"
+  },
+  "impl:prop:with default value": {
+    "prefix": "impl_prop_default",
+    "body": ["\t${2:attribute_name}: ${3:Type} = ${4:default_value},"],
+    "description": "Adds an attribute with a default value to a Rust `impl` block"
+  },
+  "impl:prop:mutable reference": {
+    "prefix": "impl_prop_mut_references",
+    "body": ["\t${2:attribute_name}: &mut ${3:Type},"],
+    "description": "Adds a mutable reference attribute to a Rust `impl` block"
   },
   "impl:method:constructor:with parameters": {
     "prefix": "impl_func_constructor_with_params",
@@ -709,6 +893,24 @@
     ],
     "description": "Constructor with Builder pattern"
   },
+  "impl:method": {
+    "prefix": "impl_func_",
+    "body": [
+      "pub fn ${1:method_name}(&self, ${2:arg}: ${3:type}) -> ${4:ReturnType} {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Creates a basic public method for a struct."
+  },
+  "impl:method-pub": {
+    "prefix": "impl_func_pub",
+    "body": [
+      "pub fn ${1:method_name}(&self, ${2:arg}: ${3:type}) -> ${4:ReturnType} {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Creates a basic public method for a struct."
+  },
   "impl:method-getset": {
     "prefix": "impl_func_get_set",
     "body": [
@@ -721,15 +923,6 @@
       "}"
     ],
     "description": "impl get set … { … }"
-  },
-  "impl:method-pub": {
-    "prefix": "impl_func_pub",
-    "body": [
-      "pub fn ${1:method_name}(&self, ${2:arg}: ${3:type}) -> ${4:ReturnType} {",
-      "\t$0",
-      "}"
-    ],
-    "description": "Creates a basic public method for a struct."
   },
   "impl:method:async": {
     "prefix": "impl_func_async",
