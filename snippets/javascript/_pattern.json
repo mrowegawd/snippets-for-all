@@ -1,0 +1,180 @@
+{
+  "singleton": {
+    "prefix": "pattern_singleton_class",
+    "body": [
+      "class ${1:Singleton} {",
+      "  private static instance: ${1:Singleton};",
+      "",
+      "  private constructor() {}",
+      "",
+      "  public static getInstance(): ${1:Singleton} {",
+      "    if (!${1:Singleton}.instance) {",
+      "      ${1:Singleton}.instance = new ${1:Singleton}();",
+      "    }",
+      "    return ${1:Singleton}.instance;",
+      "  }",
+      "}",
+      "",
+      "export default ${1:Singleton};"
+    ],
+    "description": "Creates a singleton class in TypeScript"
+  },
+  "singleton:object literal": {
+    "prefix": "pattern_singleton_object_literal",
+    "body": [
+      "const ${1:singleton} = (() => {",
+      "  let instance: any;",
+      "",
+      "  function createInstance() {",
+      "    // Your initialization logic here",
+      "    return {/* instance initialization */};",
+      "  }",
+      "",
+      "  return {",
+      "    getInstance() {",
+      "      if (!instance) {",
+      "        instance = createInstance();",
+      "      }",
+      "      return instance;",
+      "    }",
+      "  };",
+      "})();"
+    ],
+    "description": "Creates a singleton using an object literal in TypeScript"
+  },
+  "singleton:module (iife)": {
+    "prefix": "pattern_singleton_module_iife",
+    "body": [
+      "const ${1:singleton} = (() => {",
+      "  let instance: any;",
+      "",
+      "  function init() {",
+      "    // Your initialization logic here",
+      "    return {/* instance initialization */};",
+      "  }",
+      "",
+      "  return {",
+      "    getInstance() {",
+      "      if (!instance) {",
+      "        instance = init();",
+      "      }",
+      "      return instance;",
+      "    }",
+      "  };",
+      "})();"
+    ],
+    "description": "Creates a singleton module using IIFE in TypeScript"
+  },
+  "singleton:ES6 Module (class)": {
+    "prefix": "pattern_singleton_es6_class",
+    "body": [
+      "class ${1:Singleton} {",
+      "  private static instance: ${1:Singleton};",
+      "",
+      "  private constructor() {}",
+      "",
+      "  static getInstance(): ${1:Singleton} {",
+      "    if (!this.instance) {",
+      "      this.instance = new ${1:Singleton}();",
+      "    }",
+      "    return this.instance;",
+      "  }",
+      "}",
+      "",
+      "export default ${1:Singleton};"
+    ],
+    "description": "Creates a singleton ES6 module with class in TypeScript"
+  },
+  "singleton:static property": {
+    "prefix": "pattern_singleton_property_static",
+    "body": [
+      "class ${1:Singleton} {",
+      "  private static instance: ${1:Singleton};",
+      "",
+      "  private constructor() {}",
+      "",
+      "  static get Instance(): ${1:Singleton} {",
+      "    if (!${1:Singleton}.instance) {",
+      "      ${1:Singleton}.instance = new ${1:Singleton}();",
+      "    }",
+      "    return ${1:Singleton}.instance;",
+      "  }",
+      "}",
+      "",
+      "export default ${1:Singleton};"
+    ],
+    "description": "Creates a singleton using a static property in TypeScript"
+  },
+  "singleton:lazily instantiated static property": {
+    "prefix": "pattern_singleton_lazy_static",
+    "body": [
+      "class ${1:Singleton} {",
+      "  private static instance: ${1:Singleton} | null = null;",
+      "",
+      "  private constructor() {}",
+      "",
+      "  static get Instance(): ${1:Singleton} {",
+      "    if (!${1:Singleton}.instance) {",
+      "      ${1:Singleton}.instance = new ${1:Singleton}();",
+      "    }",
+      "    return ${1:Singleton}.instance;",
+      "  }",
+      "}",
+      "",
+      "export default ${1:Singleton};"
+    ],
+    "description": "Creates a lazily instantiated singleton using a static property in TypeScript"
+  },
+  "singleton:using Closure": {
+    "prefix": "pattern_singleton_closure",
+    "body": [
+      "const ${1:singleton} = (() => {",
+      "  let instance: ${1:Singleton} | null = null;",
+      "",
+      "  function createInstance() {",
+      "    // Your initialization logic here",
+      "    return {/* instance initialization */};",
+      "  }",
+      "",
+      "  return {",
+      "    getInstance() {",
+      "      if (!instance) {",
+      "        instance = createInstance();",
+      "      }",
+      "      return instance;",
+      "    }",
+      "  };",
+      "})();"
+    ],
+    "description": "Creates a singleton using closure in TypeScript"
+  },
+  "singleton:Decorator": {
+    "prefix": "pattern_singleton_decorator",
+    "body": [
+      "function singleton() {",
+      "  return function (target: any) {",
+      "    let instance: any;",
+      "    const originalConstructor = target;",
+      "    target = function (...args: any[]) {",
+      "      if (!instance) {",
+      "        instance = new originalConstructor(...args);",
+      "      }",
+      "      return instance;",
+      "    };",
+      "    target.prototype = originalConstructor.prototype;",
+      "    return target;",
+      "  };",
+      "}",
+      "",
+      "@singleton()",
+      "class ${1:Singleton} {",
+      "  constructor() {",
+      "    // Your initialization logic here",
+      "  }",
+      "}",
+      "",
+      "export default ${1:Singleton};"
+    ],
+    "description": "Creates a singleton using a TypeScript decorator"
+  }
+}

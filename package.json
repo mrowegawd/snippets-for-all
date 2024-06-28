@@ -183,6 +183,10 @@
         "path": "./snippets/rust/testing.json"
       },
       {
+        "language": "rust",
+        "path": "./snippets/rust/_pattern.json"
+      },
+      {
         "language": "haskell",
         "path": "./snippets/haskell.json"
       },
@@ -307,6 +311,15 @@
           "svelte"
         ],
         "path": "./snippets/javascript/ts-array.json"
+      },
+      {
+        "language": [
+          "typescript",
+          "typescriptreact",
+          "vue",
+          "svelte"
+        ],
+        "path": "./snippets/javascript/_pattern.json"
       },
       {
         "language": [
