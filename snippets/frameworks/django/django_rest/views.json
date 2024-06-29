@@ -1,4 +1,5 @@
 {
+  
   "DRF ApiView": {
     "prefix": "apiview",
     "body": [

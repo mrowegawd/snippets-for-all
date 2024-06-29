@@ -296,7 +296,34 @@
           "vue",
           "svelte"
         ],
+        "path": "./snippets/javascript/ts-docs.json"
+      },
+      {
+        "language": [
+          "typescript",
+          "typescriptreact",
+          "vue",
+          "svelte"
+        ],
         "path": "./snippets/javascript/ts-convert.json"
+      },
+      {
+        "language": [
+          "typescript",
+          "typescriptreact",
+          "vue",
+          "svelte"
+        ],
+        "path": "./snippets/javascript/ts-promise.json"
+      },
+      {
+        "language": [
+          "typescript",
+          "typescriptreact",
+          "vue",
+          "svelte"
+        ],
+        "path": "./snippets/javascript/ts-iterator.json"
       },
       {
         "language": [
@@ -390,7 +417,7 @@
       },
       {
         "language": "javascriptreact",
-        "path": "./snippets/javascript/next.json"
+        "path": "./snippets/framework/nextjs/next.json"
       },
       {
         "language": "typescriptreact",
@@ -402,7 +429,7 @@
       },
       {
         "language": "typescriptreact",
-        "path": "./snippets/javascript/ts-next.json"
+        "path": "./snippets/framework/nextjs/ts-next.json"
       },
       {
         "language": "typescriptreact",

@@ -1,38 +1,38 @@
 {
-  "promise:await Promise.all": {
-    "prefix": "promise_all_async",
+  "promise:t:await Promise.all": {
+    "prefix": "promise_t_all_async",
     "body": "await Promise.all(${1:value})"
   },
-  "promise:await Promise.all map": {
-    "prefix": "promise_all_async_map",
+  "promise:t:await Promise.all map": {
+    "prefix": "promise_t_all_async_map",
     "body": "await Promise.all(${1:array}.map(async (${2:value}) => {\n\t${0}\n}))"
   },
-  "promise:await sleep": {
-    "prefix": "promise_sleep",
+  "promise:t:await sleep": {
+    "prefix": "promise_t_sleep",
     "body": "await new Promise((r) => setTimeout(r, ${0}))"
   },
-  "promise:Promise.all": {
-    "prefix": "promise_all",
+  "promise:t:Promise.all": {
+    "prefix": "promise_t_all",
     "body": "Promise.all(${1:value})"
   },
-  "promise:Promise.resolve": {
-    "prefix": "promise_resolve",
+  "promise:t:Promise.resolve": {
+    "prefix": "promise_t_resolve",
     "body": "Promise.resolve(${1:value})"
   },
-  "promise:Promise.reject": {
-    "prefix": "promise_reject",
+  "promise:t:Promise.reject": {
+    "prefix": "promise_t_reject",
     "body": "Promise.reject(${1:value})"
   },
-  "promise:new Promise": {
-    "prefix": "promise_new",
+  "promise:t:new Promise": {
+    "prefix": "promise_t_new",
     "body": "new Promise((resolve, reject) => {\n\t${0}\n})"
   },
-  "promise:Promise.then": {
-    "prefix": "promise_then",
+  "promise:t:Promise.then": {
+    "prefix": "promise_t_then",
     "body": "${1:promise}.then((${2:value}) => {\n\t${0}\n})"
   },
-  "promise:Promise.catch": {
-    "prefix": "promise_catch",
+  "promise:t:Promise.catch": {
+    "prefix": "promise_t_catch",
     "body": "${1:promise}.catch(error => {\n\t${0}\n})"
   }
 }
