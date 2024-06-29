@@ -1,0 +1,1822 @@
+{
+  "componentRender": {
+    "prefix": "render_ret_component",
+    "body": "render () {\n\treturn (\n\t\t<div>\n\t\t\t$0\n\t\t</div>\n\t)\n}",
+    "description": "When called, it should examine this.props and this.state and return a single child element."
+  },
+  "componentDidUpdate": {
+    "prefix": "comp_did_update_",
+    "body": "componentDidUpdate (prevProps, prevState) {\n\t$0\n}\n",
+    "description": "Invoked immediately after the component's updates are flushed to the DOM."
+  },
+  "componentWillUnmount": {
+    "prefix": "comp_will_unmount",
+    "body": "componentWillUnmount () {\n\t$0\n}\n",
+    "description": "Invoked immediately before a component is unmounted from the DOM."
+  },
+  "componentWillMount": {
+    "prefix": "comp_will_mount",
+    "body": "\ncomponentWillMount () {\n\t$0\n}\n",
+    "description": "Invoked once, both on the client and server, immediately before the initial rendering occurs"
+  },
+  "componentDidMount": {
+    "prefix": "comp_did_mount",
+    "body": "componentDidMount () {\n\t$0\n}\n",
+    "description": "Invoked once, only on the client (not on the server), immediately after the initial rendering occurs."
+  },
+  "componentWillReceiveProps": {
+    "prefix": "comp_will_recv_prop",
+    "body": "componentWillReceiveProps (nextProps) {\n\t$0\n}\n",
+    "description": "Invoked when a component is receiving new props. This method is not called for the initial render."
+  },
+  "componentGetDerivedStateFromProps": {
+    "prefix": "comp_get_derived_state_from_prop",
+    "body": "\nstatic getDerivedStateFromProps(nextProps, prevState) {\n\t$0\n}\n",
+    "description": "Invoked after a component is instantiated as well as when it receives new props. It should return an object to update state, or null to indicate that the new props do not require any state updates."
+  },
+  "componentWillUpdate": {
+    "prefix": "comp_will_update",
+    "body": "componentWillUpdate (nextProps, nextState) {\n\t$0\n}\n",
+    "description": "Invoked immediately before rendering when new props or state are being received."
+  },
+  "this:componentSetStateObject": {
+    "prefix": "this_setState",
+    "body": "this.setState($0)",
+    "description": "Performs a shallow merge of nextState into current state"
+  },
+  "this:componentSetStateFunc": {
+    "prefix": "this_setState_func",
+    "body": "this.setState((state, props) => { return { $0 }})\n",
+    "description": "Performs a shallow merge of nextState into current state"
+  },
+  "this:componentProps": {
+    "prefix": "this_prop",
+    "body": "this.props.$0",
+    "description": "Access component's props"
+  },
+  "this:componentState": {
+    "prefix": "this_state",
+    "body": "this.state.$0",
+    "description": "Access component's state"
+  },
+  "propTypes": {
+    "prefix": "rpt",
+    "body": "$1.propTypes = {\n\t$2\n}",
+    "description": "Creates empty propTypes declaration"
+  },
+  "jsx element": {
+    "prefix": "element_",
+    "body": "<${1:elementName}>\n\t$0\n</${1}>",
+    "description": "an element"
+  },
+  "jsx element self closed": {
+    "prefix": "element_closetag",
+    "body": "<${1:elementName} />",
+    "description": "an element self closed"
+  },
+  "jsx elements map": {
+    "prefix": "element_map",
+    "body": "{${1:array}.map((item) => <${2:elementName} key={item.id}>\n\t$0\n</${2}>)}",
+    "description": "an element self closed"
+  },
+  "jsx elements map with return": {
+    "prefix": "element_map_ret",
+    "body": "{${1:array}.map((item) => {\n\treturn <${2:elementName} key={item.id}>\n\t$0\n</${2}>\n})}",
+    "description": "an element self closed"
+  },
+  "jsx element wrap selection": {
+    "prefix": "element_wrap",
+    "body": "<${1:elementName}>\n\t{$TM_SELECTED_TEXT}\n</${1}>",
+    "description": "an element"
+  },
+  "useState": {
+    "prefix": "useState_",
+    "body": "const [${1:val}, set${2:setterName}] = useState(${3:defVal})",
+    "description": "use state hook"
+  },
+  "useEffect": {
+    "prefix": "useEffect_",
+    "body": [
+      "useEffect(() => {",
+      "  ${1:first}",
+      "",
+      "  return () => {",
+      "    ${2:second}",
+      "  }",
+      "}, [${3:third}])",
+      ""
+    ],
+    "description": "React useEffect() hook"
+  },
+  "useEffect with cleanup": {
+    "prefix": "useEffectCleanup_",
+    "body": [
+      "useEffect(() => {",
+      "\t$1",
+      "\n\treturn () => {",
+      "\t\t$2",
+      "\t}",
+      "}, [${3:dependencies}])$0"
+    ],
+    "description": "React useEffect() hook with a cleanup function"
+  },
+  "createContext": {
+    "prefix": "create_context",
+    "body": [
+      "export const $1 = createContext<$2>(",
+      "\t(null as any) as $2",
+      ")"
+    ],
+    "description": "creates a react context"
+  },
+  "useContext": {
+    "prefix": "useContext_",
+    "body": ["const $1 = useContext($2)$0"],
+    "description": "React useContext() hook"
+  },
+  "useRef": {
+    "prefix": "useRef_",
+    "body": ["const ${1:elName}El = useRef(null)$0"],
+    "description": "React useContext() hook"
+  },
+  "useCallback": {
+    "prefix": "useCallback_",
+    "body": [
+      "const ${1:memoizedCallback} = useCallback(",
+      "\t() => {",
+      "\t\t${2:doSomething}(${3:a}, ${4:b})",
+      "\t},",
+      "\t[${5:a}, ${6:b}],",
+      ")$0"
+    ],
+    "description": "React useCallback() hook"
+  },
+  "useMemo": {
+    "prefix": "useMemo_",
+    "body": [
+      "const ${1:memoizedValue} = useMemo(() => ${2:computeExpensiveValue}(${3:a}, ${4:b}), [${5:a}, ${6:b}])$0"
+    ],
+    "description": "React useMemo() hook"
+  },
+  "exportType": {
+    "prefix": "type_export",
+    "body": ["export type ${1:first} = {${2:second}}"]
+  },
+  "exportInterface": {
+    "prefix": "exp_interface_",
+    "body": ["export interface ${1:first} {${2:second}}"]
+  },
+  "typescriptReactClassComponent": {
+    "prefix": "react_class_comp",
+    "description": "Creates a React component class with ES7 module system and TypeScript interfaces",
+    "body": [
+      "import React, { Component } from 'react'",
+      "",
+      "type Props = {}",
+      "",
+      "type State = {}",
+      "",
+      "export default class ${1:${TM_FILENAME_BASE}} extends Component<Props, State> {",
+      "  state = {}",
+      "",
+      "  render() {",
+      "    return (",
+      "      <div>${1:first}</div>",
+      "    )",
+      "  }",
+      "}"
+    ]
+  },
+  "typescriptReactClassExportComponent": {
+    "prefix": "react_class_comp_export",
+    "body": [
+      "import React, { Component } from 'react'",
+      "",
+      "type Props = {}",
+      "",
+      "type State = {}",
+      "",
+      "class ${1:${TM_FILENAME_BASE}} extends Component<Props, State> {",
+      "  state = {}",
+      "",
+      "  render() {",
+      "    return (",
+      "      <div>${1:first}</div>",
+      "    )",
+      "  }",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ],
+    "description": "Creates a React component class with ES7 module system and TypeScript interfaces"
+  },
+  "typescriptReactFunctionalExportComponent": {
+    "prefix": "react_func_comp",
+    "body": [
+      "import React from 'react'",
+      "",
+      "type Props = {}",
+      "",
+      "function ${1:${TM_FILENAME_BASE}}({}: Props) {",
+      "  return (",
+      "    <div>${1:first}</div>",
+      "  )",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ],
+    "description": "Creates a React Functional Component with ES7 module system and TypeScript interface"
+  },
+  "typescriptReactFunctionalComponent": {
+    "prefix": "react_func_comp_export",
+    "body": [
+      "import React from 'react'",
+      "",
+      "type Props = {}",
+      "",
+      "export default function ${1:${TM_FILENAME_BASE}}({}: Props) {",
+      "\treturn (",
+      "\t\t<div>${1:first}</div>",
+      "\t)",
+      "}"
+    ],
+    "description": "Creates a React Functional Component with ES7 module system and TypeScript interface"
+  },
+  "typescriptReactArrowFunctionExportComponent": {
+    "prefix": "react_func_arrow_comp_export_return",
+    "body": [
+      "import React from 'react'",
+      "",
+      "type Props = {}",
+      "",
+      "const ${1:${TM_FILENAME_BASE}} = (props: Props) => {",
+      "\treturn (",
+      "\t\t<div>${1:first}</div>",
+      "\t)",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ],
+    "description": "Creates a React Arrow Function Component with ES7 module system and TypeScript interface"
+  },
+  "typescriptReactArrowFunctionComponent": {
+    "prefix": "react_func_arrow_comp_export",
+    "body": [
+      "import React from 'react'",
+      "",
+      "type Props = {}",
+      "",
+      "const ${1:${TM_FILENAME_BASE}} = (props: Props) => {",
+      "\treturn (",
+      "\t\t<div>${1:first}</div>",
+      "\t)",
+      "}"
+    ],
+    "description": "Creates a React Arrow Function Component with ES7 module system and TypeScript interface"
+  },
+  "typescriptReactClassPureComponent": {
+    "prefix": "react_func_arrow_comp_for_pure_class",
+    "body": [
+      "import React, { PureComponent } from 'react'",
+      "",
+      "type Props = {}",
+      "",
+      "export default class ${1:${TM_FILENAME_BASE}} extends PureComponent<Props> {",
+      "\trender() {",
+      "\t\treturn (",
+      "\t\t\t<div>${1:first}</div>",
+      "\t\t)",
+      "\t}",
+      "}"
+    ],
+    "description": "Creates a React pure component class with ES7 module system and TypeScript interface"
+  },
+  "typescriptReactClassExportPureComponent": {
+    "prefix": "react_func_arrow_comp_for_pure_class_export",
+    "body": [
+      "import React, { PureComponent } from 'react'",
+      "",
+      "type Props = {}",
+      "",
+      "class ${1:${TM_FILENAME_BASE}} extends PureComponent<Props> {",
+      "\trender() {",
+      "\t\treturn (",
+      "\t\t\t<div>${1:first}</div>",
+      "\t\t)",
+      "\t}",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ],
+    "description": "Creates a React pure component class with ES7 module system and TypeScript interface"
+  },
+  "typescriptReactClassComponentRedux": {
+    "prefix": "react_class_comp_export_with_redux",
+    "body": [
+      "import { connect } from 'react-redux'",
+      "import React, { Component } from 'react'",
+      "",
+      "type Props = {}",
+      "",
+      "type State = {}",
+      "",
+      "export class ${1:${TM_FILENAME_BASE}} extends Component<Props, State> {",
+      "\tstate = {}",
+      "",
+      "\trender() {",
+      "\t\treturn (",
+      "\t\t\t<div>${1:first}</div>",
+      "\t\t)",
+      "\t}",
+      "}",
+      "",
+      "const mapStateToProps = (state) => ({})",
+      "",
+      "const mapDispatchToProps = {}",
+      "",
+      "export default connect(mapStateToProps, mapDispatchToProps)(${1:${TM_FILENAME_BASE}})"
+    ],
+    "description": "Creates a React component class with connected redux and ES7 module system and TypeScript interfaces"
+  },
+  "typescriptReactNativeArrowFunctionComponent": {
+    "prefix": "react_func_arrow_comp_export_in_native",
+    "body": [
+      "import { View, Text } from 'react-native'",
+      "import React from 'react'",
+      "",
+      "type Props = {}",
+      "",
+      "const ${1:${TM_FILENAME_BASE}} = (props: Props) => {",
+      "\treturn (",
+      "\t\t<View>",
+      "\t\t\t<Text>${1:first}</Text>",
+      "\t\t</View>",
+      "\t)",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ],
+    "description": "Creates a React Native Arrow Function Component with ES7 module system in TypeScript"
+  },
+  "typescriptReactNativeArrowFunctionComponentWithStyles": {
+    "prefix": "react_func_arrow_comp_export_in_native_with_styles",
+    "body": [
+      "import { StyleSheet, Text, View } from 'react-native'",
+      "import React from 'react'",
+      "",
+      "type Props = {}",
+      "",
+      "const ${1:${TM_FILENAME_BASE}} = (props: Props) => {",
+      "\treturn (",
+      "\t\t<View>",
+      "\t\t\t<Text>${1:first}</Text>",
+      "\t\t</View>",
+      "\t)",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}",
+      "",
+      "const styles = StyleSheet.create({})"
+    ],
+    "description": "Creates a React Native Arrow Function Component with ES7 module system, TypeScript interface and StyleSheet"
+  },
+  "reactArrowFunctionComponentWithPropTypes": {
+    "prefix": "rfc_propType",
+    "body": [
+      "import PropTypes from 'prop-types'",
+      "",
+      "const ${1:${TM_FILENAME_BASE}} = props => {",
+      "  return (",
+      "    <div>${1:first}</div>",
+      "  )",
+      "}",
+      "",
+      "${1:${TM_FILENAME_BASE}}.propTypes = {}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ],
+    "description": "Creates a React Arrow Function Component with ES7 module system with PropTypes"
+  },
+  "reactArrowFunctionExportComponent": {
+    "prefix": "rfc_",
+    "body": [
+      "",
+      "const ${1:${TM_FILENAME_BASE}} = () => {",
+      "  return (",
+      "    <div>${1:first}</div>",
+      "  )",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ],
+    "description": "Creates a React Arrow Function Component with ES7 module system"
+  },
+  "reactFunctionComponent": {
+    "prefix": "rfc_export_only",
+    "body": "export const ${TM_FILENAME_BASE} = (${1:props : \\{\\}}) => {\n\treturn (\n\t\t<div>\n\t\t\t$0\n\t\t</div>\n\t)\n}",
+    "description": "Creates terlalu a React functional component without PropTypes"
+  },
+  "destructuring of props": {
+    "prefix": "props_this_",
+    "body": ["const { ${1:name} } = this.props"]
+  },
+  "destructuring of state": {
+    "prefix": "props_this_state",
+    "body": ["const { ${1:name} } = this.state"]
+  },
+  "reactJustClassCompoment": {
+    "prefix": "rccc_",
+    "body": "class ${TM_FILENAME_BASE} extends Component {\n\trender () {\n\t\treturn (\n\t\t\t<div>\n\t\t\t\t$0\n\t\t\t</div>\n\t\t)\n\t}\n}\n",
+    "description": "Creates a React component class"
+  },
+  "reactClassCompomentWithMethods": {
+    "prefix": "rcc_methods",
+    "body": "import React, { Component, PropTypes } from 'react'\n\nclass ${TM_FILENAME_BASE} extends Component {\n\tconstructor(props) {\n\t\tsuper(props)\n\n\t}\n\n\tcomponentWillMount () {\n\n\t}\n\n\tcomponentDidMount () {\n\n\t}\n\n\tcomponentWillReceiveProps (nextProps) {\n\n\t}\n\n\tshouldComponentUpdate (nextProps, nextState) {\n\n\t}\n\n\tcomponentWillUpdate (nextProps, nextState) {\n\n\t}\n\n\tcomponentDidUpdate (prevProps, prevState) {\n\n\t}\n\n\tcomponentWillUnmount () {\n\n\t}\n\n\trender () {\n\t\treturn (\n\t\t\t<div>\n\n\t\t\t</div>\n\t\t)\n\t}\n}\n\n${1}.propTypes = {\n\n}\n\nexport default ${1}",
+    "description": "Creates a React component class with PropTypes and all lifecycle methods"
+  },
+  "Class ConstructorContext": {
+    "prefix": "rcc_constrator_context",
+    "body": "constructor (props, context) {\n\tsuper(props, context)\n\t$0\n}\n",
+    "description": "Adds a default constructor for the class that contains props and context as arguments"
+  },
+  "reactClassComponent": {
+    "prefix": "rcc_",
+    "body": [
+      "import { Component } from 'react'",
+      "",
+      "export default class ${1:${TM_FILENAME_BASE}} extends Component {",
+      "  render() {",
+      "    return (",
+      "      <div>${1:first}</div>",
+      "    )",
+      "  }",
+      "}",
+      ""
+    ],
+    "description": "Creates a React component class with ES7 module system"
+  },
+  "reactClassComponentPropTypes": {
+    "prefix": "rccp",
+    "body": [
+      "import PropTypes from 'prop-types'",
+      "import React, { Component } from 'react'",
+      "",
+      "export default class ${1:${TM_FILENAME_BASE}} extends Component {",
+      "  static propTypes = {${2:second}: ${3:third}}",
+      "",
+      "  render() {",
+      "    return (",
+      "      <div>${1:first}</div>",
+      "    )",
+      "  }",
+      "}",
+      ""
+    ],
+    "description": "Creates a React component class with PropTypes and ES7 module system"
+  },
+  "reactClassComponentRedux": {
+    "prefix": "rcredux",
+    "body": [
+      "import React, { Component } from 'react'",
+      "import { connect } from 'react-redux'",
+      "",
+      "export class ${1:${TM_FILENAME_BASE}} extends Component {",
+      "  render() {",
+      "    return (",
+      "      <div>${1:first}</div>",
+      "    )",
+      "  }",
+      "}",
+      "",
+      "const mapStateToProps = (state) => ({})",
+      "",
+      "const mapDispatchToProps = {}",
+      "",
+      "export default connect(mapStateToProps, mapDispatchToProps)(${1:${TM_FILENAME_BASE}})"
+    ],
+    "description": "Creates a React component class with connected redux and ES7 module system"
+  },
+  "reactClassComponentReduxPropTypes": {
+    "prefix": "rcreduxp",
+    "body": [
+      "import PropTypes from 'prop-types'",
+      "import React, { Component } from 'react'",
+      "import { connect } from 'react-redux'",
+      "",
+      "export class ${1:${TM_FILENAME_BASE}} extends Component {",
+      "  static propTypes = {",
+      "    ${2:second}: ${3:third}",
+      "  }",
+      "",
+      "  render() {",
+      "    return (",
+      "      <div>${1:first}</div>",
+      "    )",
+      "  }",
+      "}",
+      "",
+      "const mapStateToProps = (state) => ({})",
+      "",
+      "const mapDispatchToProps = {}",
+      "",
+      "export default connect(mapStateToProps, mapDispatchToProps)(${1:${TM_FILENAME_BASE}})"
+    ],
+    "description": "Creates a React component class with PropTypes with connected redux and ES7 module system"
+  },
+  "reactClassExportComponent": {
+    "prefix": "rce",
+    "body": [
+      "import React, { Component } from 'react'",
+      "",
+      "export class ${1:${TM_FILENAME_BASE}} extends Component {",
+      "  render() {",
+      "    return (",
+      "      <div>${1:first}</div>",
+      "    )",
+      "  }",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ],
+    "description": "Creates a React component class with ES7 module system"
+  },
+  "reactClassExportComponentWithPropTypes": {
+    "prefix": "rcep",
+    "body": [
+      "import PropTypes from 'prop-types'",
+      "import React, { Component } from 'react'",
+      "",
+      "export class ${1:${TM_FILENAME_BASE}} extends Component {",
+      "  static propTypes = {}",
+      "",
+      "  render() {",
+      "    return (",
+      "      <div>${1:first}</div>",
+      "    )",
+      "  }",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ],
+    "description": "Creates a React component class with ES7 module system"
+  },
+  "reactClassExportPureComponent": {
+    "prefix": "rpce",
+    "body": [
+      "import React, { PureComponent } from 'react'",
+      "",
+      "export class ${1:${TM_FILENAME_BASE}} extends PureComponent {",
+      "  render() {",
+      "    return (",
+      "      <div>${1:first}</div>",
+      "    )",
+      "  }",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ],
+    "description": "Creates a React pure component class with ES7 module system export"
+  },
+  "reactClassPureComponent": {
+    "prefix": "rpc",
+    "body": [
+      "import React, { PureComponent } from 'react'",
+      "",
+      "export default class ${1:${TM_FILENAME_BASE}} extends PureComponent {",
+      "  render() {",
+      "    return (",
+      "      <div>${1:first}</div>",
+      "    )",
+      "  }",
+      "}",
+      ""
+    ],
+    "description": "Creates a React pure component class with ES7 module system"
+  },
+  "reactClassPureComponentWithPropTypes": {
+    "prefix": "rpcp",
+    "body": [
+      "import PropTypes from 'prop-types'",
+      "import React, { PureComponent } from 'react'",
+      "",
+      "export default class ${1:${TM_FILENAME_BASE}} extends PureComponent {",
+      "  static propTypes = {}",
+      "",
+      "  render() {",
+      "    return (",
+      "      <div>${1:first}</div>",
+      "    )",
+      "  }",
+      "}",
+      ""
+    ],
+    "description": "Creates a React component class with ES7 module system"
+  },
+  "reactFunctionMemoComponent": {
+    "prefix": "rmc",
+    "body": [
+      "import React, { memo } from 'react'",
+      "",
+      "const ${1:${TM_FILENAME_BASE}} = memo(() => {",
+      "  return (",
+      "    <div>${1:first}</div>",
+      "  )",
+      "})",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ],
+    "description": "Creates a React Memo Function Component with ES7 module system"
+  },
+  "reactFunctionMemoComponentWithPropTypes": {
+    "prefix": "rmcp",
+    "body": [
+      "import PropTypes from 'prop-types'",
+      "import React, { memo } from 'react'",
+      "",
+      "const ${1:${TM_FILENAME_BASE}} = memo((props) => {",
+      "  return (",
+      "    <div>${1:first}</div>",
+      "  )",
+      "})",
+      "",
+      "${1:${TM_FILENAME_BASE}}.propTypes = {}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ],
+    "description": "Creates a React Memo Function Component with ES7 module system with PropTypes"
+  },
+  "reactFunctionalComponentRedux": {
+    "prefix": "rfcredux",
+    "body": [
+      "import React from 'react'",
+      "import { connect } from 'react-redux'",
+      "",
+      "export const ${1:${TM_FILENAME_BASE}} = (props) => {",
+      "  return (",
+      "    <div>${1:first}</div>",
+      "  )",
+      "}",
+      "",
+      "const mapStateToProps = (state) => ({})",
+      "",
+      "const mapDispatchToProps = {}",
+      "",
+      "export default connect(mapStateToProps, mapDispatchToProps)(${1:${TM_FILENAME_BASE}})"
+    ],
+    "description": "Creates a React functional component with connected redux and ES7 module system"
+  },
+  "reactFunctionalComponentReduxPropTypes": {
+    "prefix": "rfcreduxp",
+    "body": [
+      "import PropTypes from 'prop-types'",
+      "import React from 'react'",
+      "import { connect } from 'react-redux'",
+      "",
+      "export const ${1:${TM_FILENAME_BASE}} = (props) => {",
+      "  return (",
+      "    <div>${1:first}</div>",
+      "  )",
+      "}",
+      "",
+      "${1:${TM_FILENAME_BASE}}.propTypes = {",
+      "  ${2:second}: PropTypes.${3:third}",
+      "}",
+      "",
+      "const mapStateToProps = (state) => ({})",
+      "",
+      "const mapDispatchToProps = {}",
+      "",
+      "export default connect(mapStateToProps, mapDispatchToProps)(${1:${TM_FILENAME_BASE}})"
+    ],
+    "description": "DEPRECATED: Creates a React functional component with PropTypes with connected redux and ES7 module system"
+  },
+  "reactFunctionalComponentWithPropTypes": {
+    "prefix": "rfcp",
+    "body": [
+      "import React from 'react'",
+      "import PropTypes from 'prop-types'",
+      "",
+      "function ${1:${TM_FILENAME_BASE}}(props) {",
+      "  return (",
+      "    <div>${1:first}</div>",
+      "  )",
+      "}",
+      "",
+      "${1:${TM_FILENAME_BASE}}.propTypes = {}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}",
+      ""
+    ],
+    "description": "Creates a React Functional Component with ES7 module system with PropTypes"
+  },
+  "reactFunctionalExportComponent": {
+    "prefix": "rfce",
+    "body": [
+      "import React from 'react'",
+      "",
+      "function ${1:${TM_FILENAME_BASE}}() {",
+      "  return (",
+      "    <div>${1:first}</div>",
+      "  )",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ],
+    "description": "Creates a React Functional Component with ES7 module system"
+  },
+  "useImperativeHandle": {
+    "prefix": "useImperativeHandleSnippet",
+    "body": [
+      "useImperativeHandle(",
+      "  ${1:first},",
+      "  () => {",
+      "    ${2:second}",
+      "  },",
+      "  [${3:third}],",
+      ")"
+    ]
+  },
+  "useLayoutEffect": {
+    "prefix": "useLayoutEffectSnippet",
+    "body": [
+      "useLayoutEffect(() => {",
+      "  ${1:first}",
+      "",
+      "  return () => {",
+      "    ${2:second}",
+      "  };",
+      "}, [${3:third}])"
+    ]
+  },
+  "useReducer": {
+    "prefix": "useReducerSnippet",
+    "body": [
+      "const [state, dispatch] = useReducer(${1:first}, ${2:second}, ${3:third})"
+    ]
+  },
+  "importAs": {
+    "prefix": "ima",
+    "body": ["import { ${2:second} as ${3:third} } from '${1:first}'"]
+  },
+  "importBrowserRouter": {
+    "prefix": "imbr",
+    "body": ["import { BrowserRouter as Router } from 'react-router-dom'"]
+  },
+  "importBrowserRouterWithRouteAndNavLink": {
+    "prefix": "imrr",
+    "body": [
+      "import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'",
+      ""
+    ]
+  },
+  "importDestructing": {
+    "prefix": "imd",
+    "body": ["import { ${2:second} } from '${1:first}'"]
+  },
+  "importEverything": {
+    "prefix": "ime",
+    "body": ["import * as ${2:second} from '${1:first}'"]
+  },
+  "importNoModuleName": {
+    "prefix": "imn",
+    "body": ["import '${1:first}'"]
+  },
+  "importPropTypes": {
+    "prefix": "impt",
+    "body": ["import PropTypes from 'prop-types'"]
+  },
+  "importReact": {
+    "prefix": "imr",
+    "body": ["import React from 'react'"]
+  },
+  "importReactDom": {
+    "prefix": "imrd",
+    "body": ["import ReactDOM from 'react-dom'"]
+  },
+  "importReactWithComponent": {
+    "prefix": "imrc",
+    "body": ["import React, { Component } from 'react'"]
+  },
+  "importReactWithComponentAndPropTypes": {
+    "prefix": "imrcp",
+    "body": [
+      "import React, { Component } from 'react'",
+      "import PropTypes from 'prop-types'",
+      ""
+    ]
+  },
+  "importReactWithMemo": {
+    "prefix": "imrm",
+    "body": ["import React, { memo } from 'react'"]
+  },
+  "importReactWithMemoAndPropTypes": {
+    "prefix": "imrmp",
+    "body": [
+      "import React, { memo } from 'react'",
+      "import PropTypes from 'prop-types'",
+      ""
+    ]
+  },
+  "importReactWithPureComponent": {
+    "prefix": "imrpc",
+    "body": ["import React, { PureComponent } from 'react'"]
+  },
+  "importReactWithPureComponentAndPropTypes": {
+    "prefix": "imrpcp",
+    "body": [
+      "import React, { PureComponent } from 'react'",
+      "import PropTypes from 'prop-types'",
+      ""
+    ]
+  },
+  "importRouterLink": {
+    "prefix": "imbrl",
+    "body": ["import { Link } from 'react-router-dom'"]
+  },
+  "importRouterNavLink": {
+    "prefix": "imbrnl",
+    "body": ["import { NavLink } from 'react-router-dom'"]
+  },
+  "importRouterSetup": {
+    "prefix": "imbrc",
+    "body": ["import { Route, Switch, NavLink, Link } from 'react-router-dom'"]
+  },
+  "importRouterSwitch": {
+    "prefix": "imbrs",
+    "body": ["import { Switch } from 'react-router-dom'"]
+  },
+  "import": {
+    "prefix": "imp",
+    "body": ["import ${2:second} from '${1:first}'"]
+  },
+  "propTypeArray": {
+    "prefix": "pta",
+    "body": ["PropTypes.array"],
+    "description": "Array prop type"
+  },
+  "propTypeArrayRequired": {
+    "prefix": "ptar",
+    "body": ["PropTypes.array.isRequired"],
+    "description": "Array prop type required"
+  },
+  "propTypeBool": {
+    "prefix": "ptb",
+    "body": ["PropTypes.bool"],
+    "description": "Bool prop type"
+  },
+  "propTypeBoolRequired": {
+    "prefix": "ptbr",
+    "body": ["PropTypes.bool.isRequired"],
+    "description": "Bool prop type required"
+  },
+  "propTypeFunc": {
+    "prefix": "ptf",
+    "body": ["PropTypes.func"],
+    "description": "Func prop type"
+  },
+  "propTypeFuncRequired": {
+    "prefix": "ptfr",
+    "body": ["PropTypes.func.isRequired"],
+    "description": "Func prop type required"
+  },
+  "propTypeNumber": {
+    "prefix": "ptn",
+    "body": ["PropTypes.number"],
+    "description": "Number prop type"
+  },
+  "propTypeNumberRequired": {
+    "prefix": "ptnr",
+    "body": ["PropTypes.number.isRequired"],
+    "description": "Number prop type required"
+  },
+  "propTypeObject": {
+    "prefix": "pto",
+    "body": ["PropTypes.object"],
+    "description": "Object prop type"
+  },
+  "propTypeObjectRequired": {
+    "prefix": "ptor",
+    "body": ["PropTypes.object.isRequired"],
+    "description": "Object prop type required"
+  },
+  "propTypeString": {
+    "prefix": "pts",
+    "body": ["PropTypes.string"],
+    "description": "String prop type"
+  },
+  "propTypeStringRequired": {
+    "prefix": "ptsr",
+    "body": ["PropTypes.string.isRequired"],
+    "description": "String prop type required"
+  },
+  "propTypeNode": {
+    "prefix": "ptnd",
+    "body": ["PropTypes.node"],
+    "description": "Anything that can be rendered: numbers, strings, elements or an array"
+  },
+  "propTypeNodeRequired": {
+    "prefix": "ptndr",
+    "body": ["PropTypes.node.isRequired"],
+    "description": "Anything that can be rendered: numbers, strings, elements or an array required"
+  },
+  "propTypeElement": {
+    "prefix": "ptel",
+    "body": ["PropTypes.element"],
+    "description": "React element prop type"
+  },
+  "propTypeElementRequired": {
+    "prefix": "ptelr",
+    "body": ["PropTypes.element.isRequired"],
+    "description": "React element prop type required"
+  },
+  "propTypeInstanceOf": {
+    "prefix": "pti",
+    "body": ["PropTypes.instanceOf($0)"],
+    "description": "Is an instance of a class prop type"
+  },
+  "propTypeInstanceOfRequired": {
+    "prefix": "ptir",
+    "body": ["PropTypes.instanceOf($0).isRequired"],
+    "description": "Is an instance of a class prop type required"
+  },
+  "propTypeEnum": {
+    "prefix": "pte",
+    "body": ["PropTypes.oneOf(['$0'])"],
+    "description": "Prop type limited to specific values by treating it as an enum"
+  },
+  "propTypeEnumRequired": {
+    "prefix": "pter",
+    "body": ["PropTypes.oneOf(['$0']).isRequired"],
+    "description": "Prop type limited to specific values by treating it as an enum required"
+  },
+  "propTypeOneOfType": {
+    "prefix": "ptet",
+    "body": ["PropTypes.oneOfType([", "  $0", "])"],
+    "description": "An object that could be one of many types"
+  },
+  "propTypeOneOfTypeRequired": {
+    "prefix": "ptetr",
+    "body": ["PropTypes.oneOfType([", "  $0", "]).isRequired"],
+    "description": "An object that could be one of many types required"
+  },
+  "propTypeArrayOf": {
+    "prefix": "ptao",
+    "body": ["PropTypes.arrayOf($0)"],
+    "description": "An array of a certain type"
+  },
+  "propTypeArrayOfRequired": {
+    "prefix": "ptaor",
+    "body": ["PropTypes.arrayOf($0).isRequired"],
+    "description": "An array of a certain type required"
+  },
+  "propTypeObjectOf": {
+    "prefix": "ptoo",
+    "body": ["PropTypes.objectOf($0)"],
+    "description": "An object with property values of a certain type"
+  },
+  "propTypeObjectOfRequired": {
+    "prefix": "ptoor",
+    "body": ["PropTypes.objectOf($0).isRequired"],
+    "description": "An object with property values of a certain type required"
+  },
+  "propTypeShape": {
+    "prefix": "ptsh",
+    "body": ["PropTypes.shape({", "  $0", "})"],
+    "description": "An object taking on a particular shape"
+  },
+  "propTypeShapeRequired": {
+    "prefix": "ptshr",
+    "body": ["PropTypes.shape({", "  $0", "}).isRequired"],
+    "description": "An object taking on a particular shape required"
+  },
+  "propTypeExact": {
+    "prefix": "ptex",
+    "body": ["PropTypes.exact({", "  $0", "})"],
+    "description": "An object with warnings on extra properties"
+  },
+  "propTypeExactRequired": {
+    "prefix": "ptexr",
+    "body": ["PropTypes.exact({", "  $0", "}).isRequired"],
+    "description": "An object with warnings on extra properties required"
+  },
+  "propTypeAny": {
+    "prefix": "ptany",
+    "body": ["PropTypes.any"],
+    "description": "Any prop type"
+  },
+  "reactNativeComponent": {
+    "prefix": "rnc",
+    "body": [
+      "import { Text, View } from 'react-native'",
+      "import React, { Component } from 'react'",
+      "",
+      "export default class ${1:${TM_FILENAME_BASE}} extends Component {",
+      "  render() {",
+      "    return (",
+      "      <View>",
+      "        <Text>${1:first}</Text>",
+      "      </View>",
+      "    )",
+      "  }",
+      "}"
+    ]
+  },
+  "reactNativeComponentExport": {
+    "prefix": "rnce",
+    "body": [
+      "import { Text, View } from 'react-native'",
+      "import React, { Component } from 'react'",
+      "",
+      "export class ${1:${TM_FILENAME_BASE}} extends Component {",
+      "  render() {",
+      "    return (",
+      "      <View>",
+      "        <Text>${1:first}</Text>",
+      "      </View>",
+      "    )",
+      "  }",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ]
+  },
+  "reactNativeComponentWithStyles": {
+    "prefix": "rncs",
+    "body": [
+      "import { Text, StyleSheet, View } from 'react-native'",
+      "import React, { Component } from 'react'",
+      "",
+      "export default class ${1:${TM_FILENAME_BASE}} extends Component {",
+      "  render() {",
+      "    return (",
+      "      <View>",
+      "        <Text>${1:first}</Text>",
+      "      </View>",
+      "    )",
+      "  }",
+      "}",
+      "",
+      "const styles = StyleSheet.create({})"
+    ]
+  },
+  "reactNativeFunctionalComponent": {
+    "prefix": "rnf",
+    "body": [
+      "import { View, Text } from 'react-native'",
+      "import React from 'react'",
+      "",
+      "export default function ${1:${TM_FILENAME_BASE}}() {",
+      "  return (",
+      "    <View>",
+      "      <Text>${1:first}</Text>",
+      "    </View>",
+      "  )",
+      "}"
+    ]
+  },
+  "reactNativeFunctionalComponentWithStyles": {
+    "prefix": "rnfs",
+    "body": [
+      "import { StyleSheet, Text, View } from 'react-native'",
+      "import React from 'react'",
+      "",
+      "export default function ${1:${TM_FILENAME_BASE}}() {",
+      "  return (",
+      "    <View>",
+      "      <Text>${1:first}</Text>",
+      "    </View>",
+      "  )",
+      "}",
+      "",
+      "const styles = StyleSheet.create({})"
+    ]
+  },
+  "reactNativeFunctionalExportComponent": {
+    "prefix": "rnfe",
+    "body": [
+      "import { View, Text } from 'react-native'",
+      "import React from 'react'",
+      "",
+      "const ${1:${TM_FILENAME_BASE}} = () => {",
+      "  return (",
+      "    <View>",
+      "      <Text>${1:first}</Text>",
+      "    </View>",
+      "  )",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ]
+  },
+  "reactNativeFunctionalExportComponentWithStyles": {
+    "prefix": "rnfes",
+    "body": [
+      "import { StyleSheet, Text, View } from 'react-native'",
+      "import React from 'react'",
+      "",
+      "const ${1:${TM_FILENAME_BASE}} = () => {",
+      "  return (",
+      "    <View>",
+      "      <Text>${1:first}</Text>",
+      "    </View>",
+      "  )",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}",
+      "",
+      "const styles = StyleSheet.create({})"
+    ]
+  },
+  "reactNativeImport": {
+    "prefix": "imrn",
+    "body": ["import { ${1:first} } from 'react-native'"]
+  },
+  "reactNativePureComponent": {
+    "prefix": "rnpc",
+    "body": [
+      "import { Text, View } from 'react-native'",
+      "import React, { PureComponent } from 'react'",
+      "",
+      "export default class ${1:${TM_FILENAME_BASE}} extends PureComponent {",
+      "  render() {",
+      "    return (",
+      "      <View>",
+      "        <Text>${1:first}</Text>",
+      "      </View>",
+      "    )",
+      "  }",
+      "}"
+    ]
+  },
+  "reactNativePureComponentExport": {
+    "prefix": "rnpce",
+    "body": [
+      "import { Text, View } from 'react-native'",
+      "import React, { PureComponent } from 'react'",
+      "",
+      "export class ${1:${TM_FILENAME_BASE}} extends PureComponent {",
+      "  render() {",
+      "    return (",
+      "      <View>",
+      "        <Text>${1:first}</Text>",
+      "      </View>",
+      "    )",
+      "  }",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ]
+  },
+  "reactNativeStyles": {
+    "prefix": "rnstyle",
+    "body": ["const styles = StyleSheet.create({${1:first}})"]
+  },
+  "importReduxConnect": {
+    "prefix": "redux",
+    "body": ["import { connect } from 'react-redux'"]
+  },
+  "reduxAction": {
+    "prefix": "rxaction",
+    "body": [
+      "export const ${1:first} = (payload) => ({",
+      "  type: ${2:second},",
+      "  payload",
+      "})",
+      ""
+    ]
+  },
+  "reduxConst": {
+    "prefix": "rxconst",
+    "body": ["export const ${1:first} = '${1:first}'"]
+  },
+  "reduxReducer": {
+    "prefix": "rxreducer",
+    "body": [
+      "const initialState = {}",
+      "",
+      "export default (state = initialState, { type, payload }) => {",
+      "  switch (type) {",
+      "",
+      "  case ${1:first}:",
+      "    return { ...state, ...payload }",
+      "",
+      "  default:",
+      "    return state",
+      "  }",
+      "}",
+      ""
+    ]
+  },
+  "reduxSelector": {
+    "prefix": "rxselect",
+    "body": [
+      "import { createSelector } from 'reselect'",
+      "",
+      "export const ${1:first} = state => state.${2:second}"
+    ]
+  },
+  "reduxSlice": {
+    "prefix": "rxslice",
+    "body": [
+      "import { createSlice } from '@reduxjs/toolkit'",
+      "",
+      "const initialState = {",
+      "",
+      "}",
+      "",
+      "const ${1:${TM_FILENAME_BASE}} = createSlice({",
+      "  name: ${2:second},",
+      "  initialState,",
+      "  reducers: {}",
+      "});",
+      "",
+      "export const {} = ${1:${TM_FILENAME_BASE}}.actions",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}.reducer"
+    ]
+  },
+  "mappingToProps": {
+    "prefix": "reduxmap",
+    "body": [
+      "const mapStateToProps = (state) => ({})",
+      "",
+      "const mapDispatchToProps = {}"
+    ]
+  },
+  "setupReactComponentTestWithRedux": {
+    "prefix": "srtest",
+    "body": [
+      "import React from 'react'",
+      "import renderer from 'react-test-renderer'",
+      "import { Provider } from 'react-redux'",
+      "",
+      "import store from '~/store'",
+      "import { ${1:${TM_FILENAME_BASE}} } from '../${1:${TM_FILENAME_BASE}}'",
+      "",
+      "describe('<${1:${TM_FILENAME_BASE}} />', () => {",
+      "  const defaultProps = {}",
+      "  const wrapper = renderer.create(",
+      "    <Provider store={store}>",
+      "     <${1:${TM_FILENAME_BASE}} {...defaultProps} />",
+      "    </Provider>,",
+      "  )",
+      "",
+      "  test('render', () => {",
+      "    expect(wrapper).toMatchSnapshot()",
+      "  })",
+      "})"
+    ],
+    "description": "Create test component"
+  },
+  "setupReactNativeTest": {
+    "prefix": "sntest",
+    "body": [
+      "import 'react-native'",
+      "import React from 'react'",
+      "import renderer from 'react-test-renderer'",
+      "",
+      "import ${1:${TM_FILENAME_BASE}} from '../${1:${TM_FILENAME_BASE}}'",
+      "",
+      "describe('<${1:${TM_FILENAME_BASE}} />', () => {",
+      "  const defaultProps = {}",
+      "  const wrapper = renderer.create(<${1:${TM_FILENAME_BASE}} {...defaultProps} />)",
+      "",
+      "  test('render', () => {",
+      "    expect(wrapper).toMatchSnapshot()",
+      "  })",
+      "})"
+    ]
+  },
+  "setupReactNativeTestWithRedux": {
+    "prefix": "snrtest",
+    "body": [
+      "import 'react-native'",
+      "import React from 'react'",
+      "import renderer from 'react-test-renderer'",
+      "import { Provider } from 'react-redux'",
+      "",
+      "import store from '~/store'",
+      "import ${1:${TM_FILENAME_BASE}} from '../${1:${TM_FILENAME_BASE}}'",
+      "",
+      "describe('<${1:${TM_FILENAME_BASE}} />', () => {",
+      "  const defaultProps = {}",
+      "  const wrapper = renderer.create(",
+      "    <Provider store={store}>",
+      "      <${1:${TM_FILENAME_BASE}} {...defaultProps} />",
+      "    </Provider>,",
+      "  )",
+      "",
+      "  test('render', () => {",
+      "    expect(wrapper).toMatchSnapshot()",
+      "  })",
+      "})"
+    ]
+  },
+  "exportDefault": {
+    "prefix": "exp",
+    "body": ["export default ${1:first}"]
+  },
+  "exportDestructing": {
+    "prefix": "exd",
+    "body": ["export { ${2:second} } from '${1:first}'"]
+  },
+  "exportAs": {
+    "prefix": "exa",
+    "body": ["export { ${2:second} as ${3:third} } from '${1:first}'"]
+  },
+  "exportNamedFunction": {
+    "prefix": "enf",
+    "body": ["export const ${1:first} = (${2:second}) => {${3:third}}"],
+    "description": "Export named function"
+  },
+  "exportDefaultFunction": {
+    "prefix": "edf",
+    "body": ["export default (${1:first}) => {${2:second}}"],
+    "description": "Export default function"
+  },
+  "exportDefaultNamedFunction": {
+    "prefix": "ednf",
+    "body": ["export default function ${1:first}(${2:second}) {${3:third}}"],
+    "description": "Export default named function"
+  },
+  "destructProps": {
+    "prefix": "props_destructing",
+    "body": ["const { ${1:first} } = this.props"],
+    "description": "Creates and assigns a local variable using props destructing"
+  },
+  "destructState": {
+    "prefix": "state_destructing",
+    "body": ["const { ${1:first} } = this.state"],
+    "description": "Creates and assigns a local variable using state destructing"
+  },
+  "emptyState": {
+    "prefix": "state_empty",
+    "body": ["state = { ${1:first} }"],
+    "description": "Creates empty state object. To be used in a constructor."
+  },
+  "getDerivedStateFromProps": {
+    "prefix": "gdsfp",
+    "body": ["static getDerivedStateFromProps(props, state) {${1:first}}"],
+    "description": "Invoked right before calling the render method, both on the initial mount and on subsequent updates."
+  },
+  "getSnapshotBeforeUpdate": {
+    "prefix": "gsbu",
+    "body": [
+      "getSnapshotBeforeUpdate = (prevProps, prevState) => {${1:first}}"
+    ],
+    "description": "Called right before mutations are made (e.g. before the DOM is updated)"
+  },
+  "bindThis": {
+    "prefix": "bnd",
+    "body": ["this.${1:first} = this.${1:first}.bind(this)"],
+    "description": "Binds this to a method"
+  },
+  "commentBigBlock": {
+    "prefix": "cmmb",
+    "body": ["/**", " * ${1:first}", " */"]
+  },
+  "hocComponentWithRedux": {
+    "prefix": "hocredux",
+    "body": [
+      "import React from 'react'",
+      "import { connect } from 'react-redux'",
+      "import PropTypes from 'prop-types'",
+      "",
+      "export const mapStateToProps = state => ({})",
+      "",
+      "export const mapDispatchToProps = {}",
+      "",
+      "export const ${1:first} = (WrappedComponent) => {",
+      "  const hocComponent = ({ ...props }) => <WrappedComponent {...props} />",
+      "",
+      "  hocComponent.propTypes = {}",
+      "",
+      "  return hocComponent",
+      "}",
+      "",
+      "export default WrapperComponent => connect(mapStateToProps, mapDispatchToProps)(${1:first}(WrapperComponent))",
+      ""
+    ]
+  },
+  "hocComponent": {
+    "prefix": "hoc",
+    "body": [
+      "import React from 'react'",
+      "import PropTypes from 'prop-types'",
+      "",
+      "export default (WrappedComponent) => {",
+      "  const hocComponent = ({ ...props }) => <WrappedComponent {...props} />",
+      "",
+      "  hocComponent.propTypes = {}",
+      "",
+      "  return hocComponent",
+      "}",
+      ""
+    ]
+  },
+  "React Functional Component": {
+    "prefix": "rfc",
+    "body": [
+      "import React from 'react';",
+      "",
+      "interface Props {",
+      "\t$1",
+      "}",
+      "",
+      "const ${2:ComponentName}: React.FC<Props> = ({ $3 }) => {",
+      "\treturn (",
+      "\t\t<div>$0</div>",
+      "\t);",
+      "};",
+      "",
+      "export default ${2:ComponentName};"
+    ],
+    "description": "Create a React functional component"
+  },
+  "React Class Component": {
+    "prefix": "rcc",
+    "body": [
+      "import React, { Component } from 'react';",
+      "",
+      "interface Props {",
+      "\t$1",
+      "}",
+      "",
+      "interface State {",
+      "\t$2",
+      "}",
+      "",
+      "class ${3:ComponentName} extends Component<Props, State> {",
+      "\trender() {",
+      "\t\treturn (",
+      "\t\t\t<div>$0</div>",
+      "\t\t);",
+      "\t}",
+      "}",
+      "",
+      "export default ${3:ComponentName};"
+    ],
+    "description": "Create a React class component"
+  },
+  "React Functional Component with Props Destructuring": {
+    "prefix": "rfcprops",
+    "body": [
+      "import React from 'react';",
+      "",
+      "interface Props {",
+      "\t$1",
+      "}",
+      "",
+      "const ${2:ComponentName}: React.FC<Props> = ({ ${3:prop1}, ${4:prop2} }) => {",
+      "\treturn (",
+      "\t\t<div>$0</div>",
+      "\t);",
+      "};",
+      "",
+      "export default ${2:ComponentName};"
+    ],
+    "description": "Create a React functional component with props destructuring"
+  },
+  "React Redux Connect Functional Component": {
+    "prefix": "rrcfc",
+    "body": [
+      "import React from 'react';",
+      "import { connect } from 'react-redux';",
+      "import { RootState } from 'path/to/rootReducer';",
+      "",
+      "interface PropsFromState {",
+      "\t$1",
+      "}",
+      "",
+      "interface PropsFromDispatch {",
+      "\t$2",
+      "}",
+      "",
+      "type Props = PropsFromState & PropsFromDispatch;",
+      "",
+      "const ${3:ComponentName}: React.FC<Props> = ({ $4 }) => {",
+      "\treturn (",
+      "\t\t<div>$0</div>",
+      "\t);",
+      "};",
+      "",
+      "const mapStateToProps = (state: RootState): PropsFromState => ({",
+      "\t$5",
+      "});",
+      "",
+      "const mapDispatchToProps: PropsFromDispatch = {",
+      "\t$6",
+      "};",
+      "",
+      "export default connect(",
+      "\tmapStateToProps,",
+      "\tmapDispatchToProps",
+      ")(${3:ComponentName});"
+    ],
+    "description": "Create a connected React functional component with Redux"
+  },
+  "React Redux Connect Class Component": {
+    "prefix": "rrccc",
+    "body": [
+      "import React, { Component } from 'react';",
+      "import { connect } from 'react-redux';",
+      "import { RootState } from 'path/to/rootReducer';",
+      "",
+      "interface PropsFromState {",
+      "\t$1",
+      "}",
+      "",
+      "interface PropsFromDispatch {",
+      "\t$2",
+      "}",
+      "",
+      "type Props = PropsFromState & PropsFromDispatch;",
+      "",
+      "class ${3:ComponentName} extends Component<Props> {",
+      "\trender() {",
+      "\t\treturn (",
+      "\t\t\t<div>$0</div>",
+      "\t\t);",
+      "\t}",
+      "}",
+      "",
+      "const mapStateToProps = (state: RootState): PropsFromState => ({",
+      "\t$4",
+      "});",
+      "",
+      "const mapDispatchToProps: PropsFromDispatch = {",
+      "\t$5",
+      "};",
+      "",
+      "export default connect(",
+      "\tmapStateToProps,",
+      "\tmapDispatchToProps",
+      ")(${3:ComponentName});"
+    ],
+    "description": "Create a connected React class component with Redux"
+  },
+  "React Hook (useState)": {
+    "prefix": "usestate",
+    "body": [
+      "const [${1:state}, set${2:State}] = useState<${3:Type}>(initialValue);",
+      "$0"
+    ],
+    "description": "Declare a state variable with useState hook in React"
+  },
+  "React Hook (useEffect)": {
+    "prefix": "useeffect",
+    "body": ["useEffect(() => {", "\t$0", "}, [${1:dependency}]);"],
+    "description": "Declare an effect with useEffect hook in React"
+  },
+  "React Hook (useContext)": {
+    "prefix": "usecontext",
+    "body": ["const ${1:context} = useContext(${2:Context});", "$0"],
+    "description": "Access context with useContext hook in React"
+  },
+  "React Hook (useReducer)": {
+    "prefix": "usereducer",
+    "body": [
+      "const [state, dispatch] = useReducer(${1:reducer}, ${2:initialState});",
+      "$0"
+    ],
+    "description": "Declare a state management with useReducer hook in React"
+  },
+  "React Hook (useCallback)": {
+    "prefix": "usecallback",
+    "body": [
+      "const ${1:callback} = useCallback(() => {",
+      "\t$0",
+      "}, [${2:dependency}]);"
+    ],
+    "description": "Declare a memoized callback with useCallback hook in React"
+  },
+  "React Hook (useMemo)": {
+    "prefix": "usememo",
+    "body": [
+      "const ${1:memoizedValue} = useMemo(() => {",
+      "\treturn ${2:value};",
+      "}, [${3:dependency}]);",
+      "$0"
+    ],
+    "description": "Declare a memoized value with useMemo hook in React"
+  },
+  "React Hook (useRef)": {
+    "prefix": "useref",
+    "body": ["const ${1:ref} = useRef<${2:Type}>(null);", "$0"],
+    "description": "Declare a ref with useRef hook in React"
+  },
+  "React Hook (useImperativeHandle)": {
+    "prefix": "useimperativehandle",
+    "body": [
+      "useImperativeHandle(${1:ref}, () => ({",
+      "\t$0",
+      "}), [${2:dependency}]);"
+    ],
+    "description": "Customize instance value with useImperativeHandle hook in React"
+  },
+  "React Hook (useLayoutEffect)": {
+    "prefix": "uselayouteffect",
+    "body": ["useLayoutEffect(() => {", "\t$0", "}, [${1:dependency}]);"],
+    "description": "Run the effect before browser layout change with useLayoutEffect hook in React"
+  },
+  "React Hook (useDebugValue)": {
+    "prefix": "usedebugvalue",
+    "body": ["useDebugValue(${1:value});", "$0"],
+    "description": "Display a label for custom hook in React"
+  },
+  "Custom React Hook": {
+    "prefix": "usecustom",
+    "body": [
+      "const ${1:customHookName} = () => {",
+      "\t$0",
+      "};",
+      "",
+      "export default ${1:customHookName};"
+    ],
+    "description": "Declare a custom hook in React"
+  },
+  "React PropTypes (Functional Component)": {
+    "prefix": "proptypes",
+    "body": [
+      "import PropTypes from 'prop-types';",
+      "",
+      "interface Props {",
+      "\t$1",
+      "}",
+      "",
+      "const ${2:ComponentName}: React.FC<Props> = ({ $3 }) => {",
+      "\treturn (",
+      "\t\t<div>$0</div>",
+      "\t);",
+      "};",
+      "",
+      "${2:ComponentName}.propTypes = {",
+      "\t$4",
+      "};",
+      "",
+      "export default ${2:ComponentName};"
+    ],
+    "description": "Declare PropTypes for props in a React functional component"
+  },
+  "React PropTypes (Class Component)": {
+    "prefix": "proptypesclass",
+    "body": [
+      "import React, { Component } from 'react';",
+      "import PropTypes from 'prop-types';",
+      "",
+      "interface Props {",
+      "\t$1",
+      "}",
+      "",
+      "interface State {",
+      "\t$2",
+      "}",
+      "",
+      "class ${3:ComponentName} extends Component<Props, State> {",
+      "\trender() {",
+      "\t\treturn (",
+      "\t\t\t<div>$0</div>",
+      "\t\t);",
+      "\t}",
+      "}",
+      "",
+      "${3:ComponentName}.propTypes = {",
+      "\t$4",
+      "};",
+      "",
+      "export default ${3:ComponentName};"
+    ],
+    "description": "Declare PropTypes for props in a React class component"
+  },
+  "React PropTypes (Functional Component with Destructuring)": {
+    "prefix": "proptypesdestructuring",
+    "body": [
+      "import PropTypes from 'prop-types';",
+      "",
+      "interface Props {",
+      "\t${1:prop1}: ${2:Type};",
+      "\t${3:prop2}: ${4:Type};",
+      "}",
+      "",
+      "const ${5:ComponentName}: React.FC<Props> = ({ ${1:prop1}, ${3:prop2} }) => {",
+      "\treturn (",
+      "\t\t<div>$0</div>",
+      "\t);",
+      "};",
+      "",
+      "${5:ComponentName}.propTypes = {",
+      "\t${1:prop1}: PropTypes.${6:isRequired},",
+      "\t${3:prop2}: PropTypes.${7:isRequired}",
+      "};",
+      "",
+      "export default ${5:ComponentName};"
+    ],
+    "description": "Declare PropTypes with destructuring for props in a React functional component"
+  },
+  "React Memo (Functional Component)": {
+    "prefix": "memo",
+    "body": [
+      "import React, { memo } from 'react';",
+      "",
+      "interface Props {",
+      "\t$1",
+      "}",
+      "",
+      "const ${2:ComponentName}: React.FC<Props> = ({ $3 }) => {",
+      "\treturn (",
+      "\t\t<div>$0</div>",
+      "\t);",
+      "};",
+      "",
+      "export default memo(${2:ComponentName});"
+    ],
+    "description": "Memoize a React functional component with React.memo"
+  },
+  "React Memo (Functional Component with Custom Comparison)": {
+    "prefix": "memocompare",
+    "body": [
+      "import React, { memo } from 'react';",
+      "",
+      "interface Props {",
+      "\t$1",
+      "}",
+      "",
+      "const ${2:ComponentName}: React.FC<Props> = ({ $3 }) => {",
+      "\treturn (",
+      "\t\t<div>$0</div>",
+      "\t);",
+      "};",
+      "",
+      "function areEqual(prevProps: Props, nextProps: Props) {",
+      "\treturn true; // Define your comparison logic here",
+      "}",
+      "",
+      "export default memo(${2:ComponentName}, areEqual);"
+    ],
+    "description": "Memoize a React functional component with custom comparison function using React.memo"
+  },
+  "React Memo (Class Component)": {
+    "prefix": "memoclass",
+    "body": [
+      "import React, { PureComponent } from 'react';",
+      "",
+      "interface Props {",
+      "\t$1",
+      "}",
+      "",
+      "interface State {",
+      "\t$2",
+      "}",
+      "",
+      "class ${3:ComponentName} extends PureComponent<Props, State> {",
+      "\trender() {",
+      "\t\treturn (",
+      "\t\t\t<div>$0</div>",
+      "\t\t);",
+      "\t}",
+      "}",
+      "",
+      "export default React.memo(${3:ComponentName});"
+    ],
+    "description": "Memoize a React class component with React.memo"
+  },
+  "React Higher-Order Component (HOC)": {
+    "prefix": "hoc",
+    "body": [
+      "import React from 'react';",
+      "",
+      "function with${1:HigherOrderComponent}(WrappedComponent: React.ComponentType<any>) {",
+      "\treturn (props: any) => (",
+      "\t\t<WrappedComponent {...props} />",
+      "\t);",
+      "}",
+      "",
+      "export default with${1:HigherOrderComponent};"
+    ],
+    "description": "Create a higher-order component in React"
+  },
+  "React Hook (useForm)": {
+    "prefix": "use form",
+    "body": [
+      "const useForm = (initialValues: any) => {",
+      "\tconst [values, setValues] = useState(initialValues);",
+      "",
+      "\tconst handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {",
+      "\t\tconst { name, value } = event.target;",
+      "\t\tsetValues({",
+      "\t\t\t...values,",
+      "\t\t\t[name]: value",
+      "\t\t});",
+      "\t};",
+      "",
+      "\treturn {",
+      "\t\tvalues,",
+      "\t\thandleChange",
+      "\t};",
+      "};",
+      "",
+      "export default useForm;"
+    ],
+    "description": "Create a useForm custom hook in React for form handling"
+  }
+}
