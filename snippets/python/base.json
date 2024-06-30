@@ -177,8 +177,8 @@
     ],
     "description": "Adds multiple class attributes to a Python class"
   },
-  "class:method:constructor": {
-    "prefix": "class_func_constructor",
+  "class:constructor": {
+    "prefix": "class_constructor",
     "body": [
       "def __init__(self, ${1:x}):",
       "\tself.${1:x} = ${1:x}",
@@ -187,13 +187,13 @@
     ],
     "description": ["\tdef __init__(self, ${1:x}):", "\t\tself.${1:x} = ${1:x}"]
   },
-  "class:method:constructor:constructor empty": {
-    "prefix": "class_func_constructor_empty",
+  "class:constructor:constructor empty": {
+    "prefix": "class_constructor_empty",
     "body": ["def __init__(self):", "    pass"],
     "description": "Empty constructor"
   },
-  "class:method:constructor:with parameters": {
-    "prefix": "class_func_constructor_param",
+  "class:constructor:with parameters": {
+    "prefix": "class_constructor_param",
     "body": [
       "def __init__(self, ${1:param1}, ${2:param2}):",
       "    self.${1:param1} = ${1:param1}",
@@ -201,13 +201,13 @@
     ],
     "description": "Constructor with parameters"
   },
-  "class:method:constructor:with property initialization": {
-    "prefix": "class_func_constructor_prop_init",
+  "class:constructor:with property initialization": {
+    "prefix": "class_constructor_prop_init",
     "body": ["def __init__(self):", "    self.${1:property_name} = ${2:value}"],
     "description": "Constructor with property initialization"
   },
-  "class:method:constructor:with super call": {
-    "prefix": "class_func_constructor_super_call",
+  "class:constructor:with super call": {
+    "prefix": "class_constructor_super_call",
     "body": [
       "def __init__(self, ${1:params}):",
       "    super().__init__()",
@@ -215,29 +215,29 @@
     ],
     "description": "Constructor with super call"
   },
-  "class:method:constructor:with object destructuring": {
-    "prefix": "class_func_constructor_destructuring",
+  "class:constructor:with object destructuring": {
+    "prefix": "class_constructor_destructuring",
     "body": [
       "def __init__(self, ${1:param1}=${2:default_value}):",
       "    self.${1:param1} = ${1:param1}"
     ],
     "description": "Constructor with default parameter value"
   },
-  "class:method:constructor:with optional parameter": {
-    "prefix": "class_func_constructor_param_optional",
+  "class:constructor:with optional parameter": {
+    "prefix": "class_constructor_param_optional",
     "body": [
       "def __init__(self, ${1:param1}=None):",
       "    self.${1:param1} = ${1:param1}"
     ],
     "description": "Constructor with optional parameter"
   },
-  "class:method:constructor:with rest parameter with *args": {
-    "prefix": "class_func_constructor_param_rest_args",
+  "class:constructor:with rest parameter with *args": {
+    "prefix": "class_constructor_param_rest_args",
     "body": ["def __init__(self, *args):", "    self.args = args"],
     "description": "Constructor with *args parameter"
   },
-  "class:method:constructor:with object initialization with **kwargs": {
-    "prefix": "class_func_constructor_dict_dict_kwargs",
+  "class:constructor:with object initialization with **kwargs": {
+    "prefix": "class_constructor_dict_dict_kwargs",
     "body": [
       "def __init__(self, **kwargs):",
       "    for key, value in kwargs.items():",
@@ -245,16 +245,16 @@
     ],
     "description": "Constructor with **kwargs parameter"
   },
-  "class:method:constructor:with type hints": {
-    "prefix": "class_func_constructor_type_hints",
+  "class:constructor:with type hints": {
+    "prefix": "class_constructor_type_hints",
     "body": [
       "def __init__(self, ${1:param1}: ${2:type}):",
       "    self.${1:param1} = ${1:param1}"
     ],
     "description": "Constructor with type hints"
   },
-  "class:method:constructor:with type hints dict": {
-    "prefix": "class_func_constructor_with_dict",
+  "class:constructor:with type hints dict": {
+    "prefix": "class_constructor_with_dict",
     "body": [
       "def __init__(self, obj):",
       "    for key, value in obj.items():",
@@ -849,9 +849,19 @@
     "description": "def fname(arg):\n\tpass"
   },
   "function:async": {
-    "prefix": "def_func_async",
+    "prefix": "def_async_func",
     "body": "async def ${1:fname}(${2:arg}):\n\t${3:pass}$0",
     "description": "async def fname(args):\n\tpass"
+  },
+  "function:async:with decorator": {
+    "prefix": "def_async_func_with_decorator",
+    "body": [
+      "@${1:decorator_function}",
+      "async def ${2:function_name}(${3:parameters}):",
+      "\t\"\"\"${4:Docstring}\"\"\"",
+      "\t${0:# code here}"
+    ],
+    "description": "Create an async Python function with decorator"
   },
   "function:param args": {
     "prefix": "def_func_param_args",
@@ -871,16 +881,6 @@
       "\t${0:# code here}"
     ],
     "description": "Create a Python function with decorator"
-  },
-  "function:async with decorator": {
-    "prefix": "def_func_async_with_decorator",
-    "body": [
-      "@${1:decorator_function}",
-      "async def ${2:function_name}(${3:parameters}):",
-      "\t\"\"\"${4:Docstring}\"\"\"",
-      "\t${0:# code here}"
-    ],
-    "description": "Create an async Python function with decorator"
   },
   "return": {
     "prefix": "ret_",

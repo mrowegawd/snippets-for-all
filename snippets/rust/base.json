@@ -925,8 +925,8 @@
     "body": ["${2:attribute_name}: &mut ${3:Type},"],
     "description": "Adds a mutable reference attribute to a Rust `impl` block"
   },
-  "impl:method:constructor:with parameters": {
-    "prefix": "impl_func_constructor_with_params",
+  "impl:constructor:with parameters": {
+    "prefix": "impl_constructor_with_params",
     "body": [
       "fn new(${1:param1}: ${2:type1}, ${3:param2}: ${4:type2}) -> Self {",
       "    Self {",
@@ -937,8 +937,8 @@
     ],
     "description": "Constructor with parameters"
   },
-  "impl:method:constructor:with property initialization": {
-    "prefix": "impl_func_constructor_with_property_initialization",
+  "impl:constructor:with property initialization": {
+    "prefix": "impl_constructor_with_property_initialization",
     "body": [
       "fn new() -> Self {",
       "\tSelf {",
@@ -948,13 +948,13 @@
     ],
     "description": "Constructor with property initialization"
   },
-  "impl:method:constructor:with default trait": {
-    "prefix": "impl_func_constructor_with_default_trait",
+  "impl:constructor:with default trait": {
+    "prefix": "impl_constructor_with_default_trait",
     "body": ["fn new() -> Self {", "\tDefault::default()", "}"],
     "description": "Constructor with Default trait"
   },
-  "impl:method:constructor:with impl block": {
-    "prefix": "impl_func_constructor_new_with_impl_block",
+  "impl:constructor:with impl block": {
+    "prefix": "impl_constructor_new_with_impl_block",
     "body": [
       "impl ${1:StructName} {",
       "\tfn new(${2:params}) -> Self {",
@@ -966,8 +966,8 @@
     ],
     "description": "Constructor with impl block"
   },
-  "impl:method:constructor:with optional parameter (Option)": {
-    "prefix": "impl_func_constructor_with_optional_type_param",
+  "impl:constructor:with optional parameter (Option)": {
+    "prefix": "impl_constructor_with_optional_type_param",
     "body": [
       "fn new(${1:param}: Option<${2:type}>) -> Self {",
       "\tSelf {",
@@ -977,7 +977,7 @@
     ],
     "description": "Constructor with optional parameter (Option)"
   },
-  "impl:method:constructor:with builder pattern": {
+  "impl:constructor:with builder pattern": {
     "prefix": "ctorb",
     "body": [
       "#[derive(Default)]",

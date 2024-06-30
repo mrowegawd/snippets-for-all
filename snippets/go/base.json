@@ -275,8 +275,8 @@
     ],
     "description": "Create a setter method"
   },
-  "struct:method:constructor:simple": {
-    "prefix": "struct_func_constructor",
+  "struct:constructor:simple": {
+    "prefix": "struct_constructor",
     "body": [
       "func New${1:StructName}(${2:params}) *${1:StructName} {",
       "\treturn &${1:StructName}{",
@@ -286,8 +286,8 @@
     ],
     "description": "Constructor"
   },
-  "struct:method:constructor:with property initialization": {
-    "prefix": "struct_func_constructor_with_property_initialization",
+  "struct:constructor:with property initialization": {
+    "prefix": "struct_constructor_with_property_initialization",
     "body": [
       "func New${1:StructName}() *${1:StructName} {",
       "\treturn &${1:StructName}{",
@@ -297,8 +297,8 @@
     ],
     "description": "Constructor with property initialization"
   },
-  "struct:method:constructor:with default or expression initialization": {
-    "prefix": "struct_func_constructor_with_default_or_expression_initialization",
+  "struct:constructor:with default or expression initialization": {
+    "prefix": "struct_constructor_with_default_or_expression_initialization",
     "body": [
       "func New${1:StructName}(${2:param} ${3:type}) *${1:StructName} {",
       "\t${4:defaultValue} := ${5:expression}",
@@ -309,8 +309,8 @@
     ],
     "description": "Constructor with default or expression initialization"
   },
-  "struct:method:constructor:with type conversion using interface{}": {
-    "prefix": "struct_func_constructor_with_type_conversion_using_interface",
+  "struct:constructor:with type conversion using interface{}": {
+    "prefix": "struct_constructor_with_type_conversion_using_interface",
     "body": [
       "func New${1:StructName}(${2:param} interface{}) *${1:StructName} {",
       "\t${3:param} := ${2:param}.(${3:type})",
@@ -321,8 +321,8 @@
     ],
     "description": "Constructor with type conversion using interface{}"
   },
-  "struct:method:constructor:with parameter validation": {
-    "prefix": "struct_func_constructor_with_parameter_validation",
+  "struct:constructor:with parameter validation": {
+    "prefix": "struct_constructor_with_parameter_validation",
     "body": [
       "func New${1:StructName}(${2:param} ${3:type}) (*${1:StructName}, error) {",
       "\t// Validation logic",
@@ -337,8 +337,8 @@
     ],
     "description": "Constructor with parameter validation"
   },
-  "struct:method:constructor:with builder pattern": {
-    "prefix": "struct_func_constructor_with_builder_pattern_full",
+  "struct:constructor:with builder pattern": {
+    "prefix": "struct_constructor_with_builder_pattern_full",
     "body": [
       "type ${1:Builder} struct {",
       "\t${2:param1} ${3:type1}",
@@ -368,8 +368,8 @@
     ],
     "description": "Constructor with builder pattern"
   },
-  "struct:method:constructor:with default struct": {
-    "prefix": "struct_func_constructor_with_default_struct",
+  "struct:constructor:with default struct": {
+    "prefix": "struct_constructor_with_default_struct",
     "body": [
       "func New${1:StructName}() *${1:StructName} {",
       "\treturn &${1:StructName}{}",
@@ -377,8 +377,8 @@
     ],
     "description": "Constructor with default struct"
   },
-  "struct:method:constructor:with optional parameters (variadic)": {
-    "prefix": "struct_func_constructor_with_param_variadic",
+  "struct:constructor:with optional parameters (variadic)": {
+    "prefix": "struct_constructor_with_param_variadic",
     "body": [
       "func New${1:StructName}(${2:params} ...${3:type}) *${1:StructName} {",
       "    obj := &${1:StructName}{",
@@ -393,8 +393,8 @@
     ],
     "description": "Constructor with optional parameters (variadic)"
   },
-  "struct:method:constructor:with type conversion using strconv or other type": {
-    "prefix": "struct_func_constructor_with_type_conversion_using_strconv_or_other_type",
+  "struct:constructor:with type conversion using strconv or other type": {
+    "prefix": "struct_constructor_with_type_conversion_using_strconv_or_other_type",
     "body": [
       "func New${1:StructName}(${2:param} ${3:type}) *${1:StructName} {",
       "    ${4:param} := ${3:type}(${2:param})",
@@ -405,8 +405,8 @@
     ],
     "description": "Constructor with type conversion using strconv or other type"
   },
-  "struct:method:constructor:with values provided to set of properties in struct": {
-    "prefix": "struct_func_constructor_with_values_provided_to_set_of_properties_in_struct",
+  "struct:constructor:with values provided to set of properties in struct": {
+    "prefix": "struct_constructor_with_values_provided_to_set_of_properties_in_struct",
     "body": [
       "func New${1:StructName}(${2:param} ${3:type}) *${1:StructName} {",
       "    return &${1:StructName}{",

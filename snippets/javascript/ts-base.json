@@ -174,17 +174,6 @@
     "body": "const { ${1:name} } = await ${2:value}",
     "description": "const { name } = await value"
   },
-  "const:promise declaration": {
-    "prefix": "const_new_promise",
-    "body": [
-      "const ${1:promiseName}: Promise<${2:Type}> = new Promise((resolve, reject) => {",
-      "\t// Resolve or reject logic",
-      "\tresolve(${3:value});",
-      "});",
-      "$0"
-    ],
-    "description": "Declare a Promise in TypeScript"
-  },
   "const:date object declaration": {
     "prefix": "const_date",
     "body": ["const ${1:dateName}: Date = new Date();", "$0"],
@@ -666,27 +655,6 @@
     "body": "export default function ${1:name} (${2:arguments}) {\n\t${0}\n}",
     "description": "export default function nameFunc (arguments) {\n\t${0}\n}"
   },
-  "function:async::function immediately-invoked expression": {
-    "prefix": "func_iffe_async",
-    "body": ";(async (${1:arguments}) => {\n\t${0}\n})(${2})",
-    "description": ";(async (arguments) => {\n\n})(value)"
-  },
-  "function:async:declaration": {
-    "prefix": "func_async",
-    "body": [
-      "async function ${1:functionName}() {",
-      "\tconst result = await ${2:promise};",
-      "\treturn result;",
-      "}",
-      "$0"
-    ],
-    "description": "Declare an async function in TypeScript"
-  },
-  "function:async:arrow": {
-    "prefix": "func_arrow_async",
-    "body": "async (${1:arguments}) => {\n\t${0}\n}",
-    "description": "async (arguments) => {\n\n}"
-  },
   "function:arrow": {
     "prefix": "func_arrow",
     "body": "(${1:arguments}) => ${2:statement}",
@@ -1141,13 +1109,13 @@
     "body": ["readonly ${1:propertyName}: ${2:Type};", "$0"],
     "description": "Declare a readonly property in TypeScript"
   },
-  "class:method:constructor:empty": {
-    "prefix": "class_func_constructor_empty",
+  "class:constructor:empty": {
+    "prefix": "class_constructor_empty",
     "body": ["constructor() {", "    // Write your code here", "}"],
     "description": "Empty constructor"
   },
-  "class:method:constructor:with parameters": {
-    "prefix": "class_func_constructor_param",
+  "class:constructor:with parameters": {
+    "prefix": "class_constructor_param",
     "body": [
       "constructor(${1:params}) {",
       "    this.${1:params} = ${1:params};",
@@ -1155,8 +1123,8 @@
     ],
     "description": "Constructor with parameters"
   },
-  "class:method:constructor:with property initialization": {
-    "prefix": "class_func_constructor_prop_init",
+  "class:constructor:with property initialization": {
+    "prefix": "class_constructor_prop_init",
     "body": [
       "constructor() {",
       "    this.${1:propertyName} = ${2:value};",
@@ -1164,8 +1132,8 @@
     ],
     "description": "Constructor with property initialization"
   },
-  "class:method:constructor:with super call": {
-    "prefix": "class_func_constructor_super_call",
+  "class:constructor:with super call": {
+    "prefix": "class_constructor_super_call",
     "body": [
       "constructor(${1:params}) {",
       "    super();",
@@ -1174,8 +1142,8 @@
     ],
     "description": "Constructor with super call"
   },
-  "class:method:constructor:with object destructuring": {
-    "prefix": "class_func_constructor_destructuring",
+  "class:constructor:with object destructuring": {
+    "prefix": "class_constructor_destructuring",
     "body": [
       "constructor({${1:prop1}, ${2:prop2}}) {",
       "    this.${1:prop1} = ${1:prop1};",
@@ -1184,8 +1152,8 @@
     ],
     "description": "Constructor with object destructuring"
   },
-  "class:method:constructor:with optional parameter": {
-    "prefix": "class_func_constructor_param_optional",
+  "class:constructor:with optional parameter": {
+    "prefix": "class_constructor_param_optional",
     "body": [
       "constructor(${1:params}?: ${2:type}) {",
       "    this.${1:params} = ${1:params} ?? ${3:defaultValue};",
@@ -1193,8 +1161,8 @@
     ],
     "description": "Constructor with optional parameter"
   },
-  "class:method:constructor:with rest parameter": {
-    "prefix": "class_func_constructor_param_rest",
+  "class:constructor:with rest parameter": {
+    "prefix": "class_constructor_param_rest",
     "body": [
       "constructor(...${1:params}) {",
       "    this.${1:params} = ${1:params};",
@@ -1202,13 +1170,13 @@
     ],
     "description": "Constructor with rest parameter"
   },
-  "class:method:constructor:with object initialization": {
-    "prefix": "class_func_constructor_obj_init",
+  "class:constructor:with object initialization": {
+    "prefix": "class_constructor_obj_init",
     "body": ["constructor(obj: any) {", "    Object.assign(this, obj);", "}"],
     "description": "Constructor with object initialization"
   },
-  "class:method:constructor:with optional parameter and default value": {
-    "prefix": "class_func_constructor_param_optional_and_default",
+  "class:constructor:with optional parameter and default value": {
+    "prefix": "class_constructor_param_optional_and_default",
     "body": [
       "constructor(${1:params}: ${2:type} = ${3:defaultValue}) {",
       "    this.${1:params} = ${1:params};",
@@ -1216,8 +1184,8 @@
     ],
     "description": "Constructor with optional parameter and default value"
   },
-  "class:method:constructor:with readonly parameter": {
-    "prefix": "class_func_constructor_param_readonly",
+  "class:constructor:with readonly parameter": {
+    "prefix": "class_constructor_param_readonly",
     "body": ["constructor(readonly ${1:params}: ${2:type}) {", "}"],
     "description": "Constructor with readonly parameter"
   },
