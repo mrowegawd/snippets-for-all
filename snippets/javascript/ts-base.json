@@ -86,7 +86,7 @@
     "body": ["import { ${1:importedName} } from '${2:module}';", "$0"],
     "description": "Import statement in TypeScript"
   },
-  "Import Default Statement": {
+  "import default statement": {
     "prefix": "imp_default",
     "body": ["import ${1:defaultName} from '${2:module}';", "$0"],
     "description": "Import default statement in TypeScript"
@@ -1074,6 +1074,42 @@
     ],
     "description": "Class Definition"
   },
+  "class:t:with inheritance (extend)": {
+    "prefix": "class_t_inherit_class",
+    "body": ["class ${1:ChildClass} extends ${2:ParentClass} {"],
+    "description": "Class with inheritance (extend)"
+  },
+  "class:t:with multiple inheritance (mixins)": {
+    "prefix": "class_t_inherit_class_multi",
+    "body": [
+      "class ${1:ChildClass} extends ${2:Mixin1}(${3:Mixin2}(${4:BaseClass})) {"
+    ],
+    "description": "Class with multiple inheritance (mixins)"
+  },
+  "class:t:with interface implementation": {
+    "prefix": "class_t_inherit_interface",
+    "body": ["class ${1:ClassName} implements ${2:InterfaceName} {"],
+    "description": "Class with interface implementation"
+  },
+  "class:t:with extend and interface implementation": {
+    "prefix": "class_t_inherit_class_and_interface",
+    "body": [
+      "class ${1:ChildClass} extends ${2:ParentClass} implements ${3:InterfaceName} {"
+    ],
+    "description": "Class with extend and interface implementation"
+  },
+  "class:t:with multiple interface implementation": {
+    "prefix": "class_t_interit_interface_multi",
+    "body": [
+      "class ${1:ClassName} implements ${2:Interface1}, ${3:Interface2} {"
+    ],
+    "description": "Class with multiple interface implementation"
+  },
+  "class:t:with generic interface implementation": {
+    "prefix": "class_t_inherit_interface_generic",
+    "body": ["class ${1:ClassName} implements ${2:InterfaceName}<${3:T}> {"],
+    "description": "Class with generic interface implementation"
+  },
   "class:property": {
     "prefix": "class_prop_",
     "body": ["${1:private_or_public} ${2:nameproperty} : ${3:type};"],
@@ -1188,6 +1224,108 @@
     "prefix": "class_constructor_param_readonly",
     "body": ["constructor(readonly ${1:params}: ${2:type}) {", "}"],
     "description": "Constructor with readonly parameter"
+  },
+  "class:t:constructor:parameter": {
+    "prefix": "class_t_constructor_param_single",
+    "body": ["constructor(${1:param}: ${2:type}) {", "}"],
+    "description": "Constructor with single parameter"
+  },
+  "class:t:constructor:with multiple parameters": {
+    "prefix": "class_t_constructor_param_multi",
+    "body": ["constructor(${1:param1}: ${2:type1}, ${3:param2}: ${4:type2}) {"],
+    "description": "Constructor with multiple parameters"
+  },
+  "class:t:constructor:empty": {
+    "prefix": "class_t_constructor_empty",
+    "body": ["constructor() {", "\t$0", "}"],
+    "description": "Default constructor"
+  },
+  "class:t:constructor:with default values": {
+    "prefix": "class_t_constructor_param_default",
+    "body": [
+      "constructor(${1:param1}: ${2:type1} = ${3:default1}, ${4:param2}: ${5:type2} = ${6:default2}) {"
+    ],
+    "description": "Constructor with default values"
+  },
+  "class:t:constructor:overload": {
+    "prefix": "class_t_constructor_overload",
+    "body": [
+      "constructor();",
+      "constructor(${1:param}: ${2:type});",
+      "constructor(${1:param1}: ${2:type1}, ${3:param2}: ${4:type2});",
+      "constructor(${1:param1}: ${2:type1} = ${3:default1}, ${4:param2}: ${5:type2} = ${6:default2}) {",
+      "\tif (arguments.length === 0) {",
+      "\t\t// Default constructor logic",
+      "\t} else if (arguments.length === 1) {",
+      "\t\t// Constructor with single parameter logic",
+      "\t\tthis.${1:param} = ${1:param};",
+      "\t} else if (arguments.length === 2) {",
+      "\t\t// Constructor with two parameters logic",
+      "\t\tthis.${1:param1} = ${1:param1};",
+      "\t\tthis.${3:param2} = ${3:param2};",
+      "\t}",
+      "$0",
+      "}"
+    ],
+    "description": "Constructor overload"
+  },
+  "class:t:constructor with property initialization": {
+    "prefix": "class_t_constructor_prop_init",
+    "body": [
+      "constructor(public ${1:param1}: ${2:type1}, private ${3:param2}: ${4:type2}) {"
+    ],
+    "description": "Constructor with property initialization"
+  },
+  "class:t:constructor with readonly parameter": {
+    "prefix": "class_t_constructor_param_readonly",
+    "body": ["constructor(readonly ${1:param}: ${2:type}) {", "\t$0", "}"],
+    "description": "Constructor with readonly parameter"
+  },
+  "class:t:constructor with optional parameter": {
+    "prefix": "class_t_constructor_param_optional",
+    "body": [
+      "constructor(${1:param1}: ${2:type1}, ${3:param2}?: ${4:type2}) {",
+      "\tthis.${1:param1} = ${1:param1};",
+      "\tif (${3:param2} !== undefined) {",
+      "\t\tthis.${3:param2} = ${3:param2};",
+      "\t}",
+      "$0",
+      "}"
+    ],
+    "description": "Constructor with optional parameter"
+  },
+  "class:t:constructor with rest parameter": {
+    "prefix": "class_t_constructor_param_rest",
+    "body": ["constructor(...${1:params}: ${2:type}[]) {"],
+    "description": "Constructor with rest parameter"
+  },
+  "class:t:constructor with object destructuring": {
+    "prefix": "class_t_constructor_destructuring",
+    "body": [
+      "constructor({ ${1:param1}, ${2:param2} }: { ${1:param1}: ${3:type1}, ${2:param2}: ${4:type2} }) {"
+    ],
+    "description": "Constructor with object destructuring"
+  },
+  "class:t:constructor with optional parameter and default value": {
+    "prefix": "class_t_constructor_param_optional_init",
+    "body": [
+      "constructor(${1:param1}: ${2:type1}, ${3:param2}?: ${4:type2} = ${5:defaultValue}) {"
+    ],
+    "description": "Constructor with optional parameter and default value"
+  },
+  "class:t:constructor with optional readonly parameter": {
+    "prefix": "class_t_constructor_param_readonly_optional",
+    "body": [
+      "constructor(readonly ${1:param1}: ${2:type1}, ${3:param2}?: ${4:type2}) {"
+    ],
+    "description": "Constructor with optional readonly parameter"
+  },
+  "class:t:constructor with optional property initialization": {
+    "prefix": "class_t_constructor_prop_init_optional",
+    "body": [
+      "constructor(public ${1:param1}: ${2:type1}, private ${3:param2}?: ${4:type2}) {"
+    ],
+    "description": "Constructor with optional property initialization"
   },
   "class:method:func": {
     "prefix": "class_func_method",
