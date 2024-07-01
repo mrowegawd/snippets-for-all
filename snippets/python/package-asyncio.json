@@ -1,0 +1,214 @@
+{
+  "function:async": {
+    "prefix": "def_async_func",
+    "body": "async def ${1:fname}(${2:arg}):\n\t${3:pass}$0",
+    "description": "async def fname(args):\n\tpass"
+  },
+  "function:async:with decorator": {
+    "prefix": "def_async_func_with_decorator",
+    "body": [
+      "@${1:decorator_function}",
+      "async def ${2:function_name}(${3:parameters}):",
+      "\t\"\"\"${4:Docstring}\"\"\"",
+      "\t${0:# code here}"
+    ],
+    "description": "Create an async Python function with decorator"
+  },
+  "await:Statement": {
+    "prefix": "await_",
+    "body": "await ${1:coroutine}",
+    "description": "Await coroutine"
+  },
+  "async:t:context manager": {
+    "prefix": "async_t_with_context_manager",
+    "body": [
+      "async with ${1:async_context_manager} as ${2:variable}:",
+      "\t${3:pass}"
+    ],
+    "description": "Async context manager"
+  },
+  "async:t:for loop": {
+    "prefix": "async_t_for_loop",
+    "body": ["async for ${1:item} in ${2:async_iterable}:", "\t${3:pass}"],
+    "description": "Async for loop"
+  },
+  "async:t:sleep": {
+    "prefix": "async_t_sleep",
+    "body": "await asyncio.sleep(${1:seconds})",
+    "description": "Async sleep using asyncio"
+  },
+  "async:t:timeout": {
+    "prefix": "async_t_asyncio_waitfor_timeout",
+    "body": [
+      "try:",
+      "\tresult = await asyncio.wait_for(${1:coroutine}, ${2:timeout})",
+      "except asyncio.TimeoutError:",
+      "\t${3:handle_timeout_error()}"
+    ],
+    "description": "Async wait with timeout"
+  },
+  "func:async:asyncio event loop": {
+    "prefix": "def_async_with_event_loop",
+    "body": [
+      "async def main():",
+      "\t${1:# Initialize asyncio event loop}",
+      "\tloop = asyncio.get_event_loop()",
+      "\t${2:# Run coroutines concurrently}",
+      "\ttasks = [${3:async_function()} for _ in range(${4:num_tasks})]",
+      "\tresults = await asyncio.gather(*tasks)",
+      "\t${5:# Close the event loop}",
+      "\tloop.close()",
+      "",
+      "if __name__ == '__main__':",
+      "\t${6:loop.run_until_complete(main())}"
+    ],
+    "description": "Asyncio event loop"
+  },
+  "asyncio semaphore": {
+    "prefix": "def_async_with_semaphore",
+    "body": [
+      "async def task(sem):",
+      "\tawait sem.acquire()",
+      "\ttry:",
+      "\t\t${1:# Your async task}",
+      "\tfinally:",
+      "\t\tsem.release()",
+      "",
+      "async def main():",
+      "\t${2:# Set the maximum number of allowed concurrent tasks}",
+      "\tsem = asyncio.Semaphore(${3:max_tasks})",
+      "\ttasks = [task(sem) for _ in range(${4:num_tasks})]",
+      "\tawait asyncio.gather(*tasks)",
+      "",
+      "if __name__ == '__main__':",
+      "\t${5:asyncio.run(main())}"
+    ],
+    "description": "Asyncio semaphore for limiting concurrent tasks"
+  },
+  "asyncio queue": {
+    "prefix": "def_async_with_queue",
+    "body": [
+      "async def consumer(queue):",
+      "\twhile True:",
+      "\t\t${1:item} = await queue.get()",
+      "\t\ttry:",
+      "\t\t\t${2:# Process item}",
+      "\t\tfinally:",
+      "\t\t\tqueue.task_done()",
+      "",
+      "async def producer(queue, num_items):",
+      "\tfor i in range(num_items):",
+      "\t\t${3:item} = ${4:produce_item()}",
+      "\t\tawait queue.put(item)",
+      "",
+      "async def main():",
+      "\tqueue = asyncio.Queue()",
+      "\t${5:# Start producer and consumer tasks}",
+      "\tproducer_task = asyncio.create_task(producer(queue, ${6:num_items}))",
+      "\tconsumer_task = asyncio.create_task(consumer(queue))",
+      "\t${7:# Wait for all produced items to be processed}",
+      "\tawait queue.join()",
+      "\t${8:# Cancel consumer task after all items have been processed}",
+      "\tconsumer_task.cancel()",
+      "",
+      "if __name__ == '__main__':",
+      "\t${9:asyncio.run(main())}"
+    ],
+    "description": "Asyncio queue for producer-consumer pattern"
+  },
+  "asyncio gather": {
+    "prefix": "async_t_asyncio_gather",
+    "body": [
+      "async def main():",
+      "\ttasks = [${1:async_function()} for _ in range(${2:num_tasks})]",
+      "\tresults = await asyncio.gather(*tasks)",
+      "\t${4:# Process results}",
+      "",
+      "if __name__ == '__main__':",
+      "\t${5:asyncio.run(main())}"
+    ],
+    "description": "Asyncio gather for gathering results from multiple coroutines"
+  },
+  "asyncio timeout with cancel": {
+    "prefix": "async_t_with_timeout_cancel",
+    "body": [
+      "async def main():",
+      "\t${1:# Set the timeout value in seconds}",
+      "\ttimeout = ${2:10}",
+      "\ttask = asyncio.create_task(${3:async_function()})",
+      "\ttry:",
+      "\t\t${4:await asyncio.wait_for(task, timeout=timeout)}",
+      "\texcept asyncio.TimeoutError:",
+      "\t\t${5:# Handle timeout}",
+      "\tfinally:",
+      "\t\t${6:if not task.done(): task.cancel()}",
+      "",
+      "if __name__ == '__main__':",
+      "\t${7:asyncio.run(main())}"
+    ],
+    "description": "Asyncio timeout with cancellation"
+  },
+  "asyncio lock": {
+    "prefix": "async_t_with_lock",
+    "body": [
+      "async def task(lock):",
+      "\t${1:await lock.acquire()}",
+      "\ttry:",
+      "\t\t${2:# Your async task}",
+      "\tfinally:",
+      "\t\tlock.release()",
+      "",
+      "async def main():",
+      "\tlock = asyncio.Lock()",
+      "\ttasks = [task(lock) for _ in range(${3:num_tasks})]",
+      "\tawait asyncio.gather(*tasks)",
+      "",
+      "if __name__ == '__main__':",
+      "\t${4:asyncio.run(main())}"
+    ],
+    "description": "Asyncio lock for synchronized access"
+  },
+  "Asyncio Shield": {
+    "prefix": "async_t_with_shield",
+    "body": [
+      "async def main():",
+      "\t${1:coro} = asyncio.shield(${2:async_function()})",
+      "\t${3:await ${1:coro}}",
+      "",
+      "if __name__ == '__main__':",
+      "\t${4:asyncio.run(main())}"
+    ],
+    "description": "Asyncio shield to protect a coroutine from cancellation"
+  },
+  "asyncio context variables": {
+    "prefix": "async_t_with_context_manager",
+    "body": [
+      "async def main():",
+      "\t${1:async with ${2:asyncio.create_task_context()} as ${3:context}:}",
+      "\t\t${4:# Your async code}",
+      "",
+      "if __name__ == '__main__':",
+      "\t${5:asyncio.run(main())}"
+    ],
+    "description": "Asyncio context variables for task-specific data"
+  },
+  "Asyncio Subprocess": {
+    "prefix": "async_t_with_subprocess",
+    "body": [
+      "async def run_subprocess():",
+      "\t${1:process} = await asyncio.create_subprocess_exec(",
+      "\t\t${2:command},",
+      "\t\t${3:arg1},",
+      "\t\t${4:arg2},",
+      "\t\t${5:stdout=asyncio.subprocess.PIPE},",
+      "\t\t${6:stderr=asyncio.subprocess.PIPE}",
+      "\t)",
+      "\tstdout, stderr = await ${1:process}.communicate()",
+      "\t${7:# Process output}",
+      "",
+      "if __name__ == '__main__':",
+      "\t${8:asyncio.run(run_subprocess())}"
+    ],
+    "description": "Asyncio subprocess execution and communication"
+  }
+}

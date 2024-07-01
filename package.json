@@ -88,7 +88,15 @@
       },
       {
         "language": "go",
+        "path": "./snippets/go/package-context.json"
+      },
+      {
+        "language": "go",
         "path": "./snippets/go/error.json"
+      },
+      {
+        "language": "go",
+        "path": "./snippets/go/goroutine.json"
       },
       {
         "language": "go",
@@ -408,16 +416,20 @@
         "path": "./snippets/javascript/json.json"
       },
       {
-        "language": "javascriptreact",
-        "path": "./snippets/javascript/react.json"
+        "language": "typescriptreact",
+        "path": "./snippets/javascript/ts-testing.json"
       },
       {
         "language": "javascriptreact",
-        "path": "./snippets/javascript/react-native.json"
+        "path": "./snippets/frameworks/react/react.json"
       },
       {
         "language": "javascriptreact",
-        "path": "./snippets/framework/nextjs/next.json"
+        "path": "./snippets/frameworks/react/react-es7.json"
+      },
+      {
+        "language": "javascriptreact",
+        "path": "./snippets/frameworks/react/react-native.json"
       },
       {
         "language": "typescriptreact",
@@ -425,25 +437,23 @@
       },
       {
         "language": "typescriptreact",
-        "path": "./snippets/javascript/ts-react.json"
+        "path": "./snippets/frameworks/react/ts-react.json"
+      },
+      {
+        "language": "typescriptreact",
+        "path": "./snippets/frameworks/react/ts-react-native.json"
+      },
+      {
+        "language": "typescriptreact",
+        "path": "./snippets/frameworks/react/ts-testing-react.json"
+      },
+      {
+        "language": "javascriptreact",
+        "path": "./snippets/framework/nextjs/next.json"
       },
       {
         "language": "typescriptreact",
         "path": "./snippets/framework/nextjs/ts-next.json"
-      },
-      {
-        "language": "typescriptreact",
-        "path": "./snippets/javascript/ts-testing.json"
-      },
-      {
-        "language": "typescriptreact",
-        "path": "./snippets/javascript/ts-testing-react.json"
-      },
-      {
-        "language": [
-          "javascriptreact"
-        ],
-        "path": "./snippets/javascript/react-es7.json"
       },
       {
         "language": "svelte",
@@ -512,6 +522,10 @@
       {
         "language": "python",
         "path": "./snippets/python/unittest.json"
+      },
+      {
+        "language": "python",
+        "path": "./snippets/python/package-asyncio.json"
       },
       {
         "language": "python",

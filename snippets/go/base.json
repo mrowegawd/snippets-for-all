@@ -602,55 +602,6 @@
     "body": "defer ${1:func}($0)",
     "description": "Snippet for defer statement"
   },
-  "func:goroutine:read channel": {
-    "prefix": "func_go_read_channel",
-    "body": [
-      "go func(ch <-chan ${1:Type}) {",
-      "\tfor ${2:data} := range ch {",
-      "\t\t${3:// Process each data element}",
-      "\t}",
-      "}(${4:ch})"
-    ],
-    "description": "goroutine function that receives data from a buffered channel"
-  },
-  "func:goroutine:return-channel": {
-    "prefix": "func_go_return_channel",
-    "body": [
-      "func ${1:goroutineFuncName}() <-chan ${2:Type} {",
-      "\tout := make(chan ${2:Type})",
-      "\tgo func() {",
-      "\t\tdefer close(out)",
-      "\t\t${3:// Your goroutine logic}",
-      "\t}()",
-      "\treturn out",
-      "}"
-    ],
-    "description": "Write a goroutine function that returns a channel"
-  },
-  "func:goroutine:-output-buffered-channel": {
-    "prefix": "func_go_return_buffered_channel",
-    "body": [
-      "func ${1:goroutineFuncName}() chan<- ${2:Type} {",
-      "\tout := make(chan ${2:Type}, ${3:BufferSize})",
-      "\tgo func() {",
-      "\t\tdefer close(out)",
-      "\t\t${4:// Your goroutine logic}",
-      "\t}()",
-      "\treturn out",
-      "}"
-    ],
-    "description": "Write a goroutine function that returns a buffered channel"
-  },
-  "go:func:empty": {
-    "prefix": "go_func_annotation",
-    "body": "go ${1:funcName}($0)",
-    "description": "Snippet for goroutine declaration"
-  },
-  "go:func:full": {
-    "prefix": "go_func_anonymous",
-    "body": "go func($1) {\n\t$0\n}($2)",
-    "description": "Snippet for anonymous goroutine declaration"
-  },
   "for": {
     "prefix": ["for_block"],
     "body": "for ${1}{\n\t$0\n}",

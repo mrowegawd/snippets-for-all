@@ -848,21 +848,6 @@
     "body": "def ${1:fname}(${2:arg}):\n\t${3:pass}$0",
     "description": "def fname(arg):\n\tpass"
   },
-  "function:async": {
-    "prefix": "def_async_func",
-    "body": "async def ${1:fname}(${2:arg}):\n\t${3:pass}$0",
-    "description": "async def fname(args):\n\tpass"
-  },
-  "function:async:with decorator": {
-    "prefix": "def_async_func_with_decorator",
-    "body": [
-      "@${1:decorator_function}",
-      "async def ${2:function_name}(${3:parameters}):",
-      "\t\"\"\"${4:Docstring}\"\"\"",
-      "\t${0:# code here}"
-    ],
-    "description": "Create an async Python function with decorator"
-  },
   "function:param args": {
     "prefix": "def_func_param_args",
     "body": [

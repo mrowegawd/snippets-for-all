@@ -1,1 +1,669 @@
-{}
+{
+  "function:async:func immediately-invoked expression": {
+    "prefix": "func_async_iife",
+    "body": ";(async (${1:arguments}) => {\n\t${0}\n})(${2})",
+    "description": ";(async (arguments) => {\n\n})(value)"
+  },
+  "function:async:func": {
+    "prefix": "func_async_",
+    "body": [
+      "async function ${1:functionName}(${2:params}: ${3:type}): Promise<${4:void}> {",
+      "    $0",
+      "}"
+    ],
+    "description": "Creates an async function"
+  },
+  "function:async:arrow:func": {
+    "prefix": "func_async_arrow_",
+    "body": [
+      "const ${1:functionName} = async (${2:params}: ${3:type}): Promise<${4:void}> => {",
+      "    $0",
+      "};"
+    ],
+    "description": "Creates an async arrow function"
+  },
+  "function:async:arrow:with optional return value": {
+    "prefix": "func_async_arrow_ret_promise_optional_value",
+    "body": [
+      "const ${1:functionName} = async (${2:params}: ${3:type}): Promise<${4:returnType | void}> => {",
+      "    $0",
+      "};"
+    ],
+    "description": "Creates an async arrow function with optional return value"
+  },
+  "function:async:param:optional parameter": {
+    "prefix": "func_async_param_optional",
+    "body": [
+      "async function ${1:functionName}(${2:params}?: ${3:type}): Promise<${4:void}> {",
+      "    $0",
+      "}"
+    ],
+    "description": "Creates an async function with optional parameter"
+  },
+  "function:async:param:with destructuring parameter": {
+    "prefix": "func_async_param_destructuring",
+    "body": [
+      "async function ${1:functionName}({${2:param1}, ${3:param2}}: {${2:param1}: ${4:type1}, ${3:param2}: ${5:type2}}): Promise<${6:void}> {",
+      "    $0",
+      "}"
+    ],
+    "description": "Creates an async function with destructuring parameter"
+  },
+  "function:async:with return value": {
+    "prefix": "func_async_ret_promise_value",
+    "body": [
+      "async function ${1:functionName}(${2:params}: ${3:type}): Promise<${4:returnType}> {",
+      "    $0",
+      "}"
+    ],
+    "description": "Creates an async function with return value"
+  },
+  "function:async:with generic Promise": {
+    "prefix": "func_async_ret_promise_generic",
+    "body": [
+      "async function ${1:functionName}(${2:params}: ${3:type}): ${4:Promise<${5:void}>>} {",
+      "    $0",
+      "}"
+    ],
+    "description": "Creates an async function using generic Promise"
+  },
+  "function:async:with await and multiple statements": {
+    "prefix": "func_async_with_await_and_multiple_statements",
+    "body": [
+      "async function ${1:functionName}(${2:params}: ${3:type}): Promise<${4:void}> {",
+      "    const ${5:result} = await ${6:asyncOperation}(${2:params});",
+      "    ${7:// Additional statements}",
+      "    return ${5:result};",
+      "}"
+    ],
+    "description": "Creates an async function with await and multiple statements"
+  },
+  "function:async:with try-catch error handling": {
+    "prefix": "func_async_with_try_catch_error_handling",
+    "body": [
+      "async function ${1:functionName}(${2:params}: ${3:type}): Promise<${4:void}> {",
+      "    try {",
+      "        $0",
+      "    } catch (error) {",
+      "        console.error('Error:', error);",
+      "        throw error;",
+      "    }",
+      "}"
+    ],
+    "description": "Creates an async function with try-catch error handling"
+  },
+  "function:async:with await in loop": {
+    "prefix": "func_async_with_await_in_loop",
+    "body": [
+      "async function ${1:functionName}(${2:params}: ${3:type}): Promise<${4:void}> {",
+      "    for (const ${5:item} of ${6:items}) {",
+      "        await ${7:asyncOperation}(${5:item});",
+      "    }",
+      "    $0",
+      "}"
+    ],
+    "description": "Creates an async function with await inside loop"
+  },
+  "function:async:with Promise.resolve for return value": {
+    "prefix": "func_async_ret_promise_resolve",
+    "body": [
+      "async function ${1:functionName}(${2:params}: ${3:type}): Promise<${4:returnType}> {",
+      "    return Promise.resolve(${5:returnValue});",
+      "}"
+    ],
+    "description": "Creates an async function with Promise.resolve for return value"
+  },
+  "function:async:with await in if condition": {
+    "prefix": "func_async_with_await_in_if_condition",
+    "body": [
+      "async function ${1:functionName}(${2:params}: ${3:type}): Promise<${4:void}> {",
+      "    if (await ${5:checkCondition}(${2:params})) {",
+      "        $0",
+      "    }",
+      "}"
+    ],
+    "description": "Creates an async function with await inside if condition"
+  },
+  "function:async:with Promise.all and try-catch for multiple errors": {
+    "prefix": "func_async_with_promise_all_try_catch_for_multiple_errors",
+    "body": [
+      "async function ${1:functionName}(${2:params}: ${3:type}): Promise<${4:void}> {",
+      "    try {",
+      "        const results = await Promise.all([",
+      "            ${5:asyncOperation1}(${2:params}),",
+      "            ${6:asyncOperation2}(${2:params})",
+      "            // Add more async operations as needed",
+      "        ]);",
+      "        $0",
+      "    } catch (error) {",
+      "        console.error('Error:', error);",
+      "        throw error;",
+      "    }",
+      "}"
+    ],
+    "description": "Creates an async function with Promise.all and try-catch for multiple errors"
+  },
+  "function:async:with await in ternary expression": {
+    "prefix": "func_async_with_await_in_ternary_expression",
+    "body": [
+      "async function ${1:functionName}(${2:params}: ${3:type}): Promise<${4:returnType | void}> {",
+      "    const result = ${5:condition} ? await ${6:asyncOperation1}(${2:params}) : await ${7:asyncOperation2}(${2:params});",
+      "    return ${8:returnValue};",
+      "}"
+    ],
+    "description": "Creates an async function with await in ternary expression"
+  },
+  "function:async:with Promise.race for timeout handling": {
+    "prefix": "func_async_With_PromiseRace_for_TimeoutHandling",
+    "body": [
+      "async function ${1:functionName}(${2:params}: ${3:type}): Promise<${4:void}> {",
+      "    const timeoutPromise = new Promise<never>((resolve, reject) => {",
+      "        setTimeout(() => {",
+      "            reject(new Error('Operation timed out'));",
+      "        }, ${5:timeoutMilliseconds});",
+      "    });",
+      "    try {",
+      "        const result = await Promise.race([",
+      "            ${6:asyncOperation}(${2:params}),",
+      "            timeoutPromise",
+      "        ]);",
+      "        return result;",
+      "    } catch (error) {",
+      "        console.error('Error:', error);",
+      "        throw error;",
+      "    }",
+      "}"
+    ],
+    "description": "Creates an async function with Promise.race for timeout handling"
+  },
+  "function:async:with if-else error condition handling": {
+    "prefix": "func_async_with_if_else_error_condition_handling",
+    "body": [
+      "async function ${1:functionName}(${2:params}: ${3:type}): Promise<${4:void}> {",
+      "    const result = await ${5:asyncOperation}(${2:params});",
+      "    if (!result) {",
+      "        throw new Error('Error: Result is falsy');",
+      "    } else {",
+      "        $0",
+      "    }",
+      "}"
+    ],
+    "description": "Creates an async function with if-else error condition handling"
+  },
+  "function:async:with await in try-catch for multiple operations": {
+    "prefix": "func_async_with_await_in_try_catch_for_multiple_operations",
+    "body": [
+      "async function ${1:functionName}(${2:params}: ${3:type}): Promise<${4:void}> {",
+      "    try {",
+      "        const result1 = await ${5:asyncOperation1}(${2:params});",
+      "        const result2 = await ${6:asyncOperation2}(${2:params});",
+      "        // Additional async operations",
+      "        $0",
+      "    } catch (error) {",
+      "        console.error('Error:', error);",
+      "        throw error;",
+      "    }",
+      "}"
+    ],
+    "description": "Creates an async function with await in try-catch for multiple operations"
+  },
+  "function:async:with retry using recursive function": {
+    "prefix": "func_async_with_retry_using_recursive_function",
+    "body": [
+      "async function ${1:functionName}(${2:params}: ${3:type}, retriesLeft = ${4:3}): Promise<${5:void}> {",
+      "    try {",
+      "        const result = await ${6:asyncOperation}(${2:params});",
+      "        return result;",
+      "    } catch (error) {",
+      "        if (retriesLeft > 0) {",
+      "            console.warn('Retrying...');",
+      "            return ${1:functionName}(${2:params}, retriesLeft - 1);",
+      "        } else {",
+      "            console.error('Error:', error);",
+      "            throw error;",
+      "        }",
+      "    }",
+      "}"
+    ],
+    "description": "Creates an async function with retry using recursive function"
+  },
+  "function:async:with await in forEach loop": {
+    "prefix": "func_async_with_await_in_forEach_loop",
+    "body": [
+      "async function ${1:functionName}(items: ${2:type}[]): Promise<${3:void}> {",
+      "    await Promise.all(items.map(async (${4:item}) => {",
+      "        await ${5:asyncOperation}(${4:item});",
+      "    }));",
+      "    $0",
+      "}"
+    ],
+    "description": "Creates an async function with await inside forEach loop"
+  },
+  "function:async:with Promise.race for timeout and fallback value": {
+    "prefix": "func_async_with_PromiseRace_for_TimeoutAndFallbackValue",
+    "body": [
+      "async function ${1:functionName}(${2:params}: ${3:type}): Promise<${4:returnType}> {",
+      "    const timeoutMilliseconds = ${5:5000};",
+      "    const asyncOperationPromise = ${6:asyncOperation}(${2:params});",
+      "    const timeoutPromise = new Promise<${4:returnType}>((resolve, reject) => {",
+      "        setTimeout(() => {",
+      "            resolve(${7:fallbackValue});",
+      "        }, timeoutMilliseconds);",
+      "    });",
+      "    const result = await Promise.race([asyncOperationPromise, timeoutPromise]);",
+      "    return result;",
+      "}"
+    ],
+    "description": "Creates an async function with Promise.race for timeout and fallback value"
+  },
+  "function:async:with await in if-else for alternate conditions": {
+    "prefix": "func_async_with_await_in_if_else_for_alternate_conditions",
+    "body": [
+      "async function ${1:functionName}(${2:params}: ${3:type}): Promise<${4:returnType | void}> {",
+      "    if (${5:condition}) {",
+      "        const result1 = await ${6:asyncOperation1}(${2:params});",
+      "        return ${7:returnValue1};",
+      "    } else {",
+      "        const result2 = await ${8:asyncOperation2}(${2:params});",
+      "        return ${9:returnValue2};",
+      "    }",
+      "}"
+    ],
+    "description": "Creates an async function with await in if-else for alternate conditions"
+  },
+  "function:async:with Promise.all for multiple errors and fallback value": {
+    "prefix": "func_async_with_PromiseAll_for_multiple_errors_and_fallback_value",
+    "body": [
+      "async function ${1:functionName}(${2:params}: ${3:type}): Promise<${4:returnType}> {",
+      "    try {",
+      "        const results = await Promise.all([",
+      "            ${5:asyncOperation1}(${2:params}),",
+      "            ${6:asyncOperation2}(${2:params})",
+      "            // Add more async operations as needed",
+      "        ]);",
+      "        return results[0] || ${7:fallbackValue};",
+      "    } catch (error) {",
+      "        console.error('Error:', error);",
+      "        throw error;",
+      "    }",
+      "}"
+    ],
+    "description": "Creates an async function with Promise.all for multiple errors and fallback value"
+  },
+  "const:new promise declaration": {
+    "prefix": "const_new_promise",
+    "body": [
+      "const ${1:promiseName}: Promise<${2:Type}> = new Promise((resolve, reject) => {",
+      "\t// Resolve or reject logic",
+      "\tresolve(${3:value});",
+      "});",
+      "$0"
+    ],
+    "description": "Declare a Promise in TypeScript"
+  },
+  "const:new promise with resolve and reject": {
+    "prefix": "const_new_promise_with_resolve_and_reject",
+    "body": [
+      "const ${1:promiseName} = new Promise<${2:resolveType}>((resolve, reject) => {",
+      "    if (${3:condition}) {",
+      "        resolve(${4:resolvedValue});",
+      "    } else {",
+      "        reject(new Error('${5:errorReason}'));",
+      "    }",
+      "});"
+    ],
+    "description": "Creates a Promise with resolve and reject"
+  },
+  "const:new promise with async operation": {
+    "prefix": "const_new_promise_with_async_operation",
+    "body": [
+      "const ${1:promiseName} = new Promise<${2:resolveType}>((resolve, reject) => {",
+      "    setTimeout(() => {",
+      "        resolve(${3:resolvedValue});",
+      "    }, ${4:delayMilliseconds});",
+      "});"
+    ],
+    "description": "Creates a Promise with async operation"
+  },
+  "const:new promise with error handling using catch": {
+    "prefix": "const_new_promise_with_error_handling_using_catch",
+    "body": [
+      "const ${1:promiseName} = new Promise<${2:resolveType}>((resolve, reject) => {",
+      "    ${3:asyncOperation}().then(result => {",
+      "        resolve(result);",
+      "    }).catch(error => {",
+      "        console.error('Error:', error);",
+      "        reject(error);",
+      "    });",
+      "});"
+    ],
+    "description": "Creates a Promise with error handling using catch"
+  },
+  "const:new promise with chaining then and catch": {
+    "prefix": "const_new_promise_with_chaining_then_and_catch",
+    "body": [
+      "const ${1:promiseName} = ${2:asyncOperation}().then(result => {",
+      "    $0",
+      "}).catch(error => {",
+      "    console.error('Error:', error);",
+      "    throw error;",
+      "});"
+    ],
+    "description": "Creates a Promise with chaining then and catch"
+  },
+  "const:new promise with Promise.all for multiple errors": {
+    "prefix": "const_new_promise_with_PromiseAll_for_multiple_errors",
+    "body": [
+      "const ${1:promiseName} = Promise.all([",
+      "    ${2:asyncOperation1}(),",
+      "    ${3:asyncOperation2}()",
+      "    // Add more async operations as needed",
+      "]).then(results => {",
+      "    return results;",
+      "}).catch(error => {",
+      "    console.error('Error:', error);",
+      "    throw error;",
+      "});"
+    ],
+    "description": "Creates a Promise with Promise.all for multiple errors"
+  },
+  "const:new promise with Promise.race for timeout handling": {
+    "prefix": "const_new_promise_with_PromiseRace_for_TimeoutHandling",
+    "body": [
+      "const ${1:promiseName} = Promise.race([",
+      "    ${2:asyncOperation}(),",
+      "    new Promise<${3:never}>((resolve, reject) => {",
+      "        setTimeout(() => {",
+      "            reject(new Error('Operation timed out'));",
+      "        }, ${4:timeoutMilliseconds});",
+      "    })",
+      "]).then(result => {",
+      "    return result;",
+      "}).catch(error => {",
+      "    console.error('Error:', error);",
+      "    throw error;",
+      "});"
+    ],
+    "description": "Creates a Promise with Promise.race for timeout handling"
+  },
+  "const:new promise with async function as executor": {
+    "prefix": "const_new_promise_with_async_function_as_executor",
+    "body": [
+      "const ${1:promiseName} = new Promise<${2:resolveType}>(async (resolve, reject) => {",
+      "    try {",
+      "        const result = await ${3:asyncOperation}();",
+      "        resolve(result);",
+      "    } catch (error) {",
+      "        console.error('Error:', error);",
+      "        reject(error);",
+      "    }",
+      "});"
+    ],
+    "description": "Creates a Promise with async function as executor"
+  },
+  "const:new promise with finally for clean-up": {
+    "prefix": "const_new_promise_with_finally_for_cleanUp",
+    "body": [
+      "const ${1:promiseName} = ${2:asyncOperation}().then(result => {",
+      "    return result;",
+      "}).catch(error => {",
+      "    console.error('Error:', error);",
+      "    throw error;",
+      "}).finally(() => {",
+      "    // Clean-up code",
+      "});"
+    ],
+    "description": "Creates a Promise with finally for clean-up"
+  },
+  "const:new promise with separate resolve and reject": {
+    "prefix": "const_new_promise_with_separate_resolve_and_reject",
+    "body": [
+      "const ${1:promiseName} = new Promise<${2:resolveType}>((resolve, reject) => {",
+      "    if (${3:condition}) {",
+      "        resolve(${4:resolvedValue});",
+      "    } else {",
+      "        reject(${5:errorValue});",
+      "    }",
+      "});"
+    ],
+    "description": "Creates a Promise with separate resolve and reject"
+  },
+  "const:new promise with Promise.resolve": {
+    "prefix": "const_new_promise_with_PromiseResolve",
+    "body": ["const ${1:promiseName} = Promise.resolve(${2:resolvedValue});"],
+    "description": "Creates a Promise with Promise.resolve"
+  },
+  "const:new promise with Promise.reject": {
+    "prefix": "const_new_promise_with_PromiseReject",
+    "body": ["const ${1:promiseName} = Promise.reject(${2:errorValue});"],
+    "description": "Creates a Promise with Promise.reject"
+  },
+  "const:new promise with Promise.allSettled for multiple resolves": {
+    "prefix": "const_new_promise_with_PromiseAllSettled_for_multiple_resolves",
+    "body": [
+      "const ${1:promiseName} = Promise.allSettled([",
+      "    ${2:asyncOperation1}(),",
+      "    ${3:asyncOperation2}()",
+      "    // Add more async operations as needed",
+      "]).then(results => {",
+      "    return results;",
+      "}).catch(error => {",
+      "    console.error('Error:', error);",
+      "    throw error;",
+      "});"
+    ],
+    "description": "Creates a Promise with Promise.allSettled for multiple resolves"
+  },
+  "const:new promise with ternary operator for condition handling": {
+    "prefix": "const_new_promise_with_ternary_operator_for_condition_handling",
+    "body": [
+      "const ${1:promiseName} = ${2:condition} ? Promise.resolve(${3:resolvedValue}) : Promise.reject(${4:errorValue});"
+    ],
+    "description": "Creates a Promise with ternary operator for condition handling"
+  },
+  "const:new promise with async function in Promise chain": {
+    "prefix": "const_new_promise_with_async_function_in_PromiseChain",
+    "body": [
+      "${1:asyncOperation}().then(async result => {",
+      "    const processedResult = await ${2:asyncFunction}(result);",
+      "    return processedResult;",
+      "}).catch(error => {",
+      "    console.error('Error:', error);",
+      "    throw error;",
+      "});"
+    ],
+    "description": "Creates a Promise with async function in Promise chain"
+  },
+  "const:new promise with chaining multiple then and catch": {
+    "prefix": "const_new_promise_with_chaining_multiple_then_and_catch",
+    "body": [
+      "${1:asyncOperation}().then(result1 => {",
+      "    // Process result1",
+      "    return ${2:asyncOperation2}(result1);",
+      "}).then(result2 => {",
+      "    // Process result2",
+      "    return ${3:asyncOperation3}(result2);",
+      "}).catch(error => {",
+      "    console.error('Error:', error);",
+      "    throw error;",
+      "});"
+    ],
+    "description": "Creates a Promise with chaining multiple then and catch"
+  },
+  "const:new promise with abort controller for cancel handling": {
+    "prefix": "const_new_promise_with_abort_controller_for_cancel_handling",
+    "body": [
+      "const controller = new AbortController();",
+      "const signal = controller.signal;",
+      "",
+      "const ${1:promiseName} = new Promise<${2:resolveType}>((resolve, reject) => {",
+      "    ${3:asyncOperation}({ signal }).then(result => {",
+      "        resolve(result);",
+      "    }).catch(error => {",
+      "        if (error.name === 'AbortError') {",
+      "            console.warn('Operation aborted');",
+      "        } else {",
+      "            console.error('Error:', error);",
+      "            reject(error);",
+      "        }",
+      "    });",
+      "});",
+      "",
+      "// To abort operation:",
+      "// controller.abort();"
+    ],
+    "description": "Creates a Promise with abort controller for cancel handling"
+  },
+  "try:catch:promise": {
+    "prefix": "tryp_catch_promise",
+    "body": [
+      "try {",
+      "\tconst result = await ${1:promise};",
+      "} catch (error) {",
+      "\tconsole.error(error);",
+      "}"
+    ],
+    "description": "Try-catch block for handling promises in TypeScript"
+  },
+  "try:catch:promise:custom error": {
+    "prefix": "try_catch_promise_custom_error",
+    "body": [
+      "try {",
+      "\tconst result = await ${1:promise};",
+      "} catch (error) {",
+      "\tconsole.error('Error:', error.message);",
+      "}"
+    ],
+    "description": "Try-catch block with custom error message for handling promises in TypeScript"
+  },
+  "try:catch:promise:axios": {
+    "prefix": "try_catch_promise_axios",
+    "body": [
+      "try {",
+      "\tconst result = await ${1:promise};",
+      "} catch (error) {",
+      "\tif (error.response) {",
+      "\t\tconsole.error('Request failed with status', error.response.status);",
+      "\t\tconsole.error('Response data:', error.response.data);",
+      "\t} else {",
+      "\t\tconsole.error('Error:', error.message);",
+      "\t}",
+      "}"
+    ],
+    "description": "Try-catch block for handling Axios promises in TypeScript"
+  },
+  "try:catch:promise:retry": {
+    "prefix": "try_catch_promise_retray",
+    "body": [
+      "let retries = 3;",
+      "while (retries > 0) {",
+      "\tretries--;",
+      "\ttry {",
+      "\t\tconst result = await retry(${1:promise});",
+      "\t\tconsole.log('Promise result:', result);",
+      "\t\tbreak;",
+      "\t} catch (error) {",
+      "\t\tconsole.error('Failed after 3 retries:', error);",
+      "\t}",
+      "}"
+    ],
+    "description": "Try-catch block with retry logic for handling promises in TypeScript"
+  },
+  "try:catch:promise:handle connection error": {
+    "prefix": "try_catch_promise_handle_connection_error",
+    "body": [
+      "try {",
+      "\tconst result = await ${1:promise};",
+      "} catch (error) {",
+      "\tif (error instanceof ConnectionError) {",
+      "\t\tconsole.error('Connection error occurred:', error.message);",
+      "\t} else {",
+      "\t\tconsole.error('Unhandled error:', error);",
+      "\t}",
+      "}"
+    ],
+    "description": "Try-catch block for handling connection errors in TypeScript"
+  },
+  "try:catch:promise:with timeout": {
+    "prefix": "try_catch_promise_with_timeout",
+    "body": [
+      "try {",
+      "\tconst result = await Promise.race([${1:promise}, new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), ${2:5000}))]);",
+      "} catch (error) {",
+      "\tif (error.message === 'Timeout') {",
+      "\t\tconsole.error('Promise timed out after ${2:5000}ms');",
+      "\t} else {",
+      "\t\tconsole.error('Error:', error.message);",
+      "\t}",
+      "}"
+    ],
+    "description": "Try-catch block with timeout for handling promises in TypeScript"
+  },
+  "try:catch:promise:with stacktrace": {
+    "prefix": "try_catch_promise_with_stacktrace",
+    "body": [
+      "try {",
+      "\tconst result = await ${1:promise};",
+      "} catch (error) {",
+      "\tconsole.error('Caught an error:', error.message);",
+      "\tconsole.error('Stack trace:', error.stack);",
+      "}"
+    ],
+    "description": "Try-catch block with stack trace logging for handling promises in TypeScript"
+  },
+  "try:catch:promise:handle:custom error": {
+    "prefix": "try_catch_promise_handle_custom_error",
+    "body": [
+      "try {",
+      "\tconst result = await ${1:promise};",
+      "} catch (error) {",
+      "\tif (error instanceof CustomError) {",
+      "\t\tconsole.error('Custom error occurred:', error.message);",
+      "\t} else {",
+      "\t\tconsole.error('Unhandled error:', error);",
+      "\t}",
+      "}"
+    ],
+    "description": "Try-catch block for handling custom errors in TypeScript"
+  },
+  "try:catch:promise:retry exponential backoff": {
+    "prefix": "try_catch_promise_exponential_backoff",
+    "body": [
+      "let retries = 3;",
+      "let delay = 1000;",
+      "while (retries > 0) {",
+      "\tretries--;",
+      "\ttry {",
+      "\t\tconst result = await ${1:promise};",
+      "\t\tconsole.log('Promise result:', result);",
+      "\t\tbreak;",
+      "\t} catch (error) {",
+      "\t\tconsole.error('Error:', error);",
+      "\t\tif (retries === 0) {",
+      "\t\t\tconsole.error('Failed after 3 retries');",
+      "\t\t\tbreak;",
+      "\t\t} else {",
+      "\t\t\tconsole.log('Retrying in', delay, 'ms');",
+      "\t\t\tawait new Promise(resolve => setTimeout(resolve, delay));",
+      "\t\t\tdelay *= 2; // Exponential backoff",
+      "\t\t}",
+      "\t}",
+      "}"
+    ],
+    "description": "Try-catch block with exponential backoff retry for handling promises in TypeScript"
+  },
+  "try:catch:promise:all": {
+    "prefix": "try_catch_promise_all",
+    "body": [
+      "try {",
+      "\tconst results = await Promise.all([${1:promise1}, ${2:promise2}, ${3:promise3}]);",
+      "\tresults.forEach(result => {",
+      "\t\tconsole.log('Promise result:', result);",
+      "\t});",
+      "} catch (error) {",
+      "\tconsole.error('Error:', error);",
+      "}"
+    ],
+    "description": "Try-catch block for handling multiple promises with Promise.all in TypeScript"
+  }
+}

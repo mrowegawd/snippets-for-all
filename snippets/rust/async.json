@@ -1,0 +1,310 @@
+{
+  "Async Function": {
+    "prefix": "asyncfn",
+    "body": [
+      "async fn ${1:function_name}(${2:args}) -> ${3:Return_Type} {",
+      "\t${4:# Your async code here}",
+      "}"
+    ],
+    "description": "Async function declaration"
+  },
+  "Await Expression": {
+    "prefix": "await",
+    "body": "let ${1:result} = ${2:async_function}.await;",
+    "description": "Await an async function"
+  },
+  "Async Block": {
+    "prefix": "asyncblock",
+    "body": ["async {", "\t${1:# Your async code here}", "}"],
+    "description": "Async block"
+  },
+  "Async Mutex Lock": {
+    "prefix": "asyncmutexlock",
+    "body": [
+      "let ${1:lock} = ${2:mutex}.lock().await;",
+      "\t${3:# Your async code here}",
+      "drop(${1:lock});"
+    ],
+    "description": "Async mutex lock"
+  },
+  "Async Task Spawning": {
+    "prefix": "asyncspawn",
+    "body": [
+      "let ${1:task_handle} = tokio::spawn(async {",
+      "\t${2:# Your async task here}",
+      "});"
+    ],
+    "description": "Spawning an async task"
+  },
+  "Async Channel Receive": {
+    "prefix": "asyncchannelrecv",
+    "body": [
+      "while let Some(${1:message}) = ${2:channel}.recv().await {",
+      "\t${3:# Process message}",
+      "}"
+    ],
+    "description": "Async channel receive loop"
+  },
+  "Async Timeout": {
+    "prefix": "asynctimeout",
+    "body": [
+      "let ${1:result} = tokio::time::timeout(Duration::from_secs(${2:timeout_seconds}), async {",
+      "\t${3:# Your async code here}",
+      "}).await;"
+    ],
+    "description": "Async timeout with tokio"
+  },
+  "Async File I/O": {
+    "prefix": "asyncfileio",
+    "body": [
+      "let mut ${1:file} = tokio::fs::File::open(${2:path}).await.expect(\"Failed to open file\");",
+      "\t${3:# Your async file operations}",
+      "drop(${1:file});"
+    ],
+    "description": "Async file I/O with tokio"
+  },
+  "Async TCP Client": {
+    "prefix": "asynctcpclient",
+    "body": [
+      "let mut ${1:stream} = tokio::net::TcpStream::connect(${2:address}).await.expect(\"Failed to connect to server\");",
+      "\t${3:# Your async TCP client code}",
+      "drop(${1:stream});"
+    ],
+    "description": "Async TCP client with tokio"
+  },
+  "Async HTTP Request": {
+    "prefix": "asynchttprequest",
+    "body": [
+      "let ${1:response} = reqwest::Client::new()",
+      "\t.${2:get()}",
+      "\t.url(${3:url})",
+      "\t.await",
+      "\t.expect(\"Failed to send request\");",
+      "\t${4:# Process response}"
+    ],
+    "description": "Async HTTP request with reqwest"
+  },
+  "Async Mutex Lock (async-std)": {
+    "prefix": "asyncmutexlock-asyncstd",
+    "body": [
+      "let ${1:lock} = ${2:mutex}.lock().await;",
+      "\t${3:# Your async code here}",
+      "drop(${1:lock});"
+    ],
+    "description": "Async mutex lock with async-std"
+  },
+  "Async Task Spawning (async-std)": {
+    "prefix": "asyncspawn-asyncstd",
+    "body": [
+      "let ${1:task_handle} = async_std::task::spawn(async {",
+      "\t${2:# Your async task here}",
+      "});"
+    ],
+    "description": "Spawning an async task with async-std"
+  },
+  "Async Channel Send (async-std)": {
+    "prefix": "asyncchannelsend-asyncstd",
+    "body": [
+      "${1:channel}.send(${2:message}).await;",
+      "\t${3:# Message sent to channel}"
+    ],
+    "description": "Async channel send with async-std"
+  },
+  "Async Mutex Try Lock (tokio)": {
+    "prefix": "asyncmutextrylock-tokio",
+    "body": [
+      "let ${1:lock} = match ${2:mutex}.try_lock() {",
+      "\tOk(guard) => guard,",
+      "\tErr(_) => {",
+      "\t\t${3:handle_try_lock_error()}",
+      "\t}",
+      "};",
+      "\t${4:# Your async code here}",
+      "drop(${1:lock});"
+    ],
+    "description": "Async mutex try lock with tokio"
+  },
+  "Async UDP Socket Receive (tokio)": {
+    "prefix": "asyncudprecv-tokio",
+    "body": [
+      "let mut ${1:socket} = tokio::net::UdpSocket::bind(${2:address}).await.expect(\"Failed to bind UDP socket\");",
+      "let mut ${3:buffer} = [0u8; ${4:1024}];",
+      "loop {",
+      "\tlet (${5:recv_len}, ${6:src_addr}) = ${1:socket}.recv_from(&mut ${3:buffer}).await.expect(\"Failed to receive from UDP socket\");",
+      "\t${7:# Process received data}",
+      "}"
+    ],
+    "description": "Async UDP socket receive with tokio"
+  },
+  "Async TCP Server (async-std)": {
+    "prefix": "asynctcpserver-asyncstd",
+    "body": [
+      "async_std::task::spawn(async move {",
+      "\tlet ${1:listener} = async_std::net::TcpListener::bind(${2:address}).await.expect(\"Failed to bind TCP listener\");",
+      "\twhile let Ok((${3:stream}, ${4:peer_addr})) = ${1:listener}.accept().await {",
+      "\t\tasync_std::task::spawn(async move {",
+      "\t\t\t${5:# Handle incoming connection from ${4:peer_addr}}",
+      "\t\t});",
+      "\t}",
+      "});"
+    ],
+    "description": "Async TCP server with async-std"
+  },
+  "Async File Read (async-std)": {
+    "prefix": "asyncfileread-asyncstd",
+    "body": [
+      "let mut ${1:file} = async_std::fs::File::open(${2:path}).await.expect(\"Failed to open file\");",
+      "let mut ${3:buffer} = Vec::new();",
+      "${1:file}.read_to_end(&mut ${3:buffer}).await.expect(\"Failed to read from file\");",
+      "\t${4:# Process file contents}",
+      "drop(${1:file});"
+    ],
+    "description": "Async file read with async-std"
+  },
+  "Async HTTP Request (reqwest)": {
+    "prefix": "asynchttprequest-reqwest",
+    "body": [
+      "let ${1:response} = reqwest::Client::new()",
+      "\t.${2:get()}",
+      "\t.url(${3:url})",
+      "\t.send()",
+      "\t.await",
+      "\t.expect(\"Failed to send request\");",
+      "\t${4:# Process response}"
+    ],
+    "description": "Async HTTP request with reqwest"
+  },
+  "Async PostgreSQL Connection (tokio-postgres)": {
+    "prefix": "asyncpostgres-tokiopg",
+    "body": [
+      "let (${1:client}, ${2:connection}) = tokio_postgres::connect(${3:connection_string}, tokio_postgres::NoTls).await.expect(\"Failed to connect to PostgreSQL\").split();",
+      "\t${4:# Use client and connection}"
+    ],
+    "description": "Async PostgreSQL connection with tokio-postgres"
+  },
+  "Async WebSocket Client (tokio-tungstenite)": {
+    "prefix": "asyncwebsocket-tokiotung",
+    "body": [
+      "let (${1:stream}, _) = tokio_tungstenite::connect_async(${2:url}).await.expect(\"Failed to connect to WebSocket server\").await;",
+      "let ${3:outgoing} = ${1:stream}.sink_map_err(|e| e.into());",
+      "let ${4:incoming} = ${1:stream}.filter_map(|msg| async {",
+      "\t${5:match msg {",
+      "\t\tOk(tokio_tungstenite::tungstenite::Message::Text(text)) => Some(text),",
+      "\t\tOk(tokio_tungstenite::tungstenite::Message::Binary(bin)) => Some(bin),",
+      "\t\t_ => None,",
+      "\t}}",
+      "}).map_ok(|msg| msg.to_string());"
+    ],
+    "description": "Async WebSocket client with tokio-tungstenite"
+  },
+  "Async Timer (tokio)": {
+    "prefix": "asynctimer-tokio",
+    "body": [
+      "let mut interval = tokio::time::interval(Duration::from_secs(${1:interval_seconds}));",
+      "loop {",
+      "\tinterval.tick().await;",
+      "\t${2:# Perform task on interval}",
+      "}"
+    ],
+    "description": "Async timer with tokio"
+  },
+  "Async Task Join (tokio)": {
+    "prefix": "asyncjoin-tokio",
+    "body": [
+      "let (${1:result1}, ${2:result2}) = tokio::join!(",
+      "\tasync { ${3:task1.await} },",
+      "\tasync { ${4:task2.await} }",
+      ");"
+    ],
+    "description": "Async task join with tokio"
+  },
+  "Async Retry with Exponential Backoff (async-std)": {
+    "prefix": "asyncretry-asyncstd",
+    "body": [
+      "let mut delay = std::time::Duration::from_secs(${1:start_delay_seconds});",
+      "loop {",
+      "\t${2:# Attempt operation here}",
+      "\tmatch ${3:result} {",
+      "\t\tOk(value) => break value,",
+      "\t\tErr(_) => {",
+      "\t\t\tasync_std::task::sleep(delay).await;",
+      "\t\t\tdelay *= 2;",
+      "\t\t\t${4:handle_retry_condition()}",
+      "\t\t}",
+      "\t};",
+      "}"
+    ],
+    "description": "Async retry with exponential backoff using async-std"
+  },
+  "Async File Write (tokio)": {
+    "prefix": "asyncfilewrite-tokio",
+    "body": [
+      "let mut ${1:file} = tokio::fs::File::create(${2:path}).await.expect(\"Failed to create file\");",
+      "${1:file}.write_all(${3:data}).await.expect(\"Failed to write to file\");",
+      "drop(${1:file});"
+    ],
+    "description": "Async file write with tokio"
+  },
+  "Async Mutex Timeout (tokio)": {
+    "prefix": "asyncmutextimeout-tokio",
+    "body": [
+      "let ${1:lock} = match ${2:mutex}.try_lock_for(Duration::from_secs(${3:timeout_seconds})) {",
+      "\tOk(guard) => guard,",
+      "\tErr(_) => {",
+      "\t\t${4:handle_timeout()}",
+      "\t}",
+      "};",
+      "\t${5:# Your async code here}",
+      "drop(${1:lock});"
+    ],
+    "description": "Async mutex lock with timeout using tokio"
+  },
+  "Async Task Cancellation (async-std)": {
+    "prefix": "asynccancel-asyncstd",
+    "body": [
+      "let mut ${1:task_handle} = async_std::task::spawn(async {",
+      "\t${2:# Your async task here}",
+      "});",
+      "\t${3:# Optionally cancel task}",
+      "${1:task_handle}.cancel().await;"
+    ],
+    "description": "Async task cancellation with async-std"
+  },
+  "Async TCP Client with Timeout (tokio)": {
+    "prefix": "asynctcpclienttimeout-tokio",
+    "body": [
+      "let ${1:result} = tokio::time::timeout(Duration::from_secs(${2:timeout_seconds}), async {",
+      "\tlet mut ${3:stream} = tokio::net::TcpStream::connect(${4:address}).await.expect(\"Failed to connect to server\");",
+      "\t${5:# Your async TCP client code}",
+      "\t${3:stream}",
+      "}).await;",
+      "\t${6:# Process result}"
+    ],
+    "description": "Async TCP client with timeout using tokio"
+  },
+  "Async UDP Socket Send (tokio)": {
+    "prefix": "asyncudpsend-tokio",
+    "body": [
+      "let ${1:socket} = tokio::net::UdpSocket::bind(${2:local_addr}).await.expect(\"Failed to bind UDP socket\");",
+      "${1:socket}.send_to(&${3:data}, ${4:remote_addr}).await.expect(\"Failed to send UDP packet\");"
+    ],
+    "description": "Async UDP socket send with tokio"
+  },
+  "Async Signal Handling (tokio)": {
+    "prefix": "asyncsignal-tokio",
+    "body": [
+      "tokio::signal::ctrl_c().await.expect(\"Failed to listen for Ctrl+C signal\");",
+      "${1:# Handle Ctrl+C signal}"
+    ],
+    "description": "Async signal handling with tokio"
+  },
+  "Async Mutex Fair Lock (async-std)": {
+    "prefix": "asyncmutexfairlock-asyncstd",
+    "body": [
+      "let ${1:lock} = ${2:mutex}.lock().await;",
+      "\t${3:# Your async code here}",
+      "drop(${1:lock});"
+    ],
+    "description": "Async mutex fair lock with async-std"
+  }
+}

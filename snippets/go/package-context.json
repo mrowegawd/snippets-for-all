@@ -1,0 +1,52 @@
+{
+  "var:context with timeout": {
+    "prefix": "var_context_with_timeout",
+    "body": [
+      "ctx, cancel := context.WithTimeout(context.Background(), ${1:timeout})",
+      "defer cancel()",
+      "${0}"
+    ],
+    "description": "Create context with timeout"
+  },
+  "var:context with deadline": {
+    "prefix": "var_context_with_deadline",
+    "body": [
+      "ctx, cancel := context.WithDeadline(context.Background(), time.Now().Add(${1:deadline}))",
+      "defer cancel()",
+      "${0}"
+    ],
+    "description": "Create context with deadline"
+  },
+  "var:context with value": {
+    "prefix": "var_context_with_value",
+    "body": [
+      "ctx := context.WithValue(context.Background(), ${1:key}, ${2:value})",
+      "${0}"
+    ],
+    "description": "Create context with value"
+  },
+  "var:background context": {
+    "prefix": "var_context_background",
+    "body": ["ctx := context.Background()", "${0}"],
+    "description": "Create background context"
+  },
+  "var:context with cancel": {
+    "prefix": "var_context_with_cancel",
+    "body": [
+      "ctx, cancel := context.WithCancel(context.Background())",
+      "${0}",
+      "cancel()"
+    ],
+    "description": "Create context with cancel function"
+  },
+  "var:context with value and deadline": {
+    "prefix": "var_context_with_value_and_deadline",
+    "body": [
+      "ctx := context.WithValue(context.Background(), ${1:key}, ${2:value})",
+      "ctx, cancel := context.WithDeadline(ctx, time.Now().Add(${3:deadline}))",
+      "defer cancel()",
+      "${0}"
+    ],
+    "description": "Create context with value and deadline"
+  }
+}
