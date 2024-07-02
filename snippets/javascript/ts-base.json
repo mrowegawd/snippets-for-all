@@ -24,6 +24,25 @@
     "body": "exports.${1:member} = ${2:value}",
     "description": "exports.member = value"
   },
+  "export:const:named;function": {
+    "prefix": "export_const_func",
+    "body": ["export const ${1:first} = (${2:second}) => {${3:third}}"],
+    "description": "Export named function"
+  },
+  "export:default function": {
+    "prefix": "edf",
+    "body": ["export default (${1:first}) => {${2:second}}"],
+    "description": "Export default function"
+  },
+  "export:default:namedfunction": {
+    "prefix": "ednf",
+    "body": ["export default function ${1:first}(${2:second}) {${3:third}}"],
+    "description": "Export default named function"
+  },
+  "export:as from": {
+    "prefix": "export_as_from",
+    "body": ["export { ${2:second} as ${3:third} } from '${1:first}'"]
+  },
   "export:default:declaration": {
     "prefix": "export_default",
     "body": ["export default ${1:expression};", "$0"],
@@ -71,27 +90,35 @@
     "body": ["export namespace ${1:NamespaceName} {", "\t$0", "}"],
     "description": "Export a namespace module in TypeScript"
   },
-  "import module destructured": {
+  "import:NoModuleName": {
+    "prefix": "imp_",
+    "body": ["import '${1:first}'"]
+  },
+  "import:module destructured": {
     "prefix": "imp_from",
     "body": "import {$2} from '${1:module}'",
     "description": "import value from 'module'"
   },
-  "import module as": {
+  "import:statement": {
+    "prefix": "imp_from_desctructing",
+    "body": ["import { ${1:importedName} } from '${2:module}';", "$0"],
+    "description": "Import statement in TypeScript"
+  },
+  "import:Destructing": {
+    "prefix": "imp_from_as_destructing",
+    "body": ["import { ${2:second} } from '${1:first}'"]
+  },
+  "import:module as": {
     "prefix": "imp_from_as",
     "body": "import ${2:*} as ${3:name} from '${1:module}'",
     "description": "import * as name from 'module'"
   },
-  "import statement": {
-    "prefix": "imp_",
-    "body": ["import { ${1:importedName} } from '${2:module}';", "$0"],
-    "description": "Import statement in TypeScript"
-  },
-  "import default statement": {
+  "import:default statement": {
     "prefix": "imp_default",
     "body": ["import ${1:defaultName} from '${2:module}';", "$0"],
     "description": "Import default statement in TypeScript"
   },
-  "import all statement": {
+  "import:all statement": {
     "prefix": "imp_all",
     "body": ["import * as ${1:namespace} from '${2:module}';", "$0"],
     "description": "Import all statement in TypeScript"

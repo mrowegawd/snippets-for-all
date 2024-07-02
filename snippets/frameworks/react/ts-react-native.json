@@ -1,71 +1,4 @@
 {
-  "statefulComponent": {
-    "prefix": "react_stateful_component",
-    "body": [
-      "import React, { Component } from 'react';",
-      "",
-      "import { View } from 'react-native';",
-      "",
-      "// import { Container } from './styles';",
-      "",
-      "export default class ${1:${TM_DIRECTORY/^.*(\\/|\\\\)([^(\\/|\\\\)]+)$/$2/}} extends Component {",
-      "  render() {",
-      "    return <View />;",
-      "  }",
-      "}",
-      ""
-    ],
-    "description": "Create React Native Stateful Component"
-  },
-  "statelessComponent": {
-    "prefix": "react_stateless_component",
-    "body": [
-      "import React from 'react';",
-      "",
-      "import { View } from 'react-native';",
-      "",
-      "// import { Container } from './styles';",
-      "",
-      "const ${1:${TM_DIRECTORY/^.*(\\/|\\\\)([^(\\/|\\\\)]+)$/$2/}} = () => <View />;",
-      "",
-      "export default ${1:${TM_DIRECTORY/^.*(\\/|\\\\)([^(\\/|\\\\)]+)$/$2/}};",
-      ""
-    ],
-    "description": "Create React Native Stateless Component"
-  },
-  "componentFunctional": {
-    "prefix": "react_functional_component",
-    "body": [
-      "import React from 'react';",
-      "import { View } from 'react-native';",
-      "",
-      "// import { Container } from './styles';",
-      "",
-      "export default function ${1:${TM_DIRECTORY/^.*(\\/|\\\\)([^(\\/|\\\\)]+)$/$2/}}() {",
-      "  return (",
-      "    <View />",
-      "  );",
-      "}",
-      ""
-    ],
-    "description": "Create React Native Functional Component"
-  },
-  "componentFunctionalTypescript": {
-    "prefix": "react_function_component",
-    "body": [
-      "import React from 'react';",
-      "import { View } from 'react-native';",
-      "",
-      "// import { Container } from './styles';",
-      "",
-      "const ${1:${TM_DIRECTORY/^.*(\\/|\\\\)([^(\\/|\\\\)]+)$/$2/}}: React.FC = () => {",
-      "  return <View />;",
-      "}",
-      "",
-      "export default ${1:${TM_DIRECTORY/^.*(\\/|\\\\)([^(\\/|\\\\)]+)$/$2/}};"
-    ],
-    "description": "Create React Native TypeScript Functional Component"
-  },
   "styles": {
     "prefix": "imp_styled_rn",
     "body": [
@@ -426,20 +359,12 @@
   },
   "region": {
     "prefix": "region_",
-    "body": [
-      "//#region ${1}",
-      "${2}",
-      "//#endregion"
-    ],
+    "body": ["//#region ${1}", "${2}", "//#endregion"],
     "description": "Create region"
   },
   "regionStartEnd": {
     "prefix": "#regionStartEnd_",
-    "body": [
-      "//#region ${1}",
-      "${2}",
-      "//#endregion"
-    ],
+    "body": ["//#region ${1}", "${2}", "//#endregion"],
     "description": "Create region"
   }
 }
