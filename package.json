@@ -21,6 +21,10 @@
         "path": "./snippets/c.json"
       },
       {
+        "language": "ansible",
+        "path": "./snippets/ansible.json"
+      },
+      {
         "language": "cpp",
         "path": "./snippets/cpp.json"
       },
