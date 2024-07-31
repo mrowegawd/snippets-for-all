@@ -453,11 +453,11 @@
       },
       {
         "language": "javascriptreact",
-        "path": "./snippets/framework/nextjs/next.json"
+        "path": "./snippets/frameworks/nextjs/next.json"
       },
       {
         "language": "typescriptreact",
-        "path": "./snippets/framework/nextjs/ts-next.json"
+        "path": "./snippets/frameworks/nextjs/ts-next.json"
       },
       {
         "language": "svelte",

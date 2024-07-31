@@ -1,16 +1,16 @@
 {
-  "import Next.js GetStaticProps type": {
-    "prefix": "imp_getstatic_next",
+  "next:import getstaticprops type": {
+    "prefix": "next_imp_getstatic",
     "body": "import { GetStaticProps } from 'next';",
     "description": "Next.js GetStaticProps type import"
   },
-  "import Next.js InferGetStaticPropsType": {
-    "prefix": "imp_infergetstatic_next",
+  "next:import infergetstaticprops type": {
+    "prefix": "next_imp_infer_getstatic",
     "body": "import { InferGetStaticPropsType } from 'next'",
     "description": "Next.js InferGetStaticPropsType import"
   },
-  "use Next.js InferGetStaticPropsType": {
-    "prefix": "uifg",
+  "next:use infer getstaticprops type": {
+    "prefix": "next_func_infer_getstaticprops",
     "body": [
       "function ${1:${TM_FILENAME_BASE}}({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {",
       "\treturn $2",
@@ -29,11 +29,7 @@
   },
   "Next.js getInitialProps() inside Class Component": {
     "prefix": "cgip",
-    "body": [
-      "static async getInitialProps() {",
-      "\treturn { $1 };",
-      "}"
-    ],
+    "body": ["static async getInitialProps() {", "\treturn { $1 };", "}"],
     "description": "Next.js static async getInitialProps() inside Class Component"
   },
   "Next.js getStaticProps() export": {
