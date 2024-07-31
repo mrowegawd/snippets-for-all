@@ -1,6 +1,6 @@
 {
-  "setupReactTest": {
-    "prefix": "stest",
+  "testing:react:setupreacttest": {
+    "prefix": "test_react_template_func",
     "body": [
       "import React from 'react'",
       "import renderer from 'react-test-renderer'",
@@ -26,5 +26,74 @@
     "prefix": "test_rc_component_update",
     "body": ["shouldComponentUpdate(nextProps, nextState) { ${1:first} }"],
     "description": "Invoked before rendering when new props or state are being received. "
+  },
+  "testing:react:template:setupReactComponentTestWithRedux": {
+    "prefix": "test_react_template_setup_with_redux",
+    "body": [
+      "import React from 'react'",
+      "import renderer from 'react-test-renderer'",
+      "import { Provider } from 'react-redux'",
+      "",
+      "import store from '~/store'",
+      "import { ${1:${TM_FILENAME_BASE}} } from '../${1:${TM_FILENAME_BASE}}'",
+      "",
+      "describe('<${1:${TM_FILENAME_BASE}} />', () => {",
+      "\tconst defaultProps = {}",
+      "\tconst wrapper = renderer.create(",
+      "\t\t<Provider store={store}>",
+      "\t\t\t<${1:${TM_FILENAME_BASE}} {...defaultProps} />",
+      "\t\t</Provider>,",
+      "\t)",
+      "",
+      "\t\ttest('render', () => {",
+      "\t\t\texpect(wrapper).toMatchSnapshot()",
+      "\t\t})",
+      "})"
+    ],
+    "description": "Create test component"
+  },
+  "testing:react:template:setupReactNativeTest": {
+    "prefix": "test_react_template_native_setup",
+    "body": [
+      "import 'react-native'",
+      "import React from 'react'",
+      "import renderer from 'react-test-renderer'",
+      "",
+      "import ${1:${TM_FILENAME_BASE}} from '../${1:${TM_FILENAME_BASE}}'",
+      "",
+      "describe('<${1:${TM_FILENAME_BASE}} />', () => {",
+      "\tconst defaultProps = {}",
+      "\tconst wrapper = renderer.create(<${1:${TM_FILENAME_BASE}} {...defaultProps} />)",
+      "",
+      "\ttest('render', () => {",
+      "\t\texpect(wrapper).toMatchSnapshot()",
+      "\t})",
+      "})"
+    ]
+  },
+  "testing:react:template:setupReactNativeTestWithRedux": {
+    "prefix": "test_react_template_native_setup_with_redux",
+    "body": [
+      "import 'react-native'",
+      "import React from 'react'",
+      "import renderer from 'react-test-renderer'",
+      "import { Provider } from 'react-redux'",
+      "",
+      "import store from '~/store'",
+      "import ${1:${TM_FILENAME_BASE}} from '../${1:${TM_FILENAME_BASE}}'",
+      "",
+      "describe('<${1:${TM_FILENAME_BASE}} />', () => {",
+      "\tconst defaultProps = {}",
+      "\tconst wrapper = renderer.create(",
+      "\t\t<Provider store={store}>",
+      "\t\t\t<${1:${TM_FILENAME_BASE}} {...defaultProps} />",
+      "\t\t</Provider>,",
+      "\t)",
+      "",
+      "\ttest('render', () => {",
+      "\t\texpect(wrapper).toMatchSnapshot()",
+      "\t})",
+      "})"
+    ]
   }
 }

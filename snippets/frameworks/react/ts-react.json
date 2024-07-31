@@ -1,100 +1,38 @@
 {
-  "prop:t:propTypeObjectRequired": {
-    "body": ["PropTypes.object.isRequired"],
-    "prefix": "prop_t_object_required",
-    "description": "Object prop type required"
-  },
-  "import:ReduxConnect": {
-    "prefix": "imp_react_redux",
+  "import:reduxconnect": {
+    "prefix": "imp_reduxconnect_from_react_redux",
     "body": ["import { connect } from 'react-redux'"]
   },
-  "import:importBrowserRouter": {
-    "prefix": "imp_react_from_as_reactrouter",
+  "import:importbrowserrouter": {
+    "prefix": "imp_browserrouter_from_reactdom",
     "body": ["import { BrowserRouter as Router } from 'react-router-dom'"]
   },
-  "import:importBrowserRouterWithRouteAndNavLink": {
+  "import:importbrowserrouterwithrouteandnavlink": {
     "prefix": "imp_react_from_as_RouterWithRouteAndNavLink",
     "body": [
       "import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'",
       ""
     ]
   },
-  "prop:t:propTypeStringRequired": {
-    "body": ["PropTypes.string.isRequired"],
-    "prefix": "prop_t_string_required",
-    "description": "String prop type required"
-  },
-  "import:PropTypes": {
+  "import:proptypes": {
     "prefix": "imp_react_prop_types",
     "body": ["import PropTypes from 'prop-types'"]
-  },
-  "prop:t:propTypeNode": {
-    "body": ["PropTypes.node"],
-    "prefix": "prop_t_node",
-    "description": "Anything that can be rendered: numbers, strings, elements or an array"
   },
   "import:React": {
     "prefix": "imp_react",
     "body": ["import React from 'react'"]
   },
   "import:ReactDom": {
-    "prefix": "imp_react_DOM",
+    "prefix": "imp_reactdom",
     "body": ["import ReactDOM from 'react-dom'"]
   },
   "import:React With Component": {
-    "prefix": "imp_react_with_component",
+    "prefix": "imp_react_component",
     "body": ["import React, { Component } from 'react'"]
-  },
-  "prop:t:propTypeElement": {
-    "body": ["PropTypes.element"],
-    "prefix": "prop_t_element",
-    "description": "React element prop type"
-  },
-  "import:ReactWithComponentAndPropTypes": {
-    "prefix": "imp_react_with_component_and_prop_types",
-    "body": [
-      "import React, { Component } from 'react'",
-      "import PropTypes from 'prop-types'",
-      ""
-    ]
-  },
-  "import:ReactWithMemo": {
-    "prefix": "imp_react_with_memo",
-    "body": ["import React, { memo } from 'react'"]
-  },
-  "import:ReactWithMemoAndPropTypes": {
-    "prefix": "imp_react_with_memo_and_prop_types",
-    "body": [
-      "import React, { memo } from 'react'",
-      "import PropTypes from 'prop-types'",
-      ""
-    ]
-  },
-  "prop:t:propTypeInstanceOf": {
-    "body": ["PropTypes.instanceOf($0)"],
-    "prefix": "prop_t_instanceOf",
-    "description": "Is an instance of a class prop type"
-  },
-  "import:ReactWithPureComponent": {
-    "prefix": "imp_react_with_pure_component",
-    "body": ["import React, { PureComponent } from 'react'"]
-  },
-  "import:ReactWithPureComponentAndPropTypes": {
-    "prefix": "imp_react_with_pure_component_and_prop_types",
-    "body": [
-      "import React, { PureComponent } from 'react'",
-      "import PropTypes from 'prop-types'",
-      ""
-    ]
   },
   "import:RouterLink": {
     "prefix": "imp_react_router_dom_link",
     "body": ["import { Link } from 'react-router-dom'"]
-  },
-  "prop:t:propTypeEnum": {
-    "body": ["PropTypes.oneOf(['$0'])"],
-    "prefix": "prop_t_enum",
-    "description": "Prop type limited to specific values by treating it as an enum"
   },
   "import:RouterNavLink": {
     "prefix": "imp_react_router_dom_navlink",
@@ -108,93 +46,220 @@
     "prefix": "imp_react_router_dom_switch",
     "body": ["import { Switch } from 'react-router-dom'"]
   },
-  "prop:t:propTypeOneOfType": {
+  "import:ReactWithPureComponent": {
+    "prefix": "imp_react_with_pure_component",
+    "body": ["import React, { PureComponent } from 'react'"]
+  },
+  "import:ReactWithPureComponentAndPropTypes": {
+    "prefix": "imp_react_with_pure_component_and_prop_types",
+    "body": [
+      "import React, { PureComponent } from 'react'",
+      "import PropTypes from 'prop-types'",
+      ""
+    ]
+  },
+  "prop:t:proptypes": {
+    "body": "$1.propTypes = {\n\t$2\n}",
+    "prefix": "prop_types_",
+    "description": "Creates empty propTypes declaration"
+  },
+  "prop:t:proptypes string required": {
+    "prefix": "prop_t_string_required",
+    "body": ["PropTypes.string.isRequired"],
+    "description": "String prop type required"
+  },
+  "prop:t:proptypes node": {
+    "prefix": "prop_t_node",
+    "body": ["PropTypes.node"],
+    "description": "Anything that can be rendered: numbers, strings, elements or an array"
+  },
+  "prop:t:proptypes element": {
+    "prefix": "prop_t_element",
+    "body": ["PropTypes.element"],
+    "description": "React element prop type"
+  },
+  "prop:t:proptypes instanceof": {
+    "prefix": "prop_t_instanceOf",
+    "body": ["PropTypes.instanceOf($0)"],
+    "description": "Is an instance of a class prop type"
+  },
+  "prop:t:proptypes enum": {
+    "prefix": "prop_t_enum",
+    "body": ["PropTypes.oneOf(['$0'])"],
+    "description": "Prop type limited to specific values by treating it as an enum"
+  },
+  "prop:t:proptypes oneoftype": {
+    "prefix": "prop_t_oneoftype",
     "body": ["PropTypes.oneOfType([", "  $0", "])"],
-    "prefix": "prop_t_oneOfType",
     "description": "An object that could be one of many types"
   },
-  "ret:component render": {
-    "body": "render () {\n\treturn (\n\t\t<div>\n\t\t\t$0\n\t\t</div>\n\t)\n}",
-    "prefix": "ret_render_component",
-    "description": "When called, it should examine this.props and this.state and return a single child element."
-  },
-  "prop:t:propTypeOneOfTypeRequired": {
+  "prop:t:proptypes oneoftype required": {
+    "prefix": "prop_t_oneoftyperequired",
     "body": ["PropTypes.oneOfType([", "  $0", "]).isRequired"],
-    "prefix": "prop_t_oneOfTypeRequired",
     "description": "An object that could be one of many types required"
   },
-  "comp:did update": {
-    "body": "componentDidUpdate (prevProps, prevState) {\n\t$0\n}\n",
-    "prefix": "comp_did_update_",
-    "description": "Invoked immediately after the component's updates are flushed to the DOM."
-  },
-  "prop:t:propTypeArrayOf": {
+  "prop:t:proptypes arrayof": {
+    "prefix": "prop_t_arrayof",
     "body": ["PropTypes.arrayOf($0)"],
-    "prefix": "prop_t_arrayOf",
     "description": "An array of a certain type"
   },
-  "comp:will unmount": {
-    "body": "componentWillUnmount () {\n\t$0\n}\n",
-    "prefix": "comp_will_unmount",
-    "description": "Invoked immediately before a component is unmounted from the DOM."
-  },
-  "prop:t:propTypeArrayOfRequired": {
+  "prop:t:proptypes arrayof required": {
+    "prefix": "prop_t_arrayof_required",
     "body": ["PropTypes.arrayOf($0).isRequired"],
-    "prefix": "prop_t_arrayOfRequired",
     "description": "An array of a certain type required"
   },
-  "comp:will mount": {
-    "body": "\ncomponentWillMount () {\n\t$0\n}\n",
-    "prefix": "comp_will_mount",
-    "description": "Invoked once, both on the client and server, immediately before the initial rendering occurs"
+  "prop:t:proptypes array required": {
+    "prefix": "prop_t_array_required",
+    "body": ["PropTypes.array.isRequired"],
+    "description": "Array prop type required"
   },
-  "prop:t:propTypeObjectOf": {
+  "prop:t:proptypes objectof": {
+    "prefix": "prop_t_objectof",
     "body": ["PropTypes.objectOf($0)"],
-    "prefix": "prop_t_objectOf",
     "description": "An object with property values of a certain type"
   },
-  "comp:did mount": {
-    "body": "componentDidMount () {\n\t$0\n}\n",
-    "prefix": "comp_did_mount",
-    "description": "Invoked once, only on the client (not on the server), immediately after the initial rendering occurs."
-  },
-  "prop:t:propTypeObjectOfRequired": {
+  "prop:t:proptypes objectof required": {
+    "prefix": "prop_t_objectof_required",
     "body": ["PropTypes.objectOf($0).isRequired"],
-    "prefix": "prop_t_objectOfRequired",
     "description": "An object with property values of a certain type required"
   },
-  "comp:will receive props": {
-    "body": "componentWillReceiveProps (nextProps) {\n\t$0\n}\n",
-    "prefix": "comp_will_recv_prop",
-    "description": "Invoked when a component is receiving new props. This method is not called for the initial render."
+  "prop:t:proptypes object required": {
+    "prefix": "prop_t_object_required",
+    "body": ["PropTypes.object.isRequired"],
+    "description": "Object prop type required"
   },
-  "prop:t:propTypeShape": {
-    "body": ["PropTypes.shape({", "  $0", "})"],
+  "prop:t:proptypes shape": {
     "prefix": "prop_t_shape",
+    "body": ["PropTypes.shape({", "  $0", "})"],
     "description": "An object taking on a particular shape"
   },
-  "comp:get derived state from props": {
-    "body": "\nstatic getDerivedStateFromProps(nextProps, prevState) {\n\t$0\n}\n",
-    "prefix": "comp_get_derived_state_from_prop",
-    "description": "Invoked after a component is instantiated as well as when it receives new props. It should return an object to update state, or null to indicate that the new props do not require any state updates."
-  },
-  "prop:t:propTypeShapeRequired": {
+  "prop:t:proptypes shape required": {
+    "prefix": "prop_t_shape_required",
     "body": ["PropTypes.shape({", "  $0", "}).isRequired"],
-    "prefix": "prop_t_shapeRequired",
     "description": "An object taking on a particular shape required"
   },
-  "comp:will update": {
-    "body": "componentWillUpdate (nextProps, nextState) {\n\t$0\n}\n",
-    "prefix": "comp_will_update",
-    "description": "Invoked immediately before rendering when new props or state are being received."
-  },
-  "prop:t:propTypeExact": {
-    "body": ["PropTypes.exact({", "  $0", "})"],
+  "prop:t:proptypes exact": {
     "prefix": "prop_t_exact",
+    "body": ["PropTypes.exact({", "  $0", "})"],
     "description": "An object with warnings on extra properties"
   },
-  "comp:hocComponentWithRedux": {
-    "prefix": "comp_hocComponent_redux",
+  "prop:t:proptypes exact required": {
+    "prefix": "prop_t_exact_required",
+    "body": ["PropTypes.exact({", "  $0", "}).isRequired"],
+    "description": "An object with warnings on extra properties required"
+  },
+  "prop:t:proptypes any": {
+    "prefix": "prop_t_any",
+    "body": ["PropTypes.any"],
+    "description": "Any prop type"
+  },
+  "prop:t:proptypes string": {
+    "prefix": "prop_t_string",
+    "body": ["PropTypes.string"],
+    "description": "String prop type"
+  },
+  "prop:t:proptypes node required": {
+    "prefix": "prop_t_node_required",
+    "body": ["PropTypes.node.isRequired"],
+    "description": "Anything that can be rendered: numbers, strings, elements or an array required"
+  },
+  "prop:t:proptypes object": {
+    "prefix": "prop_t_object",
+    "body": ["PropTypes.object"],
+    "description": "Object prop type"
+  },
+  "prop:t:proptypes enum required": {
+    "body": ["PropTypes.oneOf(['$0']).isRequired"],
+    "prefix": "prop_t_enum_required",
+    "description": "Prop type limited to specific values by treating it as an enum required"
+  },
+  "prop:t:proptypes array": {
+    "body": ["PropTypes.array"],
+    "prefix": "prop_t_array",
+    "description": "Array prop type"
+  },
+  "prop:t:proptypes bool": {
+    "prefix": "prop_t_bool",
+    "body": ["PropTypes.bool"],
+    "description": "Bool prop type"
+  },
+  "prop:t:proptypes bool required": {
+    "prefix": "prop_t_bool_required",
+    "body": ["PropTypes.bool.isRequired"],
+    "description": "Bool prop type required"
+  },
+  "prop:t:proptypes func": {
+    "prefix": "prop_t_func",
+    "body": ["PropTypes.func"],
+    "description": "Func prop type"
+  },
+  "prop:t:proptypes instanceof required": {
+    "prefix": "prop_t_instanceof_required",
+    "body": ["PropTypes.instanceOf($0).isRequired"],
+    "description": "Is an instance of a class prop type required"
+  },
+  "prop:t:proptypes func required": {
+    "prefix": "prop_t_func_required",
+    "body": ["PropTypes.func.isRequired"],
+    "description": "Func prop type required"
+  },
+  "prop:t:proptypes number": {
+    "prefix": "prop_t_number",
+    "body": ["PropTypes.number"],
+    "description": "Number prop type"
+  },
+  "prop:t:proptypes number required": {
+    "prefix": "prop_t_number_required",
+    "body": ["PropTypes.number.isRequired"],
+    "description": "Number prop type required"
+  },
+  "prop:t:proptypes element required": {
+    "prefix": "prop_t_element_required",
+    "body": ["PropTypes.element.isRequired"],
+    "description": "React element prop type required"
+  },
+  "ret:component render": {
+    "prefix": "ret_render_component",
+    "body": "render () {\n\treturn (\n\t\t<div>\n\t\t\t$0\n\t\t</div>\n\t)\n}",
+    "description": "When called, it should examine this.props and this.state and return a single child element."
+  },
+  "component:did update": {
+    "prefix": "component_did_mount",
+    "body": "componentDidUpdate (prevProps, prevState) {\n\t$0\n}\n",
+    "description": "Invoked immediately after the component's updates are flushed to the DOM."
+  },
+  "component:did mount": {
+    "prefix": "component_did_mount",
+    "body": "componentDidMount () {\n\t$0\n}\n",
+    "description": "Invoked once, only on the client (not on the server), immediately after the initial rendering occurs."
+  },
+  "component:get derived state from props": {
+    "prefix": "component_get_derived_state_from_prop",
+    "body": "\nstatic getDerivedStateFromProps(nextProps, prevState) {\n\t$0\n}\n",
+    "description": "Invoked after a component is instantiated as well as when it receives new props. It should return an object to update state, or null to indicate that the new props do not require any state updates."
+  },
+  "component:will receive props": {
+    "prefix": "component_will_recv_prop",
+    "body": "componentWillReceiveProps (nextProps) {\n\t$0\n}\n",
+    "description": "Invoked when a component is receiving new props. This method is not called for the initial render."
+  },
+  "component:will unmount": {
+    "prefix": "component_did_mount",
+    "body": "componentWillUnmount () {\n\t$0\n}\n",
+    "description": "Invoked immediately before a component is unmounted from the DOM."
+  },
+  "component:will mount": {
+    "prefix": "component_did_mount",
+    "body": "\ncomponentWillMount () {\n\t$0\n}\n",
+    "description": "Invoked once, both on the client and server, immediately before the initial rendering occurs"
+  },
+  "component:will update": {
+    "prefix": "component_will_update",
+    "body": "componentWillUpdate (nextProps, nextState) {\n\t$0\n}\n",
+    "description": "Invoked immediately before rendering when new props or state are being received."
+  },
+  "component:hoc component with redux": {
+    "prefix": "component_redux_hox",
     "body": [
       "import React from 'react'",
       "import { connect } from 'react-redux'",
@@ -216,18 +281,8 @@
       ""
     ]
   },
-  "prop:t:propTypeExactRequired": {
-    "body": ["PropTypes.exact({", "  $0", "}).isRequired"],
-    "prefix": "prop_t_exactRequired",
-    "description": "An object with warnings on extra properties required"
-  },
-  "prop:t:propTypeAny": {
-    "body": ["PropTypes.any"],
-    "prefix": "prop_t_any",
-    "description": "Any prop type"
-  },
-  "comp:hocComponent": {
-    "prefix": "comp_hocComponent",
+  "component:hoc component": {
+    "prefix": "component_hoc_component",
     "body": [
       "import React from 'react'",
       "import PropTypes from 'prop-types'",
@@ -242,46 +297,69 @@
       ""
     ]
   },
-  "reactNativeComponentExport": {
-    "prefix": "rnce",
-    "body": [
-      "import { Text, View } from 'react-native'",
-      "import React, { Component } from 'react'",
-      "",
-      "export class ${1:${TM_FILENAME_BASE}} extends Component {",
-      "  render() {",
-      "    return (",
-      "      <View>",
-      "        <Text>${1:first}</Text>",
-      "      </View>",
-      "    )",
-      "  }",
-      "}",
-      "",
-      "export default ${1:${TM_FILENAME_BASE}}"
-    ]
-  },
   "this:setState object": {
-    "body": "this.setState($0)",
     "prefix": "this_setState",
+    "body": "this.setState($0)",
     "description": "Performs a shallow merge of nextState into current state"
   },
   "this:setState funciton": {
-    "body": "this.setState((state, props) => { return { $0 }})\n",
     "prefix": "this_setState_func",
+    "body": "this.setState((state, props) => { return { $0 }})\n",
     "description": "Performs a shallow merge of nextState into current state"
   },
   "this:props": {
-    "body": "this.props.$0",
     "prefix": "this_prop",
+    "body": "this.props.$0",
     "description": "Access component's props"
   },
   "this:state": {
-    "body": "this.state.$0",
     "prefix": "this_state",
+    "body": "this.state.$0",
     "description": "Access component's state"
   },
+  "this:destructuring of state": {
+    "prefix": "this_state_destructuring",
+    "body": ["const { ${1:name} } = this.state"]
+  },
+  "this:destructuring of props": {
+    "prefix": "this_prop_destructuring",
+    "body": ["const { ${1:name} } = this.props"]
+  },
+  "this:bindThis": {
+    "prefix": "this_bind",
+    "body": ["this.${1:first} = this.${1:first}.bind(this)"],
+    "description": "Binds this to a method"
+  },
+  "this:emptyState": {
+    "prefix": "this_state_empty",
+    "body": ["state = { ${1:first} }"],
+    "description": "Creates empty state object. To be used in a constructor."
+  },
+  "reactNativeImport": {
+    "prefix": "imrn",
+    "body": ["import { ${1:first} } from 'react-native'"]
+  },
+  "reactNativeStyles": {
+    "prefix": "rnstyle",
+    "body": ["const styles = StyleSheet.create({${1:first}})"]
+  },
+  "jsx elements map": {
+    "prefix": "elem_map",
+    "body": "{${1:array}.map((item) => <${2:elementName} key={item.id}>\n\t$0\n</${2}>)}",
+    "description": "an element self closed"
+  },
+  "jsx elements map with return": {
+    "prefix": "elem_map_ret",
+    "body": "{${1:array}.map((item) => {\n\treturn <${2:elementName} key={item.id}>\n\t$0\n</${2}>\n})}",
+    "description": "an element self closed"
+  },
+  "jsx element wrap selection": {
+    "prefix": "elem_wrap",
+    "body": "<${1:elementName}>\n\t{$TM_SELECTED_TEXT}\n</${1}>",
+    "description": "an element"
+  },
   "hook:useCustom": {
+    "prefix": "hook_usecustom",
     "body": [
       "const ${1:customHookName} = () => {",
       "\t$0",
@@ -289,76 +367,159 @@
       "",
       "export default ${1:customHookName};"
     ],
-    "prefix": "hook_useCustom",
     "description": "Declare a custom hook in React"
   },
-  "this:destructuring of props": {
-    "prefix": "this_prop_destructuring",
-    "body": ["const { ${1:name} } = this.props"]
-  },
-  "reactNativeComponentWithStyles": {
-    "prefix": "rncs",
+  "hook:useEffect": {
+    "prefix": "hook_useeffect",
     "body": [
-      "import { Text, StyleSheet, View } from 'react-native'",
+      "useEffect(() => {",
+      "  ${1:first}",
+      "",
+      "  return () => {",
+      "    ${2:second}",
+      "  }",
+      "}, [${3:third}])",
+      ""
+    ],
+    "description": "React useEffect() hook"
+  },
+  "hook:useState": {
+    "prefix": "hook_usestate",
+    "body": "const [${1:val}, set${2:setterName}] = useState(${3:defVal})",
+    "description": "use state hook"
+  },
+  "hook:useCallback": {
+    "prefix": "hook_usecallback",
+    "body": [
+      "const ${1:callback} = useCallback(() => {",
+      "\t$0",
+      "}, [${2:dependency}]);"
+    ],
+    "description": "Declare a memoized callback with useCallback hook in React"
+  },
+  "hook:useeffect 2": {
+    "prefix": "hook_useeffect_2",
+    "body": ["useEffect(() => {", "\t$0", "}, [${1:dependency}]);"],
+    "description": "Declare an effect with useEffect hook in React"
+  },
+  "hook:useState 2": {
+    "prefix": "hook_usestate_with_type",
+    "body": [
+      "const [${1:state}, set${2:State}] = useState<${3:Type}>(initialValue);",
+      "$0"
+    ],
+    "description": "Declare a state variable with useState hook in React"
+  },
+  "hook:useeffect with cleanup": {
+    "prefix": "hook_useeffect_cleanup",
+    "body": [
+      "useEffect(() => {",
+      "\t$1",
+      "\n\treturn () => {",
+      "\t\t$2",
+      "\t}",
+      "}, [${3:dependencies}])$0"
+    ],
+    "description": "React useEffect() hook with a cleanup function"
+  },
+  "hook:createContext": {
+    "prefix": "hook_createcontext",
+    "body": [
+      "export const $1 = createContext<$2>(",
+      "\t(null as any) as $2",
+      ")"
+    ],
+    "description": "creates a react context"
+  },
+  "hook:useReducer": {
+    "prefix": "hook_usereducer",
+    "body": [
+      "const [state, dispatch] = useReducer(${1:reducer}, ${2:initialState});",
+      "$0"
+    ],
+    "description": "Declare a state management with useReducer hook in React"
+  },
+  "hook:useContext": {
+    "prefix": "hook_usecontext",
+    "body": ["const $1 = useContext($2)$0"],
+    "description": "React useContext() hook"
+  },
+  "hook:useRef": {
+    "prefix": "hook_useref",
+    "body": ["const ${1:ref} = useRef<${2:Type}>(null);", "$0"],
+    "description": "Declare a ref with useRef hook in React"
+  },
+  "hook:useMemo": {
+    "prefix": "hook_usememo",
+    "body": [
+      "const ${1:memoizedValue} = useMemo(() => ${2:computeExpensiveValue}(${3:a}, ${4:b}), [${5:a}, ${6:b}])$0"
+    ],
+    "description": "React useMemo() hook"
+  },
+  "hook:useimperative handle": {
+    "prefix": "hook_useimperative_handle",
+    "body": [
+      "useImperativeHandle(${1:ref}, () => ({",
+      "\t$0",
+      "}), [${2:dependency}]);"
+    ],
+    "description": "Customize instance value with useImperativeHandle hook in React"
+  },
+  "hook:useLayoutEffect": {
+    "prefix": "hook_uselayouteffect",
+    "body": ["useLayoutEffect(() => {", "\t$0", "}, [${1:dependency}]);"],
+    "description": "Run the effect before browser layout change with useLayoutEffect hook in React"
+  },
+  "hook:useform": {
+    "prefix": "hook_form",
+    "body": [
+      "const useForm = (initialValues: any) => {",
+      "\tconst [values, setValues] = useState(initialValues);",
+      "",
+      "\tconst handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {",
+      "\t\tconst { name, value } = event.target;",
+      "\t\tsetValues({",
+      "\t\t\t...values,",
+      "\t\t\t[name]: value",
+      "\t\t});",
+      "\t};",
+      "",
+      "\treturn {",
+      "\t\tvalues,",
+      "\t\thandleChange",
+      "\t};",
+      "};",
+      "",
+      "export default useForm;"
+    ],
+    "description": "Create a useForm custom hook in React for form handling"
+  },
+  "hook:useDebugValue": {
+    "prefix": "hook_useDebugValue",
+    "body": ["useDebugValue(${1:value});", "$0"],
+    "description": "Display a label for custom hook in React"
+  },
+  "react:template:class:component proptypes": {
+    "prefix": "react_template_class_component",
+    "body": [
+      "import PropTypes from 'prop-types'",
       "import React, { Component } from 'react'",
       "",
       "export default class ${1:${TM_FILENAME_BASE}} extends Component {",
+      "  static propTypes = {${2:second}: ${3:third}}",
+      "",
       "  render() {",
       "    return (",
-      "      <View>",
-      "        <Text>${1:first}</Text>",
-      "      </View>",
+      "      <div>${1:first}</div>",
       "    )",
       "  }",
       "}",
-      "",
-      "const styles = StyleSheet.create({})"
-    ]
-  },
-  "react_template_func_component_export_2": {
-    "body": [
-      "import React from 'react';",
-      "",
-      "interface Props {",
-      "\t$1",
-      "}",
-      "",
-      "const ${2:ComponentName}: React.FC<Props> = ({ $3 }) => {",
-      "\treturn (",
-      "\t\t<div>$0</div>",
-      "\t);",
-      "};",
-      "",
-      "export default ${2:ComponentName};"
+      ""
     ],
-    "prefix": "react_template_func_component_export_2",
-    "description": "Create a React functional component"
+    "description": "Creates a React component class with PropTypes and ES7 module system"
   },
-  "this:destructuring of state": {
-    "prefix": "this_state_destructuring",
-    "body": ["const { ${1:name} } = this.state"]
-  },
-  "reactNativeFunctionalComponent": {
-    "prefix": "rnf",
-    "body": [
-      "import { View, Text } from 'react-native'",
-      "import React from 'react'",
-      "",
-      "export default function ${1:${TM_FILENAME_BASE}}() {",
-      "  return (",
-      "    <View>",
-      "      <Text>${1:first}</Text>",
-      "    </View>",
-      "  )",
-      "}"
-    ]
-  },
-  "this:bindThis": {
-    "body": ["this.${1:first} = this.${1:first}.bind(this)"],
-    "prefix": "this_bind",
-    "description": "Binds this to a method"
-  },
-  "react:template:class:component": {
+  "react:template:class:component with type props state": {
+    "prefix": "react_template_class_component_with_type_props_state",
     "body": [
       "import React, { Component } from 'react'",
       "",
@@ -376,194 +537,10 @@
       "  }",
       "}"
     ],
-    "prefix": "react_template_class_component",
     "description": "Creates a React component class with ES7 module system and TypeScript interfaces"
   },
-  "reactNativeFunctionalComponentWithStyles": {
-    "prefix": "rnfs",
-    "body": [
-      "import { StyleSheet, Text, View } from 'react-native'",
-      "import React from 'react'",
-      "",
-      "export default function ${1:${TM_FILENAME_BASE}}() {",
-      "  return (",
-      "    <View>",
-      "      <Text>${1:first}</Text>",
-      "    </View>",
-      "  )",
-      "}",
-      "",
-      "const styles = StyleSheet.create({})"
-    ]
-  },
-  "reactNativeFunctionalExportComponent": {
-    "prefix": "rnfe",
-    "body": [
-      "import { View, Text } from 'react-native'",
-      "import React from 'react'",
-      "",
-      "const ${1:${TM_FILENAME_BASE}} = () => {",
-      "  return (",
-      "    <View>",
-      "      <Text>${1:first}</Text>",
-      "    </View>",
-      "  )",
-      "}",
-      "",
-      "export default ${1:${TM_FILENAME_BASE}}"
-    ]
-  },
-  "jsx element": {
-    "body": "<${1:elementName}>\n\t$0\n</${1}>",
-    "prefix": "element_",
-    "description": "an element"
-  },
-  "reactNativeImport": {
-    "prefix": "imrn",
-    "body": ["import { ${1:first} } from 'react-native'"]
-  },
-  "react:template:func:with props destructuring": {
-    "body": [
-      "import React from 'react';",
-      "",
-      "interface Props {",
-      "\t$1",
-      "}",
-      "",
-      "const ${2:ComponentName}: React.FC<Props> = ({ ${3:prop1}, ${4:prop2} }) => {",
-      "\treturn (",
-      "\t\t<div>$0</div>",
-      "\t);",
-      "};",
-      "",
-      "export default ${2:ComponentName};"
-    ],
-    "prefix": "react_template_func_with_props_destructuring",
-    "description": "Create a React functional component with props destructuring"
-  },
-  "jsx element self closed": {
-    "body": "<${1:elementName} />",
-    "prefix": "element_closetag",
-    "description": "an element self closed"
-  },
-  "reactNativePureComponent": {
-    "prefix": "rnpc",
-    "body": [
-      "import { Text, View } from 'react-native'",
-      "import React, { PureComponent } from 'react'",
-      "",
-      "export default class ${1:${TM_FILENAME_BASE}} extends PureComponent {",
-      "  render() {",
-      "    return (",
-      "      <View>",
-      "        <Text>${1:first}</Text>",
-      "      </View>",
-      "    )",
-      "  }",
-      "}"
-    ]
-  },
-  "react:template:func:react redux connect functional component": {
-    "body": [
-      "import React from 'react';",
-      "import { connect } from 'react-redux';",
-      "import { RootState } from 'path/to/rootReducer';",
-      "",
-      "interface PropsFromState {",
-      "\t$1",
-      "}",
-      "",
-      "interface PropsFromDispatch {",
-      "\t$2",
-      "}",
-      "",
-      "type Props = PropsFromState & PropsFromDispatch;",
-      "",
-      "const ${3:ComponentName}: React.FC<Props> = ({ $4 }) => {",
-      "\treturn (",
-      "\t\t<div>$0</div>",
-      "\t);",
-      "};",
-      "",
-      "const mapStateToProps = (state: RootState): PropsFromState => ({",
-      "\t$5",
-      "});",
-      "",
-      "const mapDispatchToProps: PropsFromDispatch = {",
-      "\t$6",
-      "};",
-      "",
-      "export default connect(",
-      "\tmapStateToProps,",
-      "\tmapDispatchToProps",
-      ")(${3:ComponentName});"
-    ],
-    "prefix": "react_template_func_react_redux_connect",
-    "description": "Create a connected React functional component with Redux"
-  },
-  "jsx elements map": {
-    "body": "{${1:array}.map((item) => <${2:elementName} key={item.id}>\n\t$0\n</${2}>)}",
-    "prefix": "element_map",
-    "description": "an element self closed"
-  },
-  "reactNativeStyles": {
-    "prefix": "rnstyle",
-    "body": ["const styles = StyleSheet.create({${1:first}})"]
-  },
-  "jsx elements map with return": {
-    "body": "{${1:array}.map((item) => {\n\treturn <${2:elementName} key={item.id}>\n\t$0\n</${2}>\n})}",
-    "prefix": "element_map_ret",
-    "description": "an element self closed"
-  },
-  "react:template:class:extends PureComponent export": {
-    "body": [
-      "import React, { PureComponent } from 'react'",
-      "",
-      "type Props = {}",
-      "",
-      "class ${1:${TM_FILENAME_BASE}} extends PureComponent<Props> {",
-      "\trender() {",
-      "\t\treturn (",
-      "\t\t\t<div>${1:first}</div>",
-      "\t\t)",
-      "\t}",
-      "}",
-      "",
-      "export default ${1:${TM_FILENAME_BASE}}"
-    ],
-    "prefix": "react_template_class_extends_pure_component_export",
-    "description": "Creates a React pure component class with ES7 module system and TypeScript interface"
-  },
-  "redux:reduxAction": {
-    "prefix": "redux_action",
-    "body": [
-      "export const ${1:first} = (payload) => ({",
-      "  type: ${2:second},",
-      "  payload",
-      "})",
-      ""
-    ]
-  },
-  "jsx element wrap selection": {
-    "body": "<${1:elementName}>\n\t{$TM_SELECTED_TEXT}\n</${1}>",
-    "prefix": "element_wrap",
-    "description": "an element"
-  },
-  "hook:useEffect": {
-    "body": [
-      "useEffect(() => {",
-      "  ${1:first}",
-      "",
-      "  return () => {",
-      "    ${2:second}",
-      "  }",
-      "}, [${3:third}])",
-      ""
-    ],
-    "prefix": "hook_useEffect",
-    "description": "React useEffect() hook"
-  },
-  "react:template:class:export component": {
+  "react:template:class:component with extned component props state": {
+    "prefix": "react_template_class_component_with_default_export",
     "body": [
       "import React, { Component } from 'react'",
       "",
@@ -583,30 +560,54 @@
       "",
       "export default ${1:${TM_FILENAME_BASE}}"
     ],
-    "prefix": "react_template_class_component_export",
     "description": "Creates a React component class with ES7 module system and TypeScript interfaces"
   },
-  "hook:useState": {
-    "body": "const [${1:val}, set${2:setterName}] = useState(${3:defVal})",
-    "prefix": "hook_useState",
-    "description": "use state hook"
-  },
-  "redux:reduxConst": {
-    "prefix": "redux_const",
-    "body": ["export const ${1:first} = '${1:first}'"]
-  },
-  "react:template:class:component redux": {
+  "react:template:class:component native with styles": {
+    "prefix": "react_template_class_component_native",
     "body": [
-      "import { connect } from 'react-redux'",
+      "import { Text, StyleSheet, View } from 'react-native'",
       "import React, { Component } from 'react'",
+      "",
+      "export default class ${1:${TM_FILENAME_BASE}} extends Component {",
+      "\trender() {",
+      "\t\treturn (",
+      "\t\t\t<View>",
+      "\t\t\t\t<Text>${1:first}</Text>",
+      "\t\t\t</View>",
+      "\t\t)",
+      "\t}",
+      "}",
+      "",
+      "const styles = StyleSheet.create({})"
+    ]
+  },
+  "react:template:class:component native export": {
+    "prefix": "react_template_class_component_export_",
+    "body": [
+      "import { Text, View } from 'react-native'",
+      "import React, { Component } from 'react'",
+      "",
+      "export class ${1:${TM_FILENAME_BASE}} extends Component {",
+      "\trender() {",
+      "\t\treturn (",
+      "\t\t\t<View>",
+      "\t\t\t\t<Text>${1:first}</Text>",
+      "\t\t\t</View>",
+      "\t\t)",
+      "\t}",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ]
+  },
+  "react:template:class:component with extends purecomponent": {
+    "prefix": "react_template_class_component_with_extends_purecomponent",
+    "body": [
+      "import React, { PureComponent } from 'react'",
       "",
       "type Props = {}",
       "",
-      "type State = {}",
-      "",
-      "export class ${1:${TM_FILENAME_BASE}} extends Component<Props, State> {",
-      "\tstate = {}",
-      "",
+      "class ${1:${TM_FILENAME_BASE}} extends PureComponent<Props> {",
       "\trender() {",
       "\t\treturn (",
       "\t\t\t<div>${1:first}</div>",
@@ -614,82 +615,17 @@
       "\t}",
       "}",
       "",
-      "const mapStateToProps = (state) => ({})",
-      "",
-      "const mapDispatchToProps = {}",
-      "",
-      "export default connect(mapStateToProps, mapDispatchToProps)(${1:${TM_FILENAME_BASE}})"
-    ],
-    "prefix": "react_template_class_comp_export_with_redux",
-    "description": "Creates a React component class with connected redux and ES7 module system and TypeScript interfaces"
-  },
-  "hook:useState 2": {
-    "body": [
-      "const [${1:state}, set${2:State}] = useState<${3:Type}>(initialValue);",
-      "$0"
-    ],
-    "prefix": "hook_usestate_with_type",
-    "description": "Declare a state variable with useState hook in React"
-  },
-  "hook:useEffect with cleanup": {
-    "body": [
-      "useEffect(() => {",
-      "\t$1",
-      "\n\treturn () => {",
-      "\t\t$2",
-      "\t}",
-      "}, [${3:dependencies}])$0"
-    ],
-    "prefix": "hook_useEffect_cleanup",
-    "description": "React useEffect() hook with a cleanup function"
-  },
-  "react:template:func:Memo Component": {
-    "body": [
-      "import React, { memo } from 'react'",
-      "",
-      "const ${1:${TM_FILENAME_BASE}} = memo(() => {",
-      "  return (",
-      "    <div>${1:first}</div>",
-      "  )",
-      "})",
-      "",
       "export default ${1:${TM_FILENAME_BASE}}"
     ],
-    "prefix": "react_template_func_MemoComponent",
-    "description": "Creates a React Memo Function Component with ES7 module system"
+    "description": "Creates a React pure component class with ES7 module system and TypeScript interface"
   },
-  "react:template:class:react class with full methods": {
+  "react:template:class:component with full component": {
+    "prefix": "react_template_class_component_full",
     "body": "import React, { Component, PropTypes } from 'react'\n\nclass ${TM_FILENAME_BASE} extends Component {\n\tconstructor(props) {\n\t\tsuper(props)\n\n\t}\n\n\tcomponentWillMount () {\n\n\t}\n\n\tcomponentDidMount () {\n\n\t}\n\n\tcomponentWillReceiveProps (nextProps) {\n\n\t}\n\n\tshouldComponentUpdate (nextProps, nextState) {\n\n\t}\n\n\tcomponentWillUpdate (nextProps, nextState) {\n\n\t}\n\n\tcomponentDidUpdate (prevProps, prevState) {\n\n\t}\n\n\tcomponentWillUnmount () {\n\n\t}\n\n\trender () {\n\t\treturn (\n\t\t\t<div>\n\n\t\t\t</div>\n\t\t)\n\t}\n}\n\n${1}.propTypes = {\n\n}\n\nexport default ${1}",
-    "prefix": "react_template_class_with_full_methods",
     "description": "Creates a React component class with PropTypes and all lifecycle methods"
   },
-  "react:template:func:Memo Component with proptypes": {
-    "body": [
-      "import PropTypes from 'prop-types'",
-      "import React, { memo } from 'react'",
-      "",
-      "const ${1:${TM_FILENAME_BASE}} = memo((props) => {",
-      "  return (",
-      "    <div>${1:first}</div>",
-      "  )",
-      "})",
-      "",
-      "${1:${TM_FILENAME_BASE}}.propTypes = {}",
-      "",
-      "export default ${1:${TM_FILENAME_BASE}}"
-    ],
-    "prefix": "react_template_func_MemoComponent_prop",
-    "description": "Creates a React Memo Function Component with ES7 module system with PropTypes"
-  },
-  "redux:reduxSelector": {
-    "prefix": "redux_selector",
-    "body": [
-      "import { createSelector } from 'reselect'",
-      "",
-      "export const ${1:first} = state => state.${2:second}"
-    ]
-  },
-  "react:template:class:proptypes (class component)": {
+  "react:template:class:component proptypes full": {
+    "prefix": "react_template_class_component_full_proptypes",
     "body": [
       "import React, { Component } from 'react';",
       "import PropTypes from 'prop-types';",
@@ -716,23 +652,31 @@
       "",
       "export default ${3:ComponentName};"
     ],
-    "prefix": "reac_template_class_prop",
     "description": "Declare PropTypes for props in a React class component"
   },
-  "hook:useeffect 2": {
-    "body": ["useEffect(() => {", "\t$0", "}, [${1:dependency}]);"],
-    "prefix": "hook_useEffect_2",
-    "description": "Declare an effect with useEffect hook in React"
+  "react:template:class:constructor:context": {
+    "prefix": "react_class_constructor_context",
+    "body": "constructor (props, context) {\n\tsuper(props, context)\n\t$0\n}\n",
+    "description": "Adds a default constructor for the class that contains props and context as arguments"
   },
-  "react:template:func:Component Redux": {
+  "react:template:class:redux component": {
+    "prefix": "react_template_class_redux_component",
     "body": [
-      "import React from 'react'",
       "import { connect } from 'react-redux'",
+      "import React, { Component } from 'react'",
       "",
-      "export const ${1:${TM_FILENAME_BASE}} = (props) => {",
-      "  return (",
-      "    <div>${1:first}</div>",
-      "  )",
+      "type Props = {}",
+      "",
+      "type State = {}",
+      "",
+      "export class ${1:${TM_FILENAME_BASE}} extends Component<Props, State> {",
+      "\tstate = {}",
+      "",
+      "\trender() {",
+      "\t\treturn (",
+      "\t\t\t<div>${1:first}</div>",
+      "\t\t)",
+      "\t}",
       "}",
       "",
       "const mapStateToProps = (state) => ({})",
@@ -741,115 +685,20 @@
       "",
       "export default connect(mapStateToProps, mapDispatchToProps)(${1:${TM_FILENAME_BASE}})"
     ],
-    "prefix": "react_template_func_component_redux",
-    "description": "Creates a React functional component with connected redux and ES7 module system"
+    "description": "Creates a React component class with connected redux and ES7 module system and TypeScript interfaces"
   },
-  "redux:reduxSlice": {
-    "prefix": "redux_slice",
-    "body": [
-      "import { createSlice } from '@reduxjs/toolkit'",
-      "",
-      "const initialState = {",
-      "",
-      "}",
-      "",
-      "const ${1:${TM_FILENAME_BASE}} = createSlice({",
-      "  name: ${2:second},",
-      "  initialState,",
-      "  reducers: {}",
-      "});",
-      "",
-      "export const {} = ${1:${TM_FILENAME_BASE}}.actions",
-      "",
-      "export default ${1:${TM_FILENAME_BASE}}.reducer"
-    ]
-  },
-  "hook:createContext": {
-    "body": [
-      "export const $1 = createContext<$2>(",
-      "\t(null as any) as $2",
-      ")"
-    ],
-    "prefix": "hook_createContext",
-    "description": "creates a react context"
-  },
-  "hook:useContext": {
-    "body": ["const $1 = useContext($2)$0"],
-    "prefix": "hook_useContext",
-    "description": "React useContext() hook"
-  },
-  "redux:mappingToProps": {
-    "prefix": "redux_mappingToProps",
-    "body": [
-      "const mapStateToProps = (state) => ({})",
-      "",
-      "const mapDispatchToProps = {}"
-    ]
-  },
-  "react:template:class:constructor:context": {
-    "body": "constructor (props, context) {\n\tsuper(props, context)\n\t$0\n}\n",
-    "prefix": "react_class_constructor_context",
-    "description": "Adds a default constructor for the class that contains props and context as arguments"
-  },
-  "hook:useReducer": {
-    "body": [
-      "const [state, dispatch] = useReducer(${1:reducer}, ${2:initialState});",
-      "$0"
-    ],
-    "prefix": "hook_useReducer",
-    "description": "Declare a state management with useReducer hook in React"
-  },
-  "react:template:class:component proptypes": {
-    "body": [
-      "import PropTypes from 'prop-types'",
-      "import React, { Component } from 'react'",
-      "",
-      "export default class ${1:${TM_FILENAME_BASE}} extends Component {",
-      "  static propTypes = {${2:second}: ${3:third}}",
-      "",
-      "  render() {",
-      "    return (",
-      "      <div>${1:first}</div>",
-      "    )",
-      "  }",
-      "}",
-      ""
-    ],
-    "prefix": "react_template_class_proptypes",
-    "description": "Creates a React component class with PropTypes and ES7 module system"
-  },
-  "hook:useRef": {
-    "body": ["const ${1:ref} = useRef<${2:Type}>(null);", "$0"],
-    "prefix": "hook_useRef",
-    "description": "Declare a ref with useRef hook in React"
-  },
-  "react:template:func:stateless component": {
-    "body": [
-      "import React from 'react';",
-      "",
-      "import { View } from 'react-native';",
-      "",
-      "// import { Container } from './styles';",
-      "",
-      "const ${1:${TM_DIRECTORY/^.*(\\/|\\\\)([^(\\/|\\\\)]+)$/$2/}} = () => <View />;",
-      "",
-      "export default ${1:${TM_DIRECTORY/^.*(\\/|\\\\)([^(\\/|\\\\)]+)$/$2/}};",
-      ""
-    ],
-    "prefix": "react_template_func_stateless_component",
-    "description": "Create React Native Stateless Component"
-  },
-  "react:template:class:class component redux": {
+  "react:template:class:redux class component 2": {
+    "prefix": "react_template_class_redux_component_with_type_props_state",
     "body": [
       "import React, { Component } from 'react'",
       "import { connect } from 'react-redux'",
       "",
       "export class ${1:${TM_FILENAME_BASE}} extends Component {",
-      "  render() {",
-      "    return (",
-      "      <div>${1:first}</div>",
-      "    )",
-      "  }",
+      "\trender() {",
+      "\t\treturn (",
+      "\t\t\t<div>${1:first}</div>",
+      "\t\t)",
+      "\t}",
       "}",
       "",
       "const mapStateToProps = (state) => ({})",
@@ -858,10 +707,10 @@
       "",
       "export default connect(mapStateToProps, mapDispatchToProps)(${1:${TM_FILENAME_BASE}})"
     ],
-    "prefix": "react_template_class_component_redux",
     "description": "Creates a React component class with connected redux and ES7 module system"
   },
   "react:template:class:redux proptypes": {
+    "prefix": "react_template_class_redux_component_with_static_proptypes",
     "body": [
       "import PropTypes from 'prop-types'",
       "import React, { Component } from 'react'",
@@ -885,91 +734,382 @@
       "",
       "export default connect(mapStateToProps, mapDispatchToProps)(${1:${TM_FILENAME_BASE}})"
     ],
-    "prefix": "react_template_class_comp_redux_prop",
     "description": "Creates a React component class with PropTypes with connected redux and ES7 module system"
   },
-  "hook:useMemo": {
+  "react:template:class:redux extends purecomponent": {
+    "prefix": "react_template_class_redux_compeonent_with_extends_purecomponent",
     "body": [
-      "const ${1:memoizedValue} = useMemo(() => ${2:computeExpensiveValue}(${3:a}, ${4:b}), [${5:a}, ${6:b}])$0"
+      "import React, { PureComponent } from 'react'",
+      "",
+      "type Props = {}",
+      "",
+      "export default class ${1:${TM_FILENAME_BASE}} extends PureComponent<Props> {",
+      "\trender() {",
+      "\t\treturn (",
+      "\t\t\t<div>${1:first}</div>",
+      "\t\t)",
+      "\t}",
+      "}"
     ],
-    "prefix": "hook_useMemo",
-    "description": "React useMemo() hook"
+    "description": "Creates a React pure component class with ES7 module system and TypeScript interface"
   },
-  "testing:react:template:setupReactNativeTest": {
-    "prefix": "test_react_template_native_setup",
+  "react:template:func:component": {
+    "prefix": "react_template_func_component",
     "body": [
-      "import 'react-native'",
       "import React from 'react'",
-      "import renderer from 'react-test-renderer'",
+      "import PropTypes from 'prop-types'",
       "",
-      "import ${1:${TM_FILENAME_BASE}} from '../${1:${TM_FILENAME_BASE}}'",
+      "function ${1:${TM_FILENAME_BASE}}(props) {",
+      "  return (",
+      "    <div>${1:first}</div>",
+      "  )",
+      "}",
       "",
-      "describe('<${1:${TM_FILENAME_BASE}} />', () => {",
-      "  const defaultProps = {}",
-      "  const wrapper = renderer.create(<${1:${TM_FILENAME_BASE}} {...defaultProps} />)",
+      "${1:${TM_FILENAME_BASE}}.propTypes = {}",
       "",
-      "  test('render', () => {",
-      "    expect(wrapper).toMatchSnapshot()",
-      "  })",
-      "})"
-    ]
-  },
-  "hook:useImperativeHandle": {
-    "body": [
-      "useImperativeHandle(${1:ref}, () => ({",
-      "\t$0",
-      "}), [${2:dependency}]);"
+      "export default ${1:${TM_FILENAME_BASE}}",
+      ""
     ],
-    "prefix": "hook_useimperativehandle",
-    "description": "Customize instance value with useImperativeHandle hook in React"
+    "description": "Creates a React Functional Component with ES7 module system with PropTypes"
   },
-  "react:template:func:component functional typescript": {
+  "react:template:func:component with type param": {
+    "prefix": "react_template_func_component_with_type_param",
+    "body": [
+      "import React from 'react'",
+      "",
+      "type Props = {}",
+      "",
+      "function ${1:${TM_FILENAME_BASE}}({}: Props) {",
+      "  return (",
+      "    <div>${1:first}</div>",
+      "  )",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ],
+    "description": "Creates a React Functional Component with ES7 module system and TypeScript interface"
+  },
+  "react:template:func:component with props destructuring": {
+    "prefix": "react_template_func_component_with_param_props_desctruction",
     "body": [
       "import React from 'react';",
+      "",
+      "interface Props {",
+      "\t$1",
+      "}",
+      "",
+      "const ${2:ComponentName}: React.FC<Props> = ({ ${3:prop1}, ${4:prop2} }) => {",
+      "\treturn (",
+      "\t\t<div>$0</div>",
+      "\t);",
+      "};",
+      "",
+      "export default ${2:ComponentName};"
+    ],
+    "description": "Create a React functional component with props destructuring"
+  },
+  "react:template:func:component native functional": {
+    "prefix": "react_template_func_component_native",
+    "body": [
+      "import { View, Text } from 'react-native'",
+      "import React from 'react'",
+      "",
+      "export default function ${1:${TM_FILENAME_BASE}}() {",
+      "\treturn (",
+      "\t\t<View>",
+      "\t\t\t<Text>${1:first}</Text>",
+      "\t\t</View>",
+      "\t)",
+      "}"
+    ]
+  },
+  "react:template:func:component with extends purecomponent": {
+    "prefix": "react_template_func_component_native_with_extends_purecomponent",
+    "body": [
+      "import { Text, View } from 'react-native'",
+      "import React, { PureComponent } from 'react'",
+      "",
+      "export default class ${1:${TM_FILENAME_BASE}} extends PureComponent {",
+      "\trender() {",
+      "\t\treturn (",
+      "\t\t\t<View>",
+      "\t\t\t\t<Text>${1:first}</Text>",
+      "\t\t\t</View>",
+      "\t\t)",
+      "\t}",
+      "}"
+    ]
+  },
+  "react:template:func:component stateful": {
+    "prefix": "react_template_func_component_stateful",
+    "body": [
+      "import React, { Component } from 'react';",
+      "",
       "import { View } from 'react-native';",
       "",
       "// import { Container } from './styles';",
       "",
-      "const ${1:${TM_DIRECTORY/^.*(\\/|\\\\)([^(\\/|\\\\)]+)$/$2/}}: React.FC = () => {",
-      "  return <View />;",
+      "export default class ${1:${TM_DIRECTORY/^.*(\\/|\\\\)([^(\\/|\\\\)]+)$/$2/}} extends Component {",
+      "\trender() {",
+      "\t\treturn <View />;",
+      "\t}",
+      "}",
+      ""
+    ],
+    "description": "Create React Native Stateful Component"
+  },
+  "react:template:func:component stateless": {
+    "prefix": "react_template_func_component_stateless",
+    "body": [
+      "import React from 'react';",
+      "",
+      "import { View } from 'react-native';",
+      "",
+      "// import { Container } from './styles';",
+      "",
+      "const ${1:${TM_DIRECTORY/^.*(\\/|\\\\)([^(\\/|\\\\)]+)$/$2/}} = () => <View />;",
+      "",
+      "export default ${1:${TM_DIRECTORY/^.*(\\/|\\\\)([^(\\/|\\\\)]+)$/$2/}};",
+      ""
+    ],
+    "description": "Create React Native Stateless Component"
+  },
+  "react:template:func:proptypes (functional component)": {
+    "prefix": "react_template_func_props",
+    "body": [
+      "import PropTypes from 'prop-types';",
+      "",
+      "interface Props {",
+      "\t$1",
       "}",
       "",
-      "export default ${1:${TM_DIRECTORY/^.*(\\/|\\\\)([^(\\/|\\\\)]+)$/$2/}};"
+      "const ${2:ComponentName}: React.FC<Props> = ({ $3 }) => {",
+      "\treturn (",
+      "\t\t<div>$0</div>",
+      "\t);",
+      "};",
+      "",
+      "${2:ComponentName}.propTypes = {",
+      "\t$4",
+      "};",
+      "",
+      "export default ${2:ComponentName};"
     ],
-    "prefix": "react_template_func_component_ts",
-    "description": "Create React Native TypeScript Functional Component"
+    "description": "Declare PropTypes for props in a React functional component"
   },
-  "testing:react:template:setupReactNativeTestWithRedux": {
-    "prefix": "test_react_template_native_setup_with_redux",
+  "react:template:func:memo component": {
+    "prefix": "react_template_func_memo",
     "body": [
-      "import 'react-native'",
+      "import React, { memo } from 'react'",
+      "",
+      "const ${1:${TM_FILENAME_BASE}} = memo(() => {",
+      "\treturn (",
+      "\t\t<div>${1:first}</div>",
+      "\t)",
+      "})",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ],
+    "description": "Creates a React Memo Function Component with ES7 module system"
+  },
+  "react:template:func:memo component with proptypes": {
+    "prefix": "react_template_func_memo_with_proptypes",
+    "body": [
+      "import PropTypes from 'prop-types'",
+      "import React, { memo } from 'react'",
+      "",
+      "const ${1:${TM_FILENAME_BASE}} = memo((props) => {",
+      "\treturn (",
+      "\t\t<div>${1:first}</div>",
+      "\t)",
+      "})",
+      "",
+      "${1:${TM_FILENAME_BASE}}.propTypes = {}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ],
+    "description": "Creates a React Memo Function Component with ES7 module system with PropTypes"
+  },
+  "react:template:func:memo (functional component with custom comparison)": {
+    "prefix": "react_template_func_memo_with_custom_compare",
+    "body": [
+      "import React, { memo } from 'react';",
+      "",
+      "interface Props {",
+      "\t$1",
+      "}",
+      "",
+      "const ${2:ComponentName}: React.FC<Props> = ({ $3 }) => {",
+      "\treturn (",
+      "\t\t<div>$0</div>",
+      "\t);",
+      "};",
+      "",
+      "function areEqual(prevProps: Props, nextProps: Props) {",
+      "\treturn true; // Define your comparison logic here",
+      "}",
+      "",
+      "export default memo(${2:ComponentName}, areEqual);"
+    ],
+    "description": "Memoize a React functional component with custom comparison function using React.memo"
+  },
+  "react:template:func:proptypes (functional component with destructuring)": {
+    "prefix": "react_template_func_proptypes_destructuring",
+    "body": [
+      "import PropTypes from 'prop-types';",
+      "",
+      "interface Props {",
+      "\t${1:prop1}: ${2:Type};",
+      "\t${3:prop2}: ${4:Type};",
+      "}",
+      "",
+      "const ${5:ComponentName}: React.FC<Props> = ({ ${1:prop1}, ${3:prop2} }) => {",
+      "\treturn (",
+      "\t\t<div>$0</div>",
+      "\t);",
+      "};",
+      "",
+      "${5:ComponentName}.propTypes = {",
+      "\t${1:prop1}: PropTypes.${6:isRequired},",
+      "\t${3:prop2}: PropTypes.${7:isRequired}",
+      "};",
+      "",
+      "export default ${5:ComponentName};"
+    ],
+    "description": "Declare PropTypes with destructuring for props in a React functional component"
+  },
+  "react:template:func:higher-order component (HOC)": {
+    "body": [
+      "import React from 'react';",
+      "",
+      "function with${1:HigherOrderComponent}(WrappedComponent: React.ComponentType<any>) {",
+      "\treturn (props: any) => (",
+      "\t\t<WrappedComponent {...props} />",
+      "\t);",
+      "}",
+      "",
+      "export default with${1:HigherOrderComponent};"
+    ],
+    "prefix": "react_template_func_HOC",
+    "description": "Create a higher-order component in React"
+  },
+  "react:template:func:arrow:export component": {
+    "prefix": "react_template_func_arrow_component_export",
+    "body": [
       "import React from 'react'",
-      "import renderer from 'react-test-renderer'",
-      "import { Provider } from 'react-redux'",
       "",
-      "import store from '~/store'",
-      "import ${1:${TM_FILENAME_BASE}} from '../${1:${TM_FILENAME_BASE}}'",
+      "type Props = {}",
       "",
-      "describe('<${1:${TM_FILENAME_BASE}} />', () => {",
-      "  const defaultProps = {}",
-      "  const wrapper = renderer.create(",
-      "    <Provider store={store}>",
-      "      <${1:${TM_FILENAME_BASE}} {...defaultProps} />",
-      "    </Provider>,",
+      "const ${1:${TM_FILENAME_BASE}} = (props: Props) => {",
+      "\treturn (",
+      "\t\t<div>${1:first}</div>",
+      "\t)",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ],
+    "description": "Creates a React Arrow Function Component with ES7 module system and TypeScript interface"
+  },
+  "react:template:func:arrow:native function component": {
+    "prefix": "react_template_func_arrow_native_func_component",
+    "body": [
+      "import { View, Text } from 'react-native'",
+      "import React from 'react'",
+      "",
+      "type Props = {}",
+      "",
+      "const ${1:${TM_FILENAME_BASE}} = (props: Props) => {",
+      "\treturn (",
+      "\t\t<View>",
+      "\t\t\t<Text>${1:first}</Text>",
+      "\t\t</View>",
+      "\t)",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ],
+    "description": "Creates a React Native Arrow Function Component with ES7 module system in TypeScript"
+  },
+  "react:template:func:arrow:component with proptypes": {
+    "prefix": "react_template_func_arrow_component_with_prop_types",
+    "body": [
+      "import PropTypes from 'prop-types'",
+      "",
+      "const ${1:${TM_FILENAME_BASE}} = props => {",
+      "  return (",
+      "    <div>${1:first}</div>",
       "  )",
+      "}",
       "",
-      "  test('render', () => {",
-      "    expect(wrapper).toMatchSnapshot()",
-      "  })",
-      "})"
-    ]
+      "${1:${TM_FILENAME_BASE}}.propTypes = {}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ],
+    "description": "Creates a React Arrow Function Component with ES7 module system with PropTypes"
   },
-  "hook:useLayoutEffect": {
-    "body": ["useLayoutEffect(() => {", "\t$0", "}, [${1:dependency}]);"],
-    "prefix": "hook_useLayoutEffect",
-    "description": "Run the effect before browser layout change with useLayoutEffect hook in React"
+  "react:template:func:arrow:function component with styles": {
+    "prefix": "react_template_func_arrow_component_export_in_native_with_styles",
+    "body": [
+      "import { StyleSheet, Text, View } from 'react-native'",
+      "import React from 'react'",
+      "",
+      "type Props = {}",
+      "",
+      "const ${1:${TM_FILENAME_BASE}} = (props: Props) => {",
+      "\treturn (",
+      "\t\t<View>",
+      "\t\t\t<Text>${1:first}</Text>",
+      "\t\t</View>",
+      "\t)",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}",
+      "",
+      "const styles = StyleSheet.create({})"
+    ],
+    "description": "Creates a React Native Arrow Function Component with ES7 module system, TypeScript interface and StyleSheet"
   },
-  "react:template:func:react redux connect class component": {
+  "react:template:func:arrow:func export component": {
+    "prefix": "react_template_func_arrow_component_export_only",
+    "body": [
+      "",
+      "const ${1:${TM_FILENAME_BASE}} = () => {",
+      "  return (",
+      "    <div>${1:first}</div>",
+      "  )",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ],
+    "description": "Creates a React Arrow Function Component with ES7 module system"
+  },
+  "react:template:func:redux proptypes": {
+    "prefix": "react_template_func_component_redux_prop",
+    "body": [
+      "import PropTypes from 'prop-types'",
+      "import React from 'react'",
+      "import { connect } from 'react-redux'",
+      "",
+      "export const ${1:${TM_FILENAME_BASE}} = (props) => {",
+      "  return (",
+      "    <div>${1:first}</div>",
+      "  )",
+      "}",
+      "",
+      "${1:${TM_FILENAME_BASE}}.propTypes = {",
+      "  ${2:second}: PropTypes.${3:third}",
+      "}",
+      "",
+      "const mapStateToProps = (state) => ({})",
+      "",
+      "const mapDispatchToProps = {}",
+      "",
+      "export default connect(mapStateToProps, mapDispatchToProps)(${1:${TM_FILENAME_BASE}})"
+    ],
+    "description": "DEPRECATED: Creates a React functional component with PropTypes with connected redux and ES7 module system"
+  },
+  "react:template:func:redux connect class component": {
+    "prefix": "react_template_func_redux_connect_class",
     "body": [
       "import React, { Component } from 'react';",
       "import { connect } from 'react-redux';",
@@ -1006,480 +1146,49 @@
       "\tmapDispatchToProps",
       ")(${3:ComponentName});"
     ],
-    "prefix": "react_template_func_react_redux_connect_class",
     "description": "Create a connected React class component with Redux"
   },
-  "hook:useDebugValue": {
-    "body": ["useDebugValue(${1:value});", "$0"],
-    "prefix": "hook_useDebugValue",
-    "description": "Display a label for custom hook in React"
-  },
-  "react:template:func:proptypes (functional component with destructuring)": {
+  "react:template:func:redux connect functional component": {
+    "prefix": "react_template_func_redux_connect",
     "body": [
-      "import PropTypes from 'prop-types';",
+      "import React from 'react';",
+      "import { connect } from 'react-redux';",
+      "import { RootState } from 'path/to/rootReducer';",
       "",
-      "interface Props {",
-      "\t${1:prop1}: ${2:Type};",
-      "\t${3:prop2}: ${4:Type};",
-      "}",
-      "",
-      "const ${5:ComponentName}: React.FC<Props> = ({ ${1:prop1}, ${3:prop2} }) => {",
-      "\treturn (",
-      "\t\t<div>$0</div>",
-      "\t);",
-      "};",
-      "",
-      "${5:ComponentName}.propTypes = {",
-      "\t${1:prop1}: PropTypes.${6:isRequired},",
-      "\t${3:prop2}: PropTypes.${7:isRequired}",
-      "};",
-      "",
-      "export default ${5:ComponentName};"
-    ],
-    "prefix": "react_template_func_proptypes_destructuring",
-    "description": "Declare PropTypes with destructuring for props in a React functional component"
-  },
-  "react:template:func:arrow:export component": {
-    "body": [
-      "import React from 'react'",
-      "",
-      "type Props = {}",
-      "",
-      "const ${1:${TM_FILENAME_BASE}} = (props: Props) => {",
-      "\treturn (",
-      "\t\t<div>${1:first}</div>",
-      "\t)",
-      "}",
-      "",
-      "export default ${1:${TM_FILENAME_BASE}}"
-    ],
-    "prefix": "react_template_func_arrow_component_export",
-    "description": "Creates a React Arrow Function Component with ES7 module system and TypeScript interface"
-  },
-  "hook:useForm": {
-    "body": [
-      "const useForm = (initialValues: any) => {",
-      "\tconst [values, setValues] = useState(initialValues);",
-      "",
-      "\tconst handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {",
-      "\t\tconst { name, value } = event.target;",
-      "\t\tsetValues({",
-      "\t\t\t...values,",
-      "\t\t\t[name]: value",
-      "\t\t});",
-      "\t};",
-      "",
-      "\treturn {",
-      "\t\tvalues,",
-      "\t\thandleChange",
-      "\t};",
-      "};",
-      "",
-      "export default useForm;"
-    ],
-    "prefix": "hook_form",
-    "description": "Create a useForm custom hook in React for form handling"
-  },
-  "react:template:func:arrow:native function component": {
-    "body": [
-      "import { View, Text } from 'react-native'",
-      "import React from 'react'",
-      "",
-      "type Props = {}",
-      "",
-      "const ${1:${TM_FILENAME_BASE}} = (props: Props) => {",
-      "\treturn (",
-      "\t\t<View>",
-      "\t\t\t<Text>${1:first}</Text>",
-      "\t\t</View>",
-      "\t)",
-      "}",
-      "",
-      "export default ${1:${TM_FILENAME_BASE}}"
-    ],
-    "prefix": "react_template_func_arrow_native_func_component",
-    "description": "Creates a React Native Arrow Function Component with ES7 module system in TypeScript"
-  },
-  "react:template:func:React Memo (Functional Component with Custom Comparison)": {
-    "body": [
-      "import React, { memo } from 'react';",
-      "",
-      "interface Props {",
+      "interface PropsFromState {",
       "\t$1",
       "}",
       "",
-      "const ${2:ComponentName}: React.FC<Props> = ({ $3 }) => {",
+      "interface PropsFromDispatch {",
+      "\t$2",
+      "}",
+      "",
+      "type Props = PropsFromState & PropsFromDispatch;",
+      "",
+      "const ${3:ComponentName}: React.FC<Props> = ({ $4 }) => {",
       "\treturn (",
       "\t\t<div>$0</div>",
       "\t);",
       "};",
       "",
-      "function areEqual(prevProps: Props, nextProps: Props) {",
-      "\treturn true; // Define your comparison logic here",
-      "}",
+      "const mapStateToProps = (state: RootState): PropsFromState => ({",
+      "\t$5",
+      "});",
       "",
-      "export default memo(${2:ComponentName}, areEqual);"
-    ],
-    "prefix": "react_template_func_memo_comp_compare",
-    "description": "Memoize a React functional component with custom comparison function using React.memo"
-  },
-  "react:template:func:arrow:component with proptypes": {
-    "body": [
-      "import PropTypes from 'prop-types'",
-      "",
-      "const ${1:${TM_FILENAME_BASE}} = props => {",
-      "  return (",
-      "    <div>${1:first}</div>",
-      "  )",
-      "}",
-      "",
-      "${1:${TM_FILENAME_BASE}}.propTypes = {}",
-      "",
-      "export default ${1:${TM_FILENAME_BASE}}"
-    ],
-    "prefix": "react_template_func_arrow_component_with_prop_types",
-    "description": "Creates a React Arrow Function Component with ES7 module system with PropTypes"
-  },
-  "react:template:func:Higher-Order Component (HOC)": {
-    "body": [
-      "import React from 'react';",
-      "",
-      "function with${1:HigherOrderComponent}(WrappedComponent: React.ComponentType<any>) {",
-      "\treturn (props: any) => (",
-      "\t\t<WrappedComponent {...props} />",
-      "\t);",
-      "}",
-      "",
-      "export default with${1:HigherOrderComponent};"
-    ],
-    "prefix": "react_template_func_HOC",
-    "description": "Create a higher-order component in React"
-  },
-  "react:template:func:arrow:function component with styles": {
-    "body": [
-      "import { StyleSheet, Text, View } from 'react-native'",
-      "import React from 'react'",
-      "",
-      "type Props = {}",
-      "",
-      "const ${1:${TM_FILENAME_BASE}} = (props: Props) => {",
-      "\treturn (",
-      "\t\t<View>",
-      "\t\t\t<Text>${1:first}</Text>",
-      "\t\t</View>",
-      "\t)",
-      "}",
-      "",
-      "export default ${1:${TM_FILENAME_BASE}}",
-      "",
-      "const styles = StyleSheet.create({})"
-    ],
-    "prefix": "react_template_func_arrow_component_export_in_native_with_styles",
-    "description": "Creates a React Native Arrow Function Component with ES7 module system, TypeScript interface and StyleSheet"
-  },
-  "prop:proTypes": {
-    "body": "$1.propTypes = {\n\t$2\n}",
-    "prefix": "prop_types_",
-    "description": "Creates empty propTypes declaration"
-  },
-  "react:template:func:arrow:func export component": {
-    "body": [
-      "",
-      "const ${1:${TM_FILENAME_BASE}} = () => {",
-      "  return (",
-      "    <div>${1:first}</div>",
-      "  )",
-      "}",
-      "",
-      "export default ${1:${TM_FILENAME_BASE}}"
-    ],
-    "prefix": "react_template_func_arrow_component_export_only",
-    "description": "Creates a React Arrow Function Component with ES7 module system"
-  },
-  "prop:t:propTypeArray": {
-    "body": ["PropTypes.array"],
-    "prefix": "prop_t_array",
-    "description": "Array prop type"
-  },
-  "react:template:func:proptypes (functional component)": {
-    "body": [
-      "import PropTypes from 'prop-types';",
-      "",
-      "interface Props {",
-      "\t$1",
-      "}",
-      "",
-      "const ${2:ComponentName}: React.FC<Props> = ({ $3 }) => {",
-      "\treturn (",
-      "\t\t<div>$0</div>",
-      "\t);",
+      "const mapDispatchToProps: PropsFromDispatch = {",
+      "\t$6",
       "};",
       "",
-      "${2:ComponentName}.propTypes = {",
-      "\t$4",
-      "};",
-      "",
-      "export default ${2:ComponentName};"
+      "export default connect(",
+      "\tmapStateToProps,",
+      "\tmapDispatchToProps",
+      ")(${3:ComponentName});"
     ],
-    "prefix": "react_template_func_props",
-    "description": "Declare PropTypes for props in a React functional component"
+    "description": "Create a connected React functional component with Redux"
   },
-  "prop:t:TypeArrayRequired": {
-    "body": ["PropTypes.array.isRequired"],
-    "prefix": "prop_t_array_required",
-    "description": "Array prop type required"
-  },
-  "comment:BigBlock": {
-    "prefix": "comment_block",
-    "body": ["/**", " * ${1:first}", " */"]
-  },
-  "prop:t:propTypeBool": {
-    "body": ["PropTypes.bool"],
-    "prefix": "prop_t_bool",
-    "description": "Bool prop type"
-  },
-  "getSnapshotBeforeUpdate": {
+  "react:template:func:redux func": {
+    "prefix": "react_template_func_redux_component",
     "body": [
-      "getSnapshotBeforeUpdate = (prevProps, prevState) => {${1:first}}"
-    ],
-    "prefix": "gsbu",
-    "description": "Called right before mutations are made (e.g. before the DOM is updated)"
-  },
-  "getDerivedStateFromProps": {
-    "body": ["static getDerivedStateFromProps(props, state) {${1:first}}"],
-    "prefix": "gdsfp",
-    "description": "Invoked right before calling the render method, both on the initial mount and on subsequent updates."
-  },
-  "testing:react:template:setupReactComponentTestWithRedux": {
-    "body": [
-      "import React from 'react'",
-      "import renderer from 'react-test-renderer'",
-      "import { Provider } from 'react-redux'",
-      "",
-      "import store from '~/store'",
-      "import { ${1:${TM_FILENAME_BASE}} } from '../${1:${TM_FILENAME_BASE}}'",
-      "",
-      "describe('<${1:${TM_FILENAME_BASE}} />', () => {",
-      "  const defaultProps = {}",
-      "  const wrapper = renderer.create(",
-      "    <Provider store={store}>",
-      "     <${1:${TM_FILENAME_BASE}} {...defaultProps} />",
-      "    </Provider>,",
-      "  )",
-      "",
-      "  test('render', () => {",
-      "    expect(wrapper).toMatchSnapshot()",
-      "  })",
-      "})"
-    ],
-    "prefix": "test_react_template_setup_with_redux",
-    "description": "Create test component"
-  },
-  "prop:t:propTypeBoolRequired": {
-    "body": ["PropTypes.bool.isRequired"],
-    "prefix": "prop_t_bool_required",
-    "description": "Bool prop type required"
-  },
-  "redux:reduxReducer": {
-    "prefix": "redux_reducer",
-    "body": [
-      "const initialState = {}",
-      "",
-      "export default (state = initialState, { type, payload }) => {",
-      "  switch (type) {",
-      "",
-      "  case ${1:first}:",
-      "    return { ...state, ...payload }",
-      "",
-      "  default:",
-      "    return state",
-      "  }",
-      "}",
-      ""
-    ]
-  },
-  "reactNativePureComponentExport": {
-    "prefix": "rnpce",
-    "body": [
-      "import { Text, View } from 'react-native'",
-      "import React, { PureComponent } from 'react'",
-      "",
-      "export class ${1:${TM_FILENAME_BASE}} extends PureComponent {",
-      "  render() {",
-      "    return (",
-      "      <View>",
-      "        <Text>${1:first}</Text>",
-      "      </View>",
-      "    )",
-      "  }",
-      "}",
-      "",
-      "export default ${1:${TM_FILENAME_BASE}}"
-    ]
-  },
-  "reactNativeFunctionalExportComponentWithStyles": {
-    "prefix": "rnfes",
-    "body": [
-      "import { StyleSheet, Text, View } from 'react-native'",
-      "import React from 'react'",
-      "",
-      "const ${1:${TM_FILENAME_BASE}} = () => {",
-      "  return (",
-      "    <View>",
-      "      <Text>${1:first}</Text>",
-      "    </View>",
-      "  )",
-      "}",
-      "",
-      "export default ${1:${TM_FILENAME_BASE}}",
-      "",
-      "const styles = StyleSheet.create({})"
-    ]
-  },
-  "prop:t:propTypeFunc": {
-    "body": ["PropTypes.func"],
-    "prefix": "prop_t_func",
-    "description": "Func prop type"
-  },
-  "prop:t:propTypeInstanceOfRequired": {
-    "body": ["PropTypes.instanceOf($0).isRequired"],
-    "prefix": "prop_t_instanceOfRequired",
-    "description": "Is an instance of a class prop type required"
-  },
-  "react:template:class:extends PureComponent": {
-    "body": [
-      "import React, { PureComponent } from 'react'",
-      "",
-      "type Props = {}",
-      "",
-      "export default class ${1:${TM_FILENAME_BASE}} extends PureComponent<Props> {",
-      "\trender() {",
-      "\t\treturn (",
-      "\t\t\t<div>${1:first}</div>",
-      "\t\t)",
-      "\t}",
-      "}"
-    ],
-    "prefix": "react_template_class_extends_pure_component",
-    "description": "Creates a React pure component class with ES7 module system and TypeScript interface"
-  },
-  "react:template:func:component functional": {
-    "body": [
-      "import React from 'react';",
-      "import { View } from 'react-native';",
-      "",
-      "// import { Container } from './styles';",
-      "",
-      "export default function ${1:${TM_DIRECTORY/^.*(\\/|\\\\)([^(\\/|\\\\)]+)$/$2/}}() {",
-      "  return (",
-      "    <View />",
-      "  );",
-      "}",
-      ""
-    ],
-    "prefix": "react_template_func_functional",
-    "description": "Create React Native Functional Component"
-  },
-  "prop:t:propTypeFuncRequired": {
-    "body": ["PropTypes.func.isRequired"],
-    "prefix": "prop_t_func_required",
-    "description": "Func prop type required"
-  },
-  "react:template:func:export component": {
-    "body": [
-      "import React from 'react'",
-      "",
-      "type Props = {}",
-      "",
-      "function ${1:${TM_FILENAME_BASE}}({}: Props) {",
-      "  return (",
-      "    <div>${1:first}</div>",
-      "  )",
-      "}",
-      "",
-      "export default ${1:${TM_FILENAME_BASE}}"
-    ],
-    "prefix": "react_template_func_component_export",
-    "description": "Creates a React Functional Component with ES7 module system and TypeScript interface"
-  },
-  "this:emptyState": {
-    "body": ["state = { ${1:first} }"],
-    "prefix": "this_state_empty",
-    "description": "Creates empty state object. To be used in a constructor."
-  },
-  "react:template:class:PureComponent with proptypes": {
-    "body": [
-      "import PropTypes from 'prop-types'",
-      "import React, { PureComponent } from 'react'",
-      "",
-      "export default class ${1:${TM_FILENAME_BASE}} extends PureComponent {",
-      "  static propTypes = {}",
-      "",
-      "  render() {",
-      "    return (",
-      "      <div>${1:first}</div>",
-      "    )",
-      "  }",
-      "}",
-      ""
-    ],
-    "prefix": "react_template_class_PureComponent_prop",
-    "description": "Creates a React component class with ES7 module system"
-  },
-  "prop:t:propTypeNumber": {
-    "body": ["PropTypes.number"],
-    "prefix": "prop_t_number",
-    "description": "Number prop type"
-  },
-  "type:exportType": {
-    "prefix": "type_export",
-    "body": ["export type ${1:first} = {${2:second}}"]
-  },
-  "react:template:func:Component With PropTypes": {
-    "body": [
-      "import React from 'react'",
-      "import PropTypes from 'prop-types'",
-      "",
-      "function ${1:${TM_FILENAME_BASE}}(props) {",
-      "  return (",
-      "    <div>${1:first}</div>",
-      "  )",
-      "}",
-      "",
-      "${1:${TM_FILENAME_BASE}}.propTypes = {}",
-      "",
-      "export default ${1:${TM_FILENAME_BASE}}",
-      ""
-    ],
-    "prefix": "react_template_func_component_prop",
-    "description": "Creates a React Functional Component with ES7 module system with PropTypes"
-  },
-  "react:template:func:stateful component": {
-    "body": [
-      "import React, { Component } from 'react';",
-      "",
-      "import { View } from 'react-native';",
-      "",
-      "// import { Container } from './styles';",
-      "",
-      "export default class ${1:${TM_DIRECTORY/^.*(\\/|\\\\)([^(\\/|\\\\)]+)$/$2/}} extends Component {",
-      "  render() {",
-      "    return <View />;",
-      "  }",
-      "}",
-      ""
-    ],
-    "prefix": "react_template_func_stateful_component",
-    "description": "Create React Native Stateful Component"
-  },
-  "prop:t:propTypeNumberRequired": {
-    "body": ["PropTypes.number.isRequired"],
-    "prefix": "prop_t_number_required",
-    "description": "Number prop type required"
-  },
-  "react:template:func:Component Redux PropTypes": {
-    "body": [
-      "import PropTypes from 'prop-types'",
       "import React from 'react'",
       "import { connect } from 'react-redux'",
       "",
@@ -1489,52 +1198,100 @@
       "  )",
       "}",
       "",
-      "${1:${TM_FILENAME_BASE}}.propTypes = {",
-      "  ${2:second}: PropTypes.${3:third}",
-      "}",
-      "",
       "const mapStateToProps = (state) => ({})",
       "",
       "const mapDispatchToProps = {}",
       "",
       "export default connect(mapStateToProps, mapDispatchToProps)(${1:${TM_FILENAME_BASE}})"
     ],
-    "prefix": "react_template_func_component_redux_prop",
-    "description": "DEPRECATED: Creates a React functional component with PropTypes with connected redux and ES7 module system"
+    "description": "Creates a React functional component with connected redux and ES7 module system"
   },
-  "prop:t:propTypeString": {
-    "body": ["PropTypes.string"],
-    "prefix": "prop_t_string",
-    "description": "String prop type"
-  },
-  "prop:t:propTypeNodeRequired": {
-    "body": ["PropTypes.node.isRequired"],
-    "prefix": "prop_t_node_required",
-    "description": "Anything that can be rendered: numbers, strings, elements or an array required"
-  },
-  "prop:t:propTypeObject": {
-    "body": ["PropTypes.object"],
-    "prefix": "prop_t_object",
-    "description": "Object prop type"
-  },
-  "prop:t:propTypeEnumRequired": {
-    "body": ["PropTypes.oneOf(['$0']).isRequired"],
-    "prefix": "prop_t_enumRequired",
-    "description": "Prop type limited to specific values by treating it as an enum required"
-  },
-  "hook:useCallback": {
+  "redux:redux reducer": {
+    "prefix": "redux_reducer",
     "body": [
-      "const ${1:callback} = useCallback(() => {",
-      "\t$0",
-      "}, [${2:dependency}]);"
-    ],
-    "prefix": "hook_useCallback",
-    "description": "Declare a memoized callback with useCallback hook in React"
+      "const initialState = {}",
+      "",
+      "export default (state = initialState, { type, payload }) => {",
+      "\tswitch (type) {",
+      "",
+      "\t\tcase ${1:first}:",
+      "\t\t\treturn { ...state, ...payload }",
+      "",
+      "\t\tdefault:",
+      "\t\t\treturn state",
+      "\t\t}",
+      "}",
+      ""
+    ]
   },
-  "prop:t:propTypeElementRequired": {
-    "body": ["PropTypes.element.isRequired"],
-    "prefix": "prop_t_element_required",
-    "description": "React element prop type required"
+  "redux:redux action": {
+    "prefix": "redux_action",
+    "body": [
+      "export const ${1:first} = (payload) => ({",
+      "  type: ${2:second},",
+      "  payload",
+      "})",
+      ""
+    ]
+  },
+  "redux:redux selector": {
+    "prefix": "redux_selector",
+    "body": [
+      "import { createSelector } from 'reselect'",
+      "",
+      "export const ${1:first} = state => state.${2:second}"
+    ]
+  },
+  "redux:redux const": {
+    "prefix": "redux_const",
+    "body": ["export const ${1:first} = '${1:first}'"]
+  },
+  "redux:redux slice": {
+    "prefix": "redux_slice",
+    "body": [
+      "import { createSlice } from '@reduxjs/toolkit'",
+      "",
+      "const initialState = {",
+      "",
+      "}",
+      "",
+      "const ${1:${TM_FILENAME_BASE}} = createSlice({",
+      "  name: ${2:second},",
+      "  initialState,",
+      "  reducers: {}",
+      "});",
+      "",
+      "export const {} = ${1:${TM_FILENAME_BASE}}.actions",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}.reducer"
+    ]
+  },
+  "redux:mapping to props": {
+    "prefix": "redux_mappingToProps",
+    "body": [
+      "const mapStateToProps = (state) => ({})",
+      "",
+      "const mapDispatchToProps = {}"
+    ]
+  },
+  "comment:big block": {
+    "prefix": "comment_block",
+    "body": ["/**", " * ${1:first}", " */"]
+  },
+  "getSnapshotBeforeUpdate": {
+    "prefix": "gsbu",
+    "body": [
+      "getSnapshotBeforeUpdate = (prevProps, prevState) => {${1:first}}"
+    ],
+    "description": "Called right before mutations are made (e.g. before the DOM is updated)"
+  },
+  "getDerivedStateFromProps": {
+    "prefix": "gdsfp",
+    "body": ["static getDerivedStateFromProps(props, state) {${1:first}}"],
+    "description": "Invoked right before calling the render method, both on the initial mount and on subsequent updates."
+  },
+  "type:exportType": {
+    "prefix": "type_export",
+    "body": ["export type ${1:first} = {${2:second}}"]
   }
 }
-

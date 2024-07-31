@@ -3,39 +3,39 @@
     "prefix": "imp_from_as",
     "body": ["import { ${2:second} as ${3:third} } from '${1:first}'"]
   },
+  "importEverything": {
+    "prefix": "imp_from_all_as",
+    "body": ["import * as ${2:second} from '${1:first}'"]
+  },
   "importBrowserRouter": {
     "prefix": "imp_from_as_reactdom",
     "body": ["import { BrowserRouter as Router } from 'react-router-dom'"]
   },
   "importBrowserRouterWithRouteAndNavLink": {
-    "prefix": "imrr",
+    "prefix": "imp_from_router_from_reactdom",
     "body": [
       "import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'",
       ""
     ]
   },
   "importDestructing": {
-    "prefix": "imd",
+    "prefix": "imp_from",
     "body": ["import { ${2:second} } from '${1:first}'"]
   },
-  "importEverything": {
-    "prefix": "ime",
-    "body": ["import * as ${2:second} from '${1:first}'"]
-  },
   "importNoModuleName": {
-    "prefix": "imn",
+    "prefix": "imp_",
     "body": ["import '${1:first}'"]
   },
   "importPropTypes": {
-    "prefix": "impt",
+    "prefix": "imp_props",
     "body": ["import PropTypes from 'prop-types'"]
   },
   "importReact": {
-    "prefix": "imr",
+    "prefix": "imp_react",
     "body": ["import React from 'react'"]
   },
   "importReactDom": {
-    "prefix": "imrd",
+    "prefix": "imp_reactdom",
     "body": ["import ReactDOM from 'react-dom'"]
   },
   "importReactWithComponent": {

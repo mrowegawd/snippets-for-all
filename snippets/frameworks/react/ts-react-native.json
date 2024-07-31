@@ -11,7 +11,7 @@
     ],
     "description": "Create React Native Styled Components file"
   },
-  "StyleSheet": {
+  "stylesheet": {
     "prefix": "react_create_stylesheet",
     "body": [
       "const ${1:styles} = StyleSheet.create({",
