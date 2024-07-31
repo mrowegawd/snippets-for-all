@@ -4,6 +4,27 @@
     "body": ["// TODO: $0"],
     "description": "// TODO: ..."
   },
+  "Lorem Ipsum Sedang": {
+    "prefix": "lorem",
+    "body": [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquam est ac ipsum posuere, quis venenatis sem fermentum. Morbi nec nisi at lorem placerat vehicula."
+    ],
+    "description": "Menyisipkan teks Lorem Ipsum sedang."
+  },
+
+  "Lorem Ipsum Panjang": {
+    "prefix": "lorem5",
+    "body": [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquam est ac ipsum posuere, quis venenatis sem fermentum. Morbi nec nisi at lorem placerat vehicula.",
+      "",
+      "Sed eu turpis vitae risus eleifend efficitur. Nam tincidunt ultricies eros, eget facilisis orci molestie et. Aenean sagittis, magna eget vestibulum varius, odio ipsum consequat risus, a condimentum leo sapien sit amet lorem.",
+      "",
+      "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus finibus, felis in tincidunt tincidunt, nulla ex lacinia quam, non ultricies enim felis in tellus.",
+      "",
+      "Fusce ullamcorper interdum erat, sit amet scelerisque est eleifend vel. Integer rhoncus, felis in posuere lacinia, neque nisi eleifend nisl, id convallis libero sapien vitae purus."
+    ],
+    "description": "Menyisipkan teks Lorem Ipsum panjang (5 paragraf)."
+  },
   "use strict": {
     "prefix": "use_strict",
     "body": "'use strict'",
