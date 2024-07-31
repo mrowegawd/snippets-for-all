@@ -199,7 +199,7 @@
   },
   "text:code inline": {
     "prefix": "text_inlince_code",
-    "body": ["_$0_"],
+    "body": ["~$0~"],
     "description": "code inline words"
   }
 }
