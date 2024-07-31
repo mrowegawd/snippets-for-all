@@ -8,28 +8,10 @@
     "prefix": "func_async_",
     "body": [
       "async function ${1:functionName}(${2:params}: ${3:type}): Promise<${4:void}> {",
-      "    $0",
+      "\t$0",
       "}"
     ],
     "description": "Creates an async function"
-  },
-  "function:async:arrow:func": {
-    "prefix": "func_async_arrow_",
-    "body": [
-      "const ${1:functionName} = async (${2:params}: ${3:type}): Promise<${4:void}> => {",
-      "    $0",
-      "};"
-    ],
-    "description": "Creates an async arrow function"
-  },
-  "function:async:arrow:with optional return value": {
-    "prefix": "func_async_arrow_ret_promise_optional_value",
-    "body": [
-      "const ${1:functionName} = async (${2:params}: ${3:type}): Promise<${4:returnType | void}> => {",
-      "    $0",
-      "};"
-    ],
-    "description": "Creates an async arrow function with optional return value"
   },
   "function:async:param:optional parameter": {
     "prefix": "func_async_param_optional",
@@ -44,7 +26,7 @@
     "prefix": "func_async_param_destructuring",
     "body": [
       "async function ${1:functionName}({${2:param1}, ${3:param2}}: {${2:param1}: ${4:type1}, ${3:param2}: ${5:type2}}): Promise<${6:void}> {",
-      "    $0",
+      "\t$0",
       "}"
     ],
     "description": "Creates an async function with destructuring parameter"
@@ -289,6 +271,24 @@
       "}"
     ],
     "description": "Creates an async function with Promise.all for multiple errors and fallback value"
+  },
+  "function:arrow:async": {
+    "prefix": "func_arrow_async",
+    "body": [
+      "const ${1:functionName} = async (${2:params}: ${3:type}): Promise<${4:void}> => {",
+      "\t$0",
+      "};"
+    ],
+    "description": "Creates an async arrow function"
+  },
+  "function:arrow:async:with optional return value": {
+    "prefix": "func_arrow_async_with_ret_promise",
+    "body": [
+      "const ${1:functionName} = async (${2:params}: ${3:type}): Promise<${4:returnType | void}> => {",
+      "\t$0",
+      "};"
+    ],
+    "description": "Creates an async arrow function with optional return value"
   },
   "const:new promise declaration": {
     "prefix": "const_new_promise",

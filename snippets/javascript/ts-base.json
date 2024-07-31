@@ -4,6 +4,11 @@
     "body": ["// TODO: $0"],
     "description": "// TODO: ..."
   },
+  "WARN": {
+    "prefix": "warn_",
+    "body": ["// WARN: $0"],
+    "description": "// WARN: ..."
+  },
   "Lorem Ipsum Sedang": {
     "prefix": "lorem",
     "body": [
@@ -135,12 +140,12 @@
     "description": "import * as name from 'module'"
   },
   "import:default statement": {
-    "prefix": "imp_default",
+    "prefix": "imp_from_default",
     "body": ["import ${1:defaultName} from '${2:module}';", "$0"],
     "description": "Import default statement in TypeScript"
   },
   "import:all statement": {
-    "prefix": "imp_all",
+    "prefix": "imp_from_all",
     "body": ["import * as ${1:namespace} from '${2:module}';", "$0"],
     "description": "Import all statement in TypeScript"
   },
