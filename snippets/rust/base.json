@@ -489,6 +489,151 @@
     ],
     "description": "function default param"
   },
+  "fn:where:generic:where_clause": {
+    "prefix": "func_generic_where_clause",
+    "body": [
+      "pub fn ${2:func_name}<${3:T}>(${4:arg}: ${3:T}) -> ${5:Return_Type}",
+      "where",
+      "\t${3:T}: ${6:Trait}",
+      "{",
+      "\t${0:// Function body}",
+      "}"
+    ],
+    "description": "function generic where clause"
+  },
+  "fn:where;generic:multiple generics and bound clause": {
+    "prefix": "func_where_with_multiple_generics_and_bound_clause",
+    "body": [
+      "fn ${1:my_function}<${2:T}, ${3:U}>(${4:arg1}: ${2:T}, ${5:arg2}: ${3:U}) -> ${6:ReturnType} where ${2:T}: ${7:Trait1}, ${3:U}: ${8:Trait2} {",
+      "\t// Implement function logic here",
+      "\t${4:arg1}.${9:method1}();",
+      "\t${5:arg2}.${10:method2}();",
+      "\t${6:ReturnType}::default()",
+      "}"
+    ],
+    "description": "Create a Rust function with multiple generics and bound clauses"
+  },
+  "fn:where:generic:lifetime parameter and bound clause": {
+    "prefix": "func_where_with_lifetime_parameter_and_bound_clause",
+    "body": [
+      "fn ${1:my_function}<'${2:a, ${3:T}>(${4:arg}: &'${2:a> ${3:T}) -> ${5:ReturnType} where '${2:a>: '${6:b> {",
+      "\t// Implement function logic here",
+      "\t${4:arg}.${7:method}();",
+      "\t${5:ReturnType}::default()",
+      "}"
+    ],
+    "description": "Create a Rust function with a lifetime parameter and bound clause"
+  },
+  "fn:where:generic:with default type parameter and bound clause": {
+    "prefix": "func_where_with_default_type",
+    "body": [
+      "fn ${1:my_function}<${2:T = ${3:DefaultType}>(${4:arg}: ${2:T}) -> ${5:ReturnType} where ${2:T}: ${6:Trait} {",
+      "\t// Implement function logic here",
+      "\t${4:arg}.${7:method}();",
+      "\t${5:ReturnType}::default()",
+      "}"
+    ],
+    "description": "Create a Rust function with a default type parameter and bound clause"
+  },
+  "fn:where:generic:with trait alias and bound clause": {
+    "prefix": "func_where_with_trait_alias",
+    "body": [
+      "fn ${1:my_function}<${2:T}>(${3:arg}: ${2:T}) -> ${4:ReturnType} where ${2:T>: ${5:SomeTrait} {",
+      "\t// Implement function logic here",
+      "\t${3:arg}.${6:method}();",
+      "\t${4:ReturnType}::default()",
+      "}"
+    ],
+    "description": "Create a Rust function with a trait alias in the bound clause"
+  },
+  "fn:where:generic:with operator traits and bound clause": {
+    "prefix": "func_where_with_operator_trait",
+    "body": [
+      "fn ${1:my_function}<${2:T}>(${3:arg}: ${2:T}) -> ${4:ReturnType} where ${2:T>: std::ops::${5:Add} {",
+      "\t// Implement function logic here",
+      "\t${3:arg}.${6:method}();",
+      "\t${4:ReturnType}::default()",
+      "}"
+    ],
+    "description": "Create a Rust function with an operator trait in the bound clause"
+  },
+  "fn:where:generic:with multiple trait constraints": {
+    "prefix": "func_where_with_multiple_traits",
+    "body": [
+      "fn ${1:my_function}<${2:T}>(${3:arg}: ${2:T}) -> ${4:ReturnType} where ${2:T}: ${5:Trait1} + ${6:Trait2} {",
+      "\t// Implement function logic here",
+      "\t${3:arg}.${7:method1}();",
+      "\t${4:ReturnType}::default()",
+      "}"
+    ],
+    "description": "Create a Rust function with multiple trait constraints on a generic parameter"
+  },
+  "fn:where:with lifetime bounds": {
+    "prefix": "func_where_lifetime_bounds_parameter",
+    "body": [
+      "fn ${1:my_function}<'${2:a, ${3:T}>(${4:arg}: &'${2:a> ${3:T}) -> ${5:ReturnType} where '${2:a>: '${6:b> {",
+      "\t// Implement function logic here",
+      "\t${4:arg}.${7:method}();",
+      "\t${5:ReturnType}::default()",
+      "}"
+    ],
+    "description": "Create a Rust function with lifetime bounds on a reference parameter"
+  },
+  "fn:where:with sized trait": {
+    "prefix": "func_where_with_sized_trait",
+    "body": [
+      "fn ${1:my_function}<${2:T}>(${3:arg}: ${2:T}) -> ${4:ReturnType} where ${2:T}: ${5:Sized} {",
+      "\t// Implement function logic here",
+      "\t${3:arg}.${6:method}();",
+      "\t${4:ReturnType}::default()",
+      "}"
+    ],
+    "description": "Create a Rust function with the Sized trait in the bound clause"
+  },
+  "fn:where:with with trait associated types": {
+    "prefix": "func_where_associated_type",
+    "body": [
+      "fn ${1:my_function}<${2:T}>(${3:arg}: &${2:T}) -> ${4:ReturnType} where ${2:T}: ${5:SomeTrait} {",
+      "\t// Implement function logic here",
+      "\t${3:arg}.${6:method}();",
+      "\t${4:ReturnType}::default()",
+      "}"
+    ],
+    "description": "Create a Rust function with trait associated types in the bound clause"
+  },
+  "fn:where:generic:with long where clause": {
+    "prefix": "func_where_with_long_where_clause",
+    "body": [
+      "fn ${1:my_function}<${2:T}, ${3:U}>(${4:arg1}: ${2:T}, ${5:arg2}: ${3:U}) -> ${6:ReturnType} where ${2:T}: ${7:Trait1} + ${8:Trait2},",
+      "\t${3:U}: ${9:Trait3} + ${10:Trait4>,",
+      "\t${11:U}: ${12:Trait5> {",
+      "\t// Implement function logic here",
+      "\t${4:arg1}.${13:method1}();",
+      "\t${5:arg2}.${14:method2}();",
+      "\t${6:ReturnType}::default()",
+      "}"
+    ],
+    "description": "Create a Rust function with a long where clause"
+  },
+  "fn:where:generic:default type parameter": {
+    "prefix": "func_where_with_bound_default_type",
+    "body": [
+      "fn ${1:my_function}<${2:T} = ${3:DefaultType}>(${4:args}: ${2:T}) -> ${5:ReturnType} where ${2:T}: ${6:Trait} {",
+      "\t${4:args}.${7:method}();",
+      "\t${5:ReturnType}::default()",
+      "}"
+    ],
+    "description": "Create a Rust function with a default type parameter in the bound clause"
+  },
+  "fn:where:generic:default type parameterc": {
+    "prefix": "func_where_with_bound_default_type_test",
+    "body": [
+      "fn ${1:my_function}<${2:T} = ${3:DefaultType}>(${4:arg}: ${2:T}) -> ${5:ReturnType} where ${2:T}: ${6:Trait} {",
+      "\t${4}.${7:method}();",
+      "\t${5:ReturnType}::default()"
+    ],
+    "description": "Create a Rust function with a default type parameter in the bound clause"
+  },
   "fn:generic": {
     "prefix": "func_generic_",
     "body": [
@@ -515,18 +660,6 @@
       "}"
     ],
     "description": "function generic trait bound"
-  },
-  "fn:generic:where_clause": {
-    "prefix": "func_generic_where_clause",
-    "body": [
-      "pub fn ${2:func_name}<${3:T}>(${4:arg}: ${3:T}) -> ${5:Return_Type}",
-      "where",
-      "\t${3:T}: ${6:Trait}",
-      "{",
-      "\t${0:// Function body}",
-      "}"
-    ],
-    "description": "function generic where clause"
   },
   "fn:generic:lifettime": {
     "prefix": "func_generic_lifetime",
@@ -681,6 +814,37 @@
     "body": ["struct ${2:StructName}<'${1:T}> {"],
     "description": "struct generic syntax"
   },
+  "struct:t:where:generic:with single generic": {
+    "prefix": "struct_t_where_single",
+    "body": ["struct ${1:MyStruct}<${2:T}> where ${2:T}: ${3:Trait} {"],
+    "description": "Create a Rust struct with a single generic parameter and where clause"
+  },
+  "struct:t:where:generic:with two generics": {
+    "prefix": "struct_t_where_with_two_generic",
+    "body": [
+      "struct ${1:MyStruct}<${2:T}, ${3:U}> where ${2:T}: ${4:Trait1}, ${3:U}: ${5:Trait2} {"
+    ],
+    "description": "Create a Rust struct with two generic parameters and where clauses"
+  },
+  "struct:t:where:generic:with multiple constraints": {
+    "prefix": "struct_t_where_with_multiple_generic",
+    "body": [
+      "struct ${1:MyStruct}<${2:T}, ${3:U}> where ${2:T}: ${4:Trait1} + ${5:Trait2}, ${3:U}: ${6:Trait3} {"
+    ],
+    "description": "Create a Rust struct with multiple generic parameters and where clauses"
+  },
+  "struct:t:where:generic:with associated type": {
+    "prefix": "struct_t_where_with_generic_associated_trait",
+    "body": ["struct ${1:MyStruct}<${2:T}> where ${2:T}: ${3:Trait} {"],
+    "description": "Create a Rust struct with an associated type and where clause"
+  },
+  "struct:t:where:generic:with lifetime parameter": {
+    "prefix": "struct_t_where_with_lifetime",
+    "body": [
+      "struct ${1:MyStruct}<'${2:a>, ${3:T}> where ${3:T}: ${4:Trait} + '${2:a> {"
+    ],
+    "description": "Create a Rust struct with a lifetime parameter and where clause"
+  },
   "struct:tuple": {
     "prefix": "struct_tuple_",
     "body": ["struct ${1:Name}(${2:Type});"],
@@ -720,6 +884,16 @@
       "}"
     ],
     "description": "Creates a Rust struct with inheritance"
+  },
+  "struct:with multiple traits": {
+    "prefix": "struct_inherit_multi",
+    "body": [
+      "struct ${1:MyStruct}<${2:T}, ${3:U}> where ${2:T}: ${4:Trait1}, ${3:U}: ${5:Trait2} {",
+      "\t${6:field1}: ${2:T},",
+      "\t${7:field2}: ${3:U},",
+      "}"
+    ],
+    "description": "Create a Rust struct with multiple trait constraints"
   },
   "struct:with tuple field": {
     "prefix": "struct_tuple_field",
@@ -769,6 +943,110 @@
       "}"
     ],
     "description": "Creates a Rust struct with multiple lifetime parameters"
+  },
+  "struct:where:generic:with single generic": {
+    "prefix": "struct_where_with_single_generic",
+    "body": [
+      "struct ${1:MyStruct}<${2:T}> where ${2:T}: ${3:Trait} {",
+      "\t${4:field}: ${2:T},",
+      "}"
+    ],
+    "description": "Create a Rust struct with a single generic parameter and where clause"
+  },
+  "struct:where:generic:with two generics": {
+    "prefix": "struct_where_with_two_generic",
+    "body": [
+      "struct ${1:MyStruct}<${2:T}, ${3:U}> where ${2:T}: ${4:Trait1}, ${3:U}: ${5:Trait2} {",
+      "\t${6:field1}: ${2:T},",
+      "\t${7:field2}: ${3:U},",
+      "}"
+    ],
+    "description": "Create a Rust struct with two generic parameters and where clauses"
+  },
+  "struct:where:generic:with multiple constraints": {
+    "prefix": "struct_where_with_multiple_generic",
+    "body": [
+      "struct ${1:MyStruct}<${2:T}, ${3:U}> where ${2:T}: ${4:Trait1} + ${5:Trait2}, ${3:U}: ${6:Trait3} {",
+      "\t${7:field1}: ${2:T},",
+      "\t${8:field2}: ${3:U},",
+      "}"
+    ],
+    "description": "Create a Rust struct with multiple generic parameters and where clauses"
+  },
+  "struct:where:generic:with associated type": {
+    "prefix": "struct_where_with_generic_associated_trait",
+    "body": [
+      "struct ${1:MyStruct}<${2:T}> where ${2:T}: ${3:Trait} {",
+      "\ttype ${4:AssocType} = ${2:T};",
+      "}"
+    ],
+    "description": "Create a Rust struct with an associated type and where clause"
+  },
+  "struct:where:generic:with lifetime parameter": {
+    "prefix": "struct_where_with_lifetime",
+    "body": [
+      "struct ${1:MyStruct}<'${2:a>, ${3:T}> where ${3:T}: ${4:Trait} + '${2:a> {",
+      "\t${5:field}: &'${2:a> ${3:T},",
+      "}"
+    ],
+    "description": "Create a Rust struct with a lifetime parameter and where clause"
+  },
+  "struct:where:generic:with lifetime": {
+    "prefix": "struct_where_with_generic_lifetime_parameter",
+    "body": [
+      "struct ${1:MyStruct}<'${2:a}, ${3:T}> where ${3:T}: ${4:Trait}, ${2:a>: '${5:b> {",
+      "\t${6:field}: &'${2:a> ${3:T},",
+      "}"
+    ],
+    "description": "Create a Rust struct with a generic and lifetime parameter with where clause"
+  },
+  "struct:where:generic:with long where clause": {
+    "prefix": "struct_where_with_generic_long_where_clause",
+    "body": [
+      "struct ${1:MyStruct}<${2:T}, ${3:U}> where ${2:T}: ${4:Trait1} + ${5:Trait2},",
+      "\t${3:U}: ${6:Trait3} + ${7:Trait4>,",
+      "\t${8:U}: ${9:Trait5> {",
+      "\t${10:field1}: ${2:T},",
+      "\t${11:field2}: ${3:U},",
+      "}"
+    ],
+    "description": "Create a Rust struct with a long where clause"
+  },
+  "struct:where:generic:trait aliases": {
+    "prefix": "struct_where_with_generic_trait_alias",
+    "body": [
+      "struct ${1:MyStruct}<${2:T}> where ${2:T>: ${3:SomeTrait} {",
+      "\t${4:field}: ${2:T},",
+      "}"
+    ],
+    "description": "Create a Rust struct with a trait alias in the where clause"
+  },
+  "struct:where:generic:with operator traits": {
+    "prefix": "struct_where_with_generic_operator_trait",
+    "body": [
+      "struct ${1:MyStruct}<${2:T}> where ${2:T>: std::ops::${3:Add} {",
+      "\t${4:field}: ${2:T},",
+      "}"
+    ],
+    "description": "Create a Rust struct with an operator trait in the where clause"
+  },
+  "struct:where:generic:with default type parameter": {
+    "prefix": "struct_where_default_type",
+    "body": [
+      "struct ${1:MyStruct}<${2:T = ${3:DefaultType}> where ${2:T>: ${4:Trait} {",
+      "\t${5:field}: ${2:T},",
+      "}"
+    ],
+    "description": "Create a Rust struct with a default type parameter in the where clause"
+  },
+  "struct:where:generic:with sized trait": {
+    "prefix": "struct_where_sized",
+    "body": [
+      "struct ${1:MyStruct}<${2:T}> where ${2:T}: ${3:Sized} {",
+      "\t${4:field}: ${2:T},",
+      "}"
+    ],
+    "description": "Create a Rust struct with the Sized trait in the where clause"
   },
   "struct:generic": {
     "prefix": "struct_generic",
