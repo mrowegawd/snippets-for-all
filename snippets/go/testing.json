@@ -112,7 +112,7 @@
     "description": "Benchmark Function"
   },
   "testing:func:func example": {
-    "prefix": "test_func_func_example",
+    "prefix": "test_func_example",
     "body": [
       "func Example${1:FunctionName}() {",
       "\t${2:// Example code}",
@@ -122,7 +122,7 @@
     ],
     "description": "Example Function"
   },
-  "testing:testing-table": {
+  "testing:test table": {
     "prefix": "test_table",
     "body": [
       "var tests = []struct {",

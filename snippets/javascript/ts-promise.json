@@ -1,11 +1,19 @@
 {
-  "function:async:func immediately-invoked expression": {
-    "prefix": "func_async_iife",
-    "body": ";(async (${1:arguments}) => {\n\t${0}\n})(${2})",
-    "description": ";(async (arguments) => {\n\n})(value)"
+  "await:create": {
+    "prefix": "await_",
+    "body": ["await ${1:expression};"],
+    "description": "Insert an await statement"
   },
-  "function:async:func": {
-    "prefix": "func_async_",
+  "await:with optional chaining": {
+    "prefix": "await_chaining_optional",
+    "body": [
+      "const result = await ${1:promise};",
+      "const value = result?.${2:property};"
+    ],
+    "description": "Await statement with optional chaining"
+  },
+  "async:function": {
+    "prefix": "async_func_",
     "body": [
       "async function ${1:functionName}(${2:params}: ${3:type}): Promise<${4:void}> {",
       "\t$0",
@@ -13,17 +21,22 @@
     ],
     "description": "Creates an async function"
   },
-  "function:async:param:optional parameter": {
-    "prefix": "func_async_param_optional",
+  "async:function:immediately invoked (iife)": {
+    "prefix": "async_func_iife",
+    "body": ";(async (${1:arguments}) => {\n\t${0}\n})(${2})",
+    "description": ";(async (arguments) => {\n\n})(value)"
+  },
+  "async:function:with param optional parameter": {
+    "prefix": "async_func_with_param_optional",
     "body": [
       "async function ${1:functionName}(${2:params}?: ${3:type}): Promise<${4:void}> {",
-      "    $0",
+      "\t$0",
       "}"
     ],
     "description": "Creates an async function with optional parameter"
   },
-  "function:async:param:with destructuring parameter": {
-    "prefix": "func_async_param_destructuring",
+  "async:function:with destructuring parameter": {
+    "prefix": "async_func_with_param_destructuring",
     "body": [
       "async function ${1:functionName}({${2:param1}, ${3:param2}}: {${2:param1}: ${4:type1}, ${3:param2}: ${5:type2}}): Promise<${6:void}> {",
       "\t$0",
@@ -31,8 +44,8 @@
     ],
     "description": "Creates an async function with destructuring parameter"
   },
-  "function:async:with return value": {
-    "prefix": "func_async_ret_promise_value",
+  "async:function:with return value": {
+    "prefix": "async_func_with_ret_promise_value",
     "body": [
       "async function ${1:functionName}(${2:params}: ${3:type}): Promise<${4:returnType}> {",
       "    $0",
@@ -40,103 +53,103 @@
     ],
     "description": "Creates an async function with return value"
   },
-  "function:async:with generic Promise": {
-    "prefix": "func_async_ret_promise_generic",
+  "async:function:with generic Promise": {
+    "prefix": "async_func_with_ret_promise_generic",
     "body": [
       "async function ${1:functionName}(${2:params}: ${3:type}): ${4:Promise<${5:void}>>} {",
-      "    $0",
+      "\t$0",
       "}"
     ],
     "description": "Creates an async function using generic Promise"
   },
-  "function:async:with await and multiple statements": {
-    "prefix": "func_async_with_await_and_multiple_statements",
+  "async:function:with await and multiple statements": {
+    "prefix": "async_func_with_await_and_multiple_statements",
     "body": [
       "async function ${1:functionName}(${2:params}: ${3:type}): Promise<${4:void}> {",
-      "    const ${5:result} = await ${6:asyncOperation}(${2:params});",
-      "    ${7:// Additional statements}",
-      "    return ${5:result};",
+      "\tconst ${5:result} = await ${6:asyncOperation}(${2:params});",
+      "\t${7:// Additional statements}",
+      "\treturn ${5:result};",
       "}"
     ],
     "description": "Creates an async function with await and multiple statements"
   },
-  "function:async:with try-catch error handling": {
-    "prefix": "func_async_with_try_catch_error_handling",
+  "async:function:with try-catch error handling": {
+    "prefix": "async_func_with_try_catch_error_handling",
     "body": [
       "async function ${1:functionName}(${2:params}: ${3:type}): Promise<${4:void}> {",
-      "    try {",
-      "        $0",
-      "    } catch (error) {",
-      "        console.error('Error:', error);",
-      "        throw error;",
-      "    }",
+      "\ttry {",
+      "\t\t$0",
+      "\t} catch (error) {",
+      "\t\tconsole.error('Error:', error);",
+      "\t\tthrow error;",
+      "\t}",
       "}"
     ],
     "description": "Creates an async function with try-catch error handling"
   },
-  "function:async:with await in loop": {
-    "prefix": "func_async_with_await_in_loop",
+  "async:function:with await in loop": {
+    "prefix": "async_func_with_await_in_loop",
     "body": [
       "async function ${1:functionName}(${2:params}: ${3:type}): Promise<${4:void}> {",
-      "    for (const ${5:item} of ${6:items}) {",
-      "        await ${7:asyncOperation}(${5:item});",
-      "    }",
-      "    $0",
+      "\tfor (const ${5:item} of ${6:items}) {",
+      "\t\tawait ${7:asyncOperation}(${5:item});",
+      "\t}",
+      "\t$0",
       "}"
     ],
     "description": "Creates an async function with await inside loop"
   },
-  "function:async:with Promise.resolve for return value": {
-    "prefix": "func_async_ret_promise_resolve",
+  "async:function:with promise.resolve for return value": {
+    "prefix": "async_func_with_ret_promise_resolve",
     "body": [
       "async function ${1:functionName}(${2:params}: ${3:type}): Promise<${4:returnType}> {",
-      "    return Promise.resolve(${5:returnValue});",
+      "\treturn Promise.resolve(${5:returnValue});",
       "}"
     ],
     "description": "Creates an async function with Promise.resolve for return value"
   },
-  "function:async:with await in if condition": {
-    "prefix": "func_async_with_await_in_if_condition",
+  "async:function:with await in if condition": {
+    "prefix": "async_func_with_await_in_if_condition",
     "body": [
       "async function ${1:functionName}(${2:params}: ${3:type}): Promise<${4:void}> {",
-      "    if (await ${5:checkCondition}(${2:params})) {",
-      "        $0",
-      "    }",
+      "\tif (await ${5:checkCondition}(${2:params})) {",
+      "\t\t$0",
+      "\t}",
       "}"
     ],
     "description": "Creates an async function with await inside if condition"
   },
-  "function:async:with Promise.all and try-catch for multiple errors": {
-    "prefix": "func_async_with_promise_all_try_catch_for_multiple_errors",
+  "async:function:with Promise.all and try-catch for multiple errors": {
+    "prefix": "async_func_with_promise_all_try_catch_for_multiple_errors",
     "body": [
       "async function ${1:functionName}(${2:params}: ${3:type}): Promise<${4:void}> {",
-      "    try {",
-      "        const results = await Promise.all([",
-      "            ${5:asyncOperation1}(${2:params}),",
-      "            ${6:asyncOperation2}(${2:params})",
-      "            // Add more async operations as needed",
-      "        ]);",
-      "        $0",
-      "    } catch (error) {",
-      "        console.error('Error:', error);",
-      "        throw error;",
-      "    }",
+      "\ttry {",
+      "\t\tconst results = await Promise.all([",
+      "\t\t\t${5:asyncOperation1}(${2:params}),",
+      "\t\t\t${6:asyncOperation2}(${2:params})",
+      "\t\t\t// Add more async operations as needed",
+      "\t\t]);",
+      "\t\t$0",
+      "\t} catch (error) {",
+      "\t\tconsole.error('Error:', error);",
+      "\t\tthrow error;",
+      "\t}",
       "}"
     ],
     "description": "Creates an async function with Promise.all and try-catch for multiple errors"
   },
-  "function:async:with await in ternary expression": {
-    "prefix": "func_async_with_await_in_ternary_expression",
+  "async:function:with await in ternary expression": {
+    "prefix": "async_func_with_await_in_ternary_expression",
     "body": [
       "async function ${1:functionName}(${2:params}: ${3:type}): Promise<${4:returnType | void}> {",
-      "    const result = ${5:condition} ? await ${6:asyncOperation1}(${2:params}) : await ${7:asyncOperation2}(${2:params});",
-      "    return ${8:returnValue};",
+      "\tconst result = ${5:condition} ? await ${6:asyncOperation1}(${2:params}) : await ${7:asyncOperation2}(${2:params});",
+      "\treturn ${8:returnValue};",
       "}"
     ],
     "description": "Creates an async function with await in ternary expression"
   },
-  "function:async:with Promise.race for timeout handling": {
-    "prefix": "func_async_With_PromiseRace_for_TimeoutHandling",
+  "async:function:with Promise.race for timeout handling": {
+    "prefix": "async_func_With_PromiseRace_for_TimeoutHandling",
     "body": [
       "async function ${1:functionName}(${2:params}: ${3:type}): Promise<${4:void}> {",
       "    const timeoutPromise = new Promise<never>((resolve, reject) => {",
@@ -158,22 +171,22 @@
     ],
     "description": "Creates an async function with Promise.race for timeout handling"
   },
-  "function:async:with if-else error condition handling": {
-    "prefix": "func_async_with_if_else_error_condition_handling",
+  "async:function:with if-else error condition handling": {
+    "prefix": "async_func_with_if_else_error_condition_handling",
     "body": [
       "async function ${1:functionName}(${2:params}: ${3:type}): Promise<${4:void}> {",
-      "    const result = await ${5:asyncOperation}(${2:params});",
-      "    if (!result) {",
-      "        throw new Error('Error: Result is falsy');",
-      "    } else {",
-      "        $0",
-      "    }",
+      "\tconst result = await ${5:asyncOperation}(${2:params});",
+      "\tif (!result) {",
+      "\t\tthrow new Error('Error: Result is falsy');",
+      "\t} else {",
+      "\t\t$0",
+      "\t}",
       "}"
     ],
     "description": "Creates an async function with if-else error condition handling"
   },
-  "function:async:with await in try-catch for multiple operations": {
-    "prefix": "func_async_with_await_in_try_catch_for_multiple_operations",
+  "async:function:with await in try-catch for multiple operations": {
+    "prefix": "async_func_with_await_in_try_catch_for_multiple_operations",
     "body": [
       "async function ${1:functionName}(${2:params}: ${3:type}): Promise<${4:void}> {",
       "    try {",
@@ -189,8 +202,8 @@
     ],
     "description": "Creates an async function with await in try-catch for multiple operations"
   },
-  "function:async:with retry using recursive function": {
-    "prefix": "func_async_with_retry_using_recursive_function",
+  "async:function:with retry using recursive function": {
+    "prefix": "async_func_with_retry_using_recursive_function",
     "body": [
       "async function ${1:functionName}(${2:params}: ${3:type}, retriesLeft = ${4:3}): Promise<${5:void}> {",
       "    try {",
@@ -209,8 +222,8 @@
     ],
     "description": "Creates an async function with retry using recursive function"
   },
-  "function:async:with await in forEach loop": {
-    "prefix": "func_async_with_await_in_forEach_loop",
+  "async:function:with await in forEach loop": {
+    "prefix": "async_func_with_await_in_forEach_loop",
     "body": [
       "async function ${1:functionName}(items: ${2:type}[]): Promise<${3:void}> {",
       "    await Promise.all(items.map(async (${4:item}) => {",
@@ -221,8 +234,8 @@
     ],
     "description": "Creates an async function with await inside forEach loop"
   },
-  "function:async:with Promise.race for timeout and fallback value": {
-    "prefix": "func_async_with_PromiseRace_for_TimeoutAndFallbackValue",
+  "async:function:with promise.race for timeout and fallback value": {
+    "prefix": "async_func_with_PromiseRace_for_TimeoutAndFallbackValue",
     "body": [
       "async function ${1:functionName}(${2:params}: ${3:type}): Promise<${4:returnType}> {",
       "    const timeoutMilliseconds = ${5:5000};",
@@ -238,8 +251,8 @@
     ],
     "description": "Creates an async function with Promise.race for timeout and fallback value"
   },
-  "function:async:with await in if-else for alternate conditions": {
-    "prefix": "func_async_with_await_in_if_else_for_alternate_conditions",
+  "async:function:with await in if-else for alternate conditions": {
+    "prefix": "async_func_with_await_in_if_else_for_alternate_conditions",
     "body": [
       "async function ${1:functionName}(${2:params}: ${3:type}): Promise<${4:returnType | void}> {",
       "    if (${5:condition}) {",
@@ -253,8 +266,8 @@
     ],
     "description": "Creates an async function with await in if-else for alternate conditions"
   },
-  "function:async:with Promise.all for multiple errors and fallback value": {
-    "prefix": "func_async_with_PromiseAll_for_multiple_errors_and_fallback_value",
+  "async:function:with Promise.all for multiple errors and fallback value": {
+    "prefix": "async_func_with_promiseall_for_multiple_errors_and_fallback_value",
     "body": [
       "async function ${1:functionName}(${2:params}: ${3:type}): Promise<${4:returnType}> {",
       "    try {",
@@ -272,8 +285,8 @@
     ],
     "description": "Creates an async function with Promise.all for multiple errors and fallback value"
   },
-  "function:arrow:async": {
-    "prefix": "func_arrow_async",
+  "async:function:arrow": {
+    "prefix": "async_arrow_func",
     "body": [
       "const ${1:functionName} = async (${2:params}: ${3:type}): Promise<${4:void}> => {",
       "\t$0",
@@ -281,8 +294,8 @@
     ],
     "description": "Creates an async arrow function"
   },
-  "function:arrow:async:with optional return value": {
-    "prefix": "func_arrow_async_with_ret_promise",
+  "async:function:arrow:with optional return value": {
+    "prefix": "async_arrow_func_with_ret_promise",
     "body": [
       "const ${1:functionName} = async (${2:params}: ${3:type}): Promise<${4:returnType | void}> => {",
       "\t$0",
@@ -515,7 +528,7 @@
     "description": "Creates a Promise with abort controller for cancel handling"
   },
   "try:catch:promise": {
-    "prefix": "tryp_catch_promise",
+    "prefix": "try_catch_promise",
     "body": [
       "try {",
       "\tconst result = await ${1:promise};",

@@ -1,26 +1,26 @@
 {
-  "go:func:t:goroutine": {
-    "prefix": "go_func_t_anon",
+  "go:goroutine": {
+    "prefix": "go_anon_",
     "body": ["go func() {", "\t$1", "}()"],
     "description": "Create a goroutine with an anonymous function"
   },
-  "go:func:t:goroutine with function": {
-    "prefix": "go_func_t_callable",
+  "go:goroutine with function": {
+    "prefix": "go_callable",
     "body": ["go ${1:functionName}(${2:args})"],
     "description": "Create a goroutine with a specified function"
   },
-  "go:func:t:goroutine with delay": {
-    "prefix": "go_func_t_with_delay",
+  "go:goroutine with delay": {
+    "prefix": "go_anon_with_delay",
     "body": ["go func() {", "\ttime.Sleep(${1:duration})", "\t$2", "}()"],
     "description": "Create a goroutine with a delay"
   },
-  "go:func:t:goroutine with channel": {
-    "prefix": "go_func_t_with_channel",
+  "go:goroutine with channel": {
+    "prefix": "go_anon_with_channel",
     "body": ["go func() {", "\t${1:channel} <- ${2:value}", "}()"],
     "description": "Create a goroutine with a channel for communication"
   },
-  "go:func:t:goroutine with select": {
-    "prefix": "go_func_t_with_select",
+  "go:goroutine with select": {
+    "prefix": "go_anon_with_select",
     "body": [
       "go func() {",
       "\tselect {",
@@ -31,8 +31,8 @@
     ],
     "description": "Create a goroutine with select statement for multiple channel operations"
   },
-  "go:func:t:goroutine with context": {
-    "prefix": "go_func_t_with_context_done",
+  "go:goroutine with context": {
+    "prefix": "go_anon_with_for_context_done",
     "body": [
       "go func(ctx context.Context) {",
       "\tfor {",
@@ -47,8 +47,8 @@
     ],
     "description": "Create a goroutine with context for cancellation"
   },
-  "go:func:t:goroutine with defer": {
-    "prefix": "go_func_t_with_defer",
+  "go:goroutine with defer": {
+    "prefix": "go_anon_with_defer",
     "body": [
       "go func() {",
       "\tdefer func() {",
@@ -59,8 +59,8 @@
     ],
     "description": "Create a goroutine with defer statement"
   },
-  "go:func:t:goroutine with waitgroup": {
-    "prefix": "go_func_t_with_waitgroup",
+  "go:goroutine with waitgroup": {
+    "prefix": "go_anon_with_waitgroup",
     "body": [
       "var wg sync.WaitGroup",
       "wg.Add(1)",
@@ -72,8 +72,8 @@
     ],
     "description": "Create a goroutine with sync.WaitGroup"
   },
-  "go:func:t:goroutine with context and cancel": {
-    "prefix": "go_func_t_with_context_and_cancel",
+  "go:goroutine with context and cancel": {
+    "prefix": "go_anon_with_context_and_cancel",
     "body": [
       "ctx, cancel := context.WithCancel(context.Background())",
       "defer cancel()",
@@ -90,8 +90,8 @@
     ],
     "description": "Create a goroutine with context and cancellation"
   },
-  "go:func:t:goroutine with timeout": {
-    "prefix": "go_func_t_with_timeout",
+  "go:goroutine with timeout": {
+    "prefix": "go_anon_with_timeout",
     "body": [
       "go func() {",
       "\tselect {",
@@ -102,8 +102,8 @@
     ],
     "description": "Create a goroutine with timeout using time.After"
   },
-  "go:func:t:receive from channel (many-to-one)": {
-    "prefix": "go_func_t_receive_chan_many_to_one",
+  "go:goroutine receive from channel (many-to-one)": {
+    "prefix": "go_anon_receive_chan_many_to_one",
     "body": [
       "go func() {",
       "\tfor {",
@@ -118,8 +118,8 @@
     ],
     "description": "Create a goroutine to receive from a channel."
   },
-  "go:func:t:for-select goroutine": {
-    "prefix": "go_func_t_for_select_goroutine",
+  "go:goroutine for select goroutine": {
+    "prefix": "go_anon_for_select_goroutine",
     "body": [
       "go func() {",
       "\tfor {",
@@ -135,6 +135,51 @@
       "}()"
     ],
     "description": "Create a goroutine with for loop and select statement."
+  },
+  "go:goroutine send to channel (one-to-many)": {
+    "prefix": "go_anon_send_chan_one_to_many",
+    "body": [
+      "go func() {",
+      "\tfor {",
+      "\t\t// Lakukan sesuatu untuk menghasilkan data",
+      "\t\tdata := generateData()",
+      "\t\tselect {",
+      "\t\tcase ch <- data:",
+      "\t\t\t// Data berhasil dikirim",
+      "\t\tcase <-ctx.Done():",
+      "\t\t\treturn",
+      "\t\t}",
+      "\t}",
+      "}()"
+    ],
+    "description": "Create a goroutine to send to a channel."
+  },
+  "go:goroutine read from channel (many-to-many)": {
+    "prefix": "go_anon_read_channel",
+    "body": [
+      "go func() {",
+      "\tfor {",
+      "\t\tselect {",
+      "\t\tcase data := <-ch:",
+      "\t\t\t// Lakukan sesuatu dengan data",
+      "\t\tcase <-ctx.Done():",
+      "\t\t\treturn",
+      "\t\t}",
+      "\t}",
+      "}()"
+    ],
+    "description": "Create a goroutine to read from a channel."
+  },
+  "go:goroutine for read channel": {
+    "prefix": "go_anon_for_read_channel",
+    "body": [
+      "go func(ch <-chan ${1:Type}) {",
+      "\tfor ${2:data} := range ch {",
+      "\t\t${3:// Process each data element}",
+      "\t}",
+      "}(${4:ch})"
+    ],
+    "description": "goroutine function that receives data from a buffered channel"
   },
   "func:go:with timeout": {
     "prefix": "func_go_with_timeout",
@@ -159,7 +204,7 @@
     ],
     "description": "Create a function with timeout using goroutine and context"
   },
-  "func:go:with Retry": {
+  "func:go:with retry": {
     "prefix": "func_go_with_retry",
     "body": [
       "func ${1:functionName}(ctx context.Context, ${2:params}) (${3:returnType}, error) {",
@@ -306,17 +351,6 @@
     ],
     "description": "Create a function with timeout and retry using goroutine and time.After"
   },
-  "func:go:for read channel": {
-    "prefix": "func_go_for_read_channel",
-    "body": [
-      "go func(ch <-chan ${1:Type}) {",
-      "\tfor ${2:data} := range ch {",
-      "\t\t${3:// Process each data element}",
-      "\t}",
-      "}(${4:ch})"
-    ],
-    "description": "goroutine function that receives data from a buffered channel"
-  },
   "func:go:return-channel": {
     "prefix": "func_go_return_channel",
     "body": [
@@ -345,42 +379,8 @@
     ],
     "description": "Write a goroutine function that returns a buffered channel"
   },
-  "func:go:read from channel (many-to-many)": {
-    "prefix": "go_func_t_read_channel",
-    "body": [
-      "go func() {",
-      "\tfor {",
-      "\t\tselect {",
-      "\t\tcase data := <-ch:",
-      "\t\t\t// Lakukan sesuatu dengan data",
-      "\t\tcase <-ctx.Done():",
-      "\t\t\treturn",
-      "\t\t}",
-      "\t}",
-      "}()"
-    ],
-    "description": "Create a goroutine to read from a channel."
-  },
-  "func:go:send to channel (one-to-many)": {
-    "prefix": "func_go_send_chan_one_to_many",
-    "body": [
-      "go func() {",
-      "\tfor {",
-      "\t\t// Lakukan sesuatu untuk menghasilkan data",
-      "\t\tdata := generateData()",
-      "\t\tselect {",
-      "\t\tcase ch <- data:",
-      "\t\t\t// Data berhasil dikirim",
-      "\t\tcase <-ctx.Done():",
-      "\t\t\treturn",
-      "\t\t}",
-      "\t}",
-      "}()"
-    ],
-    "description": "Create a goroutine to send to a channel."
-  },
-  "func:go:template:many-to-many goroutine pattern": {
-    "prefix": "func_go_template_many_to_many_goroutine_pattern",
+  "func:template:go:many-to-many goroutine pattern": {
+    "prefix": "func_template_go_many_to_many_goroutine_pattern",
     "body": [
       "func main() {",
       "\t// Many-to-Many Goroutine Pattern",
@@ -411,8 +411,8 @@
     ],
     "description": "Many-to-Many Goroutine Pattern in Go"
   },
-  "func:go:template:one-to-many goroutine pattern": {
-    "prefix": "func_go_template_one_to_many_goroutine_pattern",
+  "func:template:go:one-to-many goroutine pattern": {
+    "prefix": "func_template_go_one_to_many_goroutine_pattern",
     "body": [
       "func main() {",
       "\t// One-to-Many Goroutine Pattern",
@@ -441,8 +441,8 @@
     ],
     "description": "One-to-Many Goroutine Pattern in Go"
   },
-  "func:go:template:many-to-one goroutine pattern": {
-    "prefix": "func_go_template_many_to_one_goroutine_pattern",
+  "func:template:go:many-to-one goroutine pattern": {
+    "prefix": "func_template_go_many_to_one_goroutine_pattern",
     "body": [
       "package main",
       "",
@@ -482,8 +482,8 @@
     ],
     "description": "Many-to-One Goroutine Pattern in Go"
   },
-  "func:go:template:one-to-one goroutine pattern": {
-    "prefix": "go_func_template_one_to_one_goroutine_pattern",
+  "func:template:go:one-to-one goroutine pattern": {
+    "prefix": "func_template_go_one_to_one_goroutine_pattern",
     "body": [
       "package main",
       "",
@@ -519,8 +519,8 @@
     ],
     "description": "One-to-One Goroutine Pattern in Go"
   },
-  "func:go:template:pipline goroutine pattern": {
-    "prefix": "go_func_template_pipeline_goroutine_pattern",
+  "func:template:go:pipline goroutine pattern": {
+    "prefix": "func_template_go_pipeline_goroutine_pattern",
     "body": [
       "package main",
       "",
@@ -557,8 +557,8 @@
     ],
     "description": "Pipeline Goroutine Pattern in Go"
   },
-  "func:go:template:select goroutine pattern": {
-    "prefix": "func_go_template_select_goroutine_pattern",
+  "func:template:go:select goroutine pattern": {
+    "prefix": "func_template_go_select_goroutine_pattern",
     "body": [
       "package main",
       "",

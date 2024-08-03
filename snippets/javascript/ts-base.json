@@ -9,15 +9,14 @@
     "body": ["// WARN: $0"],
     "description": "// WARN: ..."
   },
-  "Lorem Ipsum Sedang": {
+  "lorem ipsum sedang": {
     "prefix": "lorem",
     "body": [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquam est ac ipsum posuere, quis venenatis sem fermentum. Morbi nec nisi at lorem placerat vehicula."
     ],
     "description": "Menyisipkan teks Lorem Ipsum sedang."
   },
-
-  "Lorem Ipsum Panjang": {
+  "lorem ipsum panjang": {
     "prefix": "lorem5",
     "body": [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquam est ac ipsum posuere, quis venenatis sem fermentum. Morbi nec nisi at lorem placerat vehicula.",
@@ -116,7 +115,7 @@
     "body": ["export namespace ${1:NamespaceName} {", "\t$0", "}"],
     "description": "Export a namespace module in TypeScript"
   },
-  "import:NoModuleName": {
+  "import:create": {
     "prefix": "imp_",
     "body": ["import '${1:first}'"]
   },
@@ -130,7 +129,7 @@
     "body": ["import { ${1:importedName} } from '${2:module}';", "$0"],
     "description": "Import statement in TypeScript"
   },
-  "import:Destructing": {
+  "import:destructing": {
     "prefix": "imp_from_as_destructing",
     "body": ["import { ${2:second} } from '${1:first}'"]
   },
@@ -541,11 +540,6 @@
       "}"
     ]
   },
-  "for:each": {
-    "prefix": "for_each",
-    "body": ["${1:array}.forEach(${2:element} => {", "\t$0", "});"],
-    "description": ["array.forEach(element => {", "", "});"]
-  },
   "for:in": {
     "prefix": "for_in",
     "body": [
@@ -579,55 +573,40 @@
     ],
     "description": "For-Await-Of Loop"
   },
-  "for:map": {
-    "prefix": "for_map",
-    "body": "${1:iterable}.map((${2:item}) => {\n\t${0}\n})",
-    "description": "iterable.map((item) => {\n\n})"
-  },
-  "for:reduce": {
-    "prefix": "for_reduce",
-    "body": "${1:iterable}.reduce((${2:previous}, ${3:current}) => {\n\t${0}\n}${4:, initial})",
-    "description": "iterable.reduce((previous, current) => {\n\n}, initial)"
-  },
-  "for:filter": {
-    "prefix": "for_filter",
-    "body": "${1:iterable}.filter((${2:item}) => {\n\t${0}\n})",
-    "description": "iterable.filter((item) => {\n\n})"
-  },
-  "for:find": {
-    "prefix": "for_find",
-    "body": "${1:iterable}.find((${2:item}) => {\n\t${0}\n})",
-    "description": "iterable.find((item) => {\n\n})"
-  },
-  "for:every": {
-    "prefix": "for_every",
-    "body": "${1:iterable}.every((${2:item}) => {\n\t${0}\n})",
-    "description": "iterable.every((item) => {\n\n})"
-  },
-  "for:some": {
-    "prefix": "for_some",
-    "body": "${1:iterable}.some((${2:item}) => {\n\t${0}\n})",
-    "description": "iterable.some((item) => {\n\n})"
+  "for:each": {
+    "prefix": "for_each",
+    "body": ["${1:array}.forEach(${2:element} => {", "\t$0", "});"],
+    "description": "Create a for loop for each element"
   },
   "function": {
     "prefix": "func_",
     "body": ["function ${1:name}(${2:params}) {", "\t$0", "}"],
-    "description": ["function name(params) {", "", "}"]
+    "description": "Create a function"
   },
   "function:anonymous": {
     "prefix": "func_anon",
     "body": "function (${1:arguments}) {${0}}",
-    "description": "function (arguments) {value}"
+    "description": "Create a anonymous function"
+  },
+  "function:anonymous arrow": {
+    "prefix": "func_anon_arrow",
+    "body": "(${1:arguments}) => ${2:statement}",
+    "description": "Create an anonymous arrow function"
+  },
+  "function:arrow with destructuring": {
+    "prefix": "func_anon_arrow_with_param_desctructing",
+    "body": "({${1:arguments}}) => ${2:statement}",
+    "description": "Create an arrow function with destructuring"
   },
   "function:callback": {
     "prefix": "func_callback",
     "body": "function (err, ${1:value}) {\n\tif (err) throw err\n\t${0}\n}",
-    "description": "function (err, value) {\n\tif (err) throw err\n\n}"
+    "description": "Create a callback function"
   },
   "function:export named": {
     "prefix": "func_export",
     "body": "export function ${1:member} (${2:arguments}) {\n\t${0}\n}",
-    "description": "export function member (arguments) {\n\n}"
+    "description": "Create a function export"
   },
   "function:param:optional": {
     "prefix": "func_param_optional",
@@ -696,7 +675,7 @@
   "function:immediately-invoked function expression": {
     "prefix": "func_iife",
     "body": ";(function (${1:arguments}) {\n\t${0}\n})(${2})",
-    "description": ";(function (arguments) {\n\n})(value)"
+    "description": "Create a func IIFE"
   },
   "function:module default export": {
     "prefix": "func_exp_default",
@@ -707,16 +686,6 @@
     "prefix": "funct_exp_default_func",
     "body": "export default function ${1:name} (${2:arguments}) {\n\t${0}\n}",
     "description": "export default function nameFunc (arguments) {\n\t${0}\n}"
-  },
-  "function:arrow": {
-    "prefix": "func_arrow",
-    "body": "(${1:arguments}) => ${2:statement}",
-    "description": "(arguments) => statement"
-  },
-  "function:arrow with destructuring": {
-    "prefix": "func_arrow_with_param_desctructing",
-    "body": "({${1:arguments}}) => ${2:statement}",
-    "description": "(\\{arguments\\}) => statement"
   },
   "function:void declaration": {
     "prefix": "func_void",
@@ -1111,12 +1080,119 @@
     "body": ["export default interface ${1:InterfaceName} {", "\t$0", "}"],
     "description": "Export default interface in TypeScript"
   },
+  "interface:prop:readonly": {
+    "prefix": "interface_prop_readonly",
+    "body": ["readonly ${1:propertyName}: ${2:type};"],
+    "description": "Define a readonly property in an interface"
+  },
+  "interface:prop:optional property": {
+    "prefix": "interface_prop_optional",
+    "body": ["${1:propertyName}?: ${2:type};"],
+    "description": "Define an optional property in an interface"
+  },
+  "interface:prop:with default value": {
+    "prefix": "interface_prop_with_default",
+    "body": ["${1:propertyName} = ${2:defaultValue};"],
+    "description": "Define a property with a default value in an interface (note: default values are not applicable to interfaces, typically used for classes)"
+  },
+  "interface:prop:index signature": {
+    "prefix": "interface_prop_index_signature",
+    "body": ["[${1:key}: ${2:keyType}]: ${3:valueType};"],
+    "description": "Define an index signature property in an interface"
+  },
+  "interface:prop:nested object": {
+    "prefix": "interface_prop_nested_object",
+    "body": [
+      "${1:propertyName}: {",
+      "  ${2:nestedProperty1}: ${3:type1};",
+      "  ${4:nestedProperty2}?: ${5:type2};",
+      "};"
+    ],
+    "description": "Define a property that is a nested object in an interface"
+  },
+  "interface:prop:union type": {
+    "prefix": "interface_prop_union_type",
+    "body": ["${1:propertyName}: ${2:type1} | ${3:type2};"],
+    "description": "Define a property with a union type in an interface"
+  },
+  "interface:prop:intersection type": {
+    "prefix": "interface_prop_intersection_type",
+    "body": ["${1:propertyName}: ${2:type1} & ${3:type2};"],
+    "description": "Define a property with an intersection type in an interface"
+  },
+  "interface:prop:generic property": {
+    "prefix": "interface_prop_generic_property",
+    "body": ["${1:propertyName}: ${2<T>};"],
+    "description": "Define a property with a generic type in an interface"
+  },
+  "interface:prop:type array property": {
+    "prefix": "interface_prop_array_property",
+    "body": ["${1:propertyName}: ${2:type}[];"],
+    "description": "Define a property that is an array in an interface"
+  },
+  "interface:prop:tuple type": {
+    "prefix": "interface_prop_tuple",
+    "body": ["${1:propertyName}: [${2:type1}, ${3:type2}];"],
+    "description": "Define a property that is a tuple in an interface"
+  },
+  "interface:prop:function type property": {
+    "prefix": "interface_prop_function_property",
+    "body": [
+      "${1:propertyName}: (${2:param1}: ${3:type1}, ${4:param2}: ${5:type2}) => ${6:returnType};"
+    ],
+    "description": "Define a property that is a function in an interface"
+  },
+  "interface:prop:reacord utility type": {
+    "prefix": "interface_prop_record_type_utility",
+    "body": ["${1:propertyName}: Record<${2:keyType}, ${3:valueType}>;"],
+    "description": "Define a property that uses the Record utility type in an interface"
+  },
+  "interface:prop:partial utility type": {
+    "prefix": "interface_prop_partial_type_utility",
+    "body": ["${1:propertyName}: Partial<${2:Type}>;"],
+    "description": "Define a property that uses the Partial utility type in an interface"
+  },
+  "interface:prop:pick utility type": {
+    "prefix": "interface_prop_pick_type_utility",
+    "body": ["${1:propertyName}: Pick<${2:Type}, ${3:key1 | key2}>;"],
+    "description": "Define a property that uses the Pick utility type in an interface"
+  },
+  "interface:prop:omit utility type": {
+    "prefix": "interface_prop_omit_type_utility",
+    "body": ["${1:propertyName}: Omit<${2:Type}, ${3:key1 | key2}>;"],
+    "description": "Define a property that uses the Omit utility type in an interface"
+  },
+  "interface:prop:exclude utility type": {
+    "prefix": "interface_prop_exclude_type_utility",
+    "body": ["${1:propertyName}: Exclude<${2:type1}, ${3:type2}>;"],
+    "description": "Define a property that uses the Exclude utility type in an interface"
+  },
+  "interface:prop:extract utility type": {
+    "prefix": "interface_prop_extract_type_utility",
+    "body": ["${1:propertyName}: Extract<${2:type1}, ${3:type2}>;"],
+    "description": "Define a property that uses the Extract utility type in an interface"
+  },
+  "interface:prop:nonnullable utility type": {
+    "prefix": "interface_prop_nonnullable_type_utility",
+    "body": ["${1:propertyName}: NonNullable<${2:type}>;"],
+    "description": "Define a property that uses the NonNullable utility type in an interface"
+  },
+  "interface:prop:returntype utility type": {
+    "prefix": "interface_prop_returntype_type_utility",
+    "body": ["${1:propertyName}: ReturnType<${2:functionType}>;"],
+    "description": "Define a property that uses the ReturnType utility type in an interface"
+  },
+  "instance:prop:instancetype utility type": {
+    "prefix": "interface_prop_instancetype_type_utility",
+    "body": ["${1:propertyName}: InstanceType<${2:classType}>;"],
+    "description": "Define a property that uses the InstanceType utility type in an interface"
+  },
   "triple-slash reference": {
     "prefix": "ref_",
     "body": ["/// <reference path=\"$1\" />", "$0"],
     "description": "Triple-slash reference"
   },
-  "class": {
+  "class:create": {
     "prefix": "class_",
     "body": [
       "class ${1:name} {",
@@ -1381,12 +1457,12 @@
     "description": "Constructor with optional property initialization"
   },
   "class:method:func": {
-    "prefix": "class_func_method",
+    "prefix": "class_method",
     "body": ["/**", " * ${1:name}", " */", "${1:name}() {", "\t$0", "}"],
     "description": "Public Method Definition"
   },
   "class:method:public getter": {
-    "prefix": "class_func_get_public",
+    "prefix": "class_method_getter_public",
     "body": [
       "",
       "public get ${1:value}() : ${2:string} {",
@@ -1397,7 +1473,7 @@
     "description": "Property getter"
   },
   "class:method:public setter": {
-    "prefix": "class_func_set_public",
+    "prefix": "class_method_setter_public",
     "body": [
       "",
       "public set ${1:value}(v : ${2:string}) {",
@@ -1408,22 +1484,22 @@
     "description": "Property setter"
   },
   "class:method:getter": {
-    "prefix": "class_func_get",
+    "prefix": "class_method_getter",
     "body": "get ${1:property} () {\n\t${0}\n}",
     "description": "get property () {\n\n}"
   },
   "class:method:setter": {
-    "prefix": "class_func_set",
+    "prefix": "class_method_settter",
     "body": "set ${1:property} (${2:value}) {\n\t${0}\n}",
     "description": "set property (value) {\n\n}"
   },
   "class:method:getter plus with setter": {
-    "prefix": "class_func_set_and_get",
+    "prefix": "class_method_setter_and_getter",
     "body": "get ${1:property} () {\n\t${0}\n}\nset ${1:property} (${2:value}) {\n\t\n}",
     "description": "get property () {\n\n}\nset ${1:property} (value) {\n\t\n}"
   },
   "class:method:func private": {
-    "prefix": "class_func_method_private",
+    "prefix": "class_method_private",
     "body": ["private ${1:name}() {", "\t$0", "}"],
     "description": "Private Method Definition"
   },
@@ -1472,87 +1548,85 @@
     ],
     "description": "Creates a class that implements an interface"
   },
-  "class:abstract:create": {
-    "prefix": "class_abstract_",
+  "abstract:create": {
+    "prefix": "abstract_",
     "body": [
-      "export abstract class ${1:AbstractClass} {",
-      "\tabstract abstractMethod(): void;",
-      "}"
-    ],
-    "description": "Creates an abstract class"
-  },
-  "class:abstract:constructor": {
-    "prefix": "class_abstract_constructor",
-    "body": [
-      "export abstract class ${1:AbstractClass} {",
-      "\tconstructor() {",
-      "\t\t// Constructor logic here",
-      "\t}",
-      "\tabstract abstractMethod(): void;",
-      "}"
-    ],
-    "description": "Creates an abstract class with a constructor"
-  },
-  "class:abstract:with properties and methods": {
-    "prefix": "class_abstract_with_properties_and_methods",
-    "body": [
-      "export abstract class ${1:AbstractClass} {",
-      "\tprotected abstract prop1: string;",
-      "\tprotected abstract prop2: number;",
+      "abstract class ${1:ClassName} {",
+      "\tabstract ${2:methodName}(${3:params}): ${4:void};",
       "",
-      "\tconstructor() {",
-      "\t\t// Constructor logic here",
+      "\t${5:constructor()}",
+      "",
+      "\t${6:// properties}",
+      "\tabstract ${7:propertyName}: ${8:type};",
+      "",
+      "\t${9:// methods}",
+      "}"
+    ],
+    "description": "Create an abstract class"
+  },
+  "abstract:create 2": {
+    "prefix": "abstract_2",
+    "body": [
+      "abstract class ${1:ClassName} {",
+      "\tconstructor(${2:params}) {",
+      "\t\t${3:// initialization}",
       "\t}",
       "",
-      "\tabstract abstractMethod(): void;",
-      "\tprotected abstract protectedMethod(): void;",
+      "\tabstract ${4:methodName}(${5:params}): ${6:void};",
+      "",
+      "\tabstract ${7:propertyName}: ${8:type};",
+      "",
+      "\t${9:// additional methods or properties}",
       "}"
     ],
-    "description": "Creates an abstract class with properties and methods"
+    "description": "Create an abstract class with a constructor"
   },
-  "class:abstract:with static property and method": {
-    "prefix": "class_abstract_static_property_and_method",
+  "abstract:create with methods and properties": {
+    "prefix": "abstract_2_with_methods_and_properties",
     "body": [
-      "export abstract class ${1:AbstractClass} {",
-      "\tstatic staticProp: string = 'static property';",
+      "abstract class ${1:ClassName} {",
+      "\t// Properties",
+      "\tabstract ${2:propertyName}: ${3:type};",
       "",
-      "\tstatic staticMethod() {",
-      "\t\t// Static method implementation",
+      "\t// Constructor",
+      "\tconstructor(${4:params}) {",
+      "\t\t${5:// initialization}",
       "\t}",
       "",
-      "\tabstract abstractMethod(): void;",
-      "}"
-    ],
-    "description": "Creates an abstract class with a static property and method"
-  },
-  "class:abstract:with constructor and parameter": {
-    "prefix": "class_abstract_constructor_and_parameter",
-    "body": [
-      "export abstract class ${1:AbstractClass} {",
-      "\tconstructor(private param1: string, protected param2: number) {",
-      "\t\t// Constructor logic here",
-      "\t}",
+      "\t// Methods",
+      "\tabstract ${6:methodName}(${7:params}): ${8:void};",
       "",
-      "\tabstract abstractMethod(): void;",
+      "\t// Optional: Add more methods",
+      "\t${9:// additional methods}",
       "}"
     ],
-    "description": "Creates an abstract class with a constructor and parameters"
+    "description": "Create an abstract class with properties and methods"
   },
-  "class:abstract:with different method visibilities": {
-    "prefix": "class_abstract_method_visibility",
+  "abstract:method": {
+    "prefix": "abstract_method",
+    "body": ["abstract ${1:methodName}(${2:params}): ${3:void};"],
+    "description": "Create an abstract method"
+  },
+  "abstract:method:with default parameter": {
+    "prefix": "abstract_method_with_default_parameter",
     "body": [
-      "export abstract class ${1:AbstractClass} {",
+      "abstract ${1:methodName}(${2:paramName} = ${3:defaultValue}): ${4:void};"
+    ],
+    "description": "Create an abstract method with a default parameter"
+  },
+  "abstract:method:with different method visibilities": {
+    "prefix": "abstract_method_with_different_visibilities",
+    "body": [
       "\tpublic abstract publicMethod(): void;",
       "\tprotected abstract protectedMethod(): void;",
       "\tprivate abstract privateMethod(): void;",
       "",
-      "\tabstract abstractMethod(): void;",
-      "}"
+      "\tabstract abstractMethod(): void;"
     ],
     "description": "Creates an abstract class with methods of different visibilities"
   },
-  "class:abstract:with getter and setter": {
-    "prefix": "class_abstract_getter_and_setter",
+  "abstract:method:with getter and setter": {
+    "prefix": "abstract_method_with_getter_and_setter",
     "body": [
       "export abstract class ${1:AbstractClass} {",
       "\tprivate _prop: string = '';",
@@ -1569,5 +1643,38 @@
       "}"
     ],
     "description": "Creates an abstract class with a getter and setter"
+  },
+  "abstract:prop:with access modifier": {
+    "prefix": "abstract_prop_access_modifier",
+    "body": ["${1:accessModifier} abstract ${2:propertyName}: ${3:type};"],
+    "description": "Create an abstract property with an access modifier (e.g., public, protected)"
+  },
+  "abstract:prop:with default value": {
+    "prefix": "abstract_prop_access_modifier",
+    "body": ["abstract ${1:propertyName}: ${2:type} = ${3:defaultValue};"],
+    "description": "Create an abstract property with a default value (note: default value is usually not applicable for abstract properties)"
+  },
+  "abstract:constructor": {
+    "prefix": "abstract_constructor",
+    "body": [
+      "\tconstructor() {",
+      "\t\t// Constructor logic here",
+      "\t}",
+      "\tabstract abstractMethod(): void;",
+      "}"
+    ],
+    "description": "Creates an abstract class with a constructor"
+  },
+  "abstract:constructor:with parameter": {
+    "prefix": "abstract_constructor_with_parameter",
+    "body": [
+      "\tconstructor(private param1: string, protected param2: number) {",
+      "\t\t// Constructor logic here",
+      "\t}",
+      "",
+      "\tabstract abstractMethod(): void;",
+      "}"
+    ],
+    "description": "Creates an abstract class with a constructor and parameters"
   }
 }

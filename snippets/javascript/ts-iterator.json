@@ -1,60 +1,129 @@
 {
-  "func:iter:map": {
-    "prefix": "func_iter_map",
-    "body": ["array.map(item => ${1:expression})"],
-    "description": "Create a map iterator"
+  "iter:map": {
+    "prefix": "iter_map",
+    "body": ["${1:array}.map((${2:data}) => {", "\treturn $0;", "});"],
+    "description": "Creates a new array with the results of calling a function on every element in the array."
   },
-  "func:iter:reduce": {
-    "prefix": "func_iter_reduce",
+  "iter:reduce": {
+    "prefix": "iter_reduce",
     "body": [
-      "array.reduce((acc, current) => ${1:accumulator}, ${2:initialValue})"
+      "${1:array}.reduce((${2:accumulator}, ${3:data}) => {",
+      "  return $0;",
+      "}, ${4:initialValue});"
     ],
-    "description": "Create a reduce iterator"
+    "description": "Apply a function against an accumulator and each element in the array (from left to right) to reduce it to a single value."
   },
-  "func:iter:filter": {
-    "prefix": "func_iter_filter",
-    "body": ["array.filter(item => ${1:condition})"],
-    "description": "Create a filter iterator"
+  "iter:filter": {
+    "prefix": "iter_filter",
+    "body": ["${1:array}.filter((${2:data}) => {", "\treturn $0;", "});"],
+    "description": "Creates a new array with all elements that pass the test implemented by the provided function."
   },
-  "func:iter:foreach": {
-    "prefix": "func_iter_forEach",
+  "iter:foreach": {
+    "prefix": "iter_forEach",
     "body": ["array.forEach(item => ${1:statement})"],
     "description": "Create a forEach iterator"
   },
-  "func:iter:every": {
-    "prefix": "func_iter_every",
-    "body": ["array.every(item => ${1:condition})"],
-    "description": "Create an every iterator"
+  "iter:every": {
+    "prefix": "iter_every",
+    "body": ["${1:array}.every((${2:conditon}) => {", "\treturn $0;", "});"],
+    "description": "Tests whether all elements in the array pass the test implemented by the provided function."
   },
-  "func:iter:some": {
-    "prefix": "func_iter_some",
-    "body": ["array.some(item => ${1:condition})"],
-    "description": "Create a some iterator"
+  "iter:some": {
+    "prefix": "iter_some",
+    "body": ["${1:array}.some((${2:data}) => {", "\treturn $0;", "});"],
+    "description": "Tests whether at least one element in the array passes the test implemented by the provided function."
   },
-  "func:iter:find": {
-    "prefix": "func_iter_find",
-    "body": ["array.find(item => ${1:condition})"],
-    "description": "Create a find iterator"
+  "iter:find": {
+    "prefix": "iter_find",
+    "body": [
+      "${1:array}.find((${2:item}) => {",
+      "\treturn ${0:condition == item.data};",
+      "});"
+    ],
+    "description": "Returns the first element in the array that satisfies the provided testing function."
   },
-  "func:iter:FindIndex": {
-    "prefix": "func_iter_findIndex",
-    "body": ["array.findIndex(item => ${1:condition})"],
+  "iter:findindex": {
+    "prefix": "iter_findIndex",
+    "body": ["${1:array}.findIndex(item => ${1:item.nama === nama})"],
     "description": "Create a findIndex iterator"
   },
-  "func:iter:Includes": {
-    "prefix": "func_iter_includes",
+  "array sort": {
+    "prefix": "iter_sort",
+    "body": ["${1:array}.sort(($2:a, $3:b) => {", "\treturn $0;", "});"],
+    "description": "Sorts the elements of an array in place and returns the sorted array."
+  },
+  "iter:includes": {
+    "prefix": "iter_includes",
     "body": ["array.includes(${1:element})"],
     "description": "Create an includes iterator"
   },
-  "func:iter:IndexOf": {
-    "prefix": "func_iter_indexOf",
+  "iter:indexof": {
+    "prefix": "iter_indexOf",
     "body": ["array.indexOf(${1:element})"],
     "description": "Create an indexOf iterator"
   },
-  "func:iter:Iterator": {
-    "prefix": "func_iter_lastIndexOf",
+  "iter:Iterator": {
+    "prefix": "iter_lastIndexOf",
     "body": ["array.lastIndexOf(${1:element})"],
     "description": "Create a lastIndexOf iterator"
+  },
+  "iter:object keys": {
+    "prefix": "iter_obj_keys_foreach",
+    "body": [
+      "Object.keys(${1:object}).forEach(($2:key) => {",
+      "\tconst value = ${1:object}[$2];",
+      "\t$0",
+      "});"
+    ],
+    "description": "Iterates over the keys of an object."
+  },
+  "iter:object values": {
+    "prefix": "iter_obj_values_foreach",
+    "body": [
+      "Object.values(${1:object}).forEach(($2:value) => {",
+      "\t$0",
+      "});"
+    ],
+    "description": "Iterates over the values of an object."
+  },
+  "iter:object entries": {
+    "prefix": "iter_obj_entries_foreach",
+    "body": [
+      "Object.entries(${1:object}).forEach(([key, value]) => {",
+      "\t$0",
+      "});"
+    ],
+    "description": "Iterates over the entries of an object (key-value pairs)."
+  },
+  "iter:object map": {
+    "prefix": "iter_obj_map",
+    "body": [
+      "Object.keys(${1:object}).map(($2:key) => {",
+      "\tconst value = ${1:object}[$2];",
+      "\t// Apply function to key and value",
+      "\treturn { key, value };",
+      "});"
+    ],
+    "description": "Maps over the keys of an object, returning an array of results."
+  },
+  "iter:object reduce": {
+    "prefix": "iter_obj_reduce",
+    "body": [
+      "Object.keys(${1:object}).reduce(($2:accumulator, $3:key) => {",
+      "\tconst value = ${1:object}[$3];",
+      "\t// Apply function to accumulator, key, and value",
+      "\t$2[key] = value;",
+      "\treturn $2;",
+      "}, ${4:{}});"
+    ],
+    "description": "Reduces the keys of an object into a single value."
+  },
+  "iter:object entries to array": {
+    "prefix": "iter_obj_entries_to_array",
+    "body": [
+      "const array = Object.entries(${1:object}).map(([key, value]) => ({ key, value }));"
+    ],
+    "description": "Converts an object's entries to an array of key-value pair objects."
   },
   "func:object_keys:keys": {
     "prefix": "func_object_keys",

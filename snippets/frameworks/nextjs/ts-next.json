@@ -1,16 +1,31 @@
 {
-  "next:import getstaticprops type": {
+  "nextjs:import:getstaticprops type": {
     "prefix": "next_imp_getstatic",
     "body": "import { GetStaticProps } from 'next';",
     "description": "Next.js GetStaticProps type import"
   },
-  "next:import infergetstaticprops type": {
+  "netxjs:import:getstaticpaths type": {
+    "prefix": "next_imp_getstatic_paths",
+    "body": "import { GetStaticPaths } from 'next'",
+    "description": "Next.js GetStaticPaths type import"
+  },
+  "nextjs:import:getserversideprops type": {
+    "prefix": "next_imp_get_server_side_props",
+    "body": "import { GetServerSideProps } from 'next'",
+    "description": "Next.js GetServerSideProps type import"
+  },
+  "nextjs:import:infergetserversidepropstype": {
+    "prefix": "next_imp_infer_get_server_side_props",
+    "body": "import { InferGetServerSidePropsType } from 'next'",
+    "description": "Next.js InferGetServerSidePropsType import"
+  },
+  "nextjs:import:infergetstaticprops type": {
     "prefix": "next_imp_infer_getstatic",
     "body": "import { InferGetStaticPropsType } from 'next'",
     "description": "Next.js InferGetStaticPropsType import"
   },
-  "next:use infer getstaticprops type": {
-    "prefix": "next_func_infer_getstaticprops",
+  "nextjs:use infer getstaticprops type": {
+    "prefix": "next_func_infer_getstatic_props",
     "body": [
       "function ${1:${TM_FILENAME_BASE}}({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {",
       "\treturn $2",
@@ -18,7 +33,7 @@
     ],
     "description": "use InferGetStaticPropsType snippet"
   },
-  "Next.js Get initial props outside Component": {
+  "nextjs:get initial props outside component": {
     "prefix": "gip",
     "body": [
       "${1:${TM_FILENAME_BASE}}.getInitialProps = async ({ req }) => {",
@@ -27,7 +42,7 @@
     ],
     "description": "Next.js Get initial props outside Component"
   },
-  "Next.js getInitialProps() inside Class Component": {
+  "nextjs:getinitialprops inside class component": {
     "prefix": "cgip",
     "body": ["static async getInitialProps() {", "\treturn { $1 };", "}"],
     "description": "Next.js static async getInitialProps() inside Class Component"
@@ -57,11 +72,6 @@
     ],
     "description": "Next.js pre-renders all the static paths https://nextjs.org/docs/basic-features/data-fetching#getstaticpaths-static-generation"
   },
-  "import Next.js GetStaticPaths type": {
-    "prefix": "igspt",
-    "body": "import { GetStaticPaths } from 'next'",
-    "description": "Next.js GetStaticPaths type import"
-  },
   "Next.js getServerSideProps() export": {
     "prefix": "gssp",
     "body": [
@@ -72,16 +82,6 @@
       "}"
     ],
     "description": "Next.js getServerSideProps() export https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering"
-  },
-  "import Next.js GetServerSideProps type": {
-    "prefix": "igss",
-    "body": "import { GetServerSideProps } from 'next'",
-    "description": "Next.js GetServerSideProps type import"
-  },
-  "import Next.js InferGetServerSidePropsType": {
-    "prefix": "ifgss",
-    "body": "import { InferGetServerSidePropsType } from 'next'",
-    "description": "Next.js InferGetServerSidePropsType import"
   },
   "use Next.js InferGetServerSidePropsType": {
     "prefix": "ufgss",

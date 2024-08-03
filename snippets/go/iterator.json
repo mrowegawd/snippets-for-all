@@ -1,6 +1,6 @@
 {
-  "func:iter:map": {
-    "prefix": "func_iter_map",
+  "iter:func:map": {
+    "prefix": "iter_func_map",
     "body": [
       "func map${1|Int,String|}${2|s|}(input []${1|int,string|}) []${1|int,string|} {",
       "\tresult := make([]${1|int,string|}, len(input))",
@@ -12,8 +12,8 @@
     ],
     "description": "Create a function for mapping operation on a slice in Go"
   },
-  "func:iter:reduce": {
-    "prefix": "func_iter_reduce",
+  "iter:func:reduce": {
+    "prefix": "iter_func_reduce",
     "body": [
       "func reduce${1|Int,String|}(input []${1|int,string|}) ${1|int,string|} {",
       "\tvar result ${1|int,string|}",
@@ -25,8 +25,8 @@
     ],
     "description": "Create a function for reducing operation on a slice in Go"
   },
-  "func:iter:filter": {
-    "prefix": "func_iter_filter",
+  "iter:func:filter": {
+    "prefix": "iter_func_filter",
     "body": [
       "func filter${1|Int,String|}(input []${1|int,string|}, predicate func(${1|int,string|}) bool) []${1|int,string|} {",
       "\tvar result []${1|int,string|}",
@@ -40,8 +40,8 @@
     ],
     "description": "Create a function for filtering operation on a slice in Go"
   },
-  "func:iter:sort": {
-    "prefix": "func_iter_sort",
+  "iter:func:sort": {
+    "prefix": "iter_func_sort",
     "body": [
       "import \"sort\"",
       "",
@@ -53,8 +53,8 @@
     ],
     "description": "Create a function for sorting a slice in Go"
   },
-  "func:iter:Any Function": {
-    "prefix": "func_iter_any",
+  "iter:func:any function": {
+    "prefix": "iter_func_any",
     "body": [
       "func any(input []${1:int,string}, condition func(${1:int,string}) bool) bool {",
       "\tfor _, v := range input {",
@@ -67,8 +67,8 @@
     ],
     "description": "Create a function for any operation using iterators in Go"
   },
-  "func:iter:All Function": {
-    "prefix": "func_iter_all",
+  "iter:func:all function": {
+    "prefix": "iter_func_call",
     "body": [
       "func all(input []${1:int,string}, condition func(${1:int,string}) bool) bool {",
       "\tfor _, v := range input {",
@@ -81,8 +81,8 @@
     ],
     "description": "Create a function for all operation using iterators in Go"
   },
-  "func:iter:Find Function": {
-    "prefix": "func_iter_find",
+  "iter:func:find function": {
+    "prefix": "iter_func_find",
     "body": [
       "func find(input []${1:int,string}, condition func(${1:int,string}) bool) (${1:int,string}, bool) {",
       "\tfor _, v := range input {",
@@ -95,8 +95,8 @@
     ],
     "description": "Create a function for finding an element using iterators in Go"
   },
-  "func:iter:Count Function": {
-    "prefix": "func_iter_count",
+  "iter:func:count function": {
+    "prefix": "iter_func_count",
     "body": [
       "func count(input []${1:int,string}, condition func(${1:int,string}) bool) int {",
       "\tcount := 0",

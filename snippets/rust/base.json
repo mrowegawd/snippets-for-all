@@ -408,7 +408,7 @@
     "description": "extern \"C\" { … }"
   },
   "fn": {
-    "prefix": "func_func_",
+    "prefix": "func_",
     "body": [
       "fn ${1:name}(${2:arg}: ${3:Type}) -> ${4:RetType} {",
       "\t${5:unimplemented!();}",
@@ -417,7 +417,7 @@
     "description": "fn …(…) { … }"
   },
   "fn:inline": {
-    "prefix": "func_func_inline",
+    "prefix": "func_with_inline",
     "body": [
       "#[inline]",
       "pub fn ${1:name}() {",
@@ -426,8 +426,8 @@
     ],
     "description": "inlined function"
   },
-  "fn:with_return": {
-    "prefix": "func_func_with_return",
+  "fn:with return": {
+    "prefix": "func_with_return",
     "body": [
       "pub fn ${2:func_name}(${3:arg1}: ${4:Type1}, ${5:arg2}: ${6:Type2}) -> ${7:Return_Type} {",
       "\t${0:// Function body}",
@@ -435,8 +435,8 @@
     ],
     "description": "function with return"
   },
-  "fn:with_lifetime": {
-    "prefix": "func_func_lifetime",
+  "fn:with lifetime": {
+    "prefix": "func_with_lifetime",
     "body": [
       "pub fn ${2:func_name}<${3:'a}>(${4:arg}: &'a ${5:Type}) -> ${6:Return_Type} {",
       "${0:// Function body}",
@@ -444,8 +444,8 @@
     ],
     "description": "function lifetime"
   },
-  "fn:param_trait": {
-    "prefix": "func_func_param_trait",
+  "fn:with param trait": {
+    "prefix": "func_with_param_trait",
     "body": [
       "pub fn ${2:func_name}<${3:T: ${8:Trait}}>(${4:arg}: &${3:T}) -> ${5:Return_Type} {",
       "\t${0:// Function body}",
@@ -453,8 +453,8 @@
     ],
     "description": "function param trait"
   },
-  "fn:param_array": {
-    "prefix": "func_func_param_array",
+  "fn:with param array": {
+    "prefix": "func_with_param_array",
     "body": [
       "pub fn ${2:func_name}(${3:array}: &[${4:Type}]) -> Vec<${5:Type}> {",
       "\t${0:// Function body}",
@@ -462,8 +462,8 @@
     ],
     "description": "function param array"
   },
-  "fn:param_struct": {
-    "prefix": "func_func_param_struct",
+  "fn:with param struct": {
+    "prefix": "func_with_param_struct",
     "body": [
       "pub fn ${2:func_name}(${3:struct}: &${4:Struct}) -> ${5:Return_Type} {",
       "\t${0:// Function body}",
@@ -471,8 +471,8 @@
     ],
     "description": "function struct param"
   },
-  "fn:param_closure": {
-    "prefix": "func_func_param_closure",
+  "fn:with param closure": {
+    "prefix": "func_with_param_closure",
     "body": [
       "pub fn ${2:func_name}(${3:closure}: ${4:Closure_Type}) -> ${5:Return_Type} {",
       "\t${0:// Function body}",
@@ -480,8 +480,8 @@
     ],
     "description": "function closure param"
   },
-  "fn:param_default": {
-    "prefix": "func_func_param_default",
+  "fn:with param default": {
+    "prefix": "func_with_param_default",
     "body": [
       "pub fn ${2:func_name}(${3:arg1}: ${4:Type} ${5:= ${6:default_value}}) -> ${7:Return_Type} {",
       "\t${0:// Function body}",
@@ -1149,32 +1149,25 @@
   },
   "impl:trait": {
     "prefix": "impl_trait_for_struct",
-    "body": [
-      "impl ${1:Trait} for ${2:Type} {",
-      "    ${3:// add code here}",
-      "}"
-    ],
+    "body": ["impl ${1:Trait} for ${2:Type} {", "\t${3:// add code here}", "}"],
     "description": "impl … for … { … }"
+  },
+  "impl:prop:create": {
+    "prefix": "impl_prop_",
+    "body": ["${2:attribute_name}: ${3:Type},"],
+    "description": "Create impl property"
   },
   "impl:prop:public": {
     "prefix": "impl_prop_pub",
     "body": ["pub ${2:attribute_name}: ${3:Type},"],
     "description": "Adds a public attribute to a Rust `impl` block"
   },
-  "impl:prop:with Doc Comment": {
-    "prefix": "impl_prop_with_doc",
-    "body": [
-      "/// ${5:Documentation for ${2:attribute_name}}",
-      "${2:attribute_name}: ${3:Type},"
-    ],
-    "description": "Adds an attribute with a doc comment to a Rust `impl` block"
-  },
-  "impl:prop:with Derive": {
+  "impl:prop:with derive": {
     "prefix": "impl_prop_attribute_derive",
     "body": ["#[derive(${6:Debug})]", "${2:attribute_name}: ${3:Type},"],
     "description": "Adds an attribute with attribute derive to a Rust `impl` block"
   },
-  "impl:prop:with Lifetime": {
+  "impl:prop:with lifetime": {
     "prefix": "impl_prop_attribute_lifetime",
     "body": ["${2:attribute_name}: &'${3:lifetime} ${4:Type},"],
     "description": "Adds an attribute with a lifetime parameter to a Rust `impl` block"
@@ -1282,7 +1275,7 @@
     "description": "Constructor with Builder pattern"
   },
   "impl:method": {
-    "prefix": "impl_func_method",
+    "prefix": "impl_method",
     "body": [
       "pub fn ${1:method_name}(&self, ${2:arg}: ${3:type}) -> ${4:ReturnType} {",
       "\t$0",
@@ -1291,7 +1284,7 @@
     "description": "Creates a basic public method for a struct."
   },
   "impl:method pub": {
-    "prefix": "impl_func_method_pub",
+    "prefix": "impl_method_pub",
     "body": [
       "pub fn ${1:method_name}(&self, ${2:arg}: ${3:type}) -> ${4:ReturnType} {",
       "\t$0",
@@ -1299,8 +1292,8 @@
     ],
     "description": "Creates a basic public method for a struct."
   },
-  "impl:method getset": {
-    "prefix": "impl_func_method_get_set_full",
+  "impl:method getter and setter full": {
+    "prefix": "impl_method_getter_setter_full",
     "body": [
       "pub fn get_${1:field}(&self) -> &${3:Type} {",
       "\t&self.${2:field}",
@@ -1313,7 +1306,7 @@
     "description": "impl get set … { … }"
   },
   "impl:method:async": {
-    "prefix": "impl_func_method_async",
+    "prefix": "impl_method_async",
     "body": [
       "pub async fn ${1:async_method_name}(&self, ${3:arg}: ${4:ArgType}) -> ${5:ReturnType} {",
       "\t${0:// async implementation}",
@@ -1322,7 +1315,7 @@
     "description": "Create async function in impl"
   },
   "impl:method:lifetime": {
-    "prefix": "impl_func_method_lifetime",
+    "prefix": "impl_method_lifetime",
     "body": [
       "pub fn ${1:method_name}<'${2:a}, ${3:b}>(&'${2:a} self, ${4:arg}: &'${3:b} ${5:ArgType}) -> ${6:ReturnType} {",
       "\t${0:// implementation}",

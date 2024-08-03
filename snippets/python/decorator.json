@@ -21,7 +21,7 @@
     "description": "Create a Python decorator"
   },
   "decorator:async decorator": {
-    "prefix": "decorator_async",
+    "prefix": "decorator_with_async",
     "body": [
       "import functools",
       "",
@@ -97,8 +97,8 @@
     "body": ["@${1:decoratorName}(${2:decoratorParam})"],
     "description": "Create an decorator tag with parameter"
   },
-  "decorator:logging": {
-    "prefix": "decorator_log",
+  "decorator:template:logging": {
+    "prefix": "decorator_template_log",
     "body": [
       "import functools",
       "import logging",
@@ -119,8 +119,8 @@
     ],
     "description": "Create a Python logging decorator"
   },
-  "decorator:async logging decorator": {
-    "prefix": "decorator_async_log",
+  "decorator:template:async logging decorator": {
+    "prefix": "decorator_template_async_log",
     "body": [
       "import functools",
       "import logging",
@@ -141,8 +141,8 @@
     ],
     "description": "Create an async Python logging decorator"
   },
-  "decorator:execution time decorator": {
-    "prefix": "decorator_time",
+  "decorator:template:execution time decorator": {
+    "prefix": "decorator_template_time",
     "body": [
       "import functools",
       "import time",
@@ -165,8 +165,8 @@
     ],
     "description": "Create a Python execution time decorator"
   },
-  "decorator:async execution time decorator": {
-    "prefix": "decorator_async_time",
+  "decorator:template:async execution time decorator": {
+    "prefix": "decorator_tempalte_async_time",
     "body": [
       "import functools",
       "import time",
@@ -189,8 +189,8 @@
     ],
     "description": "Create an async Python execution time decorator"
   },
-  "decorator:retry decorator": {
-    "prefix": "decorator_retry",
+  "decorator:template:retry decorator": {
+    "prefix": "decorator_template_retry",
     "body": [
       "import functools",
       "import time",
@@ -221,8 +221,8 @@
     ],
     "description": "Create a Python retry decorator"
   },
-  "decorator:async retry decorator": {
-    "prefix": "decorator_async_retry",
+  "decorator:template:async retry decorator": {
+    "prefix": "decorator_template_async_retry",
     "body": [
       "import functools",
       "import asyncio",
@@ -253,8 +253,8 @@
     ],
     "description": "Create an async Python retry decorator"
   },
-  "decorator:throttle decorator": {
-    "prefix": "decorator_throttle",
+  "decorator:template:throttle decorator": {
+    "prefix": "decorator_template_throttle",
     "body": [
       "import functools",
       "import time",
@@ -280,8 +280,8 @@
     ],
     "description": "Create a Python throttle decorator"
   },
-  "decorator:async throttle decorator": {
-    "prefix": "decorator_async_throttle",
+  "decorator:template:async throttle decorator": {
+    "prefix": "decorator_template_async_throttle",
     "body": [
       "import functools",
       "import asyncio",

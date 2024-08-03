@@ -1,6 +1,6 @@
 {
-  "func:iter:map": {
-    "prefix": "func_iter_map",
+  "iter:func:map function": {
+    "prefix": "iter_func_map",
     "body": [
       "fn map_${1|Int,String|}(input: &[${1:i32,String}]) -> Vec<${1:i32,String}> {",
       "\tinput.iter().map(|&x| x${2: * 2}).collect()",
@@ -8,8 +8,8 @@
     ],
     "description": "Create a function for mapping operation on a slice in Rust"
   },
-  "func:iter:reduce function": {
-    "prefix": "func_iter_reduce",
+  "iter:func:reduce function": {
+    "prefix": "iter_func_reduce",
     "body": [
       "fn reduce_${1|Int,String|}(input: &[${1:i32,String}]) -> ${1:i32,String} {",
       "\tinput.iter().fold(${3:0}${2:, |acc, &x| acc + x})",
@@ -17,8 +17,8 @@
     ],
     "description": "Create a function for reducing operation on a slice in Rust"
   },
-  "func:iter:filter Function": {
-    "prefix": "func_iter_filter",
+  "iter:func:filter function": {
+    "prefix": "iter_func_filter",
     "body": [
       "fn filter_${1|Int,String|}(input: &[${1:i32,String}]) -> Vec<${1:i32,String}> {",
       "\tinput.iter().filter(|&&x| x > ${2:2}).cloned().collect()",
@@ -26,21 +26,8 @@
     ],
     "description": "Create a function for filtering operation on a slice in Rust"
   },
-  "func:iter": {
-    "prefix": "func_iter_example",
-    "body": [
-      "fn iterator_example() {",
-      "\tlet data = vec![${1:1}, ${2:2}, ${3:3}];",
-      "\tfor item in data.iter() {",
-      "\t\t// Process item",
-      "\t\tprintln!(\"Item: {}\", item);",
-      "\t}",
-      "}"
-    ],
-    "description": "Create an example for using iterators in Rust"
-  },
-  "func:iter:Sort Function": {
-    "prefix": "func_iter_sort",
+  "iter:func:sort function": {
+    "prefix": "iter_func_sort",
     "body": [
       "fn sort_${1|Int,String|}(mut input: Vec<${1:i32,String}>) -> Vec<${1:i32,String}> {",
       "\tinput.sort();",
@@ -49,8 +36,8 @@
     ],
     "description": "Create a function for sorting a vector in Rust"
   },
-  "func:iter:Any Functions": {
-    "prefix": "func_iter_any",
+  "iter:func:any functions": {
+    "prefix": "iter_func_any",
     "body": [
       "fn any_${1|Int,String|}(input: &[${1:i32,String}], condition: fn(&${1:i32,String}) -> bool) -> bool {",
       "\tinput.iter().any(|x| condition(x))",
@@ -58,8 +45,8 @@
     ],
     "description": "Create functions for any and all operations using iterators in Rust"
   },
-  "func:iter:All Functions": {
-    "prefix": "func_iter_all",
+  "iter:func:all functions": {
+    "prefix": "iter_func_all",
     "body": [
       "fn all_${1|Int,String|}(input: &[${1:i32,String}], condition: fn(&${1:i32,String}) -> bool) -> bool {",
       "\tinput.iter().all(|x| condition(x))",
@@ -67,8 +54,8 @@
     ],
     "description": "Create functions for any and all operations using iterators in Rust"
   },
-  "func:iter:Count Function": {
-    "prefix": "func_iter_count",
+  "iter:func:count function": {
+    "prefix": "iter_func_count",
     "body": [
       "fn count_${1|Int,String|}(input: &[${1:i32,String}], condition: fn(&${1:i32,String}) -> bool) -> usize {",
       "\tinput.iter().filter(|&x| condition(x)).count()",
@@ -76,8 +63,8 @@
     ],
     "description": "Create a function for counting elements using iterators in Rust"
   },
-  "func:iter:Find Function": {
-    "prefix": "func_iter_find",
+  "iter:func:find function": {
+    "prefix": "iter_func_find",
     "body": [
       "fn find_${1|Int,String|}(input: &[${1:i32,String}], condition: fn(&${1:i32,String}) -> bool) -> Option<&${1:i32,String}> {",
       "\tinput.iter().find(|&x| condition(x))",
@@ -85,8 +72,8 @@
     ],
     "description": "Create a function for finding an element using iterators in Rust"
   },
-  "func:iter:with Index Example": {
-    "prefix": "rust_iter_with_index",
+  "iter:func:with index example": {
+    "prefix": "iter_func_with_for_index",
     "body": [
       "fn iter_with_index_${1|Int,String|}(input: &[${1:i32,String}]) {",
       "\tfor (index, item) in input.iter().enumerate() {",
@@ -96,5 +83,310 @@
       "}"
     ],
     "description": "Create an example for using iterators with index in Rust"
+  },
+  "iter:filter": {
+    "prefix": "iter_filter",
+    "body": [
+      "let ${1:vector}.iter().filter(|&&x| x % 2 == 0).collect::<Vec<_>>();",
+      "println!(\"{:?}\", ${1:vector}.iter().filter(|&&x| x % 2 == 0).collect::<Vec<_>>());"
+    ],
+    "description": "Create a filter iterator"
+  },
+  "iter:map": {
+    "prefix": "iter_map",
+    "body": [
+      "let ${1:vector}.iter().map(|&x| x * x).collect::<Vec<_>>();",
+      "println!(\"{:?}\", ${1:vector}.iter().map(|&x| x * x).collect::<Vec<_>>());"
+    ],
+    "description": "Create a map iterator"
+  },
+  "iter:fold": {
+    "prefix": "iter_fold",
+    "body": [
+      "let sum: i32 = ${1:vector}.iter().fold(0, |acc, &x| acc + x);",
+      "println!(\"Sum: {}\", sum);"
+    ],
+    "description": "Create a fold (reduce) iterator"
+  },
+  "for:iter:enumerate": {
+    "prefix": "for_iter_enumerate",
+    "body": [
+      "for (index, value) in ${1:vector}.iter().enumerate() {",
+      "    println!(\"Index: {}, Value: {}\", index, value);",
+      "}"
+    ],
+    "description": "Create an enumerate iterator"
+  },
+  "iter:enumerate": {
+    "prefix": "iter_enumerate",
+    "body": [
+      "for (index, value) in ${1:vector}.iter().enumerate() {",
+      "    println!(\"Index: {}, Value: {}\", index, value);",
+      "}"
+    ],
+    "description": "Create an enumerate iterator"
+  },
+  "iter:chain": {
+    "prefix": "iter_chain",
+    "body": [
+      "let vec1 = vec![1, 2, 3];",
+      "let vec2 = vec![4, 5, 6];",
+      "let combined: Vec<_> = vec1.iter().chain(vec2.iter()).collect();",
+      "println!(\"{:?}\", combined);"
+    ],
+    "description": "Create a chain iterator"
+  },
+  "iter:take": {
+    "prefix": "iter_take",
+    "body": [
+      "let taken: Vec<_> = ${1:vector}.iter().take(3).collect();",
+      "println!(\"{:?}\", taken);"
+    ],
+    "description": "Create a take iterator"
+  },
+  "iter:rev": {
+    "prefix": "iter_reverse",
+    "body": [
+      "let reversed: Vec<_> = ${1:vector}.iter().rev().collect();",
+      "println!(\"{:?}\", reversed);"
+    ],
+    "description": "Create a reverse iterator"
+  },
+  "iter:zip": {
+    "prefix": "iter_zip",
+    "body": [
+      "let names = vec![\"Alice\", \"Bob\", \"Charlie\"];",
+      "let scores = vec![90, 85, 80];",
+      "let paired: Vec<_> = names.iter().zip(scores.iter()).collect();",
+      "for (name, score) in paired {",
+      "    println!(\"{}: {}\", name, score);",
+      "}"
+    ],
+    "description": "Create a zip iterator"
+  },
+  "iter:flatten": {
+    "prefix": "iter_flatten",
+    "body": [
+      "let nested_vec = vec![vec![\"hello\", \"world\"], vec![\"rust\", \"language\"]];",
+      "let flattened: Vec<_> = nested_vec.into_iter().flatten().collect();",
+      "println!(\"{:?}\", flattened);"
+    ],
+    "description": "Create a flatten iterator"
+  },
+  "iter:all": {
+    "prefix": "iter_all",
+    "body": [
+      "let all_even = ${1:vector}.iter().all(|&x| x % 2 == 0);",
+      "println!(\"All are even: {}\", all_even);"
+    ],
+    "description": "Check if all elements meet the condition"
+  },
+  "iter:any": {
+    "prefix": "iter_any",
+    "body": [
+      "let has_even = ${1:vector}.iter().any(|&x| x % 2 == 0);",
+      "println!(\"Any even numbers: {}\", has_even);"
+    ],
+    "description": "Check if any element meets the condition"
+  },
+  "iter:position": {
+    "prefix": "iter_position",
+    "body": [
+      "if let Some(pos) = ${1:vector}.iter().position(|&x| x == 3) {",
+      "    println!(\"Position of 3: {}\", pos);",
+      "} else {",
+      "    println!(\"3 not found\");",
+      "}"
+    ],
+    "description": "Find the position of an element"
+  },
+  "iter:collect into hashset": {
+    "prefix": "iter_hashset",
+    "body": [
+      "use std::collections::HashSet;",
+      "",
+      "let number_set: HashSet<_> = ${1:vector}.into_iter().collect();",
+      "println!(\"{:?}\", number_set);"
+    ],
+    "description": "Collect elements into a HashSet"
+  },
+  "iter:flatmap": {
+    "prefix": "iter_flatmap",
+    "body": [
+      "let words = vec![vec![\"hello\", \"world\"], vec![\"rust\", \"language\"]];",
+      "let flattened: Vec<_> = words.into_iter().flat_map(|v| v.into_iter()).collect();",
+      "println!(\"{:?}\", flattened);"
+    ],
+    "description": "Create a flat_map iterator"
+  },
+  "iter:inspect": {
+    "prefix": "iter_inspect",
+    "body": [
+      "${1:vector}.iter().inspect(|&x| println!(\"Inspecting: {}\", x)).collect::<Vec<_>>();"
+    ],
+    "description": "Inspect elements during iteration"
+  },
+  "iter:takewhile": {
+    "prefix": "iter_takewhile",
+    "body": [
+      "let taken: Vec<_> = ${1:vector}.iter().take_while(|&&x| x < 5).collect();",
+      "println!(\"Taken: {:?}\", taken);"
+    ],
+    "description": "Create a take_while iterator"
+  },
+  "iter:partition": {
+    "prefix": "iter_partition",
+    "body": [
+      "let (even_numbers, odd_numbers): (Vec<_>, Vec<_>) = ${1:vector}.into_iter().partition(|x| x % 2 == 0);",
+      "println!(\"Even numbers: {:?}\", even_numbers);",
+      "println!(\"Odd numbers: {:?}\", odd_numbers);"
+    ],
+    "description": "Partition elements into two collections"
+  },
+  "iter:unzip": {
+    "prefix": "iter_unzip",
+    "body": [
+      "let paired = vec![(1, 'a'), (2, 'b'), (3, 'c')];",
+      "let (numbers, letters): (Vec<_>, Vec<_>) = paired.into_iter().unzip();",
+      "println!(\"Numbers: {:?}\", numbers);",
+      "println!(\"Letters: {:?}\", letters);"
+    ],
+    "description": "Unzip a collection of pairs"
+  },
+  "iter:dedupe": {
+    "prefix": "iter_dedupe",
+    "body": [
+      "use itertools::dedup;",
+      "",
+      "let deduped: Vec<_> = ${1:vector}.into_iter().dedup().collect();",
+      "println!(\"{:?}\", deduped);"
+    ],
+    "description": "Remove consecutive duplicates"
+  },
+  "iter:differential": {
+    "prefix": "iter_diffrential",
+    "body": [
+      "let differences: Vec<_> = ${1:vector}.windows(2).map(|w| w[1] - w[0]).collect();",
+      "println!(\"{:?}\", differences);"
+    ],
+    "description": "Compute differences between consecutive elements"
+  },
+  "iter:group by (using itertools)": {
+    "prefix": "iter_groupby",
+    "body": [
+      "use itertools::group_by;",
+      "",
+      "let grouped: Vec<_> = group_by(${1:vector}.into_iter(), |x| x).into_iter().map(|(key, group)| (key, group.collect::<Vec<_>>())).collect();",
+      "for (key, group) in grouped {",
+      "    println!(\"Key: {}, Group: {:?}\", key, group);",
+      "}"
+    ],
+    "description": "Group elements by a key (requires itertools crate)"
+  },
+  "iter:peeking": {
+    "prefix": "iter_peekable",
+    "body": [
+      "use std::iter::Peekable;",
+      "",
+      "let mut iter = ${1:vector}.iter().peekable();",
+      "while let Some(&x) = iter.peek() {",
+      "    println!(\"Peek: {}\", x);",
+      "    iter.next();",
+      "}"
+    ],
+    "description": "Peek at the next item in the iterator"
+  },
+  "iter:sum with mapping": {
+    "prefix": "iter_summap",
+    "body": [
+      "let sum_of_squares: i32 = ${1:vector}.iter().map(|&x| x * x).sum();",
+      "println!(\"Sum of squares: {}\", sum_of_squares);"
+    ],
+    "description": "Sum with mapping"
+  },
+  "iter:product iterator": {
+    "prefix": "iter_product",
+    "body": [
+      "let product: i32 = ${1:vector}.iter().product();",
+      "println!(\"Product: {}\", product);"
+    ],
+    "description": "Compute the product of elements"
+  },
+  "iter:max/min": {
+    "prefix": "iter_maxmin",
+    "body": [
+      "let max_value = ${1:vector}.iter().max().unwrap();",
+      "let min_value = ${1:vector}.iter().min().unwrap();",
+      "println!(\"Max: {}\", max_value);",
+      "println!(\"Min: {}\", min_value);"
+    ],
+    "description": "Find the maximum and minimum values"
+  },
+  "iter:range": {
+    "prefix": "iter_range",
+    "body": [
+      "let range: Vec<_> = (1..=5).collect();",
+      "println!(\"{:?}\", range);"
+    ],
+    "description": "Create a range iterator"
+  },
+  "iter:take while & skip while": {
+    "prefix": "iter_takewhile_skipwhile",
+    "body": [
+      "let taken: Vec<_> = ${1:vector}.iter().take_while(|&&x| x < 4).collect();",
+      "let skipped: Vec<_> = ${1:vector}.iter().skip_while(|&&x| x < 4).collect();",
+      "println!(\"Taken: {:?}\", taken);",
+      "println!(\"Skipped: {:?}\", skipped);"
+    ],
+    "description": "Create take_while and skip_while iterators"
+  },
+  "iter:collect into btreeset": {
+    "prefix": "iter_btree",
+    "body": [
+      "use std::collections::BTreeSet;",
+      "",
+      "let sorted_set: BTreeSet<_> = ${1:vector}.into_iter().collect();",
+      "println!(\"{:?}\", sorted_set);"
+    ],
+    "description": "Collect elements into a BTreeSet"
+  },
+  "iter:mapping with index": {
+    "prefix": "iter_mapindex",
+    "body": [
+      "let indexed: Vec<_> = ${1:vector}.into_iter().enumerate().map(|(i, x)| (i, x)).collect();",
+      "println!(\"{:?}\", indexed);"
+    ],
+    "description": "Map elements with index"
+  },
+  "iter:find map": {
+    "prefix": "iter_findmap",
+    "body": [
+      "let found = ${1:vector}.iter().find_map(|&x| if x > 3 { Some(x * 2) } else { None });",
+      "println!(\"Found: {:?}\", found);"
+    ],
+    "description": "Find and map an element"
+  },
+  "iter:chaining": {
+    "prefix": "iter_chaining",
+    "body": [
+      "let vec1 = vec![1, 2, 3];",
+      "let vec2 = vec![4, 5, 6];",
+      "let combined: Vec<_> = vec1.into_iter().chain(vec2.into_iter()).collect();",
+      "println!(\"{:?}\", combined);"
+    ],
+    "description": "Chain multiple iterators"
+  },
+  "iter:peekable iterator": {
+    "prefix": "iter_peekable",
+    "body": [
+      "use std::iter::Peekable;",
+      "",
+      "let mut iter = ${1:vector}.iter().peekable();",
+      "while let Some(&x) = iter.peek() {",
+      "    println!(\"Peek: {}\", x);",
+      "    iter.next();",
+      "}"
+    ],
+    "description": "Create a peekable iterator"
   }
 }

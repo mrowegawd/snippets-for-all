@@ -269,40 +269,46 @@
       "}"
     ]
   },
+
   "for of": {
     "prefix": "for_of",
     "body": ["for (const ${1:iterator} of ${2:myarray}) {", "\t$0", "}"],
     "description": ["for (const iterator of array) {", "", "}"]
   },
-  "for:map": {
-    "prefix": "for_map",
+  "iter:each": {
+    "prefix": "iter_each",
+    "body": ["${1:array}.forEach(${2:element} => {", "\t$0", "});"],
+    "description": ["array.forEach(element => {", "", "});"]
+  },
+  "iter:map": {
+    "prefix": "iter_map",
     "body": "${1:iterable}.map((${2:item}) => {\n\t${0}\n})",
-    "description": "iterable.map((item) => {\n\n})"
+    "description": "Create a mapped array"
   },
-  "for:reduce": {
-    "prefix": "for_reduce",
+  "iter:reduce": {
+    "prefix": "iter_reduce",
     "body": "${1:iterable}.reduce((${2:previous}, ${3:current}) => {\n\t${0}\n}${4:, initial})",
-    "description": "iterable.reduce((previous, current) => {\n\n}, initial)"
+    "description": "Create a reduced array"
   },
-  "for:filter": {
-    "prefix": "for_filter",
+  "iter:filter": {
+    "prefix": "iter_filter",
     "body": "${1:iterable}.filter((${2:item}) => {\n\t${0}\n})",
-    "description": "iterable.filter((item) => {\n\n})"
+    "description": "Create a filtered array"
   },
-  "for:find": {
-    "prefix": "for_find",
+  "iter:find": {
+    "prefix": "iter_find",
     "body": "${1:iterable}.find((${2:item}) => {\n\t${0}\n})",
-    "description": "iterable.find((item) => {\n\n})"
+    "description": "Create a find array"
   },
-  "for:every": {
-    "prefix": "for_every",
+  "iter:every": {
+    "prefix": "iter_every",
     "body": "${1:iterable}.every((${2:item}) => {\n\t${0}\n})",
-    "description": "iterable.every((item) => {\n\n})"
+    "description": "Create a every array"
   },
-  "for:some": {
-    "prefix": "for_some",
+  "iter:some": {
+    "prefix": "iter_some",
     "body": "${1:iterable}.some((${2:item}) => {\n\t${0}\n})",
-    "description": "iterable.some((item) => {\n\n})"
+    "description": "Create a some array"
   },
   "function": {
     "prefix": "func_",
@@ -310,7 +316,7 @@
     "description": ["function name(params) {", "", "}"]
   },
   "function anonymous": {
-    "prefix": "func_ann",
+    "prefix": "func_anon",
     "body": "function (${1:arguments}) {${0}}",
     "description": "function (arguments) {value}"
   },
