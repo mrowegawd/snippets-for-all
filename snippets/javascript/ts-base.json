@@ -583,6 +583,26 @@
     "body": ["function ${1:name}(${2:params}) {", "\t$0", "}"],
     "description": "Create a function"
   },
+  "function:expr": {
+    "prefix": "func_expr_",
+    "body": [
+      "const ${1:functionName} = function (${2:parameters}): ${3:returnType} {",
+      "  ${4:// TODO: implement function}",
+      "  return ${5:result};",
+      "};"
+    ],
+    "description": "Create a traditional function expression in TypeScript"
+  },
+  "function:expr arrow": {
+    "prefix": "func_expr_arrow",
+    "body": [
+      "const ${1:functionName} = (${2:parameters}): ${3:returnType} => {",
+      "  ${4:// TODO: implement function}",
+      "  return ${5:result};",
+      "};"
+    ],
+    "description": "Create a function expression in TypeScript"
+  },
   "function:anonymous": {
     "prefix": "func_anon",
     "body": "function (${1:arguments}) {${0}}",
@@ -1241,8 +1261,25 @@
   },
   "class:property": {
     "prefix": "class_prop_",
-    "body": ["${1:private_or_public} ${2:nameproperty} : ${3:type};"],
+    "body": [
+      "${1:private_or_public} ${2:propertyName}: ${3:type} = ${4:value};"
+    ],
     "description": "Define a full property"
+  },
+  "class:property:private": {
+    "prefix": "class_prop_private",
+    "body": ["private ${1:propertyName}: ${2:type};", "$0"],
+    "description": "Declare a private property in a class in TypeScript"
+  },
+  "class:property:protected": {
+    "prefix": "class_prop_protected",
+    "body": ["protected ${1:propertyName}: ${2:type};", "$0"],
+    "description": "Declare a protected property in a class in TypeScript"
+  },
+  "class:property:readonly": {
+    "prefix": "class_prop_readonly",
+    "body": ["readonly ${1:propertyName}: ${2:type};", "$0"],
+    "description": "Declare a readonly property in TypeScript"
   },
   "class:property:full with get and set func": {
     "prefix": "class_prop_get_set_full",
@@ -1259,24 +1296,9 @@
     ],
     "description": "Define a full property"
   },
-  "class:property:private": {
-    "prefix": "class_prop_private",
-    "body": ["private ${1:propertyName}: ${2:Type};", "$0"],
-    "description": "Declare a private property in a class in TypeScript"
-  },
-  "class:property:protected": {
-    "prefix": "class_prop_protected",
-    "body": ["protected ${1:propertyName}: ${2:Type};", "$0"],
-    "description": "Declare a protected property in a class in TypeScript"
-  },
-  "class:property:readonly": {
-    "prefix": "class_prop_readonly",
-    "body": ["readonly ${1:propertyName}: ${2:Type};", "$0"],
-    "description": "Declare a readonly property in TypeScript"
-  },
   "class:constructor:empty": {
     "prefix": "class_constructor_empty",
-    "body": ["constructor() {", "    // Write your code here", "}"],
+    "body": ["constructor() {", "\t${0:// Write your code here}", "}"],
     "description": "Empty constructor"
   },
   "class:constructor:with parameters": {

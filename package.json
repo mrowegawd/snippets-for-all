@@ -229,7 +229,7 @@
           "sh",
           "zsh"
         ],
-        "path": "./snippets/shell.json"
+        "path": "./snippets/sh.json"
       },
       {
         "language": [
@@ -505,7 +505,7 @@
       },
       {
         "language": "python",
-        "path": "./snippets/python/iteraotor.json"
+        "path": "./snippets/python/iterator.json"
       },
       {
         "language": "python",
