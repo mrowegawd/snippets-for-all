@@ -1223,41 +1223,46 @@
     ],
     "description": "Class Definition"
   },
-  "class:t:with inheritance (extend)": {
+  "class:t:with inheritance": {
     "prefix": "class_t_inherit_class",
     "body": ["class ${1:ChildClass} extends ${2:ParentClass} {"],
-    "description": "Class with inheritance (extend)"
+    "description": "Create class with inheritance"
   },
-  "class:t:with multiple inheritance (mixins)": {
+  "class:t:with inheritance multi": {
     "prefix": "class_t_inherit_class_multi",
     "body": [
       "class ${1:ChildClass} extends ${2:Mixin1}(${3:Mixin2}(${4:BaseClass})) {"
     ],
-    "description": "Class with multiple inheritance (mixins)"
+    "description": "Create class with multiple inheritance"
   },
-  "class:t:with interface implementation": {
+  "class:t:with inheritance interface": {
     "prefix": "class_t_inherit_interface",
     "body": ["class ${1:ClassName} implements ${2:InterfaceName} {"],
     "description": "Class with interface implementation"
   },
-  "class:t:with extend and interface implementation": {
-    "prefix": "class_t_inherit_class_and_interface",
-    "body": [
-      "class ${1:ChildClass} extends ${2:ParentClass} implements ${3:InterfaceName} {"
-    ],
-    "description": "Class with extend and interface implementation"
-  },
-  "class:t:with multiple interface implementation": {
+  "class:t:with inheritance interface multi": {
     "prefix": "class_t_interit_interface_multi",
     "body": [
       "class ${1:ClassName} implements ${2:Interface1}, ${3:Interface2} {"
     ],
     "description": "Class with multiple interface implementation"
   },
-  "class:t:with generic interface implementation": {
+  "class:t:with inheritance interface generic": {
     "prefix": "class_t_inherit_interface_generic",
     "body": ["class ${1:ClassName} implements ${2:InterfaceName}<${3:T}> {"],
     "description": "Class with generic interface implementation"
+  },
+  "class:t:with inheritance class and implements interface": {
+    "prefix": "class_t_inherit_and_implements_class_interface",
+    "body": [
+      "class ${1:ChildClass} extends ${2:ParentClass} implements ${3:InterfaceName} {"
+    ],
+    "description": "Class with extend and interface implementation"
+  },
+  "class:t:with inheritance error": {
+    "prefix": "class_t_inherit_custom_err",
+    "body": ["class ${1:CustomError} extends Error {"],
+    "description": "Create a custom error class"
   },
   "class:property": {
     "prefix": "class_prop_",
@@ -1296,11 +1301,6 @@
     ],
     "description": "Define a full property"
   },
-  "class:constructor:empty": {
-    "prefix": "class_constructor_empty",
-    "body": ["constructor() {", "\t${0:// Write your code here}", "}"],
-    "description": "Empty constructor"
-  },
   "class:constructor:with parameters": {
     "prefix": "class_constructor_param",
     "body": [
@@ -1310,27 +1310,13 @@
     ],
     "description": "Constructor with parameters"
   },
-  "class:constructor:with property initialization": {
-    "prefix": "class_constructor_prop_init",
-    "body": [
-      "constructor() {",
-      "    this.${1:propertyName} = ${2:value};",
-      "}"
-    ],
-    "description": "Constructor with property initialization"
-  },
-  "class:constructor:with super call": {
-    "prefix": "class_constructor_super_call",
-    "body": [
-      "constructor(${1:params}) {",
-      "    super();",
-      "    this.${1:params} = ${1:params};",
-      "}"
-    ],
-    "description": "Constructor with super call"
+  "class:constructor:with parameter empty": {
+    "prefix": "class_constructor_param_empty",
+    "body": ["constructor() {", "\t${0:// Write your code here}", "}"],
+    "description": "Empty constructor"
   },
   "class:constructor:with object destructuring": {
-    "prefix": "class_constructor_destructuring",
+    "prefix": "class_constructor_param_destructuring",
     "body": [
       "constructor({${1:prop1}, ${2:prop2}}) {",
       "    this.${1:prop1} = ${1:prop1};",
@@ -1358,8 +1344,8 @@
     "description": "Constructor with rest parameter"
   },
   "class:constructor:with object initialization": {
-    "prefix": "class_constructor_obj_init",
-    "body": ["constructor(obj: any) {", "    Object.assign(this, obj);", "}"],
+    "prefix": "class_constructor_param_obj_init",
+    "body": ["constructor(obj: any) {", "\tObject.assign(this, obj);", "}"],
     "description": "Constructor with object initialization"
   },
   "class:constructor:with optional parameter and default value": {
@@ -1477,6 +1463,21 @@
       "constructor(public ${1:param1}: ${2:type1}, private ${3:param2}?: ${4:type2}) {"
     ],
     "description": "Constructor with optional property initialization"
+  },
+  "class:constructor:prop:init": {
+    "prefix": "class_constructor_prop",
+    "body": ["this.${1:propertyName} = ${2:value};"],
+    "description": "Constructor with property initialization"
+  },
+  "class:constructor:prop:super call": {
+    "prefix": "class_constructor_prop_super_call",
+    "body": [
+      "constructor(${1:params}) {",
+      "    super();",
+      "    this.${1:params} = ${1:params};",
+      "}"
+    ],
+    "description": "Constructor with super call"
   },
   "class:method:func": {
     "prefix": "class_method",

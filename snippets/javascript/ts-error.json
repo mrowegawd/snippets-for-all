@@ -4,7 +4,7 @@
     "body": ["throw new Error(\"${1:error message}\");"],
     "description": "Throws a new Error with a custom message in TypeScript"
   },
-  "err:custom:Error Handling with function": {
+  "err:custom:error handling with function": {
     "prefix": "err_custom_error_function",
     "body": [
       "// Custom Error Handling Function",
@@ -25,7 +25,6 @@
   "err:custom:class": {
     "prefix": "err_custom_error_class",
     "body": [
-      "// Custom error class",
       "class ${1:CustomError} extends Error {",
       "\tconstructor(message: string) {",
       "\t\tsuper(message);",
@@ -48,7 +47,7 @@
     "description": "Creates a custom error class in TypeScript"
   },
   "err:custom:with properties": {
-    "prefix": "err_custom_error_class_with_properties",
+    "prefix": "err_template_custom_error_class_with_properties",
     "body": [
       "// Custom error class with additional properties",
       "class ${1:CustomError} extends Error {",
@@ -77,9 +76,8 @@
     "description": "Creates a custom error class with additional properties in TypeScript"
   },
   "err:custom:with stack trace": {
-    "prefix": "err_custom_error_class_with_stack_trace",
+    "prefix": "err_template_custom_error_class_with_stack_trace",
     "body": [
-      "// Custom error class with stack trace",
       "class ${1:CustomError} extends Error {",
       "\tstackTrace: string[];",
       "",
@@ -111,9 +109,8 @@
     "description": "Creates a custom error class with stack trace in TypeScript"
   },
   "err:custom:with context": {
-    "prefix": "err_custom_error_class_with_context",
+    "prefix": "err_template_custom_error_class_with_context",
     "body": [
-      "// Custom error class with context",
       "class ${1:CustomError} extends Error {",
       "\tcontext: Record<string, any>;",
       "",
