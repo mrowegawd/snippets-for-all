@@ -21,8 +21,22 @@
     ],
     "description": "Python match expression (advanced)"
   },
+  "match:case (loop match)": {
+    "prefix": "match_loop",
+    "body": [
+      "\tfor ${1:item} in ${2:items}:",
+      "\t\tmatch ${1:item}:",
+      "\t\t\tcase ${3:value}:",
+      "\t\t\t\t${4:# do something}",
+      "\t\t\t\tbreak",
+      "\t\t\tcase _:",
+      "\t\t\t\t${5:# default case}",
+      "\t\t\t\tbreak"
+    ],
+    "description": "Python match case within a loop"
+  },
   "match:expression (more variants)": {
-    "prefix": "match_more_variants",
+    "prefix": "match_template_variants",
     "body": [
       "match ${1:expr}:",
       "\tcase ${2:value} if ${3:condition}:",
@@ -178,20 +192,6 @@
       "\t\tbreak"
     ],
     "description": "Python match case for matching dictionaries"
-  },
-  "match:case (loop match)": {
-    "prefix": "match_case_loop",
-    "body": [
-      "\tfor ${1:item} in ${2:items}:",
-      "\t\tmatch ${1:item}:",
-      "\t\t\tcase ${3:value}:",
-      "\t\t\t\t${4:# do something}",
-      "\t\t\t\tbreak",
-      "\t\t\tcase _:",
-      "\t\t\t\t${5:# default case}",
-      "\t\t\t\tbreak"
-    ],
-    "description": "Python match case within a loop"
   },
   "match:case (None)": {
     "prefix": "match_case_none",

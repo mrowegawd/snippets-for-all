@@ -122,104 +122,87 @@
     ],
     "description": "Creates a basic Python class with __init__ and method"
   },
-  "class:full dan property": {
-    "prefix": "class_full",
-    "body": [
-      "class ${1:SubClassName}(${2:SuperClassName}):",
-      "\tdef __init__(self${3:}, ${4:super_params}):",
-      "\t\tsuper().__init__(${5:super_args})",
-      "\t\tself.${6:property_name} = ${7:property_value}",
-      "",
-      "\t@property",
-      "\tdef ${8:property_name}(self):",
-      "\t\treturn self._${8:property_name}",
-      "",
-      "\t@${9:property_name}.setter",
-      "\tdef ${9:property_name}(self, value):",
-      "\t\tself._${9:property_name} = value",
-      "",
-      "\tdef ${10:method_name}(self${11:}):",
-      "\t\t${12:pass}"
-    ],
-    "description": "Creates a Python class with superclass, properties, and methods"
+  "class:t:with inheritance": {
+    "prefix": "class_t_inherit_class",
+    "body": ["class ${1:ChildClass}(${2:ParentClass}):"],
+    "description": "Create a Python class with inheritance"
   },
-  "class:prop:attribute": {
+  "class:t:with inheritance multi": {
+    "prefix": "class_t_inherit_class_multi",
+    "body": ["class ${1:ChildClass}(${2:ParentClass1}, ${3:ParentClass2}):"],
+    "description": "Create a Python class with multiple inheritance"
+  },
+  "class:t:with inheritance interface": {
+    "prefix": "class_t_inherit_interface",
+    "body": [
+      "from typing import Protocol",
+      "",
+      "class ${1:ClassInterface}(Protocol):"
+    ],
+    "description": "Class with interface implementation"
+  },
+  "class:t:with inheritance abstract class": {
+    "prefix": "class_t_inherit_abc_for_abstract_class",
+    "body": [
+      "from abc import ABC, abstractmethod",
+      "",
+      "class ${1:MyInterface}(ABC):"
+    ],
+    "description": "Class with interface implementation"
+  },
+  "class:t:with inheritance error": {
+    "prefix": "class_t_inherit_custom_err",
+    "body": ["class CustomError(Exception):"],
+    "description": "Create a custom error class"
+  },
+  "class:prop:define prop": {
     "prefix": "class_prop_",
-    "body": ["${1:class_name}.${2:attribute_name} = ${3:default_value}"],
-    "description": "Adds a class attribute to a Python class"
+    "body": ["${1:variable_name}: ${2:Type} = ${3:default_value}"],
+    "description": "Define a prop class"
   },
-  "class:prop:attribute with type and docstring": {
-    "prefix": "class_prop_type_docstring",
-    "body": [
-      "# ${2:Docstring for ${1:class_name}.${3:attribute_name}}",
-      "${1:class_name}.${3:attribute_name}: ${4:int} = ${5:default_value}"
-    ],
-    "description": "Adds a class attribute with type and docstring to a Python class"
-  },
-  "class:prop:class attribute": {
-    "prefix": "class_prop_attribute_private",
-    "body": ["${1:class_name}._${2:attribute_name} = ${3:default_value}"],
-    "description": "Adds a private class attribute to a Python class"
-  },
-  "class:prop:with decorator": {
-    "prefix": "class_prop_attribute_decorator",
-    "body": [
-      "@${4:staticmethod}",
-      "def ${2:attribute_name}(self):",
-      "    return ${3:default_value}"
-    ],
-    "description": "Adds a class attribute with decorator to a Python class"
-  },
-  "class:prop:multiple assignment": {
-    "prefix": "class_prop_multiple",
-    "body": [
-      "${1:class_name}.${2:attribute1}, ${1:class_name}.${3:attribute2} = ${4:value1}, ${5:value2}"
-    ],
-    "description": "Adds multiple class attributes to a Python class"
+  "class:prop:define private prop": {
+    "prefix": "class_prop_private",
+    "body": ["_${1:variable_name}: ${2:Type} = ${3:default_value}"],
+    "description": "Define a private prop class"
   },
   "class:constructor": {
     "prefix": "class_constructor",
     "body": [
-      "def __init__(self, ${1:x}):",
+      "def __init__(self, ${1:x}: ${2:type}):",
       "\tself.${1:x} = ${1:x}",
       "\t$0",
       ""
     ],
-    "description": ["\tdef __init__(self, ${1:x}):", "\t\tself.${1:x} = ${1:x}"]
+    "description": ["Define class constructor"]
   },
-  "class:constructor:constructor empty": {
-    "prefix": "class_constructor_empty",
-    "body": ["def __init__(self):", "    pass"],
+  "class:constructor:param:constructor empty": {
+    "prefix": "class_constructor_param_emtpy",
+    "body": ["def __init__(self):", "\tpass"],
     "description": "Empty constructor"
   },
-  "class:constructor:with parameters": {
+  "class:constructor:param:with parameters": {
     "prefix": "class_constructor_param",
     "body": [
       "def __init__(self, ${1:param1}, ${2:param2}):",
-      "    self.${1:param1} = ${1:param1}",
-      "    self.${2:param2} = ${2:param2}"
+      "\tself.${1:param1} = ${1:param1}",
+      "\tself.${2:param2} = ${2:param2}"
     ],
     "description": "Constructor with parameters"
   },
-  "class:constructor:with property initialization": {
-    "prefix": "class_constructor_prop_init",
-    "body": ["def __init__(self):", "    self.${1:property_name} = ${2:value}"],
-    "description": "Constructor with property initialization"
-  },
-  "class:constructor:with super call": {
-    "prefix": "class_constructor_super_call",
+  "class:constructor:param:with super call": {
+    "prefix": "class_constructor_param_super_call",
     "body": [
       "def __init__(self, ${1:params}):",
-      "    super().__init__()",
-      "    self.${1:params} = ${1:params}"
+      "\tsuper().__init__()",
+      "\tself.${1:params} = ${1:params}"
     ],
     "description": "Constructor with super call"
   },
-  "class:constructor:with object destructuring": {
-    "prefix": "class_constructor_destructuring",
+  "class:constructor:param:with object destructuring": {
+    "prefix": "class_constructor_param_destructuring",
     "body": [
       "def __init__(self, ${1:param1}=${2:default_value}):",
-      "    self.${1:param1} = ${1:param1}"
+      "\tself.${1:param1} = ${1:param1}"
     ],
     "description": "Constructor with default parameter value"
   },
@@ -227,7 +210,7 @@
     "prefix": "class_constructor_param_optional",
     "body": [
       "def __init__(self, ${1:param1}=None):",
-      "    self.${1:param1} = ${1:param1}"
+      "\tself.${1:param1} = ${1:param1}"
     ],
     "description": "Constructor with optional parameter"
   },
@@ -237,43 +220,62 @@
     "description": "Constructor with *args parameter"
   },
   "class:constructor:with object initialization with **kwargs": {
-    "prefix": "class_constructor_dict_dict_kwargs",
+    "prefix": "class_constructor_param_kwargs",
     "body": [
       "def __init__(self, **kwargs):",
-      "    for key, value in kwargs.items():",
-      "        setattr(self, key, value)"
+      "\tfor key, value in kwargs.items():",
+      "\t\tsetattr(self, key, value)"
     ],
     "description": "Constructor with **kwargs parameter"
   },
-  "class:constructor:with type hints": {
-    "prefix": "class_constructor_type_hints",
-    "body": [
-      "def __init__(self, ${1:param1}: ${2:type}):",
-      "    self.${1:param1} = ${1:param1}"
-    ],
-    "description": "Constructor with type hints"
-  },
   "class:constructor:with type hints dict": {
-    "prefix": "class_constructor_with_dict",
+    "prefix": "class_constructor_param_with_dict",
     "body": [
       "def __init__(self, obj):",
-      "    for key, value in obj.items():",
-      "        setattr(self, key, value)"
+      "\tfor key, value in obj.items():",
+      "\t\tsetattr(self, key, value)"
     ],
     "description": "Constructor with object initialization"
+  },
+  "class:constructor:prop:super call": {
+    "prefix": "class_constructor_prop_super_call",
+    "body": ["\tsuper().__init__()"],
+    "description": "Add super call"
+  },
+  "class:constructor:prop:define prop class constructor": {
+    "prefix": "class_constructor_prop",
+    "body": [
+      "${1:class_name}.${3:attribute_name}: ${4:int} = ${5:default_value}"
+    ],
+    "description": "Add a prop class constructor attribute"
+  },
+  "class:constructor:prop:define private prop class constructor": {
+    "prefix": "class_constructor_prop_private",
+    "body": [
+      "${1:class_name}._${3:attribute_name}: ${4:int} = ${5:default_value}"
+    ],
+    "description": "Add a private prop class constructor attribute"
   },
   "class:method:func with return": {
     "prefix": "class_method_ret",
     "body": "def ${1:mname}(self, ${2:arg}) -> ${3:return_type}:\n\t${4:pass}$0",
-    "description": "def fname(self, arg) -> return_type:\n\tpass"
+    "description": "Create method with return"
   },
   "class:method:empty method": {
     "prefix": "class_method_empty",
     "body": ["def ${1:method_name}(self):", "\t${2:# TODO: implement method}"],
     "description": "Create an empty method"
   },
+  "class:method:private method": {
+    "prefix": "class_method_private",
+    "body": [
+      "def _${1:method_name}(self, ${2:params}):",
+      "\t${3:# TODO: implement private method}"
+    ],
+    "description": "Create a private method (name starts with _)"
+  },
   "class:method:with param": {
-    "prefix": "class_method_with_param",
+    "prefix": "class_method_param",
     "body": [
       "def ${1:method_name}(self, ${2:param}):",
       "\t${3:# TODO: implement method}"
@@ -298,25 +300,6 @@
     ],
     "description": "Create a class method"
   },
-  "class:method:with docstring": {
-    "prefix": "class_method_with_docstring",
-    "body": [
-      "def ${1:method_name}(self, ${2:params}):",
-      "\t\"\"\"",
-      "\t${3:One-line description of ${1:method_name}.}",
-      "",
-      "\t${4:Detailed description (if necessary).}",
-      "\t",
-      "\tArgs:",
-      "\t    ${2:param} (${2:param_type}): ${5:Description of parameter}.",
-      "\t",
-      "\tReturns:",
-      "\t    ${6:return_type}: ${7:Description of return value}.",
-      "\t\"\"\"",
-      "\t${8:# TODO: implement method}"
-    ],
-    "description": "Create a method with a docstring"
-  },
   "class:method:override method": {
     "prefix": "class_method_super_override",
     "body": [
@@ -325,14 +308,6 @@
     ],
     "description": "Override a method from superclass"
   },
-  "class:method:private method": {
-    "prefix": "class_method_private",
-    "body": [
-      "def _${1:method_name}(self, ${2:params}):",
-      "\t${3:# TODO: implement private method}"
-    ],
-    "description": "Create a private method (name starts with _)"
-  },
   "class:method:method with default argument": {
     "prefix": "class_method_with_default_param",
     "body": [
@@ -340,6 +315,21 @@
       "\t${4:# TODO: implement method}"
     ],
     "description": "Create a method with a default argument"
+  },
+  "clsss:method:python getter and setter": {
+    "prefix": "class_method_template_setter_getter",
+    "body": [
+      "@property",
+      "def ${1:attribute}(self):",
+      "\treturn self._${1:attribute}",
+      "",
+      "@${1:attribute}.setter",
+      "def ${1:attribute}(self, value):",
+      "\tif not isinstance(value, ${2:int}):  # Change type if needed",
+      "\t\traise ValueError('Value must be an integer')",
+      "\tself._${1:attribute} = value"
+    ],
+    "description": "Python getter and setter methods"
   },
   "class:method:setter method": {
     "prefix": "class_method_setter",
@@ -372,7 +362,7 @@
     "description": "Create a deleter method for a class attribute"
   },
   "class:method:dunder:__str__": {
-    "prefix": "class_method_dunder_str",
+    "prefix": "class_method__dunder_str",
     "body": [
       "def __str__(self):",
       "\treturn f\"${1:Class_name}(${2:self.param})\""
@@ -380,7 +370,7 @@
     "description": "Create a __str__ method"
   },
   "class:method:dunder:__repr__": {
-    "prefix": "class_method_dunder_repr",
+    "prefix": "class_method__dunder_repr",
     "body": [
       "def __repr__(self):",
       "\treturn f\"${1:Class_name}(${2:self.param})\""
@@ -388,7 +378,7 @@
     "description": "Create a __repr__ method"
   },
   "class:method:dunder:__eq__": {
-    "prefix": "class_method_dunder_eq",
+    "prefix": "class_method__dunder_eq",
     "body": [
       "def __eq__(self, other):",
       "\treturn self.${1:attribute} == other.${1:attribute}"
@@ -396,7 +386,7 @@
     "description": "Create an __eq__ method for object comparison"
   },
   "class:method:dunder:__lt__": {
-    "prefix": "class_method_dunder_lt",
+    "prefix": "class_method__dunder_lt",
     "body": [
       "def __lt__(self, other):",
       "\treturn self.${1:attribute} < other.${1:attribute}"
@@ -404,7 +394,7 @@
     "description": "Create a __lt__ method for object comparison"
   },
   "class:method:dunder:__gt__": {
-    "prefix": "class_method_dunder_gt",
+    "prefix": "class_method__dunder_gt",
     "body": [
       "def __gt__(self, other):",
       "\treturn self.${1:attribute} > other.${1:attribute}"
@@ -412,12 +402,12 @@
     "description": "Create a __gt__ method for object comparison"
   },
   "class:method:dunder:__len__": {
-    "prefix": "class_method_dunder_len",
+    "prefix": "class_method__dunder_len",
     "body": ["def __len__(self):", "\treturn len(self.${1:attribute})"],
     "description": "Create a __len__ method"
   },
   "class:method:dunder:__call__": {
-    "prefix": "class_method_dunder_call",
+    "prefix": "class_method__dunder_call",
     "body": [
       "def __call__(self, ${1:params}):",
       "\t${2:# TODO: implement callable method}"
@@ -425,17 +415,17 @@
     "description": "Create a __call__ method"
   },
   "class:method:dunder:__iter__": {
-    "prefix": "class_method_dunder_iter",
+    "prefix": "class_method__dunder_iter",
     "body": ["def __iter__(self):", "\treturn iter(self.${1:sequence})"],
     "description": "Create an __iter__ method"
   },
   "class:method:dunder:__next__": {
-    "prefix": "class_method_dunder_next",
+    "prefix": "class_method__dunder_next",
     "body": ["def __next__(self):", "\treturn next(self.${1:iterator})"],
     "description": "Create a __next__ method for iterators"
   },
-  "class:method:custom context manager": {
-    "prefix": "class_method_custom_context_manager",
+  "class:template:custom context manager": {
+    "prefix": "class_template_custom_context_manager_",
     "body": [
       "class ${1:CustomContextManager}:",
       "\tdef __enter__(self):",
@@ -448,8 +438,8 @@
     ],
     "description": "Create a custom context manager"
   },
-  "class:method:custom resource context manager": {
-    "prefix": "class_method_custom_context_manager_with_resource",
+  "class:template:custom context manager with resource": {
+    "prefix": "class_template_custom_context_manager_with_resource",
     "body": [
       "class ${1:ResourceContextManager}:",
       "\tdef __init__(self, ${2:resource}):",
@@ -465,8 +455,8 @@
     ],
     "description": "Create a custom context manager with resource initialization"
   },
-  "class:method:custom exception context manager": {
-    "prefix": "class_method_custom_context_manager_with_exception",
+  "class:template:custom context manager with exception": {
+    "prefix": "class_template_custom_context_manager_with_exception",
     "body": [
       "class ${1:ExceptionContextManager}:",
       "\tdef __enter__(self):",
@@ -480,8 +470,8 @@
     ],
     "description": "Create a custom context manager with exception handling"
   },
-  "class:method:custom logging context manager": {
-    "prefix": "class_method_custom_context_manager_with_logging",
+  "class:template:custom context manager with logging": {
+    "prefix": "class_template_custom_context_manager_with_logging",
     "body": [
       "import logging",
       "",
@@ -496,8 +486,8 @@
     ],
     "description": "Create a custom context manager with logging"
   },
-  "class:method:custom file context manager": {
-    "prefix": "class_method_custom_context_manager_with_file",
+  "class:template:custom context manager with file": {
+    "prefix": "class_template_custom_context_manager_with_file",
     "body": [
       "class ${1:FileContextManager}:",
       "\tdef __init__(self, file_name, mode):",
@@ -516,8 +506,8 @@
     ],
     "description": "Create a custom context manager for file handling"
   },
-  "class:method:async:custom context manager": {
-    "prefix": "class_method_async_custom_context_manager",
+  "class:template:async:custom context manager": {
+    "prefix": "class_template_async_custom_context_manager",
     "body": [
       "class ${1:AsyncContextManager}:",
       "\tasync def __aenter__(self):",
@@ -530,8 +520,8 @@
     ],
     "description": "Create an async context manager"
   },
-  "class:method:async:custom resource context manager": {
-    "prefix": "class_method_async_custom_context_manager_with_resource",
+  "class:template:async:custom context manager with resource": {
+    "prefix": "class_template_async_custom_context_manager_with_resource",
     "body": [
       "class ${1:AsyncResourceContextManager}:",
       "\tdef __init__(self, ${2:resource}):",
@@ -547,8 +537,8 @@
     ],
     "description": "Create an async context manager with resource initialization"
   },
-  "class:method:async:custom exception context manager": {
-    "prefix": "class_method_async_context_manager_with_exception",
+  "class:template:async:custom context manager with exception": {
+    "prefix": "class_template_async_custom_context_manager_with_exception",
     "body": [
       "class ${1:AsyncExceptionContextManager}:",
       "\tasync def __aenter__(self):",
@@ -562,8 +552,8 @@
     ],
     "description": "Create an async context manager with exception handling"
   },
-  "class:method:async:custom logging context manager": {
-    "prefix": "class_method_async_context_manager_with_logging",
+  "class:template:async:custom context manager with logging": {
+    "prefix": "class_template_async_custom_context_manager_with_logging",
     "body": [
       "import logging",
       "",
@@ -578,8 +568,8 @@
     ],
     "description": "Create an async context manager with logging"
   },
-  "class:method:async:custom file context manager": {
-    "prefix": "class_method_async_context_manager_with_file",
+  "class:template:async:custom context manager with file": {
+    "prefix": "class_template_async_custom_context_manager_with_file",
     "body": [
       "class ${1:AsyncFileContextManager}:",
       "\tdef __init__(self, file_name, mode):",
@@ -598,56 +588,13 @@
     ],
     "description": "Create an async context manager for file handling"
   },
-  "class:inherit:create": {
-    "prefix": "class_inherit",
-    "body": [
-      "class ${1:BaseClass}:",
-      "\tdef __init__(self${2:, base_prop}):",
-      "\t\tself.base_prop = base_prop",
-      "\t",
-      "\tdef base_method(self):",
-      "\t\tprint(f'Base method called with property: {self.base_prop}')",
-      "",
-      "class ${3:DerivedClass}(${1:BaseClass}):",
-      "\tdef __init__(self${2:, base_prop, derived_prop}):",
-      "\t\tsuper().__init__(${2:base_prop})",
-      "\t\tself.derived_prop = derived_prop",
-      "\t",
-      "\tdef derived_method(self):",
-      "\t\tprint(f'Derived method called with property: {self.derived_prop}')"
-    ],
-    "description": "Creates a Python class with simple inheritance"
-  },
-  "class:inherit:multi": {
-    "prefix": "class_inherit_multi",
-    "body": [
-      "class ${1:Base1}:",
-      "\tdef method1(self):",
-      "\t\tprint('Method 1 from Base1')",
-      "",
-      "class ${2:Base2}:",
-      "\tdef method2(self):",
-      "\t\tprint('Method 2 from Base2')",
-      "",
-      "class ${3:Derived}(${1:Base1}, ${2:Base2}):",
-      "\tdef __init__(self):",
-      "\t\t${1:Base1}.__init__(self)",
-      "\t\t${2:Base2}.__init__(self)",
-      "",
-      "// Usage:",
-      "${3:obj} = ${3:Derived}()",
-      "${3:obj}.method1()  # Output: Method 1 from Base1",
-      "${3:obj}.method2()  # Output: Method 2 from Base2"
-    ],
-    "description": "Creates a Python class with multi inheritance"
-  },
   "class:dataclass": {
-    "prefix": "class_data",
+    "prefix": "class_datadata",
     "body": "@dataclass\nclass ${1:your_class_name}:\n\t${2:your_proerty:str}\n\t${3:data1: float = 1.3}\n\t${0}",
     "description": "@dataclass\nclass MyClass:\n\tname: str\n\tunit_price: float = 1.3"
   },
   "class:dataclass:string and integer attributes": {
-    "prefix": "class_dataclass_str_int",
+    "prefix": "class_dataclass_param_default_str_int",
     "body": [
       "from dataclasses import dataclass",
       "",
@@ -659,7 +606,7 @@
     "description": "Creates a Python dataclass with string and integer attributes"
   },
   "class:dataclass:float attribute with default": {
-    "prefix": "class_dataclass_float_default",
+    "prefix": "class_dataclass_param_default_float",
     "body": [
       "from dataclasses import dataclass",
       "",
@@ -670,7 +617,7 @@
     "description": "Creates a Python dataclass with float attribute and default value"
   },
   "class:dataclass:list attribute": {
-    "prefix": "class_dataclass_list",
+    "prefix": "class_dataclass_param_default_empty_list",
     "body": [
       "from dataclasses import dataclass",
       "from typing import List",
@@ -682,7 +629,7 @@
     "description": "Creates a Python dataclass with list attribute"
   },
   "class:dataclass:boolean attribute": {
-    "prefix": "class_dataclass_bool",
+    "prefix": "class_dataclass_param_default_bool",
     "body": [
       "from dataclasses import dataclass",
       "",
@@ -719,7 +666,7 @@
     "description": "Creates a frozen Python dataclass"
   },
   "class:dataclass:optional attribute": {
-    "prefix": "class_prop_attribute_optional",
+    "prefix": "class_dataclass_attribute_optional",
     "body": [
       "from dataclasses import dataclass",
       "from typing import Optional",
@@ -731,7 +678,7 @@
     "description": "Creates a Python dataclass with optional attribute"
   },
   "class:dataclass:nullable attribute": {
-    "prefix": "class_dataclass_nullable",
+    "prefix": "class_dataclass_param_default_none",
     "body": [
       "from dataclasses import dataclass",
       "from typing import Optional",
@@ -741,21 +688,6 @@
       "\t${2:attr_nullable}: Optional[${3:str}] = None"
     ],
     "description": "Creates a Python dataclass with nullable attribute"
-  },
-  "class:dataclass:nested dataclass": {
-    "prefix": "class_dataclass_nested",
-    "body": [
-      "from dataclasses import dataclass",
-      "",
-      "@dataclass",
-      "class ${1:InnerClass}:",
-      "\t${2:inner_attr}: ${3:str} = ''",
-      "",
-      "@dataclass",
-      "class ${4:OuterClass}:",
-      "\t${5:outer_attr}: ${1:InnerClass}"
-    ],
-    "description": "Creates a Python dataclass with nested dataclass"
   },
   "class:dataclass:custom type attribute": {
     "prefix": "class_dataclass_custom_type",
@@ -775,7 +707,7 @@
     "description": "Creates a Python dataclass with custom type attribute"
   },
   "class:dataclass:dynamic default value attribute": {
-    "prefix": "class_dataclass_dynamic_default",
+    "prefix": "class_dataclass_param_dynamic_func",
     "body": [
       "from dataclasses import dataclass, field",
       "",
@@ -788,60 +720,72 @@
     ],
     "description": "Creates a Python dataclass with attribute using dynamic default value"
   },
-  "class:protocol:single param": {
-    "prefix": "class_protocol_method_param",
+  "class:abstract:abstract class with methods and attributes": {
+    "prefix": "class_abstract",
+    "body": [
+      "from abc import ABC, abstractmethod",
+      "",
+      "class ${1:ClassName}(ABC):",
+      "\tdef __init__(self, ${2:attribute}):",
+      "\t\tself.${2:attribute} = ${2:attribute}",
+      "",
+      "\t@abstractmethod",
+      "\tdef ${3:method_name}(self):",
+      "\t\t${4:# implementation here}",
+      "",
+      "\t@abstractmethod",
+      "\tdef ${5:another_method}(self, ${6:param}):",
+      "\t\t${7:# implementation here}",
+      ""
+    ],
+    "description": "Create a complete abstract class with methods and attributes in Python"
+  },
+  "class:abstract:method": {
+    "prefix": "class_abstract_method",
+    "body": [
+      "\t@abstractmethod",
+      "\tdef ${1:method_name}(self):",
+      "\t\t${0:# implementation here}"
+    ],
+    "description": "Create a complete abstract class with methods and attributes in Python"
+  },
+  "interface:create": {
+    "prefix": "interface_",
     "body": [
       "from typing import Protocol",
       "",
       "class ${1:Interface}(Protocol):",
-      "\tdef ${2:method_name}(self, ${3:param}: ${4:type}) -> ${5:return_type}:",
-      "\t\tpass"
+      "\tdef ${2:method_name}(self, ${3:param}: ${4:type}) -> ${5:return_type}: ..."
     ],
     "description": "Creates a Python interface function with single parameter"
   },
-  "class:protocol:multiple params": {
-    "prefix": "class_protocol_method_param_multi",
+  "interface:prop:method one": {
+    "prefix": "interface_prop_method_param_one",
     "body": [
-      "from typing import Protocol",
-      "",
-      "class ${1:Interface}(Protocol):",
-      "\tdef ${2:method_name}(self, ${3:param1}: ${4:type1}, ${5:param2}: ${6:type2}):",
-      "\t\tpass"
+      "def ${1:method_name}(self, ${2:param}: ${3:type}) -> ${5:return_type}: ..."
     ],
-    "description": "Creates a Python interface function with multiple parameters"
+    "description": "Create method for python interface with one parameter"
   },
-  "class:protocol:optional param and return": {
-    "prefix": "class_protocol_method_param_optional_return",
+  "interface:prop:method two": {
+    "prefix": "interface_prop_method_param_two",
     "body": [
-      "from typing import Protocol, Optional",
-      "",
-      "class ${1:Interface}(Protocol):",
-      "\tdef ${2:method_name}(self, ${3:param1}: ${4:type1}, ${5:param2}: ${6:Optional[${7:type2}]} = None) -> ${8:Optional[${9:return_type}]}:",
-      "\t\tpass"
+      "def ${1:method_name}(self, ${2:param1}: ${3:type1}, ${4:param2}: ${5:type2}): ..."
     ],
-    "description": "Creates a Python interface function with optional parameter and return type"
+    "description": "Create method for python interface with two parameter"
   },
-  "class:protocol:default param value": {
-    "prefix": "class_protocol_method_param_default",
+  "interface:prop:method optional return": {
+    "prefix": "interface_prop_method_param_optional_return",
     "body": [
-      "from typing import Protocol",
-      "",
-      "class ${1:Interface}(Protocol):",
-      "\tdef ${2:method_name}(self, ${3:param1}: ${4:type1} = ${5:default_value}) -> ${6:return_type}:",
-      "\t\tpass"
+      "def ${1:method_name}(self, ${2:param1}: ${3:type1}, ${4:param2}: ${5:Optional[${6:type2}]} = None) -> ${7:Optional[${8:return_type}]}: ..."
+    ],
+    "description": "Create method for python interface with optional parameter and return type"
+  },
+  "interface:prop:method param default": {
+    "prefix": "interface_prop_method_param_default",
+    "body": [
+      "def ${1:method_name}(self, ${2:param1}: ${3:type1} = ${4:default_value}) -> ${5:return_type}: ..."
     ],
     "description": "Creates a Python interface function with default parameter value"
-  },
-  "class:protocol:annotated param with default": {
-    "prefix": "class_protocol_method_param_annotated_default",
-    "body": [
-      "from typing import Protocol",
-      "",
-      "class ${1:Interface}(Protocol):",
-      "\tdef ${2:method_name}(self, ${3:param1}: ${4:type1} = ${5:'default_value'}) -> ${6:return_type}:",
-      "\t\tpass"
-    ],
-    "description": "Creates a Python interface function with annotated parameter and default value"
   },
   "function": {
     "prefix": "def_",
