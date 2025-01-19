@@ -1464,13 +1464,13 @@
     ],
     "description": "Constructor with optional property initialization"
   },
-  "class:constructor:prop:init": {
-    "prefix": "class_constructor_prop",
+  "class:method:constructor:prop:init": {
+    "prefix": "class_method_constructor_prop",
     "body": ["this.${1:propertyName} = ${2:value};"],
     "description": "Constructor with property initialization"
   },
-  "class:constructor:prop:super call": {
-    "prefix": "class_constructor_prop_super_call",
+  "class:method:constructor:prop:super call": {
+    "prefix": "class_method_constructor_prop_super_call",
     "body": [
       "constructor(${1:params}) {",
       "    super();",

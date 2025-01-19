@@ -175,13 +175,13 @@
     ],
     "description": ["Define class constructor"]
   },
-  "class:constructor:param:constructor empty": {
-    "prefix": "class_constructor_param_emtpy",
+  "class:method:constructor:param:constructor empty": {
+    "prefix": "class_method_constructor_param_emtpy",
     "body": ["def __init__(self):", "\tpass"],
     "description": "Empty constructor"
   },
-  "class:constructor:param:with parameters": {
-    "prefix": "class_constructor_param",
+  "class:method:constructor:param:with parameters": {
+    "prefix": "class_method_constructor_param",
     "body": [
       "def __init__(self, ${1:param1}, ${2:param2}):",
       "\tself.${1:param1} = ${1:param1}",
@@ -189,8 +189,8 @@
     ],
     "description": "Constructor with parameters"
   },
-  "class:constructor:param:with super call": {
-    "prefix": "class_constructor_param_super_call",
+  "class:method:constructor:param:with super call": {
+    "prefix": "class_method_constructor_param_super_call",
     "body": [
       "def __init__(self, ${1:params}):",
       "\tsuper().__init__()",
@@ -198,29 +198,29 @@
     ],
     "description": "Constructor with super call"
   },
-  "class:constructor:param:with object destructuring": {
-    "prefix": "class_constructor_param_destructuring",
+  "class:method:constructor:param:with object destructuring": {
+    "prefix": "class_method_constructor_param_destructuring",
     "body": [
       "def __init__(self, ${1:param1}=${2:default_value}):",
       "\tself.${1:param1} = ${1:param1}"
     ],
     "description": "Constructor with default parameter value"
   },
-  "class:constructor:with optional parameter": {
-    "prefix": "class_constructor_param_optional",
+  "class:method:constructor:with optional parameter": {
+    "prefix": "class_method_constructor_param_optional",
     "body": [
       "def __init__(self, ${1:param1}=None):",
       "\tself.${1:param1} = ${1:param1}"
     ],
     "description": "Constructor with optional parameter"
   },
-  "class:constructor:with rest parameter with *args": {
-    "prefix": "class_constructor_param_rest_args",
+  "class:method:constructor:with rest parameter with *args": {
+    "prefix": "class_method_constructor_param_rest_args",
     "body": ["def __init__(self, *args):", "    self.args = args"],
     "description": "Constructor with *args parameter"
   },
-  "class:constructor:with object initialization with **kwargs": {
-    "prefix": "class_constructor_param_kwargs",
+  "class:method:constructor:with object initialization with **kwargs": {
+    "prefix": "class_method_constructor_param_kwargs",
     "body": [
       "def __init__(self, **kwargs):",
       "\tfor key, value in kwargs.items():",
@@ -228,8 +228,8 @@
     ],
     "description": "Constructor with **kwargs parameter"
   },
-  "class:constructor:with type hints dict": {
-    "prefix": "class_constructor_param_with_dict",
+  "class:method:constructor:with type hints dict": {
+    "prefix": "class_method_constructor_param_with_dict",
     "body": [
       "def __init__(self, obj):",
       "\tfor key, value in obj.items():",
@@ -237,20 +237,20 @@
     ],
     "description": "Constructor with object initialization"
   },
-  "class:constructor:prop:super call": {
-    "prefix": "class_constructor_prop_super_call",
+  "class:method:constructor:prop:super call": {
+    "prefix": "class_method_constructor_prop_super_call",
     "body": ["\tsuper().__init__()"],
     "description": "Add super call"
   },
-  "class:constructor:prop:define prop class constructor": {
-    "prefix": "class_constructor_prop",
+  "class:method:constructor:prop:define prop class constructor": {
+    "prefix": "class_method_constructor_prop",
     "body": [
       "${1:class_name}.${3:attribute_name}: ${4:int} = ${5:default_value}"
     ],
     "description": "Add a prop class constructor attribute"
   },
-  "class:constructor:prop:define private prop class constructor": {
-    "prefix": "class_constructor_prop_private",
+  "class:method:constructor:prop:define private prop class constructor": {
+    "prefix": "class_method_constructor_prop_private",
     "body": [
       "${1:class_name}._${3:attribute_name}: ${4:int} = ${5:default_value}"
     ],

@@ -499,10 +499,117 @@
     "body": ["useDebugValue(${1:value});", "$0"],
     "description": "Display a label for custom hook in React"
   },
-  "react:template:class:constructor:context": {
-    "prefix": "react_class_constructor_context",
-    "body": "constructor (props, context) {\n\tsuper(props, context)\n\t$0\n}\n",
-    "description": "Adds a default constructor for the class that contains props and context as arguments"
+  "react:class:method constructor basic": {
+    "prefix": "react_class_method_constructor_with_context",
+    "body": [
+      "constructor(props) {",
+      "\tsuper(props);",
+      "\tthis.state = {",
+      "\t\t// Initialize state here",
+      "\t};",
+      "}",
+      ""
+    ],
+    "description": "Create basic constructor for React class component with state"
+  },
+  "react:class:method constructor with binding": {
+    "prefix": "react_class_method_constructor_with_binding_click",
+    "body": [
+      "constructor(props) {",
+      "\tsuper(props);",
+      "\tthis.state = {",
+      "\t\t// Initialize state here",
+      "\t};",
+      "\tthis.handleClick = this.handleClick.bind(this);",
+      "}",
+      "",
+      "handleClick() {",
+      "\t// Handle click event",
+      "}"
+    ],
+    "description": "Create constructor with method binding for React class component"
+  },
+  "react:class:method constructor with props and state": {
+    "prefix": "react_class_method_constructor_with_props_and_state",
+    "body": [
+      "constructor(props) {",
+      "\tsuper(props);",
+      "\tthis.state = {",
+      "\t\tcount: 0",
+      "\t};",
+      "\tconsole.log('Props:', this.props);",
+      "}",
+      ""
+    ],
+    "description": "Create constructor with props and state"
+  },
+  "react:class:method constructor with intial state": {
+    "prefix": "react_class_method_constructor_with_initial_state",
+    "body": [
+      "constructor(props) {",
+      "\tsuper(props);",
+      "\tthis.state = {",
+      "\t\tvalue: ''",
+      "\t};",
+      "\tthis.handleChange = this.handleChange.bind(this);",
+      "}",
+      "",
+      "handleChange(event) {",
+      "\tthis.setState({ value: event.target.value });",
+      "}"
+    ],
+    "description": "Create constructor with initial state and method"
+  },
+  "react:class:method constructor with multi properties": {
+    "prefix": "react_class_method_constructor_with_multi_properties",
+    "body": [
+      "constructor(props) {",
+      "\tsuper(props);",
+      "\tthis.state = {",
+      "\t\tisLoggedIn: false,",
+      "\t\tusername: '',",
+      "\t\ttheme: 'light'",
+      "\t};",
+      "}",
+      ""
+    ],
+    "description": "Create constructor with multiple state properties"
+  },
+  "react:class:method constructor with default props and state": {
+    "prefix": "react_class_method_constructor_with_default_props_and_state",
+    "body": [
+      "constructor(props) {",
+      "\tsuper(props);",
+      "\tthis.state = {",
+      "\t\tcounter: props.initialCounter || 0",
+      "\t};",
+      "}",
+      "",
+      "static defaultProps = {",
+      "\tinitialCounter: 10",
+      "};"
+    ],
+    "description": "Create constructor with default props and state"
+  },
+  "react:class:method constructor with erorr boundry": {
+    "prefix": "react_class_method_constructor_error_boundary",
+    "body": [
+      "constructor(props) {",
+      "\tsuper(props);",
+      "\tthis.state = {",
+      "\t\thasError: false",
+      "\t};",
+      "}",
+      "",
+      "static getDerivedStateFromError(error) {",
+      "\treturn { hasError: true };",
+      "}",
+      "",
+      "componentDidCatch(error, info) {",
+      "\tconsole.log(error, info);",
+      "}"
+    ],
+    "description": "Create constructor with error boundary in React class component"
   },
   "react:template:class:component:proptypes": {
     "prefix": "react_template_class_component",
@@ -513,11 +620,11 @@
       "export default class ${1:${TM_FILENAME_BASE}} extends Component {",
       "  static propTypes = {${2:second}: ${3:third}}",
       "",
-      "  render() {",
-      "    return (",
-      "      <div>${1:first}</div>",
-      "    )",
-      "  }",
+      "\trender() {",
+      "\t\treturn (",
+      "\t\t\t<div>${1:first}</div>",
+      "\t\t)",
+      "\t}",
       "}",
       ""
     ],
@@ -535,11 +642,11 @@
       "export default class ${1:${TM_FILENAME_BASE}} extends Component<Props, State> {",
       "  state = {}",
       "",
-      "  render() {",
-      "    return (",
-      "      <div>${1:first}</div>",
-      "    )",
-      "  }",
+      "\trender() {",
+      "\t\treturn (",
+      "\t\t\t<div>${1:first}</div>",
+      "\t\t)",
+      "\t}",
       "}"
     ],
     "description": "Creates a React component class with ES7 module system and TypeScript interfaces"
@@ -556,11 +663,11 @@
       "class ${1:${TM_FILENAME_BASE}} extends Component<Props, State> {",
       "  state = {}",
       "",
-      "  render() {",
-      "    return (",
-      "      <div>${1:first}</div>",
-      "    )",
-      "  }",
+      "\trender() {",
+      "\t\treturn (",
+      "\t\t\t<div>${1:first}</div>",
+      "\t\t)",
+      "\t}",
       "}",
       "",
       "export default ${1:${TM_FILENAME_BASE}}"
@@ -605,59 +712,10 @@
       "export default ${1:${TM_FILENAME_BASE}}"
     ]
   },
-  "react:template:class:component:with extends purecomponent": {
-    "prefix": "react_template_class_component_with_extends_purecomponent",
-    "body": [
-      "import React, { PureComponent } from 'react'",
-      "",
-      "type Props = {}",
-      "",
-      "class ${1:${TM_FILENAME_BASE}} extends PureComponent<Props> {",
-      "\trender() {",
-      "\t\treturn (",
-      "\t\t\t<div>${1:first}</div>",
-      "\t\t)",
-      "\t}",
-      "}",
-      "",
-      "export default ${1:${TM_FILENAME_BASE}}"
-    ],
-    "description": "Creates a React pure component class with ES7 module system and TypeScript interface"
-  },
   "react:template:class:component:with full component": {
     "prefix": "react_template_class_component_full",
     "body": "import React, { Component, PropTypes } from 'react'\n\nclass ${TM_FILENAME_BASE} extends Component {\n\tconstructor(props) {\n\t\tsuper(props)\n\n\t}\n\n\tcomponentWillMount () {\n\n\t}\n\n\tcomponentDidMount () {\n\n\t}\n\n\tcomponentWillReceiveProps (nextProps) {\n\n\t}\n\n\tshouldComponentUpdate (nextProps, nextState) {\n\n\t}\n\n\tcomponentWillUpdate (nextProps, nextState) {\n\n\t}\n\n\tcomponentDidUpdate (prevProps, prevState) {\n\n\t}\n\n\tcomponentWillUnmount () {\n\n\t}\n\n\trender () {\n\t\treturn (\n\t\t\t<div>\n\n\t\t\t</div>\n\t\t)\n\t}\n}\n\n${1}.propTypes = {\n\n}\n\nexport default ${1}",
     "description": "Creates a React component class with PropTypes and all lifecycle methods"
-  },
-  "react:template:class:component:proptypes full": {
-    "prefix": "react_template_class_component_full_proptypes",
-    "body": [
-      "import React, { Component } from 'react';",
-      "import PropTypes from 'prop-types';",
-      "",
-      "interface Props {",
-      "\t$1",
-      "}",
-      "",
-      "interface State {",
-      "\t$2",
-      "}",
-      "",
-      "class ${3:ComponentName} extends Component<Props, State> {",
-      "\trender() {",
-      "\t\treturn (",
-      "\t\t\t<div>$0</div>",
-      "\t\t);",
-      "\t}",
-      "}",
-      "",
-      "${3:ComponentName}.propTypes = {",
-      "\t$4",
-      "};",
-      "",
-      "export default ${3:ComponentName};"
-    ],
-    "description": "Declare PropTypes for props in a React class component"
   },
   "react:template:class:component:redux component": {
     "prefix": "react_template_class_component_redux_component",

@@ -15,9 +15,9 @@
     "prefix": "react_create_stylesheet",
     "body": [
       "const ${1:styles} = StyleSheet.create({",
-      "    ${2:container}: {",
-      "        ${3}",
-      "    },",
+      "\t${2:container}: {",
+      "\t\t${3}",
+      "\t},",
       "});",
       ""
     ],
