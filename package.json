@@ -260,6 +260,7 @@
       {
         "language": [
           "html",
+          "htmldjango",
           "jade",
           "pug",
           "eruby"
@@ -564,7 +565,7 @@
         "path": "./snippets/frameworks/django/views.json"
       },
       {
-        "language": "djangohtml",
+        "language": "htmldjango",
         "path": "./snippets/frameworks/djangohtml.json"
       },
       {
