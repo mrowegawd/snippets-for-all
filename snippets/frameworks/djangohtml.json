@@ -1,206 +1,196 @@
 {
   "autoescape": {
-    "prefix": "autoescape",
+    "prefix": "autoescape_",
     "description": "autoescape tag django template",
     "body": ["{% autoescape ${off} %}", "  ", "{% autoescape %}"]
   },
   "block": {
-    "prefix": "block",
+    "prefix": "block_",
     "description": "block tag django template",
     "body": ["{% block ${blockname} %}", "  ", "{% endblock ${blockname} %}"]
   },
   "comment": {
-    "prefix": "comment",
+    "prefix": "comment_",
     "description": "Comment tag django template",
     "body": ["{% comment %}", "  $1", "{% endcomment %}"]
   },
   "csrf": {
-    "prefix": "csrf",
+    "prefix": "csrf_",
     "description": "csrf token django template",
     "body": ["{% csrf_token %}"]
   },
   "cycle": {
-    "prefix": "cycle",
+    "prefix": "cycle_",
     "description": "cycle tag django template",
     "body": ["{% cycle %}"]
   },
   "debug": {
-    "prefix": "debug",
+    "prefix": "debug_",
     "description": "debug tag django template",
     "body": ["{% debug %}"]
   },
   "ext": {
-    "prefix": "ext",
+    "prefix": "ext_",
     "description": "extends tag django template",
     "body": ["{% extends \"$1\" %}"]
   },
   "extends": {
-    "prefix": "extends",
+    "prefix": "extends_",
     "description": "extends tag django template",
     "body": ["{% extends \"$1\" %}"]
   },
   "filter": {
-    "prefix": "filter",
+    "prefix": "filter_",
     "description": "filter tag django template",
     "body": ["{% filter $1 %}", "  ", "{% endfilter %}"]
   },
   "firstof": {
-    "prefix": "firstof",
+    "prefix": "firstof_",
     "description": "firstof tag django template",
     "body": ["{% firstof %}"]
   },
   "for": {
-    "prefix": "for",
+    "prefix": "for_",
     "description": "for tag django template",
     "body": ["{% for $1 in  %}", "  ", "{% endfor %}"]
   },
   "fore": {
-    "prefix": "fore",
+    "prefix": "fore_",
     "description": "foreach with empty tag django template",
     "body": ["{% for $1 in  %}", "  ", "{% empty %}", "  ", "{% endfor %}"]
   },
   "if": {
-    "prefix": "if",
+    "prefix": "if_",
     "description": "if tag django template",
     "body": ["{% if $1 %}", "  ", "{% endif %}"]
   },
   "ifchanged": {
-    "prefix": "ifchanged",
+    "prefix": "if_changed",
     "description": "ifchanged tag django template",
     "body": ["{% ifchanged $1 %}", "  ", "{% endifchanged %}"]
   },
   "ife": {
-    "prefix": "ife",
-    "description": "if else tag django template",
-    "body": ["{% if $1 %}", "  ", "{% else %}", "  ", "{% endif %}", ""]
-  },
-  "ifelse": {
-    "prefix": "ifelse",
+    "prefix": "if_else",
     "description": "if else tag django template",
     "body": ["{% if $1 %}", "  ", "{% else %}", "  ", "{% endif %}", ""]
   },
   "ifeq": {
-    "prefix": "ifeq",
-    "description": "ifequal tag django template",
-    "body": ["{% ifequal $1 %}", "  ", "{% endifequal %}"]
-  },
-  "ifequal": {
-    "prefix": "ifeq",
+    "prefix": "if_equal",
     "description": "ifequal tag django template",
     "body": ["{% ifequal $1 %}", "  ", "{% endifequal %}"]
   },
   "ifnotequal": {
-    "prefix": "ifnotequal",
+    "prefix": "if_notequal",
     "description": "ifnotequal tag django template",
     "body": ["{% ifnotequal $1 %}", "  ", "{% ifnotequal %}"]
   },
   "inc": {
-    "prefix": "inc",
+    "prefix": "inc_",
     "description": "include tag django template",
     "body": ["{% include \"$1\" %}"]
   },
   "include": {
-    "prefix": "include",
+    "prefix": "include_",
     "description": "include tag django template",
     "body": ["{% include \"$1\" %}"]
   },
   "load": {
-    "prefix": "load",
+    "prefix": "load_",
     "description": "load tag django template",
     "body": ["{% load $1 %}"]
   },
   "now": {
-    "prefix": "now",
+    "prefix": "now_",
     "description": "now tag django template",
     "body": ["{% now \"$1\" %}"]
   },
   "regroup": {
-    "prefix": "regroup",
+    "prefix": "regroup_",
     "description": "regroup tag django template",
     "body": ["{% regroup $1 by  as  %}"]
   },
   "spaceless": {
-    "prefix": "spaceless",
+    "prefix": "spaceless_",
     "description": "spaceless tag django template",
     "body": ["{% spaceless %}", "  $1", "{% endspaceless %}"]
   },
   "ssi": {
-    "prefix": "ssi",
+    "prefix": "ssi_",
     "description": "ssi tag django template",
     "body": ["{% ssi $1 parsed %}"]
   },
   "static": {
-    "prefix": "static",
+    "prefix": "static_",
     "description": "static tag django template",
     "body": ["{% static \"$1\" %}"]
   },
   "templatetag": {
-    "prefix": "templatetag",
+    "prefix": "templatetag_",
     "description": "templatetag tag django template",
     "body": ["{% templatetag $1 %}"]
   },
   "url": {
-    "prefix": "url",
+    "prefix": "url_",
     "description": "url tag django template",
     "body": ["{% url $1 %}"]
   },
   "verbatim": {
-    "prefix": "verbatim",
+    "prefix": "verbatim_",
     "description": "verbatim tag django template",
     "body": ["{% verbatim %}", "  $1", "{% endverbatim %}"]
   },
   "widthratio": {
-    "prefix": "widthratio",
+    "prefix": "width_ratio",
     "description": "widthratio tag django template",
     "body": ["{% widthratio ${this_value} max_value 100 %}"]
   },
   "with": {
-    "prefix": "with",
+    "prefix": "with_",
     "description": "with tag django template",
     "body": ["{% with $1 as  %}", "  ", "{% endwith %}"]
   },
   "trans": {
-    "prefix": "trans",
+    "prefix": "trans_",
     "description": "trans tag django template",
     "body": ["{% trans \"$1\" %}"]
   },
   "blocktrans": {
-    "prefix": "blocktrans",
+    "prefix": "block_trans",
     "description": "blocktrans tag django template",
     "body": ["{% blocktrans %}", "  $1", "{% endblocktrans %}"]
   },
   "super": {
-    "prefix": "super",
+    "prefix": "block_super",
     "description": "Block super",
     "body": ["{{ block.super }}"]
   },
   "extrahead": {
-    "prefix": "extrahead",
+    "prefix": "block_extra_head",
     "description": "Extrahead no oficial tag",
     "body": ["{% block extrahead %}", "    $1", "{% endblock extrahead %}"]
   },
   "extrastyle": {
-    "prefix": "extrastyle",
+    "prefix": "block_extra_style",
     "description": "Extrastyle no oficial Tag",
     "body": ["{% block extrahead %}", "    $1", "{% endblock extrahead %}"]
   },
   "var": {
-    "prefix": "var",
+    "prefix": "var_",
     "description": "Variable autocomplete",
     "body": ["{{ $1 }}"]
   },
   "tag": {
-    "prefix": "tag",
+    "prefix": "tag_",
     "description": "tag autocomplete no oficial",
     "body": ["{% $1 %}"]
   },
   "staticurl": {
-    "prefix": "staticurl",
+    "prefix": "static_url",
     "description": "STATIC_URL no oficial var",
     "body": ["{{ STATIC_URL }}"]
   },
   "mediaurl": {
-    "prefix": "mediaurl",
+    "prefix": "media_url",
     "description": "",
     "body": ["{{ MEDIA_URL }}"]
   }
