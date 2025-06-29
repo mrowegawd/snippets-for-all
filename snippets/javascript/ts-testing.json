@@ -10,7 +10,7 @@
     "description": "describe('TM_FILENAME_BASE', () => {\n\n})"
   },
   "itBlock": {
-    "prefix": "test_it_",
+    "prefix": "test_it",
     "body": ["it('should $1', () => {", "  $0", "})", ""],
     "description": "Testing `it` block"
   },

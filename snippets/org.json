@@ -15,7 +15,7 @@
     "description": "#+BEGIN_EXAMPLE block"
   },
   "block:src": {
-    "prefix": "block_code_",
+    "prefix": "block_code",
     "body": ["#+BEGIN_SRC ${1:lang}", "$0", "#+END_SRC"],
     "description": "#+BEGIN_SRC ... block"
   },
@@ -125,7 +125,7 @@
   },
   "todo": {
     "description": "TODO item",
-    "prefix": "todo_",
+    "prefix": "todo",
     "body": ["TODO ${1:task description}"]
   },
   "todo:checklist:try:try_attempt": {

@@ -1,6 +1,6 @@
 {
   "go:goroutine": {
-    "prefix": "go_anon_",
+    "prefix": "go_anon",
     "body": ["go func() {", "\t$1", "}()"],
     "description": "Create a goroutine with an anonymous function"
   },

@@ -1,6 +1,6 @@
 {
   "position": {
-    "prefix": "position_",
+    "prefix": "position",
     "body": "position: ${1|relative,absolute,fixed,sticky,static|};"
   },
   "position fixed": {
@@ -84,7 +84,7 @@
     "body": "text-decoration: line-through;"
   },
   "font": {
-    "prefix": "font_",
+    "prefix": "font",
     "body": "font: ${0:12px/1.5};",
     "description": "font: [weight style variant stretch] size/line-height family"
   },
@@ -137,7 +137,7 @@
     "body": "vertical-align: top;"
   },
   "visibility": {
-    "prefix": "visibility_",
+    "prefix": "visibility",
     "body": "visibility: ${1|visible,hidden,collapse|};"
   },
   "visibility: visible": {
@@ -190,7 +190,7 @@
     "body": "align-items: stretch;"
   },
   "animation": {
-    "prefix": "animation_",
+    "prefix": "animation",
     "body": "animation: ${1:name} ${2:1s} ${3|linear,ease-in-out,ease,ease-in,ease-out,step-start,step-end,steps,cubic-bezier|};",
     "description": "animation: name duration timing-function delay direction count fill-mode play-state"
   },
@@ -213,7 +213,7 @@
     "description": "initial value: 1"
   },
   "animation-name": {
-    "prefix": "animation_",
+    "prefix": "animation",
     "body": "animation-name: ${0:name};"
   },
   "animation-play-state": {
@@ -325,7 +325,7 @@
   "max-width": { "prefix": "max_width", "body": "max-width: ${0:1px};" },
   "width: auto": { "prefix": "width_auto", "body": "width: auto;" },
   "@keyframes": {
-    "prefix": "keyframes_",
+    "prefix": "keyframes",
     "body": "@keyframes ${1:name} {\n  $0\n}"
   },
   "@mixin": { "prefix": "mixin_", "body": "@mixin ${1:name} {\n  $0\n}" },
@@ -342,7 +342,7 @@
   "left": { "prefix": "left_", "body": "left: ${0:0};" },
   "bottom": { "prefix": "bottom_", "body": "bottom: ${0:0};" },
   "border": {
-    "prefix": "border_",
+    "prefix": "border",
     "body": "border: ${1:1px} ${2|solid,dashed,dotted,double,groove,ridge,inset,outset,none,hidden|} ${0:#000};"
   },
   "border: none": { "prefix": "border_none", "body": "border: none;" },
@@ -413,7 +413,7 @@
     "description": "initial value: outside"
   },
   "@media": {
-    "prefix": "media_",
+    "prefix": "media",
     "body": "@media screen and (${1:max-width: 300px}) {\n  $0\n}"
   },
   "@include": { "prefix": "inc_", "body": "@include ${0:mixin};" },
@@ -454,7 +454,7 @@
   },
   "color": { "prefix": "color_", "body": "color: ${0:#000};" },
   "cursor": {
-    "prefix": "cursor_",
+    "prefix": "cursor",
     "body": "cursor: ${1|auto,default,alias,cell,copy,crosshair,context-menu,help,grab,grabbing,move,none,no-drop,not-allowed,pointer,progress,e-resize,all-scroll,text,wait,vertical-text,zoom-in,zoom-out|};",
     "description": "initial value: auto"
   },
@@ -462,7 +462,7 @@
   "cursor: pointer": { "prefix": "cursor_pointer", "body": "cursor: pointer;" },
   "content": { "prefix": "content_", "body": "content: '$0';" },
   "display": {
-    "prefix": "display_",
+    "prefix": "display",
     "body": "display: ${1|none,block,inline,inline-block,flex,inline-flex,list-item,table,inline-table,table-caption,table-cell,table-row,table-row-group,table-column|};"
   },
   "display: block": { "prefix": "display_block", "body": "display: block;" },
@@ -473,7 +473,7 @@
   "display: none": { "prefix": "display_none", "body": "display: none;" },
   "display: flex": { "prefix": "display_flex", "body": "display: flex;" },
   "overflow": {
-    "prefix": "overflow_",
+    "prefix": "overflow",
     "body": "overflow: ${1|visible,hidden,scroll,auto,clip|};"
   },
   "overflow: auto": { "prefix": "overflow_auto", "body": "overflow: auto;" },
@@ -504,7 +504,7 @@
   "!important": { "prefix": "!", "body": "!important" },
   "!important (alt)": { "prefix": "i_", "body": "!important" },
   "debug:css": {
-    "prefix": "ii_",
+    "prefix": "ii",
     "body": [
       "/* THIS IS FOR DEBUG",
       "*  REMOVE THESE CSS LINES AFTER YOU'RE DONE",

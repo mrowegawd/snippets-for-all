@@ -60,7 +60,7 @@
   },
   "prop:t:proptypes": {
     "body": "$1.propTypes = {\n\t$2\n}",
-    "prefix": "prop_types_",
+    "prefix": "prop_types",
     "description": "Creates empty propTypes declaration"
   },
   "prop:t:proptypes string required": {
@@ -694,7 +694,7 @@
     ]
   },
   "react:template:class:component:native export": {
-    "prefix": "react_template_class_component_export_",
+    "prefix": "react_template_class_component_export",
     "body": [
       "import { Text, View } from 'react-native'",
       "import React, { Component } from 'react'",

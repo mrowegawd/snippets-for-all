@@ -1,6 +1,6 @@
 {
   "await:create": {
-    "prefix": "await_",
+    "prefix": "await",
     "body": ["await ${1:expression};"],
     "description": "Insert an await statement"
   },
@@ -13,7 +13,7 @@
     "description": "Await statement with optional chaining"
   },
   "async:function": {
-    "prefix": "async_func_",
+    "prefix": "async_func",
     "body": [
       "async function ${1:functionName}(${2:params}: ${3:type}): Promise<${4:void}> {",
       "\t$0",

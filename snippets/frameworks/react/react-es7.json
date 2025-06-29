@@ -23,7 +23,7 @@
     "body": ["import { ${2:second} } from '${1:first}'"]
   },
   "importNoModuleName": {
-    "prefix": "imp_",
+    "prefix": "imp",
     "body": ["import '${1:first}'"]
   },
   "importPropTypes": {
@@ -99,11 +99,11 @@
     "body": ["export type ${1:first} = {${2:second}}"]
   },
   "exportInterface": {
-    "prefix": "expint_",
+    "prefix": "expint",
     "body": ["export interface ${1:first} {${2:second}}"]
   },
   "typescriptReactClassComponent": {
-    "prefix": "tsrcc_",
+    "prefix": "tsrcc",
     "description": "Creates a React component class with ES7 module system and TypeScript interfaces",
     "body": [
       "import React, { Component } from 'react'",

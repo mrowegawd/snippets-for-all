@@ -1,108 +1,72 @@
 {
-    "todo": {
-        "description": "create todo",
-        "prefix": "todo_",
-        "body": [
-            "TODO: $0"
-        ]
-    },
-    "code": {
-        "description": "code_block",
-        "prefix": "c_code_",
-        "body": [
-            "@code ${1:lang}",
-            "$0",
-            "@end"
-        ]
-    },
-    "data": {
-        "description": "data tags",
-        "prefix": "c_data_",
-        "body": [
-            "@data",
-            "$0",
-            "@end"
-        ]
-    },
-    "math": {
-        "description": "math block",
-        "prefix": "c_math_",
-        "body": [
-            "@math",
-            "$0",
-            "@end"
-        ]
-    },
-    "table": {
-        "description": "table",
-        "prefix": "c_table_",
-        "body": [
-            "@table",
-            "$0",
-            "@end"
-        ]
-    },
-    "task": {
-        "description": "task",
-        "prefix": "c_task_",
-        "body": [
-            "- [ ] ${1:task}"
-        ]
-    },
-    "link": {
-        "description": "links",
-        "prefix": "t_link_",
-        "body": [
-            "{${1:description}}[${2:name}]"
-        ]
-    },
-    "bold": {
-        "description": "bold words",
-        "prefix": "t_bold_",
-        "body": [
-            "*$0*"
-        ]
-    },
-    "italic": {
-        "description": "italic words",
-        "prefix": "t_italic_",
-        "body": [
-            "/$0/"
-        ]
-    },
-    "code text": {
-        "description": "code words",
-        "prefix": "t_code_",
-        "body": [
-            "`$0`"
-        ]
-    },
-    "underline": {
-        "description": "underline words",
-        "prefix": "t_underline_",
-        "body": [
-            "_$0_"
-        ]
-    },
-    "subscript": {
-        "description": "subscript",
-        "prefix": "t_subscript_",
-        "body": [
-            ",$0,"
-        ]
-    },
-    "superscript": {
-        "description": "superscript",
-        "prefix": "t_superscript_",
-        "body": [
-            "^$0^"
-        ]
-    },
-    "var": {
-        "description": "variable",
-        "prefix": "t_var_",
-        "body": [
-            "=${1:variable}="
-        ]
-    }
+  "todo": {
+    "description": "create todo",
+    "prefix": "todo",
+    "body": ["TODO: $0"]
+  },
+  "code": {
+    "description": "code_block",
+    "prefix": "c_code",
+    "body": ["@code ${1:lang}", "$0", "@end"]
+  },
+  "data": {
+    "description": "data tags",
+    "prefix": "c_data",
+    "body": ["@data", "$0", "@end"]
+  },
+  "math": {
+    "description": "math block",
+    "prefix": "c_math",
+    "body": ["@math", "$0", "@end"]
+  },
+  "table": {
+    "description": "table",
+    "prefix": "c_table",
+    "body": ["@table", "$0", "@end"]
+  },
+  "task": {
+    "description": "task",
+    "prefix": "c_task",
+    "body": ["- [ ] ${1:task}"]
+  },
+  "link": {
+    "description": "links",
+    "prefix": "t_link",
+    "body": ["{${1:description}}[${2:name}]"]
+  },
+  "bold": {
+    "description": "bold words",
+    "prefix": "t_bold",
+    "body": ["*$0*"]
+  },
+  "italic": {
+    "description": "italic words",
+    "prefix": "t_italic",
+    "body": ["/$0/"]
+  },
+  "code text": {
+    "description": "code words",
+    "prefix": "t_code",
+    "body": ["`$0`"]
+  },
+  "underline": {
+    "description": "underline words",
+    "prefix": "t_underline",
+    "body": ["_$0_"]
+  },
+  "subscript": {
+    "description": "subscript",
+    "prefix": "t_subscript",
+    "body": [",$0,"]
+  },
+  "superscript": {
+    "description": "superscript",
+    "prefix": "t_superscript",
+    "body": ["^$0^"]
+  },
+  "var": {
+    "description": "variable",
+    "prefix": "t_var",
+    "body": ["=${1:variable}="]
+  }
 }

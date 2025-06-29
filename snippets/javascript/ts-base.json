@@ -1,11 +1,11 @@
 {
   "TODO": {
-    "prefix": "todo_",
+    "prefix": "todo",
     "body": ["// TODO: $0"],
     "description": "// TODO: ..."
   },
   "WARN": {
-    "prefix": "warn_",
+    "prefix": "warn",
     "body": ["// WARN: $0"],
     "description": "// WARN: ..."
   },
@@ -35,12 +35,12 @@
     "description": "use strict"
   },
   "require": {
-    "prefix": "req_",
+    "prefix": "req",
     "body": "require('${1:module}')",
     "description": "require(\"module\")"
   },
   "export:named declaration": {
-    "prefix": "export_",
+    "prefix": "export",
     "body": ["export { ${1:exportedName} };", "$0"],
     "description": "Declare a named export in TypeScript"
   },
@@ -106,7 +106,7 @@
     ]
   },
   "namespace:declaration": {
-    "prefix": "namespace_",
+    "prefix": "namespace",
     "body": ["namespace ${1:NamespaceName} {", "\t$0", "}"],
     "description": "Declare a namespace in TypeScript"
   },
@@ -116,7 +116,7 @@
     "description": "Export a namespace module in TypeScript"
   },
   "import:create": {
-    "prefix": "imp_",
+    "prefix": "imp",
     "body": ["import '${1:first}'"]
   },
   "import:module destructured": {
@@ -149,7 +149,7 @@
     "description": "Import all statement in TypeScript"
   },
   "const:statement": {
-    "prefix": "const_",
+    "prefix": "const",
     "body": "const ${1:name} = ${0}",
     "description": "const name"
   },
@@ -361,7 +361,7 @@
     "description": "Declare a global variable in TypeScript"
   },
   "let:statement": {
-    "prefix": "let_",
+    "prefix": "let",
     "body": "let ${1:name} = $0",
     "description": "let name"
   },
@@ -376,22 +376,22 @@
     "description": "let name = yield value"
   },
   "typeof": {
-    "prefix": "typeof_",
+    "prefix": "typeof",
     "body": "typeof ${1:source} === '${2:undefined}'",
     "description": "typeof source === 'undefined'"
   },
   "instanceof": {
-    "prefix": "instanceof_",
+    "prefix": "instanceof",
     "body": "${1:source} instanceof ${2:Object}",
     "description": "value instanceof Myclass"
   },
   "prototype method": {
-    "prefix": "prototype_",
+    "prefix": "prototype",
     "body": "${1:Class}.prototype.${2:method} = function (${3:arguments}) {\n\t${0}\n}",
     "description": "Class.prototype.method = function (arguments) {\n\n}"
   },
   "ternary": {
-    "prefix": "tern_",
+    "prefix": "tern",
     "body": "${1:cond} ? ${2:true} : ${3:false}",
     "description": "cond ? true : false"
   },
@@ -429,7 +429,7 @@
     "description": "Ternary operator with optional chaining and nullish coalescing"
   },
   "return:create": {
-    "prefix": "ret_",
+    "prefix": "ret",
     "body": "return (${1:arguments}) => ${2:statement}",
     "description": "return (arguments) => statement"
   },
@@ -526,7 +526,7 @@
     "description": "Return statement with type assertion"
   },
   "for": {
-    "prefix": "for_",
+    "prefix": "for",
     "body": [
       "for (let ${1:index} = 0; ${1:index} < ${2:array}.length; ${1:index}++) {",
       "\tconst ${3:element} = ${2:array}[${1:index}];",
@@ -579,12 +579,12 @@
     "description": "Create a for loop for each element"
   },
   "function": {
-    "prefix": "func_",
+    "prefix": "func",
     "body": ["function ${1:name}(${2:params}) {", "\t$0", "}"],
     "description": "Create a function"
   },
   "function:expr": {
-    "prefix": "func_expr_",
+    "prefix": "func_expr",
     "body": [
       "const ${1:functionName} = function (${2:parameters}): ${3:returnType} {",
       "  ${4:// TODO: implement function}",
@@ -830,7 +830,7 @@
     "description": "Type guard for null and undefined in TypeScript"
   },
   "if": {
-    "prefix": "if_",
+    "prefix": "if",
     "body": ["if (${1:condition}) {", "\t${0}", "}"],
     "description": ["if (${1:condition}) {", "", "}"]
   },
@@ -845,7 +845,7 @@
     "description": "else if (condition) {\n\t${0}\n}"
   },
   "else": {
-    "prefix": "else_",
+    "prefix": "else",
     "body": "else {\n\t${0}\n}",
     "description": "else {\n\t${0}\n}"
   },
@@ -855,7 +855,7 @@
     "description": "let x \n if (condition) {\n\t${1}\n}"
   },
   "switch": {
-    "prefix": "switch_",
+    "prefix": "switch",
     "body": [
       "switch (${1:key}) {",
       "\tcase ${2:value}:",
@@ -939,7 +939,7 @@
     "description": "Create a case statement with object property access"
   },
   "while": {
-    "prefix": "while_",
+    "prefix": "while",
     "body": ["while (${1:condition}) {", "\t$0", "}"],
     "description": ["while (condition) {", "", "}"]
   },
@@ -974,7 +974,7 @@
     "description": "process.env"
   },
   "before": {
-    "prefix": "before_",
+    "prefix": "before",
     "body": "before(async () => {\n\t${0}\n})",
     "description": "before(async () => {\n\n})"
   },
@@ -989,7 +989,7 @@
     "description": "beforeEach(async () => {\n\n})"
   },
   "after": {
-    "prefix": "after_",
+    "prefix": "after",
     "body": "after(() => {\n\t${0}\n})",
     "description": "after(() => {\n\n})"
   },
@@ -1061,7 +1061,7 @@
     "description": "//#endregion"
   },
   "console:log": {
-    "prefix": "log_",
+    "prefix": "log",
     "body": "console.log(${0})",
     "description": "console.log()"
   },
@@ -1076,17 +1076,17 @@
     "description": "console.error()"
   },
   "console:warn": {
-    "prefix": "log_warn_",
+    "prefix": "log_warn",
     "body": ["console.warn($1);", "$0"],
     "description": "console.warn();"
   },
   "type definition": {
-    "prefix": "type_",
+    "prefix": "type",
     "body": ["type ${1:name} = {", "\t$0", "}"],
     "description": "Type Definition"
   },
   "interface:create": {
-    "prefix": "interface_",
+    "prefix": "interface",
     "body": ["interface ${1:name} {", "\t$0", "}"],
     "description": "Interface Definition"
   },
@@ -1208,12 +1208,12 @@
     "description": "Define a property that uses the InstanceType utility type in an interface"
   },
   "triple-slash reference": {
-    "prefix": "ref_",
+    "prefix": "ref",
     "body": ["/// <reference path=\"$1\" />", "$0"],
     "description": "Triple-slash reference"
   },
   "class:create": {
-    "prefix": "class_",
+    "prefix": "class",
     "body": [
       "class ${1:name} {",
       "\tconstructor(${2:parameters}) {",
@@ -1265,7 +1265,7 @@
     "description": "Create a custom error class"
   },
   "class:property": {
-    "prefix": "class_prop_",
+    "prefix": "class_prop",
     "body": [
       "${1:private_or_public} ${2:propertyName}: ${3:type} = ${4:value};"
     ],
@@ -1572,7 +1572,7 @@
     "description": "Creates a class that implements an interface"
   },
   "abstract:create": {
-    "prefix": "abstract_",
+    "prefix": "abstract",
     "body": [
       "abstract class ${1:ClassName} {",
       "\tabstract ${2:methodName}(${3:params}): ${4:void};",

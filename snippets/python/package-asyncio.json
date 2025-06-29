@@ -15,7 +15,7 @@
     "description": "Create an async Python function with decorator"
   },
   "await:Statement": {
-    "prefix": "await_",
+    "prefix": "await",
     "body": "await ${1:coroutine}",
     "description": "Await coroutine"
   },

@@ -1,0 +1,27 @@
+{
+  "Ansible.Utils.Fact_Diff": {
+    "prefix": ["ansible.utils.fact_diff", "fact_diff"],
+    "body": [
+      "- name: ${1:Description}",
+      "  ansible.utils.fact_diff:",
+      "    before: \"${2:first_fact_to_compare}\"",
+      "    after: \"${3:second_fact_to_compare}\"",
+      "$0"
+    ],
+    "description": "Used for Ansible fact_diff"
+  },
+  "Ansible.Utils.Update_Fact": {
+    "prefix": ["ansible.utils.update_fact", "update_fact"],
+    "body": [
+      "- name: ${1:Description}",
+      "  ansible.utils.update_fact:",
+      "    updates:",
+      "    - path: ${2:variable_path_to_update}",
+      "      value: ${3:value_to_add}",
+      "  register: ${4:new_changed_variable_name}",
+      "$0"
+    ],
+    "description": "Used for Ansible update_fact"
+  }
+}
+

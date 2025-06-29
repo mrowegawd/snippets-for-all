@@ -1,11 +1,11 @@
 {
   "TODO": {
-    "prefix": "todo_",
+    "prefix": "todo",
     "body": ["// TODO: $0"],
     "description": "// TODO: ..."
   },
   "imports": {
-    "prefix": "imp_",
+    "prefix": "imp",
     "body": "import \"${1:package}\"",
     "description": "import ( _package_ )"
   },
@@ -15,7 +15,7 @@
     "description": "import (\n\t_package_\n)"
   },
   "const:create": {
-    "prefix": "const_",
+    "prefix": "const",
     "body": "const ${1:name} = ${2:value}",
     "description": "const name = value"
   },
@@ -25,7 +25,7 @@
     "description": "Snippet for a constant block"
   },
   "var:create": {
-    "prefix": "var_",
+    "prefix": "var",
     "body": "${1:name} := $0",
     "description": "Snippet for a variable"
   },
@@ -105,7 +105,7 @@
     "description": "Define a struct variable"
   },
   "interface": {
-    "prefix": "interface_",
+    "prefix": "interface",
     "body": "type ${1:name} interface {\n\t$0\n}",
     "description": "Snippet for a type interface"
   },
@@ -115,7 +115,7 @@
     "description": "Snippet for empty interface"
   },
   "interface:prop:func": {
-    "prefix": "interface_prop_",
+    "prefix": "interface_prop",
     "body": ["${1:MethodName}(${2:params}) ${3:returnType}"],
     "description": "Create a method in an interface"
   },
@@ -184,7 +184,7 @@
     "description": "Create a method in an interface with function receiver"
   },
   "struct": {
-    "prefix": "struct_",
+    "prefix": "struct",
     "body": "type ${1:name} struct {\n\t$0\n}",
     "description": "Snippet for a struct declaration"
   },
@@ -498,7 +498,7 @@
     "description": "Constructor with values provided to set of properties in struct"
   },
   "func": {
-    "prefix": "func_",
+    "prefix": "func",
     "body": [
       "func ${1:FunctionName}(${2:params}) ${3:returnType} {",
       "\t${4:// implementation}",
@@ -589,7 +589,7 @@
     "description": "Snippet for main function"
   },
   "func:anonymous:func": {
-    "prefix": "func_anon_",
+    "prefix": "func_anon",
     "body": [
       "func(${1:args}) ${2:returns} {",
       "\t${3:// TODO: implement}",
@@ -625,7 +625,7 @@
     "description": "Create an anonymous function with multiple return values"
   },
   "for": {
-    "prefix": "for_",
+    "prefix": "for",
     "body": "for ${1}{\n\t$0\n}",
     "description": "Snippet for a pure for loop"
   },
@@ -640,7 +640,7 @@
     "description": "Snippet for a for range loop"
   },
   "switch": {
-    "prefix": "switch_",
+    "prefix": "switch",
     "body": "switch ${1:expression} {\ncase ${2:condition}:\n\t$0\n}",
     "description": "Snippet for switch statement"
   },
@@ -732,7 +732,7 @@
     "description": "Case dengan pemrosesan non-blok dalam switch statement di Go"
   },
   "channel:create": {
-    "prefix": "chan_",
+    "prefix": "chan",
     "body": "chan ${1:type}",
     "description": "Snippet for a channel"
   },
@@ -747,7 +747,7 @@
     "description": "Snippet for a channel"
   },
   "map declaration": {
-    "prefix": "map_",
+    "prefix": "map",
     "body": "map[${1:type}]${2:type}",
     "description": "Snippet for a map"
   },
@@ -790,7 +790,7 @@
     "description": "Type assertion dengan defer cleanup di Go"
   },
   "if": {
-    "prefix": "if_",
+    "prefix": "if",
     "body": "if ${1:condition} {\n\t$0\n}",
     "description": "Snippet for if statement"
   },
@@ -809,12 +809,12 @@
     "description": "Snippet for if err != nil"
   },
   "else": {
-    "prefix": "else_",
+    "prefix": "else",
     "body": "else {\n\t$0\n}",
     "description": "Snippet for else branch"
   },
   "fmt.Println": {
-    "prefix": "log_",
+    "prefix": "log",
     "body": "fmt.Println(\"$1\")",
     "description": "Snippet for fmt.Println()"
   },
@@ -839,27 +839,27 @@
     "description": "Snippet for log.Printf() with variable content"
   },
   "make(...)": {
-    "prefix": "make_",
+    "prefix": "make",
     "body": "make(${1:type}, ${2:0})",
     "description": "Snippet for make statement"
   },
   "new(...)": {
-    "prefix": "new_",
+    "prefix": "new",
     "body": "new(${1:type})",
     "description": "Snippet for new statement"
   },
   "panic(...)": {
-    "prefix": "panic_",
+    "prefix": "panic",
     "body": "panic(\"$0\")",
     "description": "Snippet for panic"
   },
   "sort implementation": {
-    "prefix": "sort_",
+    "prefix": "sort",
     "body": "type ${1:SortBy} []${2:Type}\n\nfunc (a $1) Len() int           { return len(a) }\nfunc (a $1) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }\nfunc (a $1) Less(i, j int) bool { ${3:return a[i] < a[j]} }",
     "description": "Snippet for a custom sort.Sort interface implementation, for a given slice type."
   },
   "defer": {
-    "prefix": "func_",
+    "prefix": "func",
     "body": "defer ${1:func}($0)",
     "description": "Snippet for defer statement"
   }

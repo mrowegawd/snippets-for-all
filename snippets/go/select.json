@@ -1,6 +1,6 @@
 {
   "select:statement": {
-    "prefix": "select_",
+    "prefix": "select",
     "body": [
       "select {",
       "\tcase ${1:channel1} := <-${2:ch1}:",

@@ -1,6 +1,6 @@
 {
   "match:create:": {
-    "prefix": "match_",
+    "prefix": "match",
     "body": [
       "match ${1:expr} {",
       "\t${2:pattern} => { ${3:code} },",

@@ -1,11 +1,11 @@
 {
   "TODO": {
-    "prefix": "todo_",
+    "prefix": "todo",
     "body": ["TODO: ${0}"],
     "description": "Add Todo"
   },
   "NOTE": {
-    "prefix": "note_",
+    "prefix": "note",
     "body": ["NOTE: ${0}"],
     "description": "Add Note"
   },

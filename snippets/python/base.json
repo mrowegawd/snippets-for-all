@@ -1,11 +1,11 @@
 {
   "#!/usr/bin/env python": {
-    "prefix": "env_",
+    "prefix": "env",
     "body": "#!/usr/bin/env python\n$0",
     "description": "#!/usr/bin/env python"
   },
   "#!/usr/bin/env python3": {
-    "prefix": "env3_",
+    "prefix": "env3",
     "body": "#!/usr/bin/env python3\n$0",
     "description": "#!/usr/bin/env python3"
   },
@@ -20,7 +20,7 @@
     "description": "# coding=utf-8\n"
   },
   "TODO": {
-    "prefix": "todo_",
+    "prefix": "todo",
     "body": ["# TODO: $0"],
     "description": "# TODO: ..."
   },
@@ -46,7 +46,7 @@
     "description": "create header --- ###"
   },
   "import": {
-    "prefix": "imp_",
+    "prefix": "imp",
     "body": "import ${1:package/module}$0",
     "description": "import .."
   },
@@ -71,12 +71,12 @@
     "description": "from dataclasses import dataclass"
   },
   "assert": {
-    "prefix": "assert_",
+    "prefix": "assert",
     "body": "assert ${1:var} == ${2:var}, ${3:default_value}",
     "description": "assert var1 == var2, value"
   },
   "var:create": {
-    "prefix": "var_",
+    "prefix": "var",
     "body": ["${1:varName} = $0"],
     "description": "x = \"Hello world\""
   },
@@ -111,7 +111,7 @@
     "description": "var_obj = Myclass(x, x)"
   },
   "class": {
-    "prefix": "class_",
+    "prefix": "class",
     "body": [
       "class ${1:ClassName}:",
       "\tdef __init__(self${2:}):",
@@ -156,7 +156,7 @@
     "description": "Create a custom error class"
   },
   "class:prop:define prop": {
-    "prefix": "class_prop_",
+    "prefix": "class_prop",
     "body": ["${1:variable_name}: ${2:Type} = ${3:default_value}"],
     "description": "Define a prop class"
   },
@@ -425,7 +425,7 @@
     "description": "Create a __next__ method for iterators"
   },
   "class:template:custom context manager": {
-    "prefix": "class_template_custom_context_manager_",
+    "prefix": "class_template_custom_context_manager",
     "body": [
       "class ${1:CustomContextManager}:",
       "\tdef __enter__(self):",
@@ -750,7 +750,7 @@
     "description": "Create a complete abstract class with methods and attributes in Python"
   },
   "interface:create": {
-    "prefix": "interface_",
+    "prefix": "interface",
     "body": [
       "from typing import Protocol",
       "",
@@ -788,7 +788,7 @@
     "description": "Creates a Python interface function with default parameter value"
   },
   "function": {
-    "prefix": "def_",
+    "prefix": "def",
     "body": "def ${1:fname}(${2:arg}):\n\t${3:pass}$0",
     "description": "def fname(arg):\n\tpass"
   },
@@ -812,7 +812,7 @@
     "description": "Create a Python function with decorator"
   },
   "return": {
-    "prefix": "ret_",
+    "prefix": "ret",
     "body": "return ${0:this}"
   },
   "return set": {
@@ -824,7 +824,7 @@
     "body": ["def myfunc2()", "\treturn \"hello world \"", "\treturn myfunc2()"]
   },
   "if": {
-    "prefix": "if_",
+    "prefix": "if",
     "body": "if ${1:condition}:\n\t${2:pass}$0",
     "description": "if condition:\n\tpass"
   },
@@ -834,12 +834,12 @@
     "description": ["if condition:", "\tpass", "else:", "\tpass"]
   },
   "elif": {
-    "prefix": "elif_",
+    "prefix": "elif",
     "body": ["elif ${1:expression}:", "\t${2:pass}"],
     "description": ["elif expression:", "\tpass"]
   },
   "else": {
-    "prefix": "else_",
+    "prefix": "else",
     "body": ["else:", "\t${1:pass}"],
     "description": ["else:", "\tpass"]
   },
@@ -898,7 +898,7 @@
     "description": ["async for value in iterable:", "\tpass", "else:", "\tpass"]
   },
   "type:check": {
-    "prefix": "type_",
+    "prefix": "type",
     "body": ["type(${1:variable})$0"],
     "description": "Python type check using type()"
   },
@@ -926,7 +926,7 @@
     "description": "Python type check using assert statement with type()"
   },
   "while": {
-    "prefix": "while_",
+    "prefix": "while",
     "body": "while ${1:condition}:\n\t${2:pass}$0",
     "description": "while condition:\n\tpass"
   },
@@ -936,7 +936,7 @@
     "description": ["while expression:", "\tpass", "else:", "\tpass"]
   },
   "with": {
-    "prefix": "with_",
+    "prefix": "with",
     "body": ["with ${1:expression} as ${2:target}:", "\t${3:pass}"],
     "description": ["with expression as target:", "\tpass"]
   },
@@ -946,7 +946,7 @@
     "description": ["async with expression as target:", "\tpass"]
   },
   "__magic__": {
-    "prefix": "__",
+    "prefix": "__magic",
     "body": "__${1:init}__$0",
     "description": "__<init>__"
   },

@@ -13,7 +13,7 @@
     ]
   },
   "echo": {
-    "prefix": "echo_",
+    "prefix": "echo",
     "body": "echo \"${0:message}\"",
     "description": "echo \"message\""
   },
@@ -23,7 +23,7 @@
     "description": "fancy \"text\", can use $(cmd)"
   },
   "var:string": {
-    "prefix": "var_",
+    "prefix": "var",
     "body": ["${1:myvar}=$0"],
     "description": "Declare variable in Bash"
   },
@@ -33,7 +33,7 @@
     "description": "Declare an array in Bash"
   },
   "echo:in Bash": {
-    "prefix": "echo_",
+    "prefix": "echo",
     "body": ["echo \"${1:Message}\""],
     "description": "Print message using echo in Bash"
   },
@@ -77,7 +77,7 @@
     "description": "Print formatted table output in Bash"
   },
   "printf:in Bash": {
-    "prefix": "printf_",
+    "prefix": "printf",
     "body": ["printf \"${1:Format}\" ${2:Arguments}"],
     "description": "Print formatted output using printf in Bash"
   },
@@ -217,7 +217,7 @@
     "description": "Perform mathematical operation using AWK"
   },
   "read": {
-    "prefix": "read_",
+    "prefix": "read",
     "body": "read -r ${0:VAR}",
     "description": "read -r $VAR"
   },
@@ -242,7 +242,7 @@
     "description": "Extract text based on pattern using sed"
   },
   "if": {
-    "prefix": "if_",
+    "prefix": "if",
     "body": "if [[ ${1:condition} ]]; then\n\t${0}\nfi",
     "description": "if [[ condition ]]; then\n\nfi"
   },
@@ -252,7 +252,7 @@
     "description": "elif [[ ${1:condition} ]]; then\n\t${0}"
   },
   "else": {
-    "prefix": "else_",
+    "prefix": "else",
     "body": "else\n\t${0:command}",
     "description": "else"
   },
@@ -267,22 +267,22 @@
     "description": "for ((i = 0; i < 10; i++)); do\n\techo \"\\$i\"\ndone\n"
   },
   "while": {
-    "prefix": "while_",
+    "prefix": "while",
     "body": "while [[ ${1:condition} ]]; do\n\t${0}\ndone\n",
     "description": "while [[ condition ]]; do\n\ndone\n"
   },
   "until": {
-    "prefix": "until_",
+    "prefix": "until",
     "body": "until [[ ${1:condition} ]]; do\n\t${0}\ndone\n",
     "description": "until [[ condition ]]; do\n\ndone\n"
   },
   "function": {
-    "prefix": "func_",
+    "prefix": "func",
     "body": "${1:name} ()\n{\n\t${0}\n}",
     "description": "nameFunc()\n{\n\n}"
   },
   "switch:case in Bash": {
-    "prefix": "switch_",
+    "prefix": "switch",
     "body": [
       "case ${1:variable} in",
       "\t${2:pattern1})",
@@ -336,12 +336,12 @@
     "description": "Switch case body for empty or null value"
   },
   "break": {
-    "prefix": "break_",
+    "prefix": "break",
     "body": "break ${0}",
     "description": "break yourBreak"
   },
   "expr": {
-    "prefix": "expr_",
+    "prefix": "expr",
     "body": "expr ${0:1 + 1}",
     "description": "expr ${0:1 + 1} (for calculate with bash)"
   }

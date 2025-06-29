@@ -129,12 +129,12 @@
     "description": "backgroundColor"
   },
   "display": {
-    "prefix": "display_",
+    "prefix": "display",
     "body": "display: '${1:none}',",
     "description": "display"
   },
   "opacity": {
-    "prefix": "opacity_",
+    "prefix": "opacity",
     "body": "opacity: ${1},",
     "description": "opacity"
   },
@@ -159,12 +159,12 @@
     "description": "shadowRadius"
   },
   "elevation": {
-    "prefix": "elevation_",
+    "prefix": "elevation",
     "body": "elevation: ${1},",
     "description": "elevation"
   },
   "flex": {
-    "prefix": "flex_",
+    "prefix": "flex",
     "body": "flex: ${1},",
     "description": "flex"
   },
@@ -214,17 +214,17 @@
     "description": "fontWeight"
   },
   "height": {
-    "prefix": "height_",
+    "prefix": "height",
     "body": "height: ${1},",
     "description": "height"
   },
   "left": {
-    "prefix": "left_",
+    "prefix": "left",
     "body": "left: ${1},",
     "description": "left"
   },
   "margin": {
-    "prefix": "margin_",
+    "prefix": "margin",
     "body": "margin: '${1}',",
     "description": "margin"
   },
@@ -284,7 +284,7 @@
     "description": "overflow"
   },
   "padding": {
-    "prefix": "padding_",
+    "prefix": "padding",
     "body": "padding: ${1},",
     "description": "padding"
   },
@@ -319,32 +319,32 @@
     "description": "paddingVertical"
   },
   "position": {
-    "prefix": "position_",
+    "prefix": "position",
     "body": "position: ${1},",
     "description": "position"
   },
   "right": {
-    "prefix": "right_",
+    "prefix": "right",
     "body": "right: ${1},",
     "description": "right"
   },
   "top": {
-    "prefix": "top_",
+    "prefix": "top",
     "body": "top: ${1},",
     "description": "top"
   },
   "width": {
-    "prefix": "width_",
+    "prefix": "width",
     "body": "width: ${1},",
     "description": "width"
   },
   "zIndex": {
-    "prefix": "zindex_",
+    "prefix": "zindex",
     "body": "zIndex: ${1},",
     "description": "zIndex"
   },
   "api": {
-    "prefix": "api_",
+    "prefix": "api",
     "body": [
       "import axios from 'axios';",
       "",
@@ -358,12 +358,12 @@
     "description": "Create Axios Configuration file"
   },
   "region": {
-    "prefix": "region_",
+    "prefix": "region",
     "body": ["//#region ${1}", "${2}", "//#endregion"],
     "description": "Create region"
   },
   "regionStartEnd": {
-    "prefix": "#regionStartEnd_",
+    "prefix": "#regionStartEnd",
     "body": ["//#region ${1}", "${2}", "//#endregion"],
     "description": "Create region"
   }

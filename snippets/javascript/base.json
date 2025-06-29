@@ -5,17 +5,17 @@
     "description": "use strict"
   },
   "TODO": {
-    "prefix": "todo_",
+    "prefix": "todo",
     "body": ["// TODO: $0"],
     "description": "// TODO: ..."
   },
   "require": {
-    "prefix": "req_",
+    "prefix": "req",
     "body": "require('${1:module}')",
     "description": "require(\"module\")"
   },
   "exports.member": {
-    "prefix": "exp_",
+    "prefix": "exp",
     "body": "exports.${1:member} = ${2:value}",
     "description": "exports.member = value"
   },
@@ -25,7 +25,7 @@
     "description": "module.exports = name"
   },
   "import module": {
-    "prefix": "imp_",
+    "prefix": "imp",
     "body": "import ${2:*} from '${1:module}'",
     "description": "import * from 'module'"
   },
@@ -40,7 +40,7 @@
     "description": "import * as name from 'module'"
   },
   "var:create": {
-    "prefix": "var_",
+    "prefix": "var",
     "body": "var ${1:name} = ${0:value}",
     "description": "var name = value"
   },
@@ -50,7 +50,7 @@
     "description": "Variable init"
   },
   "let:create": {
-    "prefix": "let_",
+    "prefix": "let",
     "body": "let ${1:name} = ${0:value}",
     "description": "let name"
   },
@@ -65,7 +65,7 @@
     "description": "let name = yield value"
   },
   "const:create": {
-    "prefix": "const_",
+    "prefix": "const",
     "body": "const ${1:name} = ${0}",
     "description": "const name"
   },
@@ -140,27 +140,27 @@
     "description": "export default function nameFunc (arguments) {\n\t${0}\n}"
   },
   "typeof": {
-    "prefix": "typeof_",
+    "prefix": "typeof",
     "body": "typeof ${1:source} === '${2:undefined}'",
     "description": "typeof source === 'undefined'"
   },
   "instanceof": {
-    "prefix": "instof_",
+    "prefix": "instof",
     "body": "${1:source} instanceof ${2:Object}",
     "description": "value instanceof Myclass"
   },
   "constructor": {
-    "prefix": "constructor_",
+    "prefix": "constructor",
     "body": "constructor () {\n\t${0}\n}",
     "description": "constructor () {\n\n}"
   },
   "getter": {
-    "prefix": "get_",
+    "prefix": "get",
     "body": "get ${1:property} () {\n\t${0}\n}",
     "description": "get property () {\n\n}"
   },
   "setter": {
-    "prefix": "set_",
+    "prefix": "set",
     "body": "set ${1:property} (${2:value}) {\n\t${0}\n}",
     "description": "set property (value) {\n\n}"
   },
@@ -175,7 +175,7 @@
     "description": "Class.prototype.method = function (arguments) {\n\n}"
   },
   "ternary": {
-    "prefix": "tern_",
+    "prefix": "tern",
     "body": "${1:cond} ? ${2:true} : ${3:false}",
     "description": "cond ? true : false"
   },
@@ -190,7 +190,7 @@
     "description": "const ${0} = ${1:cond} ? ${2:true} : ${3:false}"
   },
   "return arrow function": {
-    "prefix": "rt_arr_",
+    "prefix": "rt_arr",
     "body": "return (${1:arguments}) => ${2:statement}",
     "description": "return (arguments) => statement"
   },
@@ -210,7 +210,7 @@
     "description": "return [\n\n]"
   },
   "define module": {
-    "prefix": "define_",
+    "prefix": "define",
     "body": [
       "define([",
       "\t'require',",
@@ -231,7 +231,7 @@
     ]
   },
   "for": {
-    "prefix": "for_",
+    "prefix": "for",
     "body": [
       "for (let ${1:index} = 0; ${1:index} < ${2:array}.length; ${1:index}++) {",
       "\tconst ${3:element} = ${2:array}[${1:index}];",
@@ -311,7 +311,7 @@
     "description": "Create a some array"
   },
   "function": {
-    "prefix": "func_",
+    "prefix": "func",
     "body": ["function ${1:name}(${2:params}) {", "\t$0", "}"],
     "description": ["function name(params) {", "", "}"]
   },
@@ -346,7 +346,7 @@
     "description": ";(async (arguments) => {\n\n})(value)"
   },
   "function arrow": {
-    "prefix": "func_arr_",
+    "prefix": "func_arr",
     "body": "(${1:arguments}) => ${2:statement}",
     "description": "(arguments) => statement"
   },
@@ -371,7 +371,7 @@
     "description": "function* (arguments) {\n\n}"
   },
   "if": {
-    "prefix": "if_",
+    "prefix": "if",
     "body": ["if (${1:condition}) {", "\t${0}", "}"],
     "description": ["if (${1:condition}) {", "", "}"]
   },
@@ -381,22 +381,22 @@
     "description": ["if (condition) {", "\t$0", "} else {", "\t", "}"]
   },
   "else": {
-    "prefix": "else_",
+    "prefix": "else",
     "body": "else {\n\t${0}\n}",
     "description": "else {\n\t${0}\n}"
   },
   "else if": {
-    "prefix": "elif_",
+    "prefix": "elif",
     "body": "else if (${1:condition}) {\n\t${0}\n}",
     "description": "else if (condition) {\n\t${0}\n}"
   },
   "let and if statement": {
-    "prefix": "lif_",
+    "prefix": "lif",
     "body": "let ${0} \n if (${2:condition}) {\n\t${1}\n}",
     "description": "let x \n if (condition) {\n\t${1}\n}"
   },
   "switch": {
-    "prefix": "switch_",
+    "prefix": "switch",
     "body": [
       "switch (${1:key}) {",
       "\tcase ${2:value}:",
@@ -419,7 +419,7 @@
     ]
   },
   "while": {
-    "prefix": "while_",
+    "prefix": "while",
     "body": ["while (${1:condition}) {", "\t$0", "}"],
     "description": ["while (condition) {", "", "}"]
   },
@@ -434,7 +434,7 @@
     "description": ["do {", "\t$0", "} while (condition);"]
   },
   "try-catch Statement": {
-    "prefix": "try_",
+    "prefix": "try",
     "body": ["try {", "\t$0", "} catch (${1:error}) {", "\t", "}"],
     "description": ["try {", "\t$0", "} catch (error) {", "\t", "}"]
   },
@@ -454,12 +454,12 @@
     "description": "throw new Error"
   },
   "process.env": {
-    "prefix": "proc_",
+    "prefix": "proc",
     "body": "process.env",
     "description": "process.env"
   },
   "describe": {
-    "prefix": "describe_",
+    "prefix": "describe",
     "body": "describe('${1:description}', () => {\n\t${0}\n})",
     "description": "describe('description', () => {\n\n})"
   },
@@ -469,7 +469,7 @@
     "description": "describe('TM_FILENAME_BASE', () => {\n\n})"
   },
   "it asynchronous": {
-    "prefix": "it_",
+    "prefix": "it",
     "body": "it('${1:description}', async () => {\n\t${0}\n})",
     "description": "it('description', async () => {\n\n})"
   },
@@ -489,7 +489,7 @@
     "description": "it('description', () => {\n\n})"
   },
   "before": {
-    "prefix": "before_",
+    "prefix": "before",
     "body": "before(async () => {\n\t${0}\n})",
     "description": "before(async () => {\n\n})"
   },
@@ -504,7 +504,7 @@
     "description": "beforeEach(async () => {\n\n})"
   },
   "after": {
-    "prefix": "after_",
+    "prefix": "after",
     "body": "after(() => {\n\t${0}\n})",
     "description": "after(() => {\n\n})"
   },
@@ -544,7 +544,7 @@
     "description": "console.dir('x', y)"
   },
   "console.log": {
-    "prefix": "log_",
+    "prefix": "log",
     "body": "console.log(${0})",
     "description": "console.log()"
   },
@@ -554,7 +554,7 @@
     "description": "console.error()"
   },
   "Log warning to console": {
-    "prefix": "log_warn_",
+    "prefix": "log_warn",
     "body": ["console.warn($1);", "$0"],
     "description": "console.warn();"
   }

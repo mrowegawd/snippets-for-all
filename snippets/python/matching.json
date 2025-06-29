@@ -1,6 +1,6 @@
 {
   "match:expression (advanced)": {
-    "prefix": "match_",
+    "prefix": "match",
     "body": [
       "match ${1:expr}:",
       "\tcase ${2:value} | ${3:other_value}:",

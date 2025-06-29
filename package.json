@@ -21,8 +21,74 @@
         "path": "./snippets/c.json"
       },
       {
-        "language": "ansible",
-        "path": "./snippets/ansible.json"
+        "language": [
+          "ansible",
+          "yaml.ansible"
+        ],
+        "path": "./snippets/ansible/ansible-large-snippets.json"
+      },
+      {
+        "language": [
+          "ansible",
+          "yaml.ansible"
+        ],
+        "path": "./snippets/ansible/ansible-small-snippets.json"
+      },
+      {
+        "language": [
+          "ansible",
+          "yaml.ansible"
+        ],
+        "path": "./snippets/ansible/ansible.builtin.json"
+      },
+      {
+        "language": [
+          "ansible",
+          "yaml.ansible"
+        ],
+        "path": "./snippets/ansible/ansible.netcommon.json"
+      },
+      {
+        "language": [
+          "ansible",
+          "yaml.ansible"
+        ],
+        "path": "./snippets/ansible/ansible.posix.json"
+      },
+      {
+        "language": [
+          "ansible",
+          "yaml.ansible"
+        ],
+        "path": "./snippets/ansible/ansible.utils.json"
+      },
+      {
+        "language": [
+          "ansible",
+          "yaml.ansible"
+        ],
+        "path": "./snippets/ansible/community.dns.json"
+      },
+      {
+        "language": [
+          "ansible",
+          "yaml.ansible"
+        ],
+        "path": "./snippets/ansible/community.general.json"
+      },
+      {
+        "language": [
+          "ansible",
+          "yaml.ansible"
+        ],
+        "path": "./snippets/ansible/community.postgresql.json"
+      },
+      {
+        "language": [
+          "ansible",
+          "yaml.ansible"
+        ],
+        "path": "./snippets/ansible/container.podman.json"
       },
       {
         "language": "cpp",

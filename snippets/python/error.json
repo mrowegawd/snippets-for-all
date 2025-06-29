@@ -1,6 +1,6 @@
 {
   "try:except:": {
-    "prefix": "try_",
+    "prefix": "try",
     "body": "try:\n\t${1:pass}\nexcept ${2:Exception} as ${3:e}:\n\t${4:raise $3}$0",
     "description": "try:\n\tpass\nexcept Exception as e:\n\traise"
   },

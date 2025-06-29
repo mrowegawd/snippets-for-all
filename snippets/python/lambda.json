@@ -1,6 +1,6 @@
 {
   "lambda:param with return": {
-    "prefix": "lambda_",
+    "prefix": "lambda",
     "body": ["lambda ${1:param1}, ${2:param2}: ${3:return_value}"],
     "description": "Creates a lambda function with 2 parameters and return value"
   },

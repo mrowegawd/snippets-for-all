@@ -1,6 +1,6 @@
 {
   "decorator:create": {
-    "prefix": "decorator_",
+    "prefix": "decorator",
     "body": [
       "import functools",
       "",

@@ -1,31 +1,31 @@
 {
   "TODO": {
-    "prefix": "todo_",
+    "prefix": "todo",
     "body": ["// TODO: $0"],
     "description": "// TODO: ..."
   },
   "#:allow": {
-    "prefix": "allow_",
+    "prefix": "allow",
     "body": ["#![allow(${1})]"],
     "description": "#![allow(…)]"
   },
   "#:deny": {
-    "prefix": "deny_",
+    "prefix": "deny",
     "body": ["#![deny(${1})]"],
     "description": "#![deny(…)]"
   },
   "#:no_std": {
-    "prefix": "no_std_",
+    "prefix": "no_std",
     "body": ["#![no_std]"],
     "description": "#![no_std]"
   },
   "#:no_core": {
-    "prefix": "no_core_",
+    "prefix": "no_core",
     "body": ["#![no_core]"],
     "description": "#![no_core]"
   },
   "#:feature": {
-    "prefix": "feature_",
+    "prefix": "feature",
     "body": ["#![feature(${1})]"],
     "description": "#![feature(…)]"
   },
@@ -35,12 +35,12 @@
     "description": "#[macro_use(…)]"
   },
   "#:repr": {
-    "prefix": "repr_",
+    "prefix": "repr",
     "body": ["#[repr(${1})]"],
     "description": "#[repr(…)]"
   },
   "#:derive": {
-    "prefix": "derive_",
+    "prefix": "derive",
     "body": ["#[derive(${1:Debug})]"],
     "description": "#[derive(Debug, Eq, PartialEq, Hash)]"
   },
@@ -50,7 +50,7 @@
     "description": "#![warn(…)]"
   },
   "#:cfg": {
-    "prefix": "cfg_",
+    "prefix": "cfg",
     "body": ["#[cfg(${1})]"],
     "description": "#[cfg(…)]"
   },
@@ -60,12 +60,12 @@
     "description": "#[cfg_attr(…, …)]"
   },
   "#:cfg!": {
-    "prefix": "cfg!_",
+    "prefix": "cfg!",
     "body": ["cfg!(${1})"],
     "description": "cfg!(…)"
   },
   "assert": {
-    "prefix": "assert_",
+    "prefix": "assert",
     "body": ["assert!(${1});"],
     "description": "assert!( data1 < data2, \"description why is failed\" );"
   },
@@ -90,7 +90,7 @@
     "description": "Variable init"
   },
   "let:create": {
-    "prefix": "let_",
+    "prefix": "let",
     "body": ["let ${1:varname} = $0;"],
     "description": "let varname = ..."
   },
@@ -164,7 +164,7 @@
     "description": "let mut my_map: HashMap<i32, String> = HashMap::new();"
   },
   "const:create": {
-    "prefix": "const_",
+    "prefix": "const",
     "body": ["const ${1:CONST}: ${2:Type} = ${4:init};"],
     "description": "const …: … = …;"
   },
@@ -204,7 +204,7 @@
     "description": "format_args!(…)"
   },
   "macro:include": {
-    "prefix": "macro_include_",
+    "prefix": "macro_include",
     "body": ["include!(\"${1}\");"],
     "description": "include!(\"…\");"
   },
@@ -259,17 +259,17 @@
     "description": "macro_rules! … { … }"
   },
   "panic": {
-    "prefix": "panic_",
+    "prefix": "panic",
     "body": ["panic!(\"${1}\");"],
     "description": "panic!(…);"
   },
   "print": {
-    "prefix": "print_",
+    "prefix": "print",
     "body": ["print!(\"${1}\");"],
     "description": "print!(…);"
   },
   "println": {
-    "prefix": "println_",
+    "prefix": "println",
     "body": ["println!(\"${1}\");"],
     "description": "println!(…);"
   },
@@ -279,37 +279,37 @@
     "description": "thread_local!(static …: … = …);"
   },
   "vec": {
-    "prefix": "vec_",
+    "prefix": "vec",
     "body": ["vec![${1}]"],
     "description": "vec![…]"
   },
   "write": {
-    "prefix": "write_",
+    "prefix": "write",
     "body": ["write!(${1}, \"${2}\")"],
     "description": "write!(…)"
   },
   "writeln": {
-    "prefix": "writeln_",
+    "prefix": "writeln",
     "body": ["writeln!(${1}, \"${2}\")"],
     "description": "writeln!(…, …)"
   },
   "Err": {
-    "prefix": "err_",
+    "prefix": "err",
     "body": ["Err(${1})"],
     "description": "Err(…)"
   },
   "Ok": {
-    "prefix": "ok_",
+    "prefix": "ok",
     "body": ["Ok(${1:result})"],
     "description": "Ok(…)"
   },
   "Some": {
-    "prefix": "some_",
+    "prefix": "some",
     "body": ["Some(${1})"],
     "description": "Some(…)"
   },
   "bench": {
-    "prefix": "bench_",
+    "prefix": "bench",
     "body": [
       "#[bench]",
       "fn ${1:name}(b: &mut test::Bencher) {",
@@ -319,12 +319,12 @@
     "description": "#[bench]"
   },
   "else": {
-    "prefix": "else_",
+    "prefix": "else",
     "body": ["else {", "    ${1:unimplemented!();}", "}"],
     "description": "else { … }"
   },
   "enum": {
-    "prefix": "enum_",
+    "prefix": "enum",
     "body": [
       "#[derive(Debug)]",
       "enum ${1:Name} {",
@@ -408,7 +408,7 @@
     "description": "extern \"C\" { … }"
   },
   "fn": {
-    "prefix": "func_",
+    "prefix": "func",
     "body": [
       "fn ${1:name}(${2:arg}: ${3:Type}) -> ${4:RetType} {",
       "\t${5:unimplemented!();}",
@@ -635,7 +635,7 @@
     "description": "Create a Rust function with a default type parameter in the bound clause"
   },
   "fn:generic": {
-    "prefix": "func_generic_",
+    "prefix": "func_generic",
     "body": [
       "pub fn ${1:func_name}<${2:T}>(${3:arg}: ${2:T}) -> ${4:Return_Type} {",
       "\t${0:// Function body}",
@@ -740,7 +740,7 @@
     "description": "loop { … }"
   },
   "if": {
-    "prefix": "if_",
+    "prefix": "if",
     "body": ["if ${1:condition} {", "    ${2:unimplemented!();}", "}"],
     "description": "if … { … }"
   },
@@ -754,7 +754,7 @@
     "description": "if let … = … { … }"
   },
   "mod": {
-    "prefix": "mod_",
+    "prefix": "mod",
     "body": ["mod ${1:name};"],
     "description": "mod …;"
   },
@@ -764,7 +764,7 @@
     "description": "mod … { … }"
   },
   "static": {
-    "prefix": "static_",
+    "prefix": "static",
     "body": ["static ${1:STATIC}: ${2:Type} = ${4:init};"],
     "description": "static …: … = …;"
   },
@@ -790,7 +790,7 @@
     "description": "if-else type check"
   },
   "struct:create": {
-    "prefix": "struct_",
+    "prefix": "struct",
     "body": [
       "#[derive(Debug)]",
       "struct ${1:Name} {",
@@ -846,7 +846,7 @@
     "description": "Create a Rust struct with a lifetime parameter and where clause"
   },
   "struct:tuple": {
-    "prefix": "struct_tuple_",
+    "prefix": "struct_tuple",
     "body": ["struct ${1:Name}(${2:Type});"],
     "description": "struct …(…);"
   },
@@ -1153,7 +1153,7 @@
     "description": "impl … for … { … }"
   },
   "impl:prop:create": {
-    "prefix": "impl_prop_",
+    "prefix": "impl_prop",
     "body": ["${2:attribute_name}: ${3:Type},"],
     "description": "Create impl property"
   },
@@ -1435,7 +1435,7 @@
     "description": "Create clone impl for struct"
   },
   "trait": {
-    "prefix": "trait_",
+    "prefix": "trait",
     "body": ["trait ${1:Name} {", "    ${2:// add code here}", "}", ""],
     "description": "trait … { … }"
   },
@@ -1449,7 +1449,7 @@
     "description": "impl … for … { … }"
   },
   "trait:method:func": {
-    "prefix": "trait_func_",
+    "prefix": "trait_func",
     "body": [
       "fn ${2:method_name}(&self, ${3:param}: ${4:Param_Type}) -> ${5:Return_Type} {",
       "\t${0:// Method body}",
@@ -1507,27 +1507,27 @@
     "description": "while let … = … { … }"
   },
   "while": {
-    "prefix": "while_",
+    "prefix": "while",
     "body": ["while ${1:condition} {", "    ${2:unimplemented!();}", "}"],
     "description": "while … { … }"
   },
   "_partialord": {
-    "prefix": "partialord_",
+    "prefix": "partialord",
     "body": ["PartialOrd"],
     "description": "PartialOrd"
   },
   "_ord": {
-    "prefix": "ord_",
+    "prefix": "ord",
     "body": ["Ord"],
     "description": "Ord"
   },
   "_serialize": {
-    "prefix": "serialize_",
+    "prefix": "serialize",
     "body": ["Serialize"],
     "description": "Serialize"
   },
   "_deserialize": {
-    "prefix": "deserialize_",
+    "prefix": "deserialize",
     "body": ["Deserialize"],
     "description": "Deserialize"
   },
