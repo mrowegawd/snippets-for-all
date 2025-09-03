@@ -1,46 +1,46 @@
 {
   "block:center block": {
-    "prefix": "block_center",
+    "prefix": "code_block_center",
     "body": ["#+BEGIN_CENTER", "$0", "#+END_CENTER"],
     "description": "#+BEGIN_CENTER block"
   },
   "block:comment": {
-    "prefix": "block_comment",
+    "prefix": "code_block_comment",
     "body": ["#+BEGIN_COMMENT", "$0", "#+END_COMMENT"],
     "description": "#+BEGIN_COMMENT block"
   },
   "block:example": {
-    "prefix": "block_example",
+    "prefix": "code_block_example",
     "body": ["#+BEGIN_EXAMPLE", "$0", "#+END_EXAMPLE"],
     "description": "#+BEGIN_EXAMPLE block"
   },
   "block:src": {
-    "prefix": "block_code",
+    "prefix": "code_block_code",
     "body": ["#+BEGIN_SRC ${1:lang}", "$0", "#+END_SRC"],
     "description": "#+BEGIN_SRC ... block"
   },
   "block:verse": {
-    "prefix": "block_verse",
+    "prefix": "code_block_verse",
     "body": ["#+BEGIN_VERSE", "$0", "#+END_VERSE"],
     "description": "verse"
   },
   "block:export ascii": {
-    "prefix": "block_ascii",
+    "prefix": "code_block_ascii",
     "body": ["#+BEGIN_EXPORT ascii", "$0", "#+END_EXPORT"],
     "description": "#+BEGIN_EXPORT ascii"
   },
   "block:export html": {
-    "prefix": "block_html",
+    "prefix": "code_block_html",
     "body": ["#+BEGIN_EXPORT html", "$0", "#+END_EXPORT"],
     "description": "#+BEGIN_EXPORT html block"
   },
   "block:quote": {
-    "prefix": "block_quote",
+    "prefix": "code_block_quote",
     "body": ["#+BEGIN_QUOTE", "$0", "#+END_QUOTE"],
     "description": "#+BEGIN_QUOTE block"
   },
   "block:blog": {
-    "prefix": "block_blog",
+    "prefix": "code_block_blog",
     "body": [
       "#+STARTUP: showall indent",
       "#+STARTUP: hidestars",
@@ -55,7 +55,7 @@
     "description": "blog"
   },
   "block:dot": {
-    "prefix": "block_dot",
+    "prefix": "code_block_dot",
     "body": [
       "#+BEGIN_SRC dot :file ${1:file} :cmdline -T${2:pdf} :exports none :results silent",
       "$0",
@@ -66,12 +66,12 @@
     "description": "dot"
   },
   "block:elisp": {
-    "prefix": "block_elisp",
+    "prefix": "code_block_elisp",
     "body": ["#+BEGIN_SRC emacs-lisp :tangle yes", "$0", "#+END_SRC"],
     "description": "elisp"
   },
   "block:entry": {
-    "prefix": "block_entry",
+    "prefix": "code_block_entry",
     "body": [
       "#+BEGIN_HTML",
       "---",
@@ -84,12 +84,12 @@
     "description": "entry"
   },
   "block:export": {
-    "prefix": "block_export",
+    "prefix": "code_block_export",
     "body": ["#+BEGIN_EXPORT ${1:type}", "$0", "#+END_EXPORT"],
     "description": "export"
   },
   "block:figure": {
-    "prefix": "block_figure",
+    "prefix": "code_block_figure",
     "body": [
       "#+CAPTION: ${1:caption}",
       "#+ATTR_LATEX: ${2:scale=0.75}",
@@ -98,7 +98,7 @@
     "description": "figure"
   },
   "block:author": {
-    "prefix": "block_head_author",
+    "prefix": "code_block_head_author",
     "body": [
       "#+TITLE:     ${1:Untitled Document}",
       "#+AUTHOR:    ${2:Author}",
@@ -107,12 +107,12 @@
     "description": "org-file header"
   },
   "block:latex": {
-    "prefix": "block_latex",
+    "prefix": "code_block_latex",
     "body": ["#+BEGIN_LATEX", "$0", "#+END_LATEX"],
     "description": "latex"
   },
   "block:latext": {
-    "prefix": "block_latex_code",
+    "prefix": "code_block_latex_code",
     "body": [
       "\\left \\(",
       "\t\\begin{array}{${1:ccc}}",

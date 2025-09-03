@@ -1,0 +1,6 @@
+{
+  "table:contains": {
+    "prefix": "table_containts",
+    "body": ["if vim.tbl_contains(${1:{}}, $2) then", "\t$3", "end"]
+  }
+}

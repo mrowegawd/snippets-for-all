@@ -1,20 +1,88 @@
 {
-  "function": {
-    "prefix": "func",
-    "body": ["function ${1:name}($2)", "\t${3:-- code}", "end"]
+  "TODO": {
+    "prefix": "todo",
+    "body": ["-- TODO: $0"],
+    "description": "TODO"
   },
-  "locpcall": {
-    "body": ["local ${1:status}, ${2:err_or_value} = pcall(${3:function})"],
-    "description": "Protect call a function as a variable",
-    "prefix": "var_local_pcall"
+  "WARN": {
+    "prefix": "warn",
+    "body": ["-- WARN: $0"],
+    "description": "WARN"
   },
-  "if": { "body": ["if ${1:true} then", "\t$0", "end"], "prefix": "if_" },
-  "pcall": {
+  "require": {
+    "prefix": "req",
+    "body": ["require(\"${1:module}\")"],
+    "description": "Require module"
+  },
+  "require:with local": {
+    "prefix": "req_local",
+    "body": ["local ${1:var} = require(\"${2:module}\")"],
+    "description": "Require module as a variable"
+  },
+  "require:pcall": {
+    "prefix": "req_pcall",
     "body": ["pcall(${1:function})"],
-    "description": "Protect call a function",
-    "prefix": "pcall"
+    "description": "Protect call a function"
   },
-  "if:elseif_else ": {
+  "class": {
+    "prefix": "class",
+    "body": [
+      "${1:className} = {}\n",
+      "$1.${2:new} = function($3)",
+      "\tlocal ${4:varName} = ${5:{}}\n",
+      "\t${6: --code}\n",
+      "\treturn $4",
+      "end"
+    ],
+    "description": "Create a class"
+  },
+  "self": {
+    "prefix": "class_self",
+    "body": ["function self:${1:methodName}($2)", "\t$0", "end"]
+  },
+  "var": {
+    "prefix": "local",
+    "body": ["local ${1:varName} = ${0:value}"]
+  },
+  "var:multi": {
+    "prefix": "local_multi",
+    "body": ["local $1, $2"]
+  },
+  "var:table": {
+    "prefix": "local_table",
+    "body": ["local $1 = {$2}"]
+  },
+  "var:dict": {
+    "prefix": "local_dict",
+    "body": ["local $1 = {", "\t[${2:key}] = ${3:value}", "}"]
+  },
+  "var:require": {
+    "prefix": "local_require",
+    "body": ["local ${1:var} = require(\"${2:module}\")"],
+    "description": "Require module as a variable"
+  },
+  "var:pcall": {
+    "prefix": "local_pcall",
+    "body": ["local ${1:status}, ${2:err_or_value} = pcall(${3:function})"],
+    "description": "Protect call a function as a variable"
+  },
+  "if": {
+    "prefix": "if",
+    "body": ["if ${1:true} then", "\t$0", "end"]
+  },
+  "if:else": {
+    "prefix": "if_else",
+    "body": [
+      "if ${1:condition} then",
+      "\t${2:-- body}",
+      "else",
+      "\t${3:-- else body}",
+      "end"
+    ],
+    "description": "Lua if-else statement"
+  },
+  "if:else_if_else ": {
+    "prefix": "if_elif_else",
     "body": [
       "if ${1:condition1} then",
       "\t${2:-- body}",
@@ -24,37 +92,59 @@
       "\t${5:-- else body}",
       "end"
     ],
-    "description": "Lua if-elseif-else statement",
-    "prefix": "if_elifelse"
+    "description": "Lua if-elseif-else statement"
   },
-  "ERROR": {
-    "body": ["-- ERROR: $0"],
-    "description": "TODO",
-    "prefix": "error"
+  "if:elif": {
+    "prefix": "if_elif",
+    "body": ["elseif ${1:condition2} then"],
+    "description": "Lua if-elseif-else statement"
   },
-  "require": {
-    "body": ["require(\"${1:module}\")"],
-    "description": "Require module",
-    "prefix": "req"
+  "if:ternary": {
+    "prefix": "if_ternary",
+    "body": ["${1:condition} and ${2:true_value} or ${3:false_value}"],
+    "description": "Lua if statement using ternary operator"
+  },
+  "if:not": {
+    "prefix": "if_not",
+    "body": ["if not ${1:true} then", "\t$0", "end"]
+  },
+  "else": {
+    "prefix": "else",
+    "body": ["else"],
+    "description": "Lua if-elseif-else statement"
+  },
+  "for:each": {
+    "prefix": "for_each",
+    "body": ["for ${1:i}, ${2:x} in pairs(${3:table}) do", "\t$0", "end"]
+  },
+  "for:i": {
+    "prefix": "for_i",
+    "body": ["for ${1:i}=${2:1},${3:10} do", "\t$0", "end"],
+    "description": "for loop range"
+  },
+  "while": {
+    "prefix": "while",
+    "body": ["while ${1:true} do", "\t$0", "end"]
+  },
+  "function": {
+    "prefix": "func",
+    "body": ["function ${1:name}($2)", "\t${3:-- code}", "end"]
+  },
+  "function:annoymous": {
+    "prefix": "func_anon",
+    "body": ["function($1)", "\t${2}", "end"]
+  },
+  "function:literal": {
+    "prefix": "func_literal",
+    "body": ["local ${1:name} = function($2)", "\t${0:-- code}", "end"]
   },
   "return": {
+    "prefix": "ret",
     "body": ["return $0"],
-    "description": "return value",
-    "prefix": "ret"
-  },
-  "class": {
-    "body": [
-      "${1:className} = {}\n",
-      "$1.${2:new} = function($3)",
-      "\tlocal ${4:varName} = ${5:{}}\n",
-      "\t${6: --code}\n",
-      "\treturn $4",
-      "end"
-    ],
-    "description": "Create a class",
-    "prefix": "class"
+    "description": "return value"
   },
   "read:line": {
+    "prefix": "read_line",
     "body": [
       "f = io.open(${1:\"${2:filename}\"}, \"${3:r}\")\n",
       "while true do",
@@ -63,75 +153,14 @@
       "\t${0}",
       "end"
     ],
-    "description": "read file line by line",
-    "prefix": "read_line"
+    "description": "read file line by line"
   },
-  "while": {
-    "body": ["while ${1:true} do", "\t$0", "end"],
-    "prefix": "while"
+  "type:check": {
+    "prefix": "type",
+    "body": ["type(${1:variable})"]
   },
-  "TODO": { "body": ["-- TODO: $0"], "description": "TODO", "prefix": "todo_" },
-  "var require": {
-    "body": ["local ${1:var} = require(\"${2:module}\")"],
-    "description": "Require module as a variable",
-    "prefix": "req_local"
-  },
-  "keys_": {
-    "body": [
-      "keys = {",
-      "  {",
-      "    \"${1:keymap}\",",
-      "    function()",
-      "      $0",
-      "    end,",
-      "    desc = \"${2:desc}\",",
-      "  },",
-      "},"
-    ],
-    "prefix": "keys"
-  },
-  "elif": { "body": ["elseif ${1:true} then", "\t$0"], "prefix": "elif_" },
-  "if:else": {
-    "body": [
-      "if ${1:condition} then",
-      "\t${2:-- body}",
-      "else",
-      "\t${3:-- else body}",
-      "end"
-    ],
-    "description": "Lua if-else statement",
-    "prefix": "if_else"
-  },
-  "WARN": { "body": ["-- WARN: $0"], "description": "TODO", "prefix": "warn_" },
-  "for:each": {
-    "body": ["for ${1:i}, ${2:x} in pairs(${3:table}) do", "\t$0", "end"],
-    "prefix": "for_each"
-  },
-  "if:ternary": {
-    "body": ["${1:condition} and ${2:true_value} or ${3:false_value}"],
-    "description": "Lua if statement using ternary operator",
-    "prefix": "if_ternary"
-  },
-  "self": {
-    "body": ["function self:${1:methodName}($2)", "\t$0", "end"],
-    "prefix": "class_self"
-  },
-  "for_": {
-    "body": ["for ${1:i}=${2:1},${3:10} do", "\t$0", "end"],
-    "description": "for loop range",
-    "prefix": "for"
-  },
-  "var": {
-    "body": ["local ${1:varName} = ${0:value}"],
-    "description": "create a variable",
-    "prefix": "var"
-  },
-  "function annoymous": {
-    "prefix": "func_anon",
-    "body": ["function($1)", "\t${2}", "end"]
-  },
-  "function literal": {
-    "body": ["local ${1:name} = function($2)", "\t${0:-- code}", "end"],
-    "prefix": "func_literal"
+  "type:check with condition": {
+    "prefix": "type_check_type_with_condition",
+    "body": ["type(${1:variable}) ~= \"${2:table/string/boolean}\""]
   }
 }

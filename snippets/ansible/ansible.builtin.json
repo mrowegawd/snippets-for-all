@@ -74,8 +74,8 @@
       "- name: ${1:Description}",
       "  ansible.builtin.apt_key:",
       "    data: \"{{ lookup('file', '${2:file_path_on_server}') }}\"",
-      "    state: ${3|present,absent|}${4:",
-      "    keyring: \"${5:path_to_keyring_file}\"}",
+      "    state: ${3:present_or_absent}",
+      "    keyring: \"${4:path_to_keyring_file}\"",
       "$0"
     ],
     "description": "Used for Ansible Apt_Key"
@@ -1016,11 +1016,11 @@
     "prefix": ["ansible.builtin.wait_for_connection", "wait_for_connection"],
     "body": [
       "- name: ${1:Description}",
-      "  ansible.builtin.wait_for_connection:${2:",
-      "    connect_timeout: ${3:seconds_to_wait_before_retrying}}${4:",
-      "    delay: ${5:seconds_to_wait_before_trying_to_connect}}${6:",
-      "    sleep: ${7:seconds_to_wait_between_checks}}${8:",
-      "    timeout: ${9:max_seconds_to_wait_before_marking_task_failed}}",
+      "  ansible.builtin.wait_for_connection:",
+      "    connect_timeout: ${2:seconds_to_wait_before_retrying}",
+      "    delay: ${3:seconds_to_wait_before_trying_to_connect}",
+      "    sleep: ${4:seconds_to_wait_between_checks}",
+      "    timeout: ${5:max_seconds_to_wait_before_marking_task_failed}",
       "$0"
     ],
     "description": "Used for Ansible Wait for Connection Module to pause play execution until host is available"

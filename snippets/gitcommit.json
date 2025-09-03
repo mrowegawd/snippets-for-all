@@ -21,7 +21,7 @@
   },
   "ci conventional commit": {
     "prefix": "ci",
-    "body": ["git_ci(${1:scope}): ${2:title}", "", "$0"]
+    "body": ["ci(${1:scope}): ${2:title}", "", "$0"]
   },
   "docs conventional commit": {
     "prefix": "git_docs",
@@ -29,19 +29,19 @@
   },
   "style conventional commit": {
     "prefix": "style",
-    "body": ["git_style(${1:scope}): ${2:title}", "", "$0"]
+    "body": ["style(${1:scope}): ${2:title}", "", "$0"]
   },
   "refactor conventional commit": {
     "prefix": "git_refactor",
-    "body": ["refactor(${1:scope}): ${2:title}", "", "$0"]
+    "body": ["ref(${1:scope}): ${2:title}", "", "$0"]
   },
   "perf conventional commit": {
     "prefix": "perf",
-    "body": ["git_perf(${1:scope}): ${2:title}", "", "$0"]
+    "body": ["perf(${1:scope}): ${2:title}", "", "$0"]
   },
   "test conventional commit": {
     "prefix": "test",
-    "body": ["git_test(${1:scope}): ${2:title}", "", "$0"]
+    "body": ["test(${1:scope}): ${2:title}", "", "$0"]
   },
   "breaking change conventional commit footer": {
     "prefix": "git_BREAK",

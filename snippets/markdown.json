@@ -103,17 +103,17 @@
     "description": "Insert ordered list"
   },
   "block:code": {
-    "prefix": "block_code",
+    "prefix": "code_block",
     "body": ["```${1:language}", "$0", "```"],
     "description": "Insert fenced code block"
   },
   "block:math": {
-    "prefix": "block_math",
+    "prefix": "code_block_math",
     "body": ["\\[ $0 \\]"],
     "description": "Insert block math"
   },
   "html:block": {
-    "prefix": "html_block",
+    "prefix": "code_html_block",
     "body": ["<div>", "  $0", "</div>"],
     "description": "Insert an HTML block"
   },

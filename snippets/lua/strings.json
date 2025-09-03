@@ -1,0 +1,6 @@
+{
+  "String:format": {
+    "prefix": "string_format",
+    "body": ["string.format(\"${1:%s}\", ${2:data})"]
+  }
+}

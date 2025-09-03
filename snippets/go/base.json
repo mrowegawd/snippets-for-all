@@ -4,6 +4,11 @@
     "body": ["// TODO: $0"],
     "description": "// TODO: ..."
   },
+  "WARN": {
+    "prefix": "warn",
+    "body": ["// WARN: $0"],
+    "description": "// WARN: ..."
+  },
   "imports": {
     "prefix": "imp",
     "body": "import \"${1:package}\"",

@@ -149,6 +149,14 @@
         "path": "./snippets/lua/merge.json"
       },
       {
+        "language": "lua",
+        "path": "./snippets/lua/strings.json"
+      },
+      {
+        "language": "lua",
+        "path": "./snippets/lua/vim-table.json"
+      },
+      {
         "language": "go",
         "path": "./snippets/go/api.json"
       },

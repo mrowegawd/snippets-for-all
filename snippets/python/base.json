@@ -1,4 +1,14 @@
 {
+  "TODO": {
+    "prefix": "todo",
+    "body": ["# TODO: $0"],
+    "description": "# TODO: ..."
+  },
+  "WARN": {
+    "prefix": "warn",
+    "body": ["# WARN: $0"],
+    "description": "# WARN: ..."
+  },
   "#!/usr/bin/env python": {
     "prefix": "env",
     "body": "#!/usr/bin/env python\n$0",
@@ -18,11 +28,6 @@
     "prefix": "env_enc8",
     "body": "# coding=utf-8\n$0",
     "description": "# coding=utf-8\n"
-  },
-  "TODO": {
-    "prefix": "todo",
-    "body": ["# TODO: $0"],
-    "description": "# TODO: ..."
   },
   "header{{{": {
     "prefix": "header_1",
@@ -833,10 +838,15 @@
     "body": ["if ${1:condition}:", "\t${2:pass}", "else:", "\t${3:pass}"],
     "description": ["if condition:", "\tpass", "else:", "\tpass"]
   },
-  "elif": {
-    "prefix": "elif",
+  "if:elif": {
+    "prefix": "if_elif",
     "body": ["elif ${1:expression}:", "\t${2:pass}"],
     "description": ["elif expression:", "\tpass"]
+  },
+  "if:not": {
+    "prefix": "if_not",
+    "body": ["if not ${1:expression}:", "\t${2:pass}"],
+    "description": ["if not expression:", "\tpass"]
   },
   "else": {
     "prefix": "else",
@@ -913,7 +923,7 @@
   "type:check:type with condition": {
     "prefix": "type_check_type_with_condition",
     "body": [
-      "if type(${1:variable}) is not ${2:type}:",
+      "type(${1:variable}) is not ${2:str/bool/int/ClassName}:",
       "\traise TypeError(f'Expected type ${2:type}, but got {type(${1:variable}).__name__} instead.')"
     ],
     "description": "Python type check using type()"
